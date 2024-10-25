@@ -1,0 +1,29 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --inspect index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minquan-alt/nodejs_travelwebsite.git"
+  },
+  "keywords": [
+    "is207",
+    "travel",
+    "website",
+    "is207"
+  ],
+  "author": "wanmin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minquan-alt/nodejs_travelwebsite/issues"
+  },
+  "homepage": "https://github.com/minquan-alt/nodejs_travelwebsite#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
+  }
+}
