@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon --inspect src/index.js",
-    "watch": "node-sass -w src/resources/scss/app.scss src/public/css/app.css"
+    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/"
   },
   "repository": {
     "type": "git",
