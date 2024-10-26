@@ -1,9 +1,10 @@
 {
   "name": "project2",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon --inspect index.js"
+    "dev": "nodemon --inspect src/index.js",
+    "watch": "node-sass -w src/resources/scss/app.scss src/public/css/app.css"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,11 @@
   "description": "",
   "dependencies": {
     "express": "^4.21.1",
+    "express-handlebars": "^8.0.1",
     "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "node-sass": "^9.0.0"
   }
 }
