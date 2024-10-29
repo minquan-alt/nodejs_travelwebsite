@@ -25,18 +25,20 @@
   "description": "",
   "husky": {
     "hooks": {
-    "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,json,scss}": [
-    "prettier —-single-quote --trailing-comma all --tab-width 4 --write",
-    "git add"
+      "prettier —-single-quote --trailing-comma all --tab-width 4 --write",
+      "git add"
     ]
   },
   "dependencies": {
+    "eslint": "^9.13.0",
     "express": "^4.21.1",
-    "express-handlebars": "^8.0.1"
+    "express-handlebars": "^8.0.1",
+    "save-dev": "^0.0.1-security"
   },
   "devDependencies": {
     "husky": "^9.1.6",

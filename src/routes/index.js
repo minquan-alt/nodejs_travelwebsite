@@ -6,7 +6,7 @@ function route(app) {
        app.get('/search', searchRouter);
 
                         app.get('/news', newsRouter);
-       app.get('/', siteRouter);
+          app.get('/', siteRouter);
 }
 
 module.exports = route;
