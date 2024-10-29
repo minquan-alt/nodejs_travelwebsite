@@ -23,11 +23,16 @@
   },
   "homepage": "https://github.com/minquan-alt/nodejs_travelwebsite#readme",
   "description": "",
-  "lint-staged": {
-    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  "husky": {
+    "hooks": {
+    "pre-commit": "lint-staged"
+    }
   },
-  "hooks": {
-      "pre-commit": "lint-staged"
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": [
+    "prettier —-single-quote --trailing-comma all --tab-width 4 --write",
+    "git add"
+    ]
   },
   "dependencies": {
     "express": "^4.21.1",
