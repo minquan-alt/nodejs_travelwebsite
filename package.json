@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/minquan-alt/nodejs_travelwebsite#readme",
   "description": "",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
+  },
   "dependencies": {
     "express": "^4.21.1",
     "express-handlebars": "^8.0.1",
