@@ -1,12 +1,27 @@
-const newsRouter = require('./news')
-const siteRouter = require('./site')
-const searchRouter = require('./search')
+const express = require('express')
+const {
+    getHomePage,
+    getAboutPage,
+    getRegisterPage,
+} = require('../controllers/HomeController.js')
 
-function route(app) {
-    app.get('/search', searchRouter)
+let router = express.Router()
 
-    app.get('/news', newsRouter)
-    app.get('/', siteRouter)
+let initWebRoutes = (app) => {
+    router.get('/', getHomePage)
+    router.get('/about', getAboutPage)
+    router.get('/register', getRegisterPage)
+
+    return app.use('/', router)
 }
 
-module.exports = route
+// function route(app) {
+//     app.use('/api/v1/user', userRouter)
+//     app.use('/search', searchRouter)
+
+//     app.use('/news', newsRouter)
+//     app.use('/', siteRouter)
+
+// }
+
+module.exports = initWebRoutes

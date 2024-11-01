@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon --inspect src/index.js",
+    "start": "nodemon --exec babel-node src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
     "prepare": "husky"
   },
@@ -28,17 +28,34 @@
     "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-handlebars": "^8.0.1",
-    "save-dev": "^0.0.1-security"
+    "mongoose": "^8.7.3",
+    "msnodesqlv8": "^4.2.1",
+    "mssql": "^11.0.1",
+    "mysql2": "^3.11.3",
+    "node-ip": "^0.1.2",
+    "npm": "^10.9.0",
+    "path": "^0.12.7",
+    "save-dev": "^0.0.1-security",
+    "sequelize": "^6.37.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/node": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "eslint": "^9.13.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "morgan": "^1.10.0",
     "node-sass": "^9.0.0",
     "nodemon": "^3.1.7",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "sequelize-cli": "^6.6.2"
   }
 }
