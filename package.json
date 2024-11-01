@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
+    "dev": "npm run compile-sass -- --watch & npm start",
     "start": "nodemon --exec babel-node src/index.js",
-    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
+    "compile-sass": "sass --watch src/resources/scss:src/public/css",
     "prepare": "husky"
   },
   "repository": {
@@ -30,12 +31,12 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
+    "compile-sass": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-handlebars": "^8.0.1",
-    "mongoose": "^8.7.3",
     "msnodesqlv8": "^4.2.1",
     "mssql": "^11.0.1",
     "mysql2": "^3.11.3",
@@ -53,9 +54,9 @@
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "morgan": "^1.10.0",
-    "node-sass": "^9.0.0",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
+    "sass": "^1.80.5",
     "sequelize-cli": "^6.6.2"
   }
 }
