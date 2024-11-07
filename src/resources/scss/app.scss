@@ -1,9 +1,14 @@
-@use 'variables';
-<<<<<<< HEAD
+.tour {
+    display: flex;
+    flex-direction: column;
+    height: 100%; // Đảm bảo tất cả các phần tử trong cột có cùng chiều cao
+}
 
-=======
->>>>>>> origin/main
-body {
-    background-color: aqua;
-    font-size: 1.5 rem;
+.tour img {
+    max-height: 200px; // Giới hạn chiều cao ảnh nếu cần
+    object-fit: cover; // Đảm bảo ảnh không bị méo khi thay đổi kích thước
+}
+
+.tour h2, .tour p {
+    margin-bottom: 10px; // Giảm khoảng cách giữa các phần tử để bố cục gọn gàng hơn
 }

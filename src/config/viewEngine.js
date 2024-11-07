@@ -6,6 +6,7 @@ const configViewEngine = (app) => {
     console.log(path.join(__dirname, '..', 'public'))
     app.set('view engine', 'ejs')
     app.set('views', path.join(__dirname, '..', 'resources/views'))
+    app.set('layout', './master')
     console.log(path.join(__dirname, '..', 'resources/views'))
 }
 module.exports = configViewEngine
