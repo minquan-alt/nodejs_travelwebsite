@@ -21,8 +21,8 @@ app.use(expressLayouts)
 viewEngine(app)
 initWebRoutes(app)
 connectDB()
-
-const PORT = process.env.PORT || 3000
+console.log(process.env.PORT)
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`App is listening on: http://localhost:${PORT}`)
 })

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Đăng Ký Tài Khoản</title>
+    <link rel="stylesheet" href="src\public\css\app.css">
+    <script>
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Biểu thức chính quy để kiểm tra định dạng email
+            return regex.test(email);
+        }
+
+        function validatePhoneNumber(phone) {
+            const startsWithZero = phone.startsWith("0");
+            const isTenDigits = phone.length === 10;
+            return { startsWithZero, isTenDigits };
+        }
+
+        function toTitleCase(str) {
+            return str.split(' ').map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }).join(' ');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.innerText = message;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000); // Ẩn thông báo sau 3 giây
+        }
+
+        function validateForm(event) {
+            event.preventDefault(); // Ngăn chặn gửi form
+
+            // Lấy giá trị của các trường
+            const password = document.getElementById("password").value;
+            const password1 = document.getElementById("password1").value;
+            const hoten = document.getElementById("hoten").value;
+            const email = document.getElementById("email").value;
+            const sdt = document.getElementById("sdt").value;
+            const day = document.getElementById("day").value;
+            const month = document.getElementById("month").value;
+            const year = document.getElementById("year").value;
+
+            // Lấy các phần tử thông báo lỗi
+            const passwordError = document.getElementById("password-error");
+            const password1Error = document.getElementById("password1-error");
+            const hotenError = document.getElementById("hoten-error");
+            const emailError = document.getElementById("email-error");
+            const sdtError = document.getElementById("sdt-error");
+            const dobError = document.getElementById("dob-error"); // Thêm phần tử báo lỗi cho ngày sinh
+
+            // Xóa thông báo lỗi cũ
+            passwordError.style.display = "none";
+            password1Error.style.display = "none";
+            hotenError.style.display = "none";
+            emailError.style.display = "none";
+            sdtError.style.display = "none";
+            dobError.style.display = "none";
+
+            let valid = true; // Biến xác thực
+
+            // Kiểm tra họ tên
+            if (hoten.trim() === "") {
+                hotenError.innerText = "Vui lòng nhập họ và tên.";
+                hotenError.style.display = "block";
+                valid = false;
+            }
+            // Kiểm tra ngày tháng năm sinh
+            if (day === "0" || month === "0" || year === "0") {
+                dobError.innerText = "Vui lòng chọn ngày tháng năm sinh.";
+                dobError.style.display = "block";
+                valid = false;
+            }
+            // Kiểm tra email
+            if (email.trim() === "") {
+                emailError.innerText = "Vui lòng nhập email.";
+                emailError.style.display = "block";
+                valid = false;
+            } else if (!validateEmail(email)) {
+                emailError.innerText = "Vui lòng nhập email hợp lệ.";
+                emailError.style.display = "block";
+                valid = false;
+            }
+
+            // Kiểm tra số điện thoại
+            const phoneValidation = validatePhoneNumber(sdt);
+            if (!phoneValidation.startsWithZero) {
+                sdtError.innerText = "Số điện thoại phải bắt đầu bằng 0.";
+                sdtError.style.display = "block";
+                valid = false;
+            } else if (!phoneValidation.isTenDigits) {
+                sdtError.innerText = "Số điện thoại phải có 10 chữ số.";
+                sdtError.style.display = "block";
+                valid = false;
+            }
+
+            // Kiểm tra mật khẩu
+            if (password.trim() === "") {
+                passwordError.innerText = "Vui lòng nhập mật khẩu.";
+                passwordError.style.display = "block";
+                valid = false;
+            } else if (password.length < 8) {
+                passwordError.innerText = "Mật khẩu phải có ít nhất 8 ký tự.";
+                passwordError.style.display = "block";
+                valid = false;
+            }
+
+            // Kiểm tra nhập lại mật khẩu
+            if (password1.trim() === "") {
+                password1Error.innerText = "Vui lòng nhập lại mật khẩu.";
+                password1Error.style.display = "block";
+                valid = false;
+            } else if (password !== password1) {
+                password1Error.innerText = "Mật khẩu không khớp.";
+                password1Error.style.display = "block";
+                valid = false;
+            }
+
+            // Nếu tất cả hợp lệ, hiển thị thông báo
+            if (valid) {
+                showNotification("Đăng ký thành công!"); // Hiển thị thông báo
+                // document.querySelector("form").submit(); // Bỏ chú dòng này để gửi form nếu cần
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Ẩn thông báo lỗi khi người dùng nhập dữ liệu
+            const inputs = document.querySelectorAll("input");
+            inputs.forEach(input => {
+                input.addEventListener("input", function() {
+                    const errorId = `${input.id}-error`;
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement) {
+                        errorElement.style.display = "none"; // Ẩn thông báo lỗi
+                    }
+                });
+            });
+
+            // Viết hoa chữ cái đầu tiên trong họ tên
+            document.getElementById("hoten").addEventListener("input", function() {
+                this.value = toTitleCase(this.value);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="signup-container">
+        <h1 class="dki">ĐĂNG KÝ TÀI KHOẢN</h1>
+        <form action="#" method="POST" onsubmit="validateForm(event)">
+            <div class="form-group-dki">
+                <label class="dki-label" for="hoten">Họ và tên</label>
+                <input type="text" id="hoten" name="hoten">
+                <div id="hoten-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="dob">Ngày tháng năm sinh</label>
+                <div class="dob-container">
+                    <select class="dki-select" id="day" name="day">
+                        <option value="0">Ngày</option>
+                        <script>
+                            for (let i = 1; i <= 31; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+                    <select class="dki-select" id="month" name="month">
+                        <option value="0">Tháng</option>
+                        <script>
+                            for (let i = 1; i <= 12; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+                    <select class="dki-select" id="year" name="year">
+                        <option value="0">Năm</option>
+                        <script>
+                            const currentYear = new Date().getFullYear();
+                            for (let i = currentYear; i >= currentYear - 100; i--) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+                </div>
+                <div id="dob-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="email">Email</label>
+                <input type="text" id="email" name="email">
+                <div id="email-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="sdt">Số điện thoại</label>
+                <input type="tel" id="sdt" name="sdt">
+                <div id="sdt-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password">
+                <div id="password-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="password1">Nhập lại mật khẩu</label>
+                <input type="password" id="password1" name="password1">
+                <div id="password1-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <button class="dki-button" type="submit">Đăng ký</button>
+        </form>
+    </div>
+
+    <!-- Thông báo tùy chỉnh -->
+    <div id="notification" class="notification" style="display:none;"></div> <!-- Khởi tạo ẩn cho thông báo -->
+</body>
+</html>
