@@ -13,6 +13,7 @@
     margin-bottom: 10px; // Giảm khoảng cách giữa các phần tử để bố cục gọn gàng hơn
 }
 
+
 * {
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
@@ -106,13 +107,17 @@ button:hover {
 /* QUEN MK FORM*/
 .quenmk-container {
     width: 100%;
-    max-width: 550px; /* Giảm chiều rộng để phù hợp với di động */
-    margin: 200px auto; /* Căn giữa */
+    max-width: 650px; /* Giảm chiều rộng để phù hợp với di động */
+    margin: 300px auto; /* Căn giữa */
     padding: 30px;
-    
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.form-group-forgotpw {
+    margin-bottom: 15px;
 }
 .quenmk-h1 {
-    text-align: left;
+    text-align: center;
     font-size: 38px; /* Giảm kích thước tiêu đề */
     color: #044c64;
     margin-bottom: 20px;
@@ -151,7 +156,12 @@ input.quenmk {
 .quenmk-button:hover {
     background-color: white  ; /* Thay đổi màu khi hover */
 }
-
+input.forgotpw{
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px; /* Thêm khoảng cách trên */
+    font-size: 16px;
+}
 /*DANG NHAP FORM*/
 .login-container {
     width: 100%;
@@ -178,10 +188,10 @@ input.quenmk {
     display: block;
     margin-bottom: 5px;
     font-size: 20px; /* Kích thước chữ nhãn */
-    color: #555; /* Màu chữ nhãn */
+    color: black; /* Màu chữ nhãn */
 }
 
-input.login{
+input.login {
     width: 100%;
     padding: 15px;
     border: 1px solid #ccc; /* Đường viền input */
@@ -215,16 +225,75 @@ input.login:focus {
     margin-top: 10px; /* Khoảng cách trên */
 }
 
-.login-forgot-password, .dkitaikhoan, .text {
+.login-forgot-password, .login-dkitaikhoan, .text {
     margin-top: 10px;
     display: inline;
 }
 
-.forgot-password a, .dkitaikhoan a {
+/* Định nghĩa liên kết */
+.login-dkitaikhoan,
+.login-forgot-password {
     color: rgb(20, 114, 157); /* Màu chữ liên kết */
-    text-decoration: none;
+    text-decoration: none; /* Không gạch chân */
 }
 
-.forgot-password a:hover, .dkitaikhoan a:hover {
-    color: rgb(66, 220, 247); /* Gạch chân khi hover */
+.login-dkitaikhoan:hover,
+.login-forgot-password:hover {
+    color: rgb(66, 220, 247); /* Màu khi hover */
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+
+/* RESET MK
+/* QUEN MK FORM*/
+.resetpw-container {
+    width: 100%;
+    max-width: 550px; /* Giảm chiều rộng để phù hợp với di động */
+    margin: 300px auto; /* Căn giữa */
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.resetpw-h1 {
+    text-align: left;
+    font-size: 38px; /* Giảm kích thước tiêu đề */
+    color: #044c64;
+    margin-bottom: 20px;
+}
+.resetpw-text {
+    width: 100%;
+    margin-bottom: 20px; /* Thêm khoảng cách dưới khối text */
+    background-color: #fff;
+    border-radius: 8px;
+    padding:30px;
+}
+.resetpw-p {
+    text-align: left;
+    margin: 10px 0; /* Điều chỉnh khoảng cách trên và dưới */
+    font-size:22px;
+}
+input.resetpw {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px; /* Thêm khoảng cách trên */
+    font-size: 16px;
+}
+.resetpw-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px; /* Thêm khoảng cách trên */
+    background-color: #DAA520;
+    color: black;
+    border: 1px solid #DAA520 ;
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bolder;
+
+}
+.resetpw-button:hover {
+    background-color: white  ; /* Thay đổi màu khi hover */
+}
+.form-group-resetpw {
+    margin-bottom: 15px;
 }

@@ -5,25 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <title>Đăng Ký Tài Khoản</title>
-    <link rel="stylesheet" href="src\public\css\app.css">
+    <link rel="stylesheet" href="src/public/css/app.css">
     <script>
+        function isValidDate(day, month, year) {
+            const date = new Date(year, month - 1, day);
+            return date.getFullYear() === parseInt(year) &&
+               date.getMonth() === month - 1 &&
+               date.getDate() === parseInt(day);
+         }
         function validateEmail(email) {
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Biểu thức chính quy để kiểm tra định dạng email
             return regex.test(email);
         }
-
+    
         function validatePhoneNumber(phone) {
             const startsWithZero = phone.startsWith("0");
             const isTenDigits = phone.length === 10;
             return { startsWithZero, isTenDigits };
         }
-
+    
         function toTitleCase(str) {
             return str.split(' ').map(word => {
                 return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
             }).join(' ');
         }
-
+    
         function showNotification(message) {
             const notification = document.getElementById('notification');
             notification.innerText = message;
@@ -32,50 +38,65 @@
                 notification.style.display = 'none';
             }, 3000); // Ẩn thông báo sau 3 giây
         }
-
+    
         function validateForm(event) {
             event.preventDefault(); // Ngăn chặn gửi form
-
+    
             // Lấy giá trị của các trường
-            const password = document.getElementById("password").value;
-            const password1 = document.getElementById("password1").value;
             const hoten = document.getElementById("hoten").value;
             const email = document.getElementById("email").value;
             const sdt = document.getElementById("sdt").value;
             const day = document.getElementById("day").value;
             const month = document.getElementById("month").value;
             const year = document.getElementById("year").value;
-
+            const password = document.getElementById("password").value;
+            const password1 = document.getElementById("password1").value;
+    
             // Lấy các phần tử thông báo lỗi
-            const passwordError = document.getElementById("password-error");
-            const password1Error = document.getElementById("password1-error");
             const hotenError = document.getElementById("hoten-error");
             const emailError = document.getElementById("email-error");
             const sdtError = document.getElementById("sdt-error");
-            const dobError = document.getElementById("dob-error"); // Thêm phần tử báo lỗi cho ngày sinh
-
+            const dobError = document.getElementById("dob-error");
+            const passwordError = document.getElementById("password-error");
+            const password1Error = document.getElementById("password1-error");
+    
             // Xóa thông báo lỗi cũ
-            passwordError.style.display = "none";
-            password1Error.style.display = "none";
             hotenError.style.display = "none";
             emailError.style.display = "none";
             sdtError.style.display = "none";
             dobError.style.display = "none";
-
+            passwordError.style.display = "none";
+            password1Error.style.display = "none";
+    
             let valid = true; // Biến xác thực
-
+    
             // Kiểm tra họ tên
             if (hoten.trim() === "") {
                 hotenError.innerText = "Vui lòng nhập họ và tên.";
                 hotenError.style.display = "block";
                 valid = false;
-            }
+            } else if (/^[^a-zA-Z]/.test(hoten.trim())) { // Kiểm tra xem họ tên có bắt đầu bằng ký tự đặc biệt không
+                hotenError.innerText = "Họ và tên không được bắt đầu bằng ký tự đặc biệt.";
+                hotenError.style.display = "block";
+                valid = false;
+            } else if (/^[\p{L}\s]+$/u.test(hoten.trim())) {
+                        // Tên hợp lệ
+                } else {
+                    hotenError.innerText = "Họ và tên chỉ được chứa chữ cái và khoảng trắng.";
+                hotenError.style.display = "block";
+}
+    
             // Kiểm tra ngày tháng năm sinh
             if (day === "0" || month === "0" || year === "0") {
                 dobError.innerText = "Vui lòng chọn ngày tháng năm sinh.";
                 dobError.style.display = "block";
                 valid = false;
+            } else if (!isValidDate(day, month, year)) {
+                dobError.innerText = "Ngày tháng năm sinh không hợp lệ.";
+                dobError.style.display = "block";
+                valid = false;
             }
+    
             // Kiểm tra email
             if (email.trim() === "") {
                 emailError.innerText = "Vui lòng nhập email.";
@@ -86,7 +107,7 @@
                 emailError.style.display = "block";
                 valid = false;
             }
-
+    
             // Kiểm tra số điện thoại
             const phoneValidation = validatePhoneNumber(sdt);
             if (!phoneValidation.startsWithZero) {
@@ -98,7 +119,7 @@
                 sdtError.style.display = "block";
                 valid = false;
             }
-
+    
             // Kiểm tra mật khẩu
             if (password.trim() === "") {
                 passwordError.innerText = "Vui lòng nhập mật khẩu.";
@@ -109,7 +130,7 @@
                 passwordError.style.display = "block";
                 valid = false;
             }
-
+    
             // Kiểm tra nhập lại mật khẩu
             if (password1.trim() === "") {
                 password1Error.innerText = "Vui lòng nhập lại mật khẩu.";
@@ -120,17 +141,29 @@
                 password1Error.style.display = "block";
                 valid = false;
             }
-
+    
             // Nếu tất cả hợp lệ, hiển thị thông báo
             if (valid) {
                 showNotification("Đăng ký thành công!"); // Hiển thị thông báo
-                // document.querySelector("form").submit(); // Bỏ chú dòng này để gửi form nếu cần
+                setTimeout(function() {
+                    window.location.href = "login.ejs"; // Chuyển hướng tới login.ejs
+                }, 1500);
             }
         }
+        document.addEventListener("DOMContentLoaded", function () {
+            const selects = document.querySelectorAll("select");
+                selects.forEach(select => {
+                // Thêm sự kiện change cho các thẻ select
+                select.addEventListener("change", function() {
+                // Xóa thông báo lỗi ngày sinh nếu đã chọn lại ngày, tháng, hoặc năm
+                document.getElementById("dob-error").style.display = "none";
+                });
+            });
+        });
 
         document.addEventListener("DOMContentLoaded", function () {
             // Ẩn thông báo lỗi khi người dùng nhập dữ liệu
-            const inputs = document.querySelectorAll("input");
+            const inputs = document.querySelectorAll("input"); // Thêm select vào danh sách
             inputs.forEach(input => {
                 input.addEventListener("input", function() {
                     const errorId = `${input.id}-error`;
@@ -140,11 +173,12 @@
                     }
                 });
             });
-
+    
             // Viết hoa chữ cái đầu tiên trong họ tên
             document.getElementById("hoten").addEventListener("input", function() {
                 this.value = toTitleCase(this.value);
-            });
+            }); 
+            
         });
     </script>
 </head>

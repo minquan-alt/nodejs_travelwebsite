@@ -6,49 +6,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src\public\css\app.css">
     <title>Đăng Nhập</title>
-    <script>
-        function validateLogin(event) {
-            event.preventDefault(); // Ngăn chặn gửi form
-
-            const sdt = document.getElementById("sdt").value; // Thay đổi từ email thành sdt
-            const password = document.getElementById("password").value;
-            const errorMessage = document.getElementById("error-message");
-            const successMessage = document.getElementById("success-message");
-
-            // Lấy dữ liệu từ localStorage
-            const userData = JSON.parse(localStorage.getItem('userData'));
-
-            // Reset thông báo
-            errorMessage.style.display = "none";
-            successMessage.style.display = "none";
-
-            // Kiểm tra thông tin đăng nhập
-            if (userData) {
-                if (userData.sdt === sdt && userData.password === password) {
-                    // Đăng nhập thành công
-                    successMessage.innerText = "Đăng nhập thành công!";
-                    successMessage.style.display = "block";
-                    // Chuyển hướng đến trang chính hoặc trang cá nhân
-                    setTimeout(() => {
-                        window.location.href = "home.html"; // Thay đổi đường dẫn theo yêu cầu
-                    }, 2000); // Chờ 2 giây trước khi chuyển hướng
-                } else {
-                    // Thông báo lỗi
-                    errorMessage.innerText = "Số điện thoại hoặc mật khẩu không chính xác.";
-                    errorMessage.style.display = "block";
-                }
-            } else {
-                errorMessage.innerText = "Chưa có tài khoản. Vui lòng đăng ký trước.";
-                errorMessage.style.display = "block";
-            }
-        }
-    </script>
 </head>
 <body>
     <div class="login-container">
         <h1 class="login-h1">Đăng Nhập</h1>
         <form action="#" method="POST">
-            <div class="form-group">
+            <div class="login-form-group">
                 <label class="login-label" for="phone-number">Số điện thoại</label>
                 <input class="login" type="text" id="phone-number" name="phone-number" required>
             </div>
@@ -58,9 +21,9 @@
             </div>
             <button class="login-button" type="submit">Đăng Nhập</button>
             <div class="login-links">
-                <a class="signup" href="./formsignup.html">Đăng ký tài khoản</a> <!-- Chỉnh sửa href ở đây -->
+                <a class="login-dkitaikhoan" href="signup.ejs">Đăng ký tài khoản</a> <!-- Chỉnh sửa href ở đây -->
                 <p class="text">|</p>
-                <a class="forgot-password" href="quenmk.html">Quên mật khẩu?</a>
+                <a class="login-forgot-password " href="forgot_password.ejs">Quên mật khẩu?</a>
             </div>
         </form>
     </div>
