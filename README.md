@@ -25,9 +25,9 @@
      + git branch -r
        # check whether having the branch that we want to push code
      + git checkout <name_branch>
-         ex: git checkout test
+         ### ex: git checkout test
      + git add .
      + git commit -m "abcxyz"
      + git push origin main:<name_brand>
-         ex: git push origin main:test
+         ### ex: git push origin main:test
        # push code we just have edited in main branch to "test" branch
