@@ -161,9 +161,9 @@ body {
 /* DANG KY FORM */
 .signup-container {
     width: 100%;
-    max-width: 550px;
+    max-width: 390px;
     margin: 100px auto; /* Căn giữa */
-    padding: 20px;
+    padding: 15px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -171,44 +171,44 @@ body {
 
 .dki {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 44px; /* Kích thước tiêu đề */
+    margin-bottom: 5px;
+    font-size: 34px; /* Kích thước tiêu đề */
     color: #044c64; /* Màu chữ tiêu đề */
 }
 
 .form-group-dki {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .dki-label {
     display: block;
     margin-bottom: 5px;
-    font-size: 20px; /* Kích thước chữ nhãn */
+    font-size: 17px; /* Kích thước chữ nhãn */
     color: black; /* Màu chữ nhãn */
 }
 .dki-select {
     width: 25%;
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #ccc; /* Đường viền input */
     border-radius: 4px;
-    font-size: 20px; /* Kích thước chữ trong input */
+    font-size: 17px; /* Kích thước chữ trong input */
 }
 input {
     width: 100%;
-    padding: 15px;
+    padding: 5px;
     border: 1px solid #ccc; /* Đường viền input */
     border-radius: 4px;
-    font-size: 20px; /* Kích thước chữ trong input */
+    font-size: 17px; /* Kích thước chữ trong input */
 }
 
 .dki-button {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     background-color: #DAA520; /* Màu nền nút */
     color: black;
     border: none;
     border-radius: 4px;
-    font-size: 24px; /* Kích thước chữ nút */
+    font-size: 17px; /* Kích thước chữ nút */
     cursor: pointer;
     transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
 }
