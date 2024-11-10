@@ -1,10 +1,4 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const initWebRoutes = require('./routes/index')
-const viewEngine = require('./config/viewEngine')
-const dotenv = require('dotenv')
-const connectDB = require('./config/connectDB')
-const expressLayouts = require('express-ejs-layouts')
+
 
 dotenv.config()
 
