@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src\public\css\app.css">
+    <title>ĐĂNG NHẬP ADMIN</title>
 </head>
 <body>
-    admin
+    <div class="ad-login-container">
+        <h1 class="ad-login-h1">Đăng Nhập</h1>
+        <form action="#" method="POST">
+            <div class="ad-login-form-group">
+                <label class="ad-login-label" for="username">Tên đăng nhập</label>
+                <input class="ad-login" type="text" id="username" name="username" required>
+            </div>
+            <div class="ad-login-form-group">
+                <label class="ad-login-label" for="password">Mật khẩu</label>
+                <input class="ad-login" type="password" id="password" name="password" required>
+            </div>
+            <button class="ad-login-button" type="submit">Đăng Nhập</button>
+        </form>
+    </div>
 </body>
 </html>
