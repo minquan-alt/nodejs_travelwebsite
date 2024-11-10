@@ -1,5 +1,7 @@
-const sql = require('mssql')
+const sql = require('mysql')
 const config = require('./config')
+const path = require('path')
+const fs = require('fs')
 
 const dbConfig = config.development
 
@@ -8,18 +10,18 @@ const sqlConfig = {
     password: dbConfig.password,
     database: dbConfig.database,
     server: dbConfig.host, // dùng 'server' thay cho 'host'
-    port: 3306,
+    port: Number(dbConfig.port),
     options: {
         encrypt: true,
-        trustServerCertificate: false,
-        enableArithAbort: true,
+        trustServerCertificate: true,
+        ca: fs.readFileSync(path.join(__dirname, '../../certs/ca.pem')), // Đọc file CA certificate
     },
-    // connectionTimeout: dbConfig.connectionTimeout, // Nếu cần dùng connectionTimeout, đảm bảo nó có giá trị trong file config
+    connectionTimeout: dbConfig.connectionTimeout, // Nếu cần dùng connectionTimeout, đảm bảo nó có giá trị trong file config
 }
 
 async function connectDB() {
     try {
-        const pool = await sql.connect(sqlConfig)
+        const pool = await sql.createConnection(sqlConfig)
         console.log('Connected to SQL Server')
         return pool
     } catch (err) {

@@ -1,11 +1,71 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <title>Đăng Ký Tài Khoản</title>
-    <link rel="stylesheet" href="src/public/css/app.css">
+
+    <div class="signup-container">
+        <h1 class="dki">ĐĂNG KÝ TÀI KHOẢN</h1>
+        <form action="#" method="POST" onsubmit="validateForm(event)">
+            <div class="form-group-dki">
+                <label class="dki-label" for="hoten">Họ và tên</label>
+                <input type="text" id="hoten" name="hoten">
+                <div id="hoten-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="dob">Ngày tháng năm sinh</label>
+                <div class="dob-container">
+                    <select class="dki-select" id="day" name="day">
+                        <option value="0">Ngày</option>
+                        <script>
+                            for (let i = 1; i <= 31; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+                    <select class="dki-select" id="month" name="month">
+                        <option value="0">Tháng</option>
+                        <script>
+                            for (let i = 1; i <= 12; i++) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+                    <select class="dki-select" id="year" name="year">
+                        <option value="0">Năm</option>
+                        <script>
+                            const currentYear = new Date().getFullYear();
+                            for (let i = currentYear; i >= currentYear - 100; i--) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+                </div>
+                <div id="dob-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="email">Email</label>
+                <input type="text" id="email" name="email">
+                <div id="email-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="sdt">Số điện thoại</label>
+                <input type="tel" id="sdt" name="sdt">
+                <div id="sdt-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password">
+                <div id="password-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <div class="form-group-dki">
+                <label class="dki-label" for="password1">Nhập lại mật khẩu</label>
+                <input type="password" id="password1" name="password1">
+                <div id="password1-error" class="error-message"></div> <!-- Thông báo lỗi -->
+            </div>
+            <button class="dki-button" type="submit">Đăng ký</button>
+        </form>
+    </div>
+
+    <!-- Thông báo tùy chỉnh -->
+    <div id="notification" class="notification" style="display:none;"></div> <!-- Khởi tạo ẩn cho thông báo -->
+
+
     <script>
         function isValidDate(day, month, year) {
             const date = new Date(year, month - 1, day);
@@ -181,72 +241,3 @@
             
         });
     </script>
-</head>
-<body>
-    <div class="signup-container">
-        <h1 class="dki">ĐĂNG KÝ TÀI KHOẢN</h1>
-        <form action="#" method="POST" onsubmit="validateForm(event)">
-            <div class="form-group-dki">
-                <label class="dki-label" for="hoten">Họ và tên</label>
-                <input type="text" id="hoten" name="hoten">
-                <div id="hoten-error" class="error-message"></div> <!-- Thông báo lỗi -->
-            </div>
-            <div class="form-group-dki">
-                <label class="dki-label" for="dob">Ngày tháng năm sinh</label>
-                <div class="dob-container">
-                    <select class="dki-select" id="day" name="day">
-                        <option value="0">Ngày</option>
-                        <script>
-                            for (let i = 1; i <= 31; i++) {
-                                document.write(`<option value="${i}">${i}</option>`);
-                            }
-                        </script>
-                    </select>
-                    <select class="dki-select" id="month" name="month">
-                        <option value="0">Tháng</option>
-                        <script>
-                            for (let i = 1; i <= 12; i++) {
-                                document.write(`<option value="${i}">${i}</option>`);
-                            }
-                        </script>
-                    </select>
-                    <select class="dki-select" id="year" name="year">
-                        <option value="0">Năm</option>
-                        <script>
-                            const currentYear = new Date().getFullYear();
-                            for (let i = currentYear; i >= currentYear - 100; i--) {
-                                document.write(`<option value="${i}">${i}</option>`);
-                            }
-                        </script>
-                    </select>
-                </div>
-                <div id="dob-error" class="error-message"></div> <!-- Thông báo lỗi -->
-            </div>
-            <div class="form-group-dki">
-                <label class="dki-label" for="email">Email</label>
-                <input type="text" id="email" name="email">
-                <div id="email-error" class="error-message"></div> <!-- Thông báo lỗi -->
-            </div>
-            <div class="form-group-dki">
-                <label class="dki-label" for="sdt">Số điện thoại</label>
-                <input type="tel" id="sdt" name="sdt">
-                <div id="sdt-error" class="error-message"></div> <!-- Thông báo lỗi -->
-            </div>
-            <div class="form-group-dki">
-                <label class="dki-label" for="password">Mật khẩu</label>
-                <input type="password" id="password" name="password">
-                <div id="password-error" class="error-message"></div> <!-- Thông báo lỗi -->
-            </div>
-            <div class="form-group-dki">
-                <label class="dki-label" for="password1">Nhập lại mật khẩu</label>
-                <input type="password" id="password1" name="password1">
-                <div id="password1-error" class="error-message"></div> <!-- Thông báo lỗi -->
-            </div>
-            <button class="dki-button" type="submit">Đăng ký</button>
-        </form>
-    </div>
-
-    <!-- Thông báo tùy chỉnh -->
-    <div id="notification" class="notification" style="display:none;"></div> <!-- Khởi tạo ẩn cho thông báo -->
-</body>
-</html>

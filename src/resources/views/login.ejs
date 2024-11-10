@@ -1,31 +1,19 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src\public\css\app.css">
-    <title>Đăng Nhập</title>
-</head>
-<body>
-    <div class="login-container">
-        <h1 class="login-h1">Đăng Nhập</h1>
-        <form action="#" method="POST">
-            <div class="login-form-group">
-                <label class="login-label" for="phone-number">Số điện thoại</label>
-                <input class="login" type="text" id="phone-number" name="phone-number" required>
-            </div>
-            <div class="login-form-group">
-                <label class="login-label" for="password">Mật khẩu</label>
-                <input class="login" type="password" id="password" name="password" required>
-            </div>
-            <button class="login-button" type="submit">Đăng Nhập</button>
-            <div class="login-links">
-                <a class="login-dkitaikhoan" href="signup.ejs">Đăng ký tài khoản</a> <!-- Chỉnh sửa href ở đây -->
-                <p class="text">|</p>
-                <a class="login-forgot-password " href="forgot_password.ejs">Quên mật khẩu?</a>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
+<div class="login-container">
+    <h1 class="login-h1">Đăng Nhập</h1>
+    <form action="#" method="POST">
+        <div class="login-form-group">
+            <label class="login-label" for="phone-number">Số điện thoại</label>
+            <input class="login" type="text" id="phone-number" name="phone-number" required>
+        </div>
+        <div class="login-form-group">
+            <label class="login-label" for="password">Mật khẩu</label>
+            <input class="login" type="password" id="password" name="password" required>
+        </div>
+        <button class="login-button" type="submit">Đăng Nhập</button>
+        <div class="login-links">
+            <a class="login-dkitaikhoan" href="/signup">Đăng ký tài khoản</a> 
+            <p class="text">|</p>
+            <a class="login-forgot-password " href="/forgot_password">Quên mật khẩu?</a>
+        </div>
+    </form>
+</div>
