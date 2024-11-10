@@ -15,11 +15,11 @@
 7. after finishing coding,type:
      ctrl + C
    to close the server
-8. if code run OK:
+8. ### if code run OK:
      + git add .
      + git commit -m "abcxyz"
      + git push origin main
-   if not sure or having bug:
+   ### if not sure or having bug:
      + git fetch
        # update the newest code files and branches in github with no change
      + git branch -r
