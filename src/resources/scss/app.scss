@@ -1,3 +1,140 @@
+// HEADER
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    max-height: 100px;
+    width: auto;
+    margin-left: 100px;
+  }
+  
+  /* Right Section Links */
+  .right-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-right: 100px;
+    position: relative; /* Thêm vị trí tương đối cho dropdown */
+  }
+  
+  .right-section a {
+    color: #005387;
+    font-size: 28px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Dropdown Menu */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #044c64;
+    padding: 8px 12px; /* Giảm padding để làm cho nội dung nhỏ lại */
+    font-size: 24px; /* Giảm kích thước font chữ */
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #044c64;
+    color: #b0985a;
+  }
+
+  /* Dropdown for Điểm đến */
+  .option1-dropdown {
+    display: none;
+    position: absolute;
+    left: -205px; /* Đặt dropdown bên trái */
+    top: 55px;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .option1-dropdown a {
+    padding: 5px 10px; /* Giảm padding cho dropdown Tùy chọn 1 */
+    font-size: 24px; /* Giảm kích thước font chữ */
+    color: #044c64; /* Màu văn bản */
+  }
+
+  .option1-dropdown a:hover {
+    background-color: #044c64; /* Màu nền khi hover */
+    color: #b0985a; /* Màu văn bản khi hover */
+  }
+
+  /* Dropdown for Loại hình tour */
+  .option2-dropdown {
+    display: none;
+    position: absolute;
+    left: -315px; /* Đặt dropdown bên trái */
+    top: 100px;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .option2-dropdown a {
+    padding: 5px 10px; /* Giảm padding cho dropdown Tùy chọn 2 */
+    font-size: 24px; /* Giảm kích thước font chữ */
+    color: #044c64; /* Màu văn bản */
+  }
+
+  .option2-dropdown a:hover {
+    background-color: #044c64; /* Màu nền khi hover */
+    color: #b0985a; /* Màu văn bản khi hover */
+  }
+  
+  /* Dropdown for Thông tin hữu ích */
+  .option3-dropdown {
+    display: none;
+    position: absolute;
+    left: -205px; /* Đặt dropdown bên trái */
+    top: 100px;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .option3-dropdown a {
+    padding: 5px 10px; /* Giảm padding cho dropdown Tùy chọn 3 */
+    font-size: 24px; /* Giảm kích thước font chữ */
+    color: #044c64; /* Màu văn bản */
+  }
+
+  .option3-dropdown a:hover {
+    background-color: #044c64; /* Màu nền khi hover */
+    color: #b0985a; /* Màu văn bản khi hover */
+  }
 .tour {
     display: flex;
     flex-direction: column;
@@ -13,7 +150,6 @@
     margin-bottom: 10px; // Giảm khoảng cách giữa các phần tử để bố cục gọn gàng hơn
 }
 
-<<<<<<< HEAD
 
 
 body {
@@ -294,13 +430,3 @@ input.resetpw {
 .form-group-resetpw {
     margin-bottom: 15px;
 }
-=======
-.background {
-    width: 100%;
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 20px 20px 10px gray;
-}
-
->>>>>>> origin

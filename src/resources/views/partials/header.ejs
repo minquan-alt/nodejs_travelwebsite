@@ -1,36 +1,89 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+<header>
+  <div class="left-section">
+    <div class="logo"><img src="/img/logo.jpg" alt="Logo"></div>
   </div>
-</nav>
+  
+  <div class="right-section">
+    <a href="#"><i class="material-icons">local_mall</i>Chuyến đi của tôi</a>
+    <a href="#"><i class="material-icons">call</i>Liên hệ</a>
+    <div class="dropdown">
+      <a href="javascript:void(0);" onclick="toggleDropdown(event, 'dropdownMenu')"><i class="material-icons">reorder</i>Danh mục</a>
+      <div class="dropdown-content" id="dropdownMenu">
+        <a href="javascript:void(0);" onclick="toggleOption1Dropdown()">Điểm đến</a>
+        <div class="option1-dropdown" id="option1Dropdown">
+          <a href="#">Việt Nam</a>
+          <a href="#">Châu Á</a>
+          <a href="#">Châu Âu</a>
+          <a href="#">Châu Mỹ</a>
+          <a href="#">Châu Đại Dương</a>
+          <a href="#">Trung Đông</a>
+        </div>
+        <a href="javascript:void(0);" onclick="toggleOption2Dropdown()">Loại hình tour</a>
+        <div class="option2-dropdown" id="option2Dropdown">
+          <a href="#">Tour theo lịch trình có sẵn</a>
+          <a href="#">Hành hương Công giáo</a>
+          <a href="#">Du lịch độc lạ</a>
+        </div>
+        <a href="#">Góc kiến thức</a>
+        <a href="#">Thông tin hữu ích</a>
+      </div>
+    </div>
+    <a href="#" class="login-link"><i class="material-icons">account_circle</i>Đăng nhập</a>
+  </div>
+  
+</header>
+
+
+<script>
+  // Hiển thị form đăng nhập khi click vào "Đăng nhập"
+  const loginLink = document.querySelector('.login-link');
+  const loginContainer = document.getElementById('login-container');
+  const closeLogin = document.getElementById('close-login');
+
+  loginLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    loginContainer.style.display = 'block';
+  });
+
+  // Đóng form đăng nhập
+  closeLogin.addEventListener('click', function() {
+    loginContainer.style.display = 'none';
+  });
+
+  // Đóng form khi click ra ngoài
+  window.addEventListener('click', function(event) {
+    if (event.target === loginContainer) {
+      loginContainer.style.display = 'none';
+    }
+  });
+
+  // Đóng form đăng nhập khi nhấn vào liên kết "Đăng ký tài khoản"
+  const signupLink = document.querySelector('.login-dkitaikhoan');
+  signupLink.addEventListener('click', function(event) {
+    event.preventDefault(); // Ngừng hành động mặc định (chuyển trang)
+    loginContainer.style.display = 'none'; // Ẩn form đăng nhập
+    window.location.href = signupLink.href; // Chuyển hướng đến trang đăng ký
+  });
+
+  // Dropdown logic
+  function toggleDropdown(event, menuId) {
+    const dropdown = document.getElementById(menuId);
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    event.stopPropagation();
+  }
+
+  function toggleOption1Dropdown() {
+    const option1Dropdown = document.getElementById('option1Dropdown');
+    option1Dropdown.style.display = option1Dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function toggleOption2Dropdown() {
+    const option2Dropdown = document.getElementById('option2Dropdown');
+    option2Dropdown.style.display = option2Dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function toggleOption3Dropdown() {
+    const option3Dropdown = document.getElementById('option3Dropdown');
+    option3Dropdown.style.display = option3Dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+</script>

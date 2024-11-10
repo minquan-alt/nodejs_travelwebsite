@@ -10,13 +10,8 @@ const config = {
         dialect: 'mysql', // Đặt đúng dialect cho SQL Server
         dialectOptions: {
             ssl: {
-<<<<<<< HEAD
                 require: process.env.DB_SSL === 'true',
                 rejectUnauthorized: false,
-=======
-              require: process.env.DB_SSL === 'true',
-              rejectUnauthorized: false,
->>>>>>> origin
             },
         },
     },
