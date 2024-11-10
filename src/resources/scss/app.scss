@@ -12,3 +12,12 @@
 .tour h2, .tour p {
     margin-bottom: 10px; // Giảm khoảng cách giữa các phần tử để bố cục gọn gàng hơn
 }
+
+.background {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 20px 20px 10px gray;
+}
+

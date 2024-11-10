@@ -6,16 +6,14 @@ const config = {
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
         host: process.env.DB_HOST,
-        dialect: 'mssql', // Đặt đúng dialect cho SQL Server
+        port: process.env.DB_PORT,
+        dialect: 'mysql', // Đặt đúng dialect cho SQL Server
         dialectOptions: {
-            options: process.env.DB_OPTIONS
+            ssl: {
+              require: process.env.DB_SSL === 'true',
+              rejectUnauthorized: false,
+            },
         },
-        pool: {
-            max: 5,
-            min: 0,
-            acquire: 30000,
-            idle: 10000
-        }
     },
     test: {
         username: 'root',
