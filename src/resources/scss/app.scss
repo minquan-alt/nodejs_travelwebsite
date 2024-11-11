@@ -114,6 +114,111 @@ header {
     color: #b0985a;
   }
   
+//FOOTER
+
+footer {
+    background-color: #044c64;
+    color: #fff;
+    padding: 30px 100px 0px 50px; /* Padding cho footer */
+    text-align: left;
+    position: fixed; /* Đặt footer cố định */
+    bottom: 0; /* Đưa footer xuống dưới cùng */
+    left: 0; /* Đưa footer sang trái */
+    width: 100%; /* Đặt footer chiếm toàn bộ chiều rộng */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.footer-left,
+.footer-right {
+    flex: 1; /* Cả hai phần chiếm không gian bằng nhau */
+    min-width: 200px;
+    margin-right: 20px; /* Thêm khoảng cách bên phải cho footer-left */
+}
+
+.footer-right {
+    margin-right: 0; /* Đặt margin-right cho footer-right về 0 */
+}
+
+.footer-left h1,
+.footer-right h1 {
+    margin-bottom: 10px;
+    font-size:20px;
+}
+
+.footer-left p,
+.footer-right p {
+    color: white;
+    font-size: 16px; /* Đặt kích thước font cho tất cả các thẻ p */
+}
+
+.footer-right a {
+    color: white; /* Đặt màu sắc mặc định cho liên kết */
+    text-decoration: none; /* Không gạch chân */
+    font-size: 16px; /* Đặt kích thước font giống như các thẻ p */
+    display: block; /* Biến thẻ a thành block để mỗi liên kết xuống dòng */
+    margin-bottom: 20px; /* Tạo khoảng cách giữa các liên kết */
+}
+
+.footer-right a:hover {
+    color: #fbca4d; /* Thay đổi màu sắc khi hover */
+}
+
+.footer-bottom {
+    display: flex; /* Sử dụng Flexbox cho phần dưới cùng */
+    justify-content: space-between; /* Chia đều không gian giữa hai phần */
+    padding: 0px 20px;
+    margin-top:10px;
+}
+
+.footer-bottom-left {
+    text-align: left; /* Căn trái cho văn bản */
+}
+
+.footer-bottom-right {
+    text-align: right; /* Căn phải cho văn bản */
+    display: flex; /* Đảm bảo các biểu tượng nằm trên cùng một dòng */
+    align-items: center; /* Canh giữa theo chiều dọc */
+}
+
+.icon {
+    vertical-align: middle; /* Canh giữa biểu tượng với văn bản */
+    margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
+    color: #fbca4d;
+    font-size:18px;
+}
+
+.icon1 {
+    margin-right: 18px; /* Khoảng cách giữa biểu tượng và văn bản */
+    color: white;
+    font-size: 20px;
+}
+
+.logo1 {
+    display: flex; /* Sử dụng Flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    margin-top: 10px; /* Khoảng cách trên cùng */
+}
+
+.logo1 img {
+    max-height: 40px;
+    width: auto;
+    font-size:10px;
+    margin-right:10px;
+}
+
+.footer-bottom-right a.terms:hover {
+    color:#fbca4d ; /* Thay đổi màu sắc khi hover */
+}
+
+.footer-bottom-right a {
+    margin-right: 30px; /* Khoảng cách giữa các liên kết mạng xã hội */
+}
+
 .tour {
     display: flex;
     flex-direction: column;
