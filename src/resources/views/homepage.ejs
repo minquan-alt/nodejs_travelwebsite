@@ -1,16 +1,580 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/scss/homepage.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>VivaViet Travel Agency</title>
+</head>
+<style>
+    body {
+    font-family: 'Open Sans', Helvetica;
+}
 
-<div class="background">
-</div>
-<div class="container">
-    <div class="row">
-        <% tours.forEach(tour => { %>
-        <div class="col-4">
-            <div class="tour">
-                <h2><%= tour.tour_name %></h2>
-                <p><%= tour.description %></p>
-                <img src="<%= tour.image %>" alt="<%= tour.tour_name %>" />
+/* Banner Section */
+.banner {
+    background-image: url('/src/img/VivaViet.png');
+    background-size: cover;
+    color: white;
+    padding: 260px 0;
+    text-align: center;
+}
+.banner h2 {
+    font-size: 3rem;
+}
+
+/* Navbar Section */
+.navbar button {
+    font-size: 1rem;
+}
+
+/* Tour Cho Bạn */
+.tour-title {
+    font-size: 1.8em;
+    color: #044c64;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 0.5rem;
+    margin-bottom: 20px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: scale(1.02);
+}
+
+.text-strike {
+    text-decoration: line-through;
+    color: red; 
+}
+
+
+/* Khám Phá Các Điểm Đến Section */
+.destination-section {
+    padding: 40px 0;
+    text-align: center;
+}
+.destination-title {
+    font-size: 1.8em;
+    color: #044c64;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 0.5rem;
+    margin-bottom: 20px;
+}
+.card {
+    border: none;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.card-title {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+}
+.card-btn {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 0.9rem;
+    color: white;
+    border: 1px solid white;
+    padding: 5px 10px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.card-btn:hover {
+    background-color: white;
+    color: #333;
+}
+
+.taskbar {
+    margin-top: -30px; 
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.taskbar div {
+    font-weight: 500;
+}
+
+.taskbar a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.taskbar .btn-success {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Custom Dropdown Styling */
+.dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+    width: 300px;
+}
+
+.dropdown-header {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 5px 15px;
+    color: #044c64;
+}
+
+.dropdown-item {
+    padding-left: 20px;
+}
+
+/* Hide dropdown arrow on the text */
+#destinationDropdown::after {
+    display: none;
+} 
+
+#seasonDropdown::after {
+    display: none;
+}  
+
+#tourDropdown::after {
+    display: none;
+}
+
+/* Two-column layout for dropdown menus */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+}
+
+.two-column .dropdown-header {
+    grid-column: span 2;
+    font-weight: bold;
+    color: #044c64;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+.two-column .dropdown-item {
+    padding-left: 10px;
+    font-weight: 500;
+    color: #c3a873;
+}
+
+.two-column .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #044c64;
+}
+
+/* Background pattern */
+.testimonial-section {
+            background-size: cover;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        /* Section title */
+        .testimonial-section h3 {
+            font-size: 1.8em;
+            color: #044c64;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Styling for the quote icon */
+        .testimonial-section h3 i {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        /* Testimonial card styling */
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            position: relative;
+        }
+
+        /* Quote icon in each card */
+        .testimonial-card .quote-icon {
+            font-size: 2em;
+            color: #044c64;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+        }
+
+        /* Text and customer info styling */
+        .testimonial-card p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card .customer-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        /* Customer image */
+        .testimonial-card .customer-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Customer name */
+        .customer-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Star rating */
+        .star-rating i {
+            color: #fbc02d;
+        }
+
+        .container-proud {
+    background: url('/src/img/Proud.png') no-repeat center center;
+    background-size: cover;
+    padding: 50px 0;
+}
+
+h3 {
+    font-weight: bold;
+    color: #044c64;
+    justify-content: center;
+}
+
+.counter-icon i {
+    font-size: 2em;
+    color: #044c64;
+}
+
+.counter {
+    font-size: 2.5em;
+    color: #f5a623; /* Orange-yellow color */
+    font-weight: bold;
+}
+
+p {
+    font-size: 1.2em;
+    color: #044c64;
+}
+
+</style>
+<body>
+
+    <!-- Banner -->
+    <div 
+        class="banner">
+    </div>
+
+    
+    <!-- Taskbar Section -->
+    <div class="taskbar d-flex justify-content-around align-items-center py-3 bg-white shadow-sm">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-camera-retro fa-lg text-primary me-2"></i>
+            <a href="#" class="text-primary">Thiết kế tour</a>
+        </div>
+        <div class="d-flex align-items-center">
+            <i class="fas fa-bus fa-lg text-warning me-2"></i>
+            <span>TP. Hồ Chí Minh</span>
+        </div>
+    <!-- Dropdown for Điểm đến -->
+    <div class="dropdown d-flex align-items-center">
+        <i class="fas fa-map-marker-alt fa-lg text-warning me-2"></i>
+        <span id="destinationDropdown" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+            Điểm đến
+        </span>
+        <div class="dropdown-menu p-3" aria-labelledby="destinationDropdown" style="width: 400px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="dropdown-header">Việt Nam</h6>
+                    <a class="dropdown-item" href="#">Bắc Kạn</a>
+                    <a class="dropdown-item" href="#">Cao Bằng</a>
+                    <a class="dropdown-item" href="#">Hà Giang</a>
+                    <a class="dropdown-item" href="#">Hà Nội</a>
+                    <a class="dropdown-item" href="#">Lai Châu</a>
+                    <a class="dropdown-item" href="#">Ninh Bình</a>
+                    <a class="dropdown-item" href="#">Quảng Ninh</a>
+                    <a class="dropdown-item" href="#">Sapa</a>
+                    <a class="dropdown-item" href="#">Đà Nẵng</a>
+                    <a class="dropdown-item" href="#">Hội An</a>
+                    <a class="dropdown-item" href="#">Huế</a>
+                    <a class="dropdown-item" href="#">Quy Nhơn</a>
+                    <a class="dropdown-item" href="#">Phú Yên</a>
+                    <a class="dropdown-item" href="#">Buôn Ma Thuột</a>
+                    <a class="dropdown-item" href="#">Đà Lạt</a>
+                    <a class="dropdown-item" href="#">Kon Tum</a>
+                    <a class="dropdown-item" href="#">Bến Tre</a>
+                    <a class="dropdown-item" href="#">Cà Mau</a>
+                    <a class="dropdown-item" href="#">Cần Thơ</a>
+                    <a class="dropdown-item" href="#">Côn Đảo</a>
+                    <a class="dropdown-item" href="#">Phú Quốc</a>
+                    <a class="dropdown-item" href="#">Phú Quý</a>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="dropdown-header">Châu Á</h6>
+                    <a class="dropdown-item" href="#">Ấn Độ</a>
+                    <a class="dropdown-item" href="#">Bhutan</a>
+                    <a class="dropdown-item" href="#">Hàn Quốc</a>
+                    <a class="dropdown-item" href="#">Nhật Bản</a>
+                    <a class="dropdown-item" href="#">Thái Lan</a>
+                    <a class="dropdown-item" href="#">Trung Quốc</a>
+                    <a class="dropdown-item" href="#">Singapore</a>
+                    <a class="dropdown-item" href="#">Malaysia</a>
+                    <a class="dropdown-item" href="#">Indonesia</a>
+                    <a class="dropdown-item" href="#">Philippines</a>
+                    <a class="dropdown-item" href="#">Maldives</a>
+                    <a class="dropdown-item" href="#">Hong Kong</a>
+    
+                    <h6 class="dropdown-header">Châu Âu</h6>
+                    <a class="dropdown-item" href="#">Anh</a>
+                    <a class="dropdown-item" href="#">Đức</a>
+                    <a class="dropdown-item" href="#">Pháp</a>
+                    <a class="dropdown-item" href="#">Tây Ban Nha</a>
+                    <a class="dropdown-item" href="#">Ý</a>
+                    <a class="dropdown-item" href="#">Bồ Đào Nha</a>
+                    <a class="dropdown-item" href="#">Hà Lan</a>
+                    <a class="dropdown-item" href="#">Thụy Sĩ</a>
+                    <a class="dropdown-item" href="#">Na Uy</a>
+                    <a class="dropdown-item" href="#">Thụy Điển</a>
+                    <a class="dropdown-item" href="#">Phần Lan</a>
+                    <a class="dropdown-item" href="#">Hungary</a>
+                    <a class="dropdown-item" href="#">Áo</a>
+                    <a class="dropdown-item" href="#">Đan Mạch</a>
+                    <a class="dropdown-item" href="#">Bỉ</a>
+                    <a class="dropdown-item" href="#">Vatican</a>
+                    
+                    <h6 class="dropdown-header">Châu Úc</h6>
+                    <a class="dropdown-item" href="#">Úc</a>
+                    <a class="dropdown-item" href="#">New Zealand</a>
+    
+                    <h6 class="dropdown-header">Châu Mỹ</h6>
+                    <a class="dropdown-item" href="#">Mỹ</a>
+                    <a class="dropdown-item" href="#">Canada</a>
+                    <a class="dropdown-item" href="#">Mexico</a>
+                    <a class="dropdown-item" href="#">Brazil</a>
+    
+                    <h6 class="dropdown-header">Trung Đông</h6>
+                    <a class="dropdown-item" href="#">Dubai</a>
+                    <a class="dropdown-item" href="#">Israel</a>
+                </div>
             </div>
         </div>
-        <% }); %> 
+    </div>   
+   
+    <div class="d-flex align-items-center">
+        <i class="fas fa-clock fa-lg text-warning me-2"></i>
+        <span id="seasonDropdown" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+            Thời điểm đi
+        </span>
+        <div class="dropdown-menu p-3" aria-labelledby="seasonDropdown" style="width: 300px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="dropdown-header">Xuân</h6>
+                    <a class="dropdown-item" href="#">Tháng 1</a>
+                    <a class="dropdown-item" href="#">Tháng 2</a>
+                    <a class="dropdown-item" href="#">Tháng 3</a>
+    
+                    <h6 class="dropdown-header">Hạ</h6>
+                    <a class="dropdown-item" href="#">Tháng 4</a>
+                    <a class="dropdown-item" href="#">Tháng 5</a>
+                    <a class="dropdown-item" href="#">Tháng 6</a>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="dropdown-header">Thu</h6>
+                    <a class="dropdown-item" href="#">Tháng 7</a>
+                    <a class="dropdown-item" href="#">Tháng 8</a>
+                    <a class="dropdown-item" href="#">Tháng 9</a>
+    
+                    <h6 class="dropdown-header">Đông</h6>
+                    <a class="dropdown-item" href="#">Tháng 10</a>
+                    <a class="dropdown-item" href="#">Tháng 11</a>
+                    <a class="dropdown-item" href="#">Tháng 12</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="d-flex align-items-center">
+        <i class="fas fa-bars fa-lg text-warning me-2"></i>
+        <span id="tourDropdown" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+            Loại hình tour
+        </span>
+        <ul class="dropdown-menu" aria-labelledby="tourDropdown">
+            <li><a class="dropdown-item" href="#">Tất cả</a></li>
+            <li><a class="dropdown-item" href="#">Tour theo lịch trình có sẵn</a></li>
+            <li><a class="dropdown-item" href="#">Hành hương Công giáo</a></li>
+            <li><a class="dropdown-item" href="#">Du lịch độc lạ</a></li>
+        </ul>
+    </div>
+    
+    <button class="btn btn-success">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+
+<!-- TOUR CHO BẠN -->
+
+<div class="container my-4">
+    <h3 class="tour-title">
+        <i class="fas fa-compass text-primary me-2"></i> TOUR CHO BẠN
+    </h3>
+    <div class="row" id="tour-container">
+        <!-- Loop through each tour in the data -->
+        <% tours.forEach(tour => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card tour-card">
+                    <img src="<%= tour.image %>" class="card-img-top" alt="<%= tour.tour_name %>">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="tour-info">
+                                <i class="fas fa-sun"></i> <%= tour.days %> ngày 
+                                <i class="fas fa-moon"></i> <%= tour.nights %> đêm
+                            </span>
+                        </div>
+                        <h5 class="tour-title"><%= tour.tour_name %></h5>
+                        <div class="d-flex align-items-center mb-2">
+                            <% for (let i = 0; i < tour.rating; i++) { %>
+                                <i class="fas fa-star text-warning"></i>
+                            <% } %>
+                            <% if (tour.rating % 1 !== 0) { %>
+                                <i class="fas fa-star-half-alt text-warning"></i>
+                            <% } %>
+                        </div>
+                        <p class="card-text"><%= tour.description %></p>
+                        <ul class="list-unstyled mb-3">
+                            <li><strong>Khởi hành:</strong> <%= tour.departure_location %></li>
+                            <li><strong>Mã tour:</strong> <%= tour.tour_code %></li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-strike"><%= tour.original_price.toLocaleString() %></span>
+                            <span class="tour-price"><%= tour.discounted_price.toLocaleString() %></span>
+                            <a href="#" class="btn btn-primary btn-sm">Chọn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
     </div>
 </div>
+
+<!-- VÍ DỤ KHI INSERT DỮ LIỆU
+[
+    {
+        "tour_name": "TOUR ĐÀI LOAN: RỰC RỠ SẮC HỒNG HOA ANH ĐÀO",
+        "description": "Mùa xuân là thời điểm lý tưởng...",
+        "image": "/src/img/DaiLoan.png",
+        "days": 5,
+        "nights": 5,
+        "rating": 4.5,
+        "departure_location": "Hồ Chí Minh",
+        "tour_code": "TW018.05",
+        "original_price": 17990000,
+        "discounted_price": 14990000
+    },
+    ...
+]
+ -->
+
+    <!-- Khám Phá Các Điểm Đến -->
+<div class="container destination-section">
+    <h3 class="destination-title">
+        <i class="fas fa-globe-asia"></i> KHÁM PHÁ CÁC ĐIỂM ĐẾN
+    </h3>
+    <div class="row">
+        <!-- Loop through each destination in the data -->
+        <% destinations.forEach(destination => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card position-relative">
+                    <img src="<%= destination.image %>" alt="<%= destination.name %>" class="card-img">
+                    <h5 class="card-title"><%= destination.name %></h5>
+                    <a href="<%= destination.link %>" class="card-btn">Khám Phá</a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<!--  VÍ DỤ KHI INSERT DỮ LIỆU
+[
+    {
+        "name": "TOKYO",
+        "image": "/src/img/NhatBan.png",
+        "link": "/destinations/tokyo"
+    },
+    {
+        "name": "ĐÀI BẮC",
+        "image": "/src/img/DaiLoan.png",
+        "link": "/destinations/dai-bac"
+    },
+    {
+        "name": "BẮC KINH",
+        "image": "/src/img/TrungQuoc.JPG",
+        "link": "/destinations/bac-kinh"
+    }
+]
+-->
+    <!-- CHÚNG TÔI TỰ HÀO -->
+    <h3 style="text-align: center; margin-top: 0;"><i class="fas fa-trophy"></i> CHÚNG TÔI TỰ HÀO</h3>
+
+    <div class="container-proud my-5 text-center">
+        <div class="row mt-4">
+            <!-- Customer Count -->
+            <div class="col-md-3">
+                <div class="counter-icon"><i class="fas fa-passport"></i></div>
+                <h2 class="counter" data-target="102.417">102.417</h2>
+                <p>Khách hàng</p>
+            </div>
+            <!-- Places Count -->
+            <div class="col-md-3">
+                <div class="counter-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h2 class="counter" data-target="589">587</h2>
+                <p>Điểm tham quan</p>
+            </div>
+            <!-- Tours Count -->
+            <div class="col-md-3">
+                <div class="counter-icon"><i class="fas fa-globe"></i></div>
+                <h2 class="counter" data-target="274">274</h2>
+                <p>Tours</p>
+            </div>
+            <!-- Tour Types Count -->
+            <div class="col-md-3">
+                <div class="counter-icon"><i class="fas fa-landmark"></i></div>
+                <h2 class="counter" data-target="3">3</h2>
+                <p>Loại tour</p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

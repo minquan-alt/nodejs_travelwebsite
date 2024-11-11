@@ -1,9 +1,9 @@
 {
     "extends": ["eslint:recommended"],
     "parserOptions": {
-    "ecmaVersion": 2021
+        "ecmaVersion": 2021
     },
     "rules": {
-    // Your custom rules here
+        // Your custom rules here
     }
 }
