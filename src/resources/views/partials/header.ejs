@@ -1,15 +1,15 @@
 <header>
   <div class="left-section">
-    <div class="logo"><img src="/img/logo.jpg" alt="Logo"></div>
+    <div class="logo"><img src="\img\logo.jpg" alt="Logo"></div>
   </div>
-  
+
   <div class="right-section">
     <a href="#"><i class="material-icons">local_mall</i>Chuyến đi của tôi</a>
     <a href="#"><i class="material-icons">call</i>Liên hệ</a>
     <div class="dropdown">
       <a href="javascript:void(0);" onclick="toggleDropdown(event, 'dropdownMenu')"><i class="material-icons">reorder</i>Danh mục</a>
       <div class="dropdown-content" id="dropdownMenu">
-        <a href="javascript:void(0);" onclick="toggleOption1Dropdown()">Điểm đến</a>
+        <a href="javascript:void(0);" onclick="toggleOptionDropdown(event, 'option1Dropdown')">Điểm đến</a>
         <div class="option1-dropdown" id="option1Dropdown">
           <a href="#">Việt Nam</a>
           <a href="#">Châu Á</a>
@@ -18,7 +18,7 @@
           <a href="#">Châu Đại Dương</a>
           <a href="#">Trung Đông</a>
         </div>
-        <a href="javascript:void(0);" onclick="toggleOption2Dropdown()">Loại hình tour</a>
+        <a href="javascript:void(0);" onclick="toggleOptionDropdown(event, 'option2Dropdown')">Loại hình tour</a>
         <div class="option2-dropdown" id="option2Dropdown">
           <a href="#">Tour theo lịch trình có sẵn</a>
           <a href="#">Hành hương Công giáo</a>
@@ -26,55 +26,62 @@
         </div>
         <a href="#">Góc kiến thức</a>
         <a href="#">Thông tin hữu ích</a>
+        <a href="#">Về ViVaViet</a>
       </div>
     </div>
     <a href="#" class="login-link"><i class="material-icons">account_circle</i>Đăng nhập</a>
   </div>
-  
 </header>
 
 
 <script>
   // Dropdown logic
-function toggleDropdown(event, menuId) {
-    const dropdown = document.getElementById(menuId);
+  function toggleDropdown(event, menuId) {
     const dropdowns = document.querySelectorAll('.dropdown-content');
+    const currentDropdown = document.getElementById(menuId);
+    const isOpen = currentDropdown.style.display === 'block';
 
     // Đóng tất cả dropdown khác
-    dropdowns.forEach(d => {
-        if (d !== dropdown) {
-            d.style.display = 'none';
-        }
+    dropdowns.forEach(dropdown => {
+      dropdown.style.display = 'none';
     });
 
-    // Chuyển đổi hiển thị của dropdown hiện tại
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    // Mở dropdown hiện tại
+    currentDropdown.style.display = isOpen ? 'none' : 'block';
+
+    // Đóng tất cả dropdown con khi mở hoặc đóng dropdown chính
+    const subDropdowns = document.querySelectorAll('.option1-dropdown, .option2-dropdown');
+    subDropdowns.forEach(subDropdown => {
+      subDropdown.style.display = 'none';
+    });
+
     event.stopPropagation();
-}
+  }
 
-function toggleOption1Dropdown() {
-    const option1Dropdown = document.getElementById('option1Dropdown');
-    const option2Dropdown = document.getElementById('option2Dropdown');
+  function toggleOptionDropdown(event, optionId) {
+    const optionDropdown = document.getElementById(optionId);
+    const isOpen = optionDropdown.style.display === 'block';
 
-    // Đóng dropdown khác
-    option2Dropdown.style.display = 'none';
-    option1Dropdown.style.display = option1Dropdown.style.display === 'block' ? 'none' : 'block';
-}
-
-function toggleOption2Dropdown() {
-    const option2Dropdown = document.getElementById('option2Dropdown');
-    const option1Dropdown = document.getElementById('option1Dropdown');
-
-    // Đóng dropdown khác
-    option1Dropdown.style.display = 'none';
-    option2Dropdown.style.display = option2Dropdown.style.display === 'block' ? 'none' : 'block';
-}
-
-// Đóng tất cả dropdown khi nhấp ra ngoài
-window.addEventListener('click', function(event) {
-    const dropdowns = document.querySelectorAll('.dropdown-content');
-    dropdowns.forEach(d => {
-        d.style.display = 'none';
+    // Đóng tất cả dropdowns khác
+    const optionDropdowns = document.querySelectorAll('.option1-dropdown, .option2-dropdown');
+    optionDropdowns.forEach(dropdown => {
+      dropdown.style.display = 'none';
     });
-});
+
+    // Nếu dropdown đã mở, thì đóng nó
+    if (isOpen) {
+      optionDropdown.style.display = 'none'; // Đóng dropdown
+    } else {
+      optionDropdown.style.display = 'block'; // Mở dropdown
+    }
+    event.stopPropagation();
+  }
+
+  // Đóng tất cả dropdown khi nhấn ra ngoài
+  window.addEventListener('click', function(event) {
+    const dropdowns = document.querySelectorAll('.dropdown-content, .option1-dropdown, .option2-dropdown');
+    dropdowns.forEach(dropdown => {
+      dropdown.style.display = 'none'; // Đóng tất cả dropdown
+    });
+  });
 </script>
