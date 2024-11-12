@@ -215,7 +215,23 @@
     <!-- Khám Phá Các Điểm Đến -->
 
     <!-- =================== Xoá đoạn code này để chạy nha, xoá xong bỏ dô lại ============ -->
-
+<div class="container destination-section">
+    <h3 class="destination-title">
+        <i class="fas fa-globe-asia"></i> KHÁM PHÁ CÁC ĐIỂM ĐẾN
+    </h3>
+    <div class="row"> -->
+        <!-- Loop through each destination in the data -->
+        <% destinations.forEach(destination => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card position-relative">
+                    <img src="<%= destination.image %>" alt="<%= destination.name %>" class="card-img">
+                    <h5 class="card-title"><%= destination.name %></h5>
+                    <a href="<%= destination.link %>" class="card-btn">Khám Phá</a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
     <!-- =================== Xoá đoạn code này để chạy nha, xoá xong bỏ dô lại ============ -->
 
 
