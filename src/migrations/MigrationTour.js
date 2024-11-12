@@ -12,6 +12,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
+<<<<<<<< HEAD:src/migrations/MigrationTour.js
             tour_name: {
                 type: Sequelize.STRING,
             },
@@ -35,6 +36,25 @@ module.exports = {
             },
             capacity: {
                 type: Sequelize.INTEGER,
+========
+            full_name: {
+                type: Sequelize.STRING,
+            },
+            gender: {
+                type: Sequelize.BOOLEAN,
+            },
+            dob: {
+                type: Sequelize.DATE,
+            },
+            phone: {
+                type: Sequelize.STRING,
+            },
+            email: {
+                type: Sequelize.STRING,
+            },
+            password: {
+                type: Sequelize.STRING,
+>>>>>>>> 64b11bf9ec32251c0b22f3b73350c51e23d182e8:src/migrations/MigrationUser.js
             },
             createdAt: {
                 allowNull: false,

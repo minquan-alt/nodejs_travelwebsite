@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "project2",
   "version": "1.0.0",
   "main": "src/index.js",
@@ -38,7 +39,10 @@
     "express": "^4.21.1",
     "express-ejs-layouts": "^2.5.1",
     "express-handlebars": "^8.0.1",
+<<<<<<< HEAD
     "express-session": "^1.18.1",
+=======
+>>>>>>> 64b11bf9ec32251c0b22f3b73350c51e23d182e8
     "fs-extra": "^11.2.0",
     "msnodesqlv8": "^4.2.1",
     "mssql": "^11.0.1",
@@ -67,4 +71,64 @@
     "sass": "^1.80.6",
     "sequelize-cli": "^6.6.2"
   }
+=======
+    "name": "project2",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "nodemon --exec babel-node src/index.js",
+        "compile-sass": "sass --watch src/resources/scss:src/public/css",
+        "prepare": "husky"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/minquan-alt/nodejs_travelwebsite.git"
+    },
+    "keywords": [
+        "is207",
+        "travel",
+        "website",
+        "is207"
+    ],
+    "author": "wanmin",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/minquan-alt/nodejs_travelwebsite/issues"
+    },
+    "homepage": "https://github.com/minquan-alt/nodejs_travelwebsite#readme",
+    "description": "",
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.20.3",
+        "compile-sass": "^2.0.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "ejs": "^3.1.10",
+        "express": "^4.21.1",
+        "express-handlebars": "^8.0.1",
+        "mssql": "^11.0.1",
+        "mysql2": "^3.11.3",
+        "node-ip": "^0.1.2",
+        "npm": "^10.9.0",
+        "path": "^0.12.7",
+        "save-dev": "^0.0.1-security",
+        "sequelize": "^6.37.5"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.26.0",
+        "@babel/node": "^7.26.0",
+        "@babel/preset-env": "^7.26.0",
+        "eslint": "^9.13.0",
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
+        "morgan": "^1.10.0",
+        "nodemon": "^3.1.7",
+        "prettier": "^3.3.3",
+        "sass": "^1.80.5",
+        "sequelize-cli": "^6.6.2"
+    }
+>>>>>>> 09d8289 (create homepage)
 }
