@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "dev": "npm run compile-sass -- --watch & npm start",
+    "dev": "npm run watch -- --watch & npm start",
     "start": "nodemon --exec babel-node src/index.js",
     "watch": "sass --watch src/resources/scss:src/public/css",
     "prepare": "husky"
