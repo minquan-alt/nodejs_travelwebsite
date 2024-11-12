@@ -30,7 +30,14 @@
       </div>
     </div>
     <% if(isLoggedIn) { %>
-    <p>Anh đã đăng nhập</p>
+      <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+        </ul>
+      </div>
     <% } else { %>
     <a href="/login" class="login-link"><i class="material-icons">account_circle</i>Đăng nhập</a>
     <% } %>

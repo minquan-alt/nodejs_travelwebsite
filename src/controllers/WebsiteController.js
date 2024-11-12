@@ -16,6 +16,14 @@ class WebsiteController {
             res.status(500).send("Internal Server Error")
         }
     }
+    logout(req, res) {
+        req.session.destroy((err) => {
+            if(err) {
+                return res.status(500).send("Error Logging out")
+            }
+            res.redirect('/homepage')
+        })
+    }
     getRegisterPage(req, res){
         res.send('Register Page')
     }

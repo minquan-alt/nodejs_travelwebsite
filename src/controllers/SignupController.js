@@ -5,7 +5,7 @@ class SignupController {
     async createNewUser(req, res) {
         try {
             console.log(req.body)
-            const hashedPassword = signupService.hashUserPassword(password)
+            const hashedPassword = await signupService.hashUserPassword(req.body.password)
             const userData = {
                 full_name: req.body.full_name,
                 gender: req.body.gender,
@@ -18,6 +18,7 @@ class SignupController {
             const result = await signupService.createNewUser(userData)
 
             if (result.success) {
+                req.session.user = result.user
                 res.json({
                     success: true
                 })
@@ -28,6 +29,7 @@ class SignupController {
                 });
             }
         } catch (error) {
+            console.log(error)
             res.json({
                 success: false,
                 message: "Đã xảy ra lỗi. Vui lòng thử lại."
