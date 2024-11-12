@@ -1,5 +1,414 @@
-@import 'variables';
+// HEADER
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  /* Logo and Social Icons */
+  .left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    max-height: 100px;
+    width: auto;
+    margin-left: 100px;
+  }
+  
+  /* Right Section Links */
+  .right-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-right: 100px;
+    position: relative;
+  }
+  
+  .right-section a {
+    color: #005387;
+    font-size: 24px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Dropdown Menu */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #044c64;
+    padding: 5px 10px;
+    font-size: 22px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #044c64;
+    color: #b0985a;
+  }
+
+  /* Dropdown for Điểm đến */
+  .option1-dropdown {
+    display: none;
+    position: absolute;
+    left: -167px;
+    top: 55px;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .option1-dropdown a {
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #044c64;
+  }
+
+  .option1-dropdown a:hover {
+    background-color: #044c64;
+    color: #b0985a;
+  }
+
+  .option2-dropdown {
+    display: none;
+    position: absolute;
+    left: -250px;
+    top: 100px;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .option2-dropdown a {
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #044c64;
+  }
+
+  .option2-dropdown a:hover {
+    background-color: #044c64;
+    color: #b0985a;
+  }
+  
+.tour {
+    display: flex;
+    flex-direction: column;
+    height: 100%; // Đảm bảo tất cả các phần tử trong cột có cùng chiều cao
+}
+
+.tour img {
+    max-height: 200px; // Giới hạn chiều cao ảnh nếu cần
+    object-fit: cover; // Đảm bảo ảnh không bị méo khi thay đổi kích thước
+}
+
+.tour h2, .tour p {
+    margin-bottom: 10px; // Giảm khoảng cách giữa các phần tử để bố cục gọn gàng hơn
+}
+
+
+
 body {
-    background-color: aqua;
-    font-size: 1.5 rem;
+    background-color: #f5f5f5; /* Màu nền trang */
+    margin: 0;
+    padding: 0;
+}
+
+/* DANG KY FORM */
+.signup-container {
+    width: 100%;
+    max-width: 390px;
+    margin: 100px auto; /* Căn giữa */
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dki {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 34px; /* Kích thước tiêu đề */
+    color: #044c64; /* Màu chữ tiêu đề */
+}
+
+.form-group-dki {
+    margin-bottom: 5px;
+}
+.gender{
+    font-size: 17px;
+}
+
+.dki-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 17px; /* Kích thước chữ nhãn */
+    color: black; /* Màu chữ nhãn */
+}
+.dki-select {
+    width: 25%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Đường viền input */
+    border-radius: 4px;
+    font-size: 17px; /* Kích thước chữ trong input */
+}
+input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc; /* Đường viền input */
+    border-radius: 4px;
+    font-size: 17px; /* Kích thước chữ trong input */
+}
+
+.dki-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #DAA520; /* Màu nền nút */
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-size: 17px; /* Kích thước chữ nút */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+button:hover {
+    background-color: #fc3; /* Màu nền nút khi hover */
+}
+
+.notification {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745; /* Màu nền thông báo */
+    color: white; /* Màu chữ thông báo */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Đặt lên trên các phần tử khác */
+}
+
+.error-message {
+    color: red; /* Màu chữ thông báo lỗi */
+    font-size: 14px; /* Kích thước chữ thông báo lỗi */
+    margin-top: 5px; /* Khoảng cách trên với trường input */
+    display: none; /* Ẩn thông báo lỗi ban đầu */
+}
+/* QUEN MK FORM*/
+.quenmk-container {
+    width: 100%;
+    max-width: 650px; /* Giảm chiều rộng để phù hợp với di động */
+    margin: 300px auto; /* Căn giữa */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.form-group-forgotpw {
+    margin-bottom: 15px;
+}
+.quenmk-h1 {
+    text-align: center;
+    font-size: 38px; /* Giảm kích thước tiêu đề */
+    color: #044c64;
+    margin-bottom: 20px;
+}
+.quenmk-text {
+    width: 100%;
+    margin-bottom: 20px; /* Thêm khoảng cách dưới khối text */
+    background-color: #fff;
+    border-radius: 8px;
+    padding:30px;
+}
+.quenmk-p {
+    text-align: left;
+    margin: 10px 0; /* Điều chỉnh khoảng cách trên và dưới */
+    font-size:22px;
+}
+input.quenmk {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px; /* Thêm khoảng cách trên */
+    font-size: 16px;
+}
+.quenmk-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px; /* Thêm khoảng cách trên */
+    background-color: #DAA520;
+    color: black;
+    border: 1px solid #DAA520 ;
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bolder;
+
+}
+.quenmk-button:hover {
+    background-color: white  ; /* Thay đổi màu khi hover */
+}
+input.forgotpw{
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px; /* Thêm khoảng cách trên */
+    font-size: 16px;
+}
+/*DANG NHAP FORM*/
+.login-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 300px auto; /* Căn giữa */
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 44px; /* Kích thước tiêu đề */
+    color: #044c64; /* Màu chữ tiêu đề */
+}
+
+.login-form-group {
+    margin-bottom: 15px;
+}
+
+.login-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px; /* Kích thước chữ nhãn */
+    color: black; /* Màu chữ nhãn */
+}
+
+input.login {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc; /* Đường viền input */
+    border-radius: 4px;
+    font-size: 14px; /* Kích thước chữ trong input */
+}
+
+input.login:focus {
+    border-color: #044c64; /* Màu viền khi focus */
+    outline: none; /* Bỏ outline */
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #044c64; /* Màu nền nút */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px; /* Kích thước chữ nút */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+.login-button:hover {
+    background-color: #00ccff; /* Màu nền nút khi hover */
+}
+
+.login-links {
+    text-align: right; /* Căn phải */
+    margin-top: 10px; /* Khoảng cách trên */
+}
+
+.login-forgot-password, .login-dkitaikhoan, .text {
+    margin-top: 10px;
+    display: inline;
+}
+
+/* Định nghĩa liên kết */
+.login-dkitaikhoan,
+.login-forgot-password {
+    color: rgb(20, 114, 157); /* Màu chữ liên kết */
+    text-decoration: none; /* Không gạch chân */
+}
+
+.login-dkitaikhoan:hover,
+.login-forgot-password:hover {
+    color: rgb(66, 220, 247); /* Màu khi hover */
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+
+/* RESET MK
+/* QUEN MK FORM*/
+.resetpw-container {
+    width: 100%;
+    max-width: 550px; /* Giảm chiều rộng để phù hợp với di động */
+    margin: 300px auto; /* Căn giữa */
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.resetpw-h1 {
+    text-align: left;
+    font-size: 38px; /* Giảm kích thước tiêu đề */
+    color: #044c64;
+    margin-bottom: 20px;
+}
+.resetpw-text {
+    width: 100%;
+    margin-bottom: 20px; /* Thêm khoảng cách dưới khối text */
+    background-color: #fff;
+    border-radius: 8px;
+    padding:30px;
+}
+.resetpw-p {
+    text-align: left;
+    margin: 10px 0; /* Điều chỉnh khoảng cách trên và dưới */
+    font-size:22px;
+}
+input.resetpw {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px; /* Thêm khoảng cách trên */
+    font-size: 16px;
+}
+.resetpw-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px; /* Thêm khoảng cách trên */
+    background-color: #DAA520;
+    color: black;
+    border: 1px solid #DAA520 ;
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bolder;
+
+}
+.resetpw-button:hover {
+    background-color: white  ; /* Thay đổi màu khi hover */
+}
+.form-group-resetpw {
+    margin-bottom: 15px;
 }

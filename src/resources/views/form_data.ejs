@@ -1,0 +1,14 @@
+
+  <form action="/uploadFile" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+      Choose image: <input type="file" class="form-control-file" name="uploaded_file">
+      <input type="submit" value="Submit file" class="btn btn-default">            
+    </div>
+</form>
+
+<form action="/uploadMultiple" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+      Select image: <input type="file" class="form-control-file" name="uploaded_files" multiple>
+      <input type="submit" value="Submit file" class="btn btn-default">            
+    </div>
+</form>

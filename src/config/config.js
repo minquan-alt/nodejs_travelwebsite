@@ -1,43 +1,33 @@
+require('dotenv').config()
+
 const config = {
     development: {
-        username: 'wanmin',
-        password: 'Quang123233',
-        database: 'travel_website',
-        server: 'wanmin.database.windows.net',
-        host: 'wanmin.database.windows.net',
-        dialect: 'mssql',
-        options: {
-            encrypt: true,
-            trustServerCertificate: false,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: 'mysql', // Đặt đúng dialect cho SQL Server
+        dialectOptions: {
+            ssl: {
+                require: process.env.DB_SSL === 'true',
+                rejectUnauthorized: false,
+            },
         },
-        connectionTimeout: 30000,
-        logging: false,
     },
     test: {
-        username: 'wanmin',
-        password: 'Quang123233',
-        database: 'travel_website_test', // Use a test database if available
-        server: 'wanmin.database.windows.net',
-        dialect: 'mssql',
-        options: {
-            encrypt: true,
-            enableArithAbort: true,
-            trustServerCertificate: false,
-        },
-        connectionTimeout: 30000,
+        username: 'root',
+        password: null,
+        database: 'database_test',
+        host: '127.0.0.1',
+        dialect: 'mysql',
     },
     production: {
-        username: 'wanmin',
-        password: 'Quang123233',
-        database: 'travel_website_prod', // Use a production database if available
-        server: 'wanmin.database.windows.net',
-        dialect: 'mssql',
-        options: {
-            encrypt: true,
-            enableArithAbort: true,
-            trustServerCertificate: false,
-        },
-        connectionTimeout: 30000,
+        username: 'root',
+        password: null,
+        database: 'database_production',
+        host: '127.0.0.1',
+        dialect: 'mysql',
     },
 }
 

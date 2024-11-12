@@ -1,6 +1,7 @@
 /node_modules
 /vendor
 /.idea
+/certs/client_secret_452965128217-q121d3q9ma1nk66iq9lkf6hp6s7q6hob.apps.googleusercontent.com.json
 .idea/
 .env
 CACHE

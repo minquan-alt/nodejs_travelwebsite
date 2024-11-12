@@ -1,0 +1,15 @@
+<div class="background">
+</div>
+<div class="container">
+    <div class="row">
+        <% tours.forEach(tour => { %>
+        <div class="col-4">
+            <div class="tour">
+                <h2><%= tour.tour_name %></h2>
+                <p><%= tour.description %></p>
+                <img src="<%= tour.image %>" alt="<%= tour.tour_name %>" />
+            </div>
+        </div>
+        <% }); %> 
+    </div>
+</div>

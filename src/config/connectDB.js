@@ -1,25 +1,27 @@
-const sql = require('mssql')
+const sql = require('mysql')
 const config = require('./config')
+const path = require('path')
+const fs = require('fs')
 
 const dbConfig = config.development
 
 const sqlConfig = {
-    user: dbConfig.username,
+    user: dbConfig.username, // đổi thành 'user'
     password: dbConfig.password,
     database: dbConfig.database,
-    server: dbConfig.server,
-    dialect: dbConfig.dialect,
+    server: dbConfig.host, // dùng 'server' thay cho 'host'
+    port: Number(dbConfig.port),
     options: {
-        encrypt: dbConfig.options.encrypt,
-        enableArithAbort: dbConfig.enableArithAbort,
-        trustServerCertificate: dbConfig.options.trustServerCertificate,
+        encrypt: true,
+        trustServerCertificate: true,
+        ca: fs.readFileSync(path.join(__dirname, '../../certs/ca.pem')), // Đọc file CA certificate
     },
-    connectionTimeout: dbConfig.connectionTimeout,
+    connectionTimeout: dbConfig.connectionTimeout, // Nếu cần dùng connectionTimeout, đảm bảo nó có giá trị trong file config
 }
 
 async function connectDB() {
     try {
-        const pool = await sql.connect(sqlConfig)
+        const pool = await sql.createConnection(sqlConfig)
         console.log('Connected to SQL Server')
         return pool
     } catch (err) {
@@ -29,28 +31,3 @@ async function connectDB() {
 }
 
 module.exports = connectDB
-
-// const { Sequelize } = require('sequelize');
-
-// // Option 3: Passing parameters separately (other dialects)
-// const sequelize = new Sequelize('travel_website', 'wanmin', 'Quang123233', {
-//     server: "wanmin.database.windows.net",
-//     host: "wanmin.database.windows.net",
-//     dialect: "mssql",
-//     options: {
-//       encrypt: true,
-//       trustServerCertificate: false,
-//     },
-//     connectionTimeout: 30000,
-// })
-
-// const connectDB = async () => {
-//   try {
-//     await sequelize.authenticate();
-//     console.log('Connection has been established successfully.');
-//   } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-//   }
-// }
-
-// module.exports = connectDB

@@ -1,0 +1,197 @@
+<div class="signup-container">
+    <h1 class="dki">ĐĂNG KÝ TÀI KHOẢN</h1>
+    <form action="/signup" method="POST">
+        <div class="form-group-dki">
+            <label class="dki-label" for="hoten">Họ và tên</label>
+            <input type="text" id="hoten" name="full_name">
+            <div class="gender mt-2">
+                <span>Giới tính</span>
+                <select name="gender" id="gender">
+                    <option value="male">Nam</option>
+                    <option value="female">Nữ</option>
+                </select>
+            </div>
+            <div id="hoten-error" class="error-message"></div> <!-- Thông báo lỗi -->
+        </div>
+        <div class="form-group-dki">
+            <label class="dki-label" for="dob">Ngày sinh</label>
+            <div class="dob-container">
+                <input type="date" name="dob" id="dob">
+            </div>
+            <div id="dob-error" class="error-message"></div> <!-- Thông báo lỗi -->
+        </div>
+        <div class="form-group-dki">
+            <label class="dki-label" for="sdt">Số điện thoại</label>
+            <input type="tel" id="sdt" name="phone">
+            <div id="sdt-error" class="error-message"></div> <!-- Thông báo lỗi -->
+        </div>
+        <div class="form-group-dki">
+            <label class="dki-label" for="email">Email</label>
+            <input type="text" id="email" name="email">
+            <div id="email-error" class="error-message"></div> <!-- Thông báo lỗi -->
+        </div>
+        <div class="form-group-dki">
+            <label class="dki-label" for="password">Mật khẩu</label>
+            <input type="password" id="password" name="password">
+            <div id="password-error" class="error-message"></div> <!-- Thông báo lỗi -->
+        </div>
+        <div class="form-group-dki">
+            <label class="dki-label" for="password1">Nhập lại mật khẩu</label>
+            <input type="password" id="password1" name="re-password">
+            <div id="password1-error" class="error-message"></div> <!-- Thông báo lỗi -->
+        </div>
+        <button class="dki-button" type="submit" >Đăng ký</button>
+    </form>
+</div>
+
+<!-- Thông báo tùy chỉnh -->
+<div id="notification" class="notification" style="display:none;"></div> <!-- Khởi tạo ẩn cho thông báo -->
+
+<script>
+    // Kiểm tra email hợp lệ
+    function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    // Kiểm tra số điện thoại hợp lệ
+    function validatePhoneNumber(phone) {
+        const nonNullPhone = phone !== "";
+        const startsWithZero = phone.startsWith("0");
+        const isTenDigits = phone.length === 10;
+        return {
+            nonNullPhone,
+            startsWithZero,
+            isTenDigits
+        };
+    }
+
+    // Hàm hiển thị thông báo
+    function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.innerText = message;
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+
+    // Hàm xử lý việc gửi form
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");  // Đảm bảo rằng bạn đã chọn đúng form
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Ngừng submit form
+    
+            const hoten = document.getElementById("hoten").value;
+            const email = document.getElementById("email").value;
+            const sdt = document.getElementById("sdt").value;
+            const dob = document.getElementById("dob").value;
+            const password = document.getElementById("password").value;
+            const password1 = document.getElementById("password1").value;
+    
+            let valid = true;
+    
+            // Xử lý thông báo lỗi các trường
+            const hotenError = document.getElementById("hoten-error");
+            const emailError = document.getElementById("email-error");
+            const sdtError = document.getElementById("sdt-error");
+            const dobError = document.getElementById("dob-error");
+            const passwordError = document.getElementById("password-error");
+            const password1Error = document.getElementById("password1-error");
+    
+            hotenError.style.display = "none";
+            emailError.style.display = "none";
+            sdtError.style.display = "none";
+            dobError.style.display = "none";
+            passwordError.style.display = "none";
+            password1Error.style.display = "none";
+    
+            // Kiểm tra họ tên
+            if (hoten.trim() === "") {
+                hotenError.innerText = "Vui lòng nhập họ và tên.";
+                hotenError.style.display = "block";
+                valid = false;
+            }
+    
+            // Kiểm tra ngày tháng năm sinh
+            if (dob === "") {
+                dobError.innerText = "Vui lòng chọn ngày tháng năm sinh.";
+                dobError.style.display = "block";
+                valid = false;
+            }
+    
+            // Kiểm tra email
+            if (!validateEmail(email)) {
+                emailError.innerText = "Vui lòng nhập email hợp lệ.";
+                emailError.style.display = "block";
+                valid = false;
+            }
+    
+            // Kiểm tra số điện thoại
+            const phoneValidation = validatePhoneNumber(sdt);
+            if(!phoneValidation.nonNullPhone) {
+                sdtError.innerText = "Vui lòng nhập số điện thoại.";
+                sdtError.style.display = "block";
+                valid = false;
+            }
+            else if (!phoneValidation.startsWithZero) {
+                sdtError.innerText = "Số điện thoại phải bắt đầu bằng 0.";
+                sdtError.style.display = "block";
+                valid = false;
+            } else if (!phoneValidation.isTenDigits) {
+                sdtError.innerText = "Số điện thoại phải có 10 chữ số.";
+                sdtError.style.display = "block";
+                valid = false;
+            }
+    
+            // Kiểm tra mật khẩu
+            if (password.length < 8) {
+                passwordError.innerText = "Mật khẩu phải có ít nhất 8 ký tự.";
+                passwordError.style.display = "block";
+                valid = false;
+            }
+    
+            // Kiểm tra nhập lại mật khẩu
+            if (password !== password1) {
+                password1Error.innerText = "Mật khẩu không khớp.";
+                password1Error.style.display = "block";
+                valid = false;
+            }
+    
+            if (valid) {
+                // Chỉ thực hiện gửi dữ liệu nếu tất cả các trường hợp hợp lệ
+                fetch('/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({ full_name: hoten, gender: document.getElementById("gender").value, dob, phone: sdt, email, password }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification("Đăng ký thành công!");
+                        setTimeout(() => {
+                            window.location.href = "homepage"; // Điều hướng sau khi đăng ký thành công
+                        }, 1500);
+                    } else {
+                        showNotification(data.message); // Thông báo lỗi
+                    }
+                });
+            }
+        });
+    
+        // Ẩn thông báo lỗi khi người dùng nhập dữ liệu
+        const inputs = document.querySelectorAll("input");
+        inputs.forEach(input => {
+            input.addEventListener("input", function () {
+                const errorId = `${input.id}-error`;
+                const errorElement = document.getElementById(errorId);
+                if (errorElement) {
+                    errorElement.style.display = "none"; // Ẩn thông báo lỗi
+                }
+            });
+        });
+    });
+    
+</script>

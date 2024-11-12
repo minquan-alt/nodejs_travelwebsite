@@ -10,7 +10,9 @@ let getHomePage = async (req, res) => {
         console.log(error)
     }
 }
-let getRegisterPage = (req, res) => {}
+let getRegisterPage = (req, res) => {
+    return res.render('register.js')
+}
 
 let getAboutPage = (req, res) => {
     return res.render('test/about.ejs')
@@ -19,4 +21,5 @@ let getAboutPage = (req, res) => {
 module.exports = {
     getHomePage,
     getAboutPage,
+    getRegisterPage,
 }

@@ -1,27 +1,19 @@
 const express = require('express')
-const {
-    getHomePage,
-    getAboutPage,
-    getRegisterPage,
-} = require('../controllers/HomeController.js')
-
-let router = express.Router()
+const routerAdmin = require('./admin')
+const routerWeb = require('./web')
+const routerLogin = require('./login')
+const routerSignup = require('./signup')
+const routerForgotPassword = require('./forgot_password')
+const routerResetPassword = require('./reset_password')
+//const routerShowForm = require
 
 let initWebRoutes = (app) => {
-    router.get('/', getHomePage)
-    router.get('/about', getAboutPage)
-    router.get('/register', getRegisterPage)
-
-    return app.use('/', router)
+    app.use('/reset_password', routerResetPassword)
+    app.use('/forgot_password', routerForgotPassword)
+    app.use('/signup', routerSignup)
+    app.use('/login', routerLogin)
+    app.use('/admin', routerAdmin)
+    app.use('/', routerWeb)
 }
-
-// function route(app) {
-//     app.use('/api/v1/user', userRouter)
-//     app.use('/search', searchRouter)
-
-//     app.use('/news', newsRouter)
-//     app.use('/', siteRouter)
-
-// }
 
 module.exports = initWebRoutes
