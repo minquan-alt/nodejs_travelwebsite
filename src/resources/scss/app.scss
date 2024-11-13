@@ -35,7 +35,7 @@ header {
   
   .right-section a {
     color: #005387;
-    font-size: 24px;
+    font-size: 22px;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -119,7 +119,7 @@ header {
 footer {
     background-color: #044c64;
     color: #fff;
-    padding: 30px 100px 0px 50px; /* Padding cho footer */
+    padding: 30px 100px 0px 100px; /* Padding cho footer */
     text-align: left;
     display:block;
     bottom: 0; /* Đưa footer xuống dưới cùng */
@@ -147,9 +147,11 @@ footer {
 .footer-left h1,
 .footer-right h1 {
     margin-bottom: 10px;
+    font-size:23px;
+}
+.footer-left h2{
     font-size:20px;
 }
-
 .footer-left p,
 .footer-right p {
     color: white;
@@ -211,14 +213,16 @@ footer {
     margin-right:10px;
 }
 
-.footer-bottom-right a.terms:hover {
+.footer-bottom-right a:hover {
     color:#fbca4d ; /* Thay đổi màu sắc khi hover */
 }
 
 .footer-bottom-right a {
-    margin-right: 30px; /* Khoảng cách giữa các liên kết mạng xã hội */
+    margin-right: 10px; /* Khoảng cách giữa các liên kết mạng xã hội */
+    font-size:10px;
+    color:white;
+    text-decoration: none;
 }
-
 .tour {
     display: flex;
     flex-direction: column;
