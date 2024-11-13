@@ -121,7 +121,7 @@ footer {
     color: #fff;
     padding: 30px 100px 0px 50px; /* Padding cho footer */
     text-align: left;
-    position: fixed; /* Đặt footer cố định */
+    display:block;
     bottom: 0; /* Đưa footer xuống dưới cùng */
     left: 0; /* Đưa footer sang trái */
     width: 100%; /* Đặt footer chiếm toàn bộ chiều rộng */
