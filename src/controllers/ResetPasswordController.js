@@ -1,4 +1,5 @@
-const db = require('../models/index')
+const db = require('../config/connectDB')
+
 
 class ResetPasswordController {
     getResetPasswordForm(req, res) {

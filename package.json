@@ -6,6 +6,7 @@
     "dev": "npm run watch -- --watch & npm start",
     "start": "nodemon --exec babel-node src/index.js",
     "watch": "sass --watch src/resources/scss:src/public/css",
+    "generate-models": "node generate-models.js",
     "prepare": "husky"
   },
   "repository": {
@@ -51,7 +52,8 @@
     "passport-google-oauth20": "^2.0.0",
     "path": "^0.12.7",
     "save-dev": "^0.0.1-security",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "sequelize-auto": "^0.8.8"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",

@@ -1,4 +1,5 @@
-const db = require('../models/index')
+const db = require('../config/connectDB')
+
 
 let getHomePage = async (req, res) => {
     try {

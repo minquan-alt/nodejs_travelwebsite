@@ -1,6 +1,6 @@
 const { Op } = require('sequelize')
 const bcrypt = require('bcrypt')
-const db = require('../models/index')
+const db = require('../config/connectDB')
 const User = db.User
 
 const salt = bcrypt.genSaltSync(10)

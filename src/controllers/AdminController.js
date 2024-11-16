@@ -1,4 +1,4 @@
-const db = require('../models/index')
+const db = require('../config/connectDB')
 
 class AdminController {
     getAdminPage(req, res) {

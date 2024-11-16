@@ -3,7 +3,6 @@ const bodyParser = require('body-parser')
 const initWebRoutes = require('./routes/index')
 const viewEngine = require('./config/viewEngine')
 const dotenv = require('dotenv')
-const connectDB = require('./config/connectDB')
 const expressLayouts = require('express-ejs-layouts')
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
@@ -29,7 +28,6 @@ app.use(session({
 
 viewEngine(app)
 initWebRoutes(app)
-connectDB()
 console.log(process.env.PORT)
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {

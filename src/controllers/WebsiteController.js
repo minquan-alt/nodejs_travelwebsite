@@ -1,19 +1,23 @@
-const db = require('../models/index')
+const pool = require('../config/connectDB')
 
 class WebsiteController {
     async getHomePage(req, res){
+        let connection
         try {
             // const { page = 1, limit = 10} = req.query
             // const offset = (page - 1) * limit
+            const [data] = await pool.query('SELECT * FROM Tours')
+            console.log(data)
 
-            const data = await db.Tour.findAll({
-                attributes: ['tour_name', 'description', 'image'],
-            })
             const isLoggedIn = req.session && req.session.user
             res.render('homepage', { tours: data, isLoggedIn, });
         } catch (error) {
             console.log(error)
             res.status(500).send("Internal Server Error")
+        } finally {
+            if(connection) {
+                await connection.release()
+            }
         }
     }
     logout(req, res) {

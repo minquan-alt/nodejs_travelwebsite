@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt'); // Đảm bảo bạn đã import bcrypt
-const db = require('../models/index');
+const db = require('../config/connectDB');
 const { Op } = require('sequelize');
 const User = db.User;
 

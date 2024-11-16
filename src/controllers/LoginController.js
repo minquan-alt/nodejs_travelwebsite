@@ -1,4 +1,4 @@
-const db = require('../models/index')
+const db = require('../config/connectDB')
 const loginService = require('../services/LoginService')
 const bcrypt = require('bcrypt')
 
