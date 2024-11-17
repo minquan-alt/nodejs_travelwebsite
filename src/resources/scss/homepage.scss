@@ -32,12 +32,64 @@ body {
 }
 
 .card {
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    width: 100%;
+    height: 100%; /* Đảm bảo card chiếm toàn bộ chiều cao của container */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-.card:hover {
-    transform: scale(1.02);
+
+.card-img-top {
+    height: 40%; /* Đặt chiều cao cố định cho ảnh, tỷ lệ phần trăm giúp responsive */
+    object-fit: cover; /* Đảm bảo ảnh được cắt gọn để vừa khung */
+}
+
+.card-body {
+    flex: 1; /* Đảm bảo phần thân card chiếm hết không gian còn lại */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 0.875rem;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Giới hạn thông tin nếu quá dài */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Hiển thị tối đa 3 dòng */
+    -webkit-box-orient: vertical;
+}
+
+.card-footer {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 0.875rem;
+    background-color: #f8f9fa;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Khoảng cách giữa các card */
+}
+
+.col-md-4 {
+    flex: 1 1 30%; /* Đảm bảo mỗi card có chiều rộng bằng nhau */
+    max-width: 30%; /* Không vượt quá 30% chiều rộng container */
+    display: flex;
 }
 
 .text-strike {
