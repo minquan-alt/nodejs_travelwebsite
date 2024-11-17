@@ -10,22 +10,22 @@ class LoginController {
     }
     getForgotPasswordForm(req, res) {
         return res.render('forgot_password', {
-            layout: 'layouts/login'
+            layout: 'layouts/login',
         })
     }
     getResetPasswordForm(req, res) {
         return res.render('signup', {
-            layout: 'layouts/reset_password'
+            layout: 'layouts/reset_password',
         })
     }
     async login(req, res) {
         try {
             const userData = {
                 phone: req.body.phone,
-                password: req.body.password
+                password: req.body.password,
             }
             const result = await loginService.checkUserCredentials(userData)
-            if(result.success){
+            if (result.success) {
                 req.session.user = result.user
             }
             res.json({
@@ -33,9 +33,10 @@ class LoginController {
                 message: result.message,
             })
         } catch (error) {
+            console.log(error)
             res.json({
                 success: false,
-                message: "Đã xảy ra lỗi. Vui lòng thử lại"
+                message: 'Đã xảy ra lỗi. Vui lòng thử lại',
             })
         }
     }

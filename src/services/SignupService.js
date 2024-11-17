@@ -1,38 +1,65 @@
-const { Op } = require('sequelize')
 const bcrypt = require('bcrypt')
-const db = require('../config/connectDB')
-const User = db.User
-
-const salt = bcrypt.genSaltSync(10)
-
+const connection = require('../config/connectDB')
 
 class SignupService {
     hashUserPassword(password) {
         return new Promise(async (resolve, reject) => {
             try {
-                const hashedPassword = await bcrypt.hashSync(password, salt)
+                const salt = await bcrypt.genSalt(10)
+                const hashedPassword = await bcrypt.hash(password, salt)
                 resolve(hashedPassword)
+                console.log('Mật khẩu gốc:', password)
+                console.log('Mật khẩu đã băm:', hashedPassword)
             } catch (error) {
                 reject(error)
             }
         })
     }
+
     async createNewUser(userData) {
         try {
-            // Tạo người dùng mới
-            const newUser = await User.create(userData);
-            return { success: true, user: newUser };
+            const { full_name, gender, dob, phone, email, password } = userData
+            // Check if email or phone already exists
+            const checkQuery =
+                'SELECT * FROM Users WHERE email = ? OR phone = ? limit 1'
+            const checkValues = [email, phone]
+
+            const [existingUser] = await connection.query(
+                checkQuery,
+                checkValues
+            )
+
+            if (existingUser.length > 0) {
+                return {
+                    success: false,
+                    message: 'Email hoặc số điện thoại đã tồn tại',
+                }
+            }
+            const hashedPassword = await this.hashUserPassword(password)
+            const query =
+                'INSERT INTO Users (full_name, gender, dob, phone, email, password, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())'
+            const values = [
+                full_name,
+                gender,
+                dob,
+                phone,
+                email,
+                hashedPassword,
+            ]
+            const [result] = await connection.query(query, values)
+            console.log('Đã tạo người dùng mới:', result)
+            return {
+                success: true,
+                user: userData,
+            }
         } catch (error) {
             console.log(error)
-            if (error.name === 'SequelizeUniqueConstraintError') {
-                // Trả về lỗi nếu trùng lặp email hoặc phone
-                return { success: false, message: 'Email hoặc số điện thoại đã tồn tại' };
+            return {
+                success: false,
+                message: 'Đã xảy ra lỗi khi tạo người dùng',
             }
-            // Xử lý lỗi khác (nếu có)
-            return { success: false, message: 'Đã xảy ra lỗi khi tạo người dùng' };
         }
     }
-
 }
 
 module.exports = new SignupService()

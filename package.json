@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "npm run watch -- --watch & npm start",
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "nodemon --exec babel-node src/index.js --ext js,json,ejs",
     "watch": "sass --watch src/resources/scss:src/public/css",
     "generate-models": "node generate-models.js",
     "prepare": "husky"

@@ -5,14 +5,13 @@ class SignupController {
     async createNewUser(req, res) {
         try {
             console.log(req.body)
-            const hashedPassword = await signupService.hashUserPassword(req.body.password)
             const userData = {
                 full_name: req.body.full_name,
                 gender: req.body.gender,
                 dob: req.body.dob,
                 phone: req.body.phone,
                 email: req.body.email,
-                password: hashedPassword,
+                password: req.body.password,
             }
             console.log('userData: ', userData)
             const result = await signupService.createNewUser(userData)
@@ -20,19 +19,19 @@ class SignupController {
             if (result.success) {
                 req.session.user = result.user
                 res.json({
-                    success: true
+                    success: true,
                 })
             } else {
                 res.json({
                     success: false, // Truyền biến success là false nếu có lỗi
                     message: result.message, // Truyền thông báo lỗi nếu có
-                });
+                })
             }
         } catch (error) {
             console.log(error)
             res.json({
                 success: false,
-                message: "Đã xảy ra lỗi. Vui lòng thử lại."
+                message: 'Đã xảy ra lỗi. Vui lòng thử lại.',
             })
         }
     }
@@ -40,16 +39,16 @@ class SignupController {
     getSignupForm(req, res) {
         return res.render('signup', {
             layout: 'layouts/login',
-        });
+        })
     }
     getTermsConditions(req, res) {
         return res.render('terms_conditions', {
-            layout: false
+            layout: false,
         })
     }
     getPrivacyPolicy(req, res) {
         return res.render('PrivacyPolicy', {
-            layout: false
+            layout: false,
         })
     }
 }
