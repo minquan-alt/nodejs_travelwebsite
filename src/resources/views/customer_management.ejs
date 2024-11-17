@@ -1,0 +1,290 @@
+<body>
+    <div class="sidebar">
+        <h3>ADMIN</h3>
+        <ul class="navbar-nav">
+            <li><a href="tour_management.html">Quản lý tour</a></li>
+            <li><a href="customer_management.html">Quản lý khách du lịch</a></li>
+            <li><a href="#">Quản lý đăng kí tour</a></li>
+            <li><a href="#">Quản lý tài khoản</a></li>
+            <li><a href="#">Thống kê</a></li>
+        </ul>
+    </div>
+
+    <div class="content" id="contentArea">
+        <h1>Quản Lý Khách Du Lịch</h1>
+        
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="customerTable">
+                <thead>
+                    <tr>
+                        <th>Tên Khách Hàng</th>
+                        <th>Mã Khách Hàng</th>
+                        <th>Quốc Gia</th>
+                        <th>Giới Tính</th>
+                        <th>Email</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-success mt-3" data-toggle="modal" data-target="#addCustomerModal" onclick="resetCustomerForm()">Thêm Thông Tin Khách Hàng</button>
+    </div>
+
+    <!-- Modal để thêm hoặc xem thông tin khách hàng -->
+    <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCustomerModalLabel">Thêm Thông Tin Khách Hàng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCustomerForm">
+                        <div class="form-group">
+                            <label for="customerName">Tên Khách Hàng</label>
+                            <input type="text" class="form-control" id="customerName" placeholder="Nhập tên khách hàng" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerID">Mã Khách Hàng</label>
+                            <input type="text" class="form-control" id="customerID" placeholder="Nhập mã khách hàng" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Địa Chỉ</label>
+                            <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Giới Tính</label>
+                            <div>
+                                <label class="mr-3">
+                                    <input type="radio" name="gender" value="Nam" id="genderMale" required> Nam
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="Nữ" id="genderFemale" required> Nữ
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Quốc gia</label>
+                            <input type="text" class="form-control" id="country" placeholder="Nhập quốc gia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Ngày tháng năm sinh</label>
+                            <div class="dob-container">
+                                <select class="form-control" id="day" required>
+                                    <option value="0">Ngày</option>
+                                    <script>
+                                        for (let i = 1; i <= 31; i++) {
+                                            document.write(`<option value="${i}">${i}</option>`);
+                                        }
+                                    </script>
+                                </select>
+                                <select class="form-control" id="month" required>
+                                    <option value="0">Tháng</option>
+                                    <script>
+                                        for (let i = 1; i <= 12; i++) {
+                                            document.write(`<option value="${i}">${i}</option>`);
+                                        }
+                                    </script>
+                                </select>
+                                <select class="form-control" id="year" required>
+                                    <option value="0">Năm</option>
+                                    <script>
+                                        const currentYear = new Date().getFullYear();
+                                        for (let i = currentYear; i >= currentYear - 100; i--) {
+                                            document.write(`<option value="${i}">${i}</option>`);
+                                        }
+                                    </script>
+                                </select>
+                            </div>
+                            <div class="error-message" id="dobError" style="display: none;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Nhập email" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="saveCustomerButton">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let customers = [];
+        let currentCustomerIndex = null;
+
+        function resetCustomerForm() {
+            document.getElementById('addCustomerForm').reset();
+            document.getElementById('addCustomerModalLabel').innerText = 'Thêm Thông Tin Khách Hàng';
+            document.getElementById('dobError').style.display = 'none';
+            currentCustomerIndex = null; // Reset current index for new customer
+            document.getElementById('saveCustomerButton').style.display = 'block'; // Show save button
+            document.querySelectorAll('#addCustomerForm input, #addCustomerForm select').forEach(input => {
+                input.removeAttribute('readonly'); // Enable all fields
+                input.disabled = false; // Enable all selects
+            });
+        }
+
+        function isValidDate(day, month, year) {
+            const date = new Date(year, month - 1, day);
+            return date.getFullYear() === parseInt(year) &&
+                   date.getMonth() === month - 1 &&
+                   date.getDate() === parseInt(day);
+        }
+
+        document.getElementById('saveCustomerButton').addEventListener('click', function() {
+            const customerName = document.getElementById('customerName').value;
+            const customerID = document.getElementById('customerID').value;
+            const address = document.getElementById('address').value;
+            const gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : '';
+            const country = document.getElementById('country').value;
+            const day = document.getElementById('day').value;
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            const dobErrorElement = document.getElementById('dobError');
+            if (!isValidDate(day, month, year)) {
+                dobErrorElement.innerText = "Ngày tháng năm sinh không hợp lệ.";
+                dobErrorElement.style.display = 'block';
+                return; // Dừng lại nếu ngày không hợp lệ
+            } else {
+                dobErrorElement.style.display = 'none'; // Ẩn thông báo lỗi nếu hợp lệ
+            }
+
+            const dob = `${day}/${month}/${year}`;
+
+            if (currentCustomerIndex === null) {
+                // Add new customer
+                customers.push({ customerName, customerID, address, gender, country, dob, phone, email });
+                addCustomerToTable(customers.length - 1);
+            } else {
+                // Update existing customer
+                customers[currentCustomerIndex] = { customerName, customerID, address, gender, country, dob, phone, email };
+                updateCustomerInTable(currentCustomerIndex);
+            }
+
+            $('#addCustomerModal').modal('hide'); // Hide modal after adding/updating
+            resetCustomerForm(); // Reset form fields
+        });
+
+        function addCustomerToTable(index) {
+            const customer = customers[index];
+            const row = `
+                <tr>
+                    <td>${customer.customerName}</td>
+                    <td>${customer.customerID}</td>
+                    <td>${customer.country}</td>
+                    <td>${customer.gender}</td>
+                    <td>${customer.email}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" onclick="viewCustomer(${index})">Xem</button>
+                        <button class="btn btn-warning btn-sm" onclick="editCustomer(${index})">Chỉnh sửa</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteCustomer(${index})">Xóa</button>
+                    </td>
+                </tr>
+            `;
+            document.querySelector('#customerTable tbody').insertAdjacentHTML('beforeend', row);
+        }
+
+        function updateCustomerInTable(index) {
+            const customer = customers[index];
+            const row = document.querySelectorAll('#customerTable tbody tr')[index];
+            row.innerHTML = `
+                <td>${customer.customerName}</td>
+                <td>${customer.customerID}</td>
+                <td>${customer.country}</td>
+                <td>${customer.gender}</td>
+                <td>${customer.email}</td>
+                <td>
+                    <button class="btn btn-info btn-sm" onclick="viewCustomer(${index})">Xem</button>
+                    <button class="btn btn-warning btn-sm" onclick="editCustomer(${index})">Chỉnh sửa</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteCustomer(${index})">Xóa</button>
+                </td>
+            `;
+        }
+
+        function deleteCustomer(index) {
+            customers.splice(index, 1); // Remove from customers array
+            updateCustomerTable(); // Update table after deletion
+        }
+
+        function editCustomer(index) {
+            currentCustomerIndex = index;
+            const customer = customers[index];
+
+            // Populate the modal fields with the selected row's data
+            document.getElementById('customerName').value = customer.customerName;
+            document.getElementById('customerID').value = customer.customerID;
+            document.getElementById('address').value = customer.address;
+            document.querySelector(`input[name="gender"][value="${customer.gender}"]`).checked = true; // Check the corresponding gender
+            document.getElementById('country').value = customer.country;
+            const dobParts = customer.dob.split('/');
+            document.getElementById('day').value = dobParts[0];
+            document.getElementById('month').value = dobParts[1];
+            document.getElementById('year').value = dobParts[2];
+            document.getElementById('phone').value = customer.phone;
+            document.getElementById('email').value = customer.email;
+
+            $('#addCustomerModalLabel').text('Chỉnh Sửa Thông Tin Khách Hàng');
+            document.getElementById('saveCustomerButton').style.display = 'block'; // Show save button
+            document.querySelectorAll('#addCustomerForm input, #addCustomerForm select').forEach(input => {
+                input.removeAttribute('readonly'); // Enable all fields
+                input.disabled = false; // Enable all selects
+            });
+
+            $('#addCustomerModal').modal('show');
+        }
+
+        function viewCustomer(index) {
+            const customer = customers[index];
+            document.getElementById('customerName').value = customer.customerName;
+            document.getElementById('customerID').value = customer.customerID;
+            document.getElementById('address').value = customer.address;
+            document.querySelector(`input[name="gender"][value="${customer.gender}"]`).checked = true; // Check the corresponding gender
+            document.getElementById('country').value = customer.country;
+            const dobParts = customer.dob.split('/');
+            document.getElementById('day').value = dobParts[0];
+            document.getElementById('month').value = dobParts[1];
+            document.getElementById('year').value = dobParts[2];
+            document.getElementById('phone').value = customer.phone;
+            document.getElementById('email').value = customer.email;
+
+            // Set readonly and disabled for input fields
+            document.querySelectorAll('#addCustomerForm input, #addCustomerForm select').forEach(input => {
+                input.setAttribute('readonly', true);
+                input.disabled = true; // Disable all selects
+            });
+
+            // Change modal title
+            $('#addCustomerModalLabel').text('Xem Thông Tin Khách Hàng');
+            $('#addCustomerModal').modal('show');
+            document.getElementById('saveCustomerButton').style.display = 'none'; // Hide "OK" button
+        }
+
+        function updateCustomerTable() {
+            const tbody = document.querySelector('#customerTable tbody');
+            tbody.innerHTML = ''; // Clear existing rows
+            customers.forEach((customer, index) => {
+                addCustomerToTable(index);
+            });
+        }
+    </script>
+</body>

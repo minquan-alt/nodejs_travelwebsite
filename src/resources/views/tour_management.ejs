@@ -1,0 +1,270 @@
+<body>
+    <div class="sidebar">
+        <h3>ADMIN</h3>
+        <ul class="navbar-nav">
+            <li><a href="tour_management.html" >Quản lý tour</a></li>
+            <li><a href="customer_management.html">Quản lý khách du lịch</a></li>
+            <li><a href="#">Quản lý đăng kí tour</a></li>
+            <li><a href="#">Quản lý tài khoản</a></li>
+            <li><a href="#">Thống kê</a></li>
+        </ul>
+    </div>
+
+    <div class="content" id="contentArea">
+        <h1>Quản Lý Tour</h1>
+        
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="tourTable">
+                <thead>
+                    <tr>
+                        <th>Tên Tour</th>
+                        <th>Mã Tour</th>
+                        <th>Tình Trạng</th>
+                        <th>Số Lượng Khách</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-success mt-3" data-toggle="modal" data-target="#addTourModal" onclick="resetForm()">Thêm Tour Mới</button>
+    </div>
+
+    <!-- Modal để thêm hoặc chỉnh sửa tour -->
+    <div class="modal fade" id="addTourModal" tabindex="-1" role="dialog" aria-labelledby="addTourModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTourModalLabel">Thêm Tour Mới</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="image-upload">
+                        <label for="tourImage">Tải lên hình ảnh minh họa</label>
+                        <input type="file" class="form-control" id="tourImage" accept="image/*">
+                    </div>
+                    <div class="tour-details">
+                        <form id="addTourForm">
+                            <div class="form-group">
+                                <label for="country">Quốc gia</label>
+                                <input type="text" class="form-control" id="country" placeholder="Nhập quốc gia">
+                            </div>
+                            <div class="form-group">
+                                <label for="tourCode">Mã tour</label>
+                                <input type="text" class="form-control" id="tourCode" placeholder="Nhập mã tour">
+                            </div>
+                            <div class="form-group">
+                                <label for="tourName">Tên tour</label>
+                                <input type="text" class="form-control" id="tourName" placeholder="Nhập tên tour">
+                            </div>
+                            <div class="form-group">
+                                <label for="guestCount">Số lượng khách</label>
+                                <input type="number" class="form-control" id="guestCount" placeholder="Nhập số lượng khách">
+                            </div>
+                            <div class="form-group">
+                                <label for="duration">Thời gian</label>
+                                <input type="text" class="form-control" id="duration" placeholder="Nhập thời gian">
+                            </div>
+                            <div class="form-group">
+                                <label for="departureDate">Ngày đi</label>
+                                <input type="date" class="form-control" id="departureDate" onchange="setMinReturnDate()">
+                            </div>
+                            <div class="form-group">
+                                <label for="returnDate">Ngày về</label>
+                                <input type="date" class="form-control" id="returnDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Giá</label>
+                                <input type="number" class="form-control" id="price" placeholder="Nhập giá">
+                            </div>
+                            <div class="form-group">
+                                <label for="discount">Giảm giá còn</label>
+                                <input type="number" class="form-control" id="discount" placeholder="Nhập giá sau giảm">
+                            </div>
+                            <div class="form-group">
+                                <label for="transport">Phương tiện</label>
+                                <input type="text" class="form-control" id="transport" placeholder="Nhập phương tiện">
+                            </div>
+                            <div class="form-group">
+                                <label for="tourDescription">Mô tả chi tiết tour</label>
+                                <textarea class="form-control" id="tourDescription" rows="5" placeholder="Nhập mô tả tour"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="saveTourButton">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        let tours = [];
+        let currentTourIndex = null;
+
+        function showTourManagement() {
+            document.getElementById('contentArea').innerHTML = `
+                <h1>Quản Lý Tour</h1>
+                <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addTourModal" onclick="resetForm()">Thêm tour</button>
+            `;
+        }
+
+        function resetForm() {
+            document.getElementById('addTourForm').reset();
+            document.getElementById('addTourModalLabel').innerText = 'Thêm Tour Mới';
+            currentTourIndex = null; // Reset current index for new tour
+        }
+
+        function setMinReturnDate() {
+            const departureDate = document.getElementById('departureDate').value;
+            const returnDateInput = document.getElementById('returnDate');
+            if (departureDate) {
+                returnDateInput.setAttribute('min', departureDate);
+            } else {
+                returnDateInput.removeAttribute('min');
+            }
+        }
+
+        document.getElementById('saveTourButton').addEventListener('click', function() {
+            const tourName = document.getElementById('tourName').value;
+            const tourCode = document.getElementById('tourCode').value;
+            const country = document.getElementById('country').value;
+            const duration = document.getElementById('duration').value;
+            const departureDate = document.getElementById('departureDate').value;
+            const returnDate = document.getElementById('returnDate').value;
+            const guestCount = document.getElementById('guestCount').value;
+            const price = document.getElementById('price').value;
+            const discount = document.getElementById('discount').value;
+            const transport = document.getElementById('transport').value;
+            const tourDescription = document.getElementById('tourDescription').value;
+
+            // Determine tour status
+            const today = new Date();
+            let status = '';
+            if (new Date(departureDate) > today) {
+                status = 'Chưa bắt đầu';
+            } else if (new Date(returnDate) < today) {
+                status = 'Đã kết thúc';
+            } else {
+                status = 'Đang diễn ra';
+            }
+
+            if (currentTourIndex === null) {
+                // Add new tour
+                tours.push({ tourName, tourCode, country, duration, departureDate, returnDate, guestCount, price, discount, transport, tourDescription, status });
+                addTourToTable(tours.length - 1);
+            } else {
+                // Update existing tour
+                tours[currentTourIndex] = { tourName, tourCode, country, duration, departureDate, returnDate, guestCount, price, discount, transport, tourDescription, status };
+                updateTourInTable(currentTourIndex);
+            }
+
+            $('#addTourModal').modal('hide'); // Hide modal after adding/updating
+            resetForm(); // Reset form fields
+        });
+
+        function addTourToTable(index) {
+            const tour = tours[index];
+            const row = `
+                <tr>
+                    <td>${tour.tourName}</td>
+                    <td>${tour.tourCode}</td>
+                    <td>${tour.status}</td>
+                    <td>${tour.guestCount}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" onclick="viewTour(${index})">Xem</button>
+                        <button class="btn btn-warning btn-sm" onclick="editTour(${index})">Chỉnh sửa</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteTour(${index})">Xóa</button>
+                    </td>
+                </tr>
+            `;
+            document.querySelector('#tourTable tbody').insertAdjacentHTML('beforeend', row);
+        }
+
+        function updateTourInTable(index) {
+            const tour = tours[index];
+            const row = document.querySelectorAll('#tourTable tbody tr')[index];
+            row.innerHTML = `
+                <td>${tour.tourName}</td>
+                <td>${tour.tourCode}</td>
+                <td>${tour.status}</td>
+                <td>${tour.guestCount}</td>
+                <td>
+                    <button class="btn btn-info btn-sm" onclick="viewTour(${index})">Xem</button>
+                    <button class="btn btn-warning btn-sm" onclick="editTour(${index})">Chỉnh sửa</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteTour(${index})">Xóa</button>
+                </td>
+            `;
+        }
+
+        function deleteTour(index) {
+            tours.splice(index, 1); // Remove from tours array
+            updateTourTable(); // Update table after deletion
+        }
+
+        function editTour(index) {
+            currentTourIndex = index;
+            const tour = tours[index];
+
+            // Populate the modal fields with the selected row's data
+            document.getElementById('tourName').value = tour.tourName;
+            document.getElementById('tourCode').value = tour.tourCode;
+            document.getElementById('country').value = tour.country;
+            document.getElementById('duration').value = tour.duration;
+            document.getElementById('guestCount').value = tour.guestCount;
+            document.getElementById('departureDate').value = tour.departureDate;
+            document.getElementById('returnDate').value = tour.returnDate;
+            document.getElementById('price').value = tour.price || '';
+            document.getElementById('discount').value = tour.discount || '';
+            document.getElementById('transport').value = tour.transport || '';
+            document.getElementById('tourDescription').value = tour.tourDescription || '';
+
+            // Show the modal to edit
+            $('#addTourModalLabel').text('Thông Tin Tour');
+            $('#addTourModal').modal('show');
+        }
+
+        function viewTour(index) {
+            const tour = tours[index];
+            document.getElementById('tourName').value = tour.tourName;
+            document.getElementById('tourCode').value = tour.tourCode;
+            document.getElementById('country').value = tour.country;
+            document.getElementById('duration').value = tour.duration;
+            document.getElementById('guestCount').value = tour.guestCount;
+            document.getElementById('departureDate').value = tour.departureDate;
+            document.getElementById('returnDate').value = tour.returnDate;
+            document.getElementById('price').value = tour.price || '';
+            document.getElementById('discount').value = tour.discount || '';
+            document.getElementById('transport').value = tour.transport || '';
+            document.getElementById('tourDescription').value = tour.tourDescription || '';
+
+            // Set readonly for input fields
+            document.querySelectorAll('#addTourForm input, #addTourForm textarea').forEach(input => {
+                input.setAttribute('readonly', true);
+            });
+
+            // Change modal title
+            $('#addTourModalLabel').text('Xem Thông Tin Tour');
+            $('#addTourModal').modal('show');
+            document.getElementById('saveTourButton').style.display = 'none'; // Hide "OK" button
+        }
+
+        function updateTourTable() {
+            const tbody = document.querySelector('#tourTable tbody');
+            tbody.innerHTML = ''; // Clear existing rows
+            tours.forEach((tour, index) => {
+                addTourToTable(index);
+            });
+        }
+    </script>
+</body>

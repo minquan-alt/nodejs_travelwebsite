@@ -1,0 +1,94 @@
+.sidebar {
+    width: 15%;
+    background-color: #0e3d6b;
+    color: white;
+    height: 100vh;
+    padding: 30px 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 22px;
+}
+.sidebar h3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.navbar-nav {
+    padding-left: 0;
+    list-style-type: none;
+}
+.sidebar a {
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.sidebar a:hover {
+    transform: scale(1.05);
+    color: #fbca4d;
+}
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    margin-left: 20px;
+}
+.content h1 {
+    color: #005387;
+    margin-bottom: 20px;
+}
+table {
+    width: 100%;
+    margin-top: 20px;
+}
+.table-responsive {
+    max-height: 500px;
+    overflow-y: auto;
+}
+.table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f5f5f5;
+}
+.table td,
+.table th {
+    border-color: #dee2e6;
+}
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+.modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 800px;
+}
+.modal-body {
+    display: flex;
+}
+.modal-body .form-group {
+    width: 100%;
+}
+.dob-container {
+    display: flex;
+    justify-content: space-between;
+}
+.dob-container select {
+    flex: 1;
+    margin-right: 5px;
+}
+.dob-container select:last-child {
+    margin-right: 0;
+}
+.error-message {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 5px;
+}
+.image-upload {
+    flex: 1;
+    padding-right: 10px;
+}
+.tour-details {
+    flex: 2;
+    padding-left: 10px;
+}
