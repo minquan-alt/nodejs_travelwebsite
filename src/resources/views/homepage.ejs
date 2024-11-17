@@ -183,8 +183,7 @@
                             <li><strong>Mã tour:</strong> <%= tour.tour_code %></li>
                         </ul>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="text-strike"><%= tour.original_price.toLocaleString() %></span>
-                            <span class="tour-price"><%= tour.discounted_price.toLocaleString() %></span>
+                            
                             <a href="#" class="btn btn-primary btn-sm">Chọn</a>
                         </div>
                     </div>
@@ -222,7 +221,6 @@
     </h3>
     <div class="row"> -->
         <!-- Loop through each destination in the data -->
-        <% destinations.forEach(destination => { %>
             <div class="col-md-4 mb-4">
                 <div class="card position-relative">
                     <img src="<%= destination.image %>" alt="<%= destination.name %>" class="card-img">
@@ -230,7 +228,7 @@
                     <a href="<%= destination.link %>" class="card-btn">Khám Phá</a>
                 </div>
             </div>
-        <% }); %>
+       
     </div>
 </div>
     <!-- =================== Xoá đoạn code này để chạy nha, xoá xong bỏ dô lại ============ -->
