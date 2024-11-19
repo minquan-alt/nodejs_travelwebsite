@@ -101,6 +101,21 @@ body {
 .destination-section {
     padding: 40px 0;
     text-align: center;
+    width: 100%; 
+    max-width: 1200px; 
+    height: 600px; 
+    margin: 0 auto; 
+    overflow: hidden; 
+    background-color: #f8f9fa; 
+    border-radius: 8px; /* Bo góc */
+}
+
+/* Responsive cho màn hình nhỏ hơn */
+@media (max-width: 768px) {
+    .destination-section {
+        height: auto; /* Cho phép phần này co giãn trên màn hình nhỏ */
+        padding: 20px 0;
+    }
 }
 .destination-title {
     font-size: 1.8em;
