@@ -6,3 +6,4 @@
 .env
 CACHE
 src/public/css
+.DS_Store
