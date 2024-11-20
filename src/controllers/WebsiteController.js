@@ -1,60 +1,67 @@
-const pool = require('../config/connectDB')
+const websiteService = require('../services/WebsiteService')
+const path = require('path')
 
 class WebsiteController {
-    async getHomePage(req, res){
-        let connection
+    async searchTours(req, res) {
         try {
-            // const { page = 1, limit = 10} = req.query
-            // const offset = (page - 1) * limit
-            const [data] = await pool.query('SELECT * FROM Tours')
-            console.log(data)
-
-            const isLoggedIn = req.session && req.session.user
-            res.render('homepage', { tours: data, isLoggedIn, });
+            console.log(req.url)
+            const result = await websiteService.searchTours(req.query)
+            if (result.success) {
+                console.log('After Search URL:', result.data) // Kiểm tra URL sau khi tìm kiếm
+                res.render('tour/show', {
+                    layout: false,
+                    success: true,
+                    tours: result.data,
+                })
+            } else {
+                res.json({
+                    success: false,
+                })
+            }
+        } catch (err) {
+            console.log('Error: ', err)
+        }
+    }
+    async getHomePage(req, res) {
+        try {
+            const result = await websiteService.renderHomepage(req)
+            const { tours, destinations, isLoggedIn, isAdmin } = result.data
+            if (isAdmin) {
+                return res.redirect('/admin')
+            }
+            console.log(tours)
+            res.render('homepage', {
+                tours: tours,
+                destinations: destinations,
+                isLoggedIn,
+                path,
+            })
         } catch (error) {
             console.log(error)
-            res.status(500).send("Internal Server Error")
-        } finally {
-            if(connection) {
-                await connection.release()
-            }
+            res.status(500).send('Internal Server Error')
         }
     }
     logout(req, res) {
         req.session.destroy((err) => {
-            if(err) {
-                return res.status(500).send("Error Logging out")
+            if (err) {
+                return res.status(500).send('Error Logging out')
             }
             res.redirect('/homepage')
         })
     }
-    getRegisterPage(req, res){
-        res.send('Register Page')
-    }
-    getUser(req, res){
-        res.send('User page')
-    }
-    getUserCart(req, res){
-        res.send('User cart')
-    }
-    getUserParams(req, res){
-        res.send(req.params)
-    }
-    getFormData(req, res){
-        res.render('form_data')
-    }
-    uploadFile(req, res, next){
+
+    uploadFile(req, res, next) {
         const file = req.file
-        if (!file){
+        if (!file) {
             const error = new Error('Please upload a file')
             error.httpStatusCode = 400
             return next(error)
         }
         res.send(file)
     }
-    uploadMultiple(req, res, next){
+    uploadMultiple(req, res, next) {
         const files = req.files
-        if (!files){
+        if (!files) {
             const error = new Error('Please upload files')
             error.httpStatusCode = 400
             return next(error)

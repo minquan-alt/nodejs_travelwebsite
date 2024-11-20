@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Plan Form</title>
+  <!-- Google Fonts: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Apply Open Sans font and font color */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #044c64; /* Set the font color */
+    }
+
+    /* Custom CSS for the form and banner */
+    .banner {
+      background-image: url('/src/public/img/CustomeTour.png'); /* Replace with the actual banner image path */
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .form-section {
+      margin-top: 20px;
+    }
+    h2 {
+      font-weight: 600;
+    }
+    .btn-primary {
+      background-color: #044c64;
+      border-color: #044c64;
+      color: #c3a873;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+<!-- Banner -->
+<div class="banner"> </div>
+
+<div class="container">
+  <div class="form-section">
+    <h2><strong>Lên kế hoạch cho chuyến đi của bạn!</strong></h2>
+    <p>Thêm một bước nữa thôi, kỳ nghỉ trong mơ của bạn sẽ thành hiện thực. Hãy điền vào biểu mẫu này các thông tin cần thiết để chúng tôi có thể hiểu hơn những mong đợi của bạn.</p>
+    <p class="text-primary font-weight-bold">0855 719 513 (Ms. Thy)</p>
+
+    <!-- Form starts here -->
+    <form id="tripForm" action="/submit" method="post">
+      <!-- Contact Information -->
+      <div class="form-group">
+        <label for="contactName"><strong>Tên người liên hệ </strong><span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="contactName" name="contactName" required>
+      </div>
+      <div class="form-group">
+        <label for="contactPhone"><strong>Số điện thoại </strong><span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="contactPhone" name="contactPhone" required>
+      </div>
+      <div class="form-group">
+        <label for="company"><strong>Công ty</strong></label>
+        <input type="text" class="form-control" id="company" name="company">
+      </div>
+      <div class="form-group">
+        <label for="email"><strong>Email</strong></label>
+        <input type="email" class="form-control" id="email" name="email">
+      </div>
+
+      <!-- Event Information -->
+      <div class="form-group">
+        <label><strong>Số người tham dự</strong></label>
+        <div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="participants" id="15 - 20" value="15 - 20">
+            <label class="form-check-label" for="15 - 20">15 - 20 người</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="participants" id="21 - 30" value="21 - 30">
+            <label class="form-check-label" for="21 - 30">21 - 30 người</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="participants" id="31-40" value="31-40">
+            <label class="form-check-label" for="31 - 40">31 - 40 người</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="participants" id="over-40" value="Over 40">
+            <label class="form-check-label" for="over-40">Trên 40 người</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label><strong>Sự kiện đi kèm</strong></label>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="teambuilding" name="event[]" value="Teambuilding">
+          <label class="form-check-label" for="teambuilding">Team Building</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="galaDinner" name="event[]" value="Galadinner">
+          <label class="form-check-label" for="galaDinner">Gala Dinner</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="conference" name="event[]" value="Hội nghị">
+          <label class="form-check-label" for="conference">Hội nghị</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="celebration" name="event[]" value="Lễ kỷ niệm">
+          <label class="form-check-label" for="celebration">Lễ kỷ niệm</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="other" name="event[]" value="Sự kiện khác">
+          <label class="form-check-label" for="other">Sự kiện khác</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="tripIdeas"><strong>Ý tưởng về chuyến đi (thời gian, địa điểm, hoạt động, lưu ý đặc biệt, ...)</strong></label>
+        <textarea class="form-control" id="tripIdeas" name="tripIdeas" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary"><strong>Gửi yêu cầu</strong></button>
+    </form>
+  </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

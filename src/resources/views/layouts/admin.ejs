@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin.css">
+    <title>Admin</title>
+</head>
+<body>
+    <main>
+        <div class="sidebar">
+            <h3>ADMIN</h3>
+            <ul class="navbar-nav">
+                <li><a href="#" data-url="/admin/tour_management" class="nav-link">Quản lý tour</a></li>
+                <li><a href="#" data-url="/admin/customer_management" class="nav-link">Quản lý khách du lịch</a></li>
+                <li><a href="#" data-url="/admin/registration_management" class="nav-link">Quản lý đăng ký tour</a></li>
+                <li><a href="#" data-url="/admin/account_management" class="nav-link">Quản lý tài khoản</a></li>
+                <li><a href="#" data-url="/admin/statistics" class="nav-link">Thống kê</a></li>
+            </ul>
+        </div>
+        <div class="wrapperContent" id="wrapperContent">
+            <%- body %> <!-- Nội dung trang sẽ được thay thế ở đây -->
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/admin.js"></script>
+
+
+    <%- scripts || '' %>
+
+</body>
+</html>

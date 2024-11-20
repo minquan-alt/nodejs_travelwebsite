@@ -10,7 +10,11 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
+    transition: transform 0.3s ease-in-out;
   }
+  .hidden {
+    transform: translateY(-100%);
+    }
   
   /* Logo and Social Icons */
   .left-section {

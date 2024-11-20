@@ -15,7 +15,7 @@ class LoginController {
     }
     getResetPasswordForm(req, res) {
         return res.render('signup', {
-            layout: 'layouts/reset_password',
+            layout: 'layouts/login',
         })
     }
     async login(req, res) {

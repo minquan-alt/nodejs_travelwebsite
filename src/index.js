@@ -3,7 +3,6 @@ const bodyParser = require('body-parser')
 const initWebRoutes = require('./routes/index')
 const viewEngine = require('./config/viewEngine')
 const dotenv = require('dotenv')
-const expressLayouts = require('express-ejs-layouts')
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const session = require('express-session')
@@ -18,13 +17,14 @@ app.use(
         extended: true,
     })
 )
-app.use(expressLayouts)
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
-}))
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure: false },
+    })
+)
 
 viewEngine(app)
 initWebRoutes(app)
