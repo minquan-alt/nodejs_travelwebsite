@@ -1,0 +1,125 @@
+<body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header">
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+        aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+  
+  
+        <!-- User Menu-->
+        <li><a class="app-nav__item" href="/admin_dashboard.ejs"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+  
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user">
+          <p class="app-sidebar__user-name"><b>Minh Quang</b></p>
+          <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
+        </div>
+      </div>
+      <hr>
+      <ul class="app-menu">
+        <li><a class="app-menu__item " href="qlytour.ejs"><i class='app-menu__icon bx bx-id-card'></i>
+          <span class="app-menu__label">Quản lý tour</span></a></li>
+      <li><a class="app-menu__item" href="qly-khach.ejs"><i class='app-menu__icon bx bx-user-voice'></i><span
+            class="app-menu__label">Quản lý khách hàng</span></a></li>
+      <li><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
+            class="app-menu__label">Quản lý tour đăng kí</span></a></li>
+      <li><a class="app-menu__item" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
+            class="app-menu__label">Quản lý nội bộ
+          </span></a></li>
+      <li><a class="app-menu__item" href="table-data-money.html"><i class='app-menu__icon bx bx-dollar'></i><span
+            class="app-menu__label">Thống kê</span></a></li>
+      </ul>
+    </aside>
+    <main class="app-content">
+      <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item">Quản lý tour</li>
+          <li class="breadcrumb-item"><a href="#">Thêm tour</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+  
+            <h3 class="tile-title">Tạo tour mới</h3>
+            <div class="tile-body">
+              <form class="row">
+                <div class="form-group col-md-4">
+                  <label class="control-label">Quốc gia</label>
+                  <input class="form-control" type="text">
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Tên tour</label>
+                  <input class="form-control" type="text" required>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Mã tour</label>
+                  <input class="form-control" type="text" required>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Địa điểm</label>
+                  <input class="form-control" type="text" required>
+                </div>
+                <div class="form-group  col-md-4">
+                  <label class="control-label">Số lượng khách</label>
+                  <input class="form-control" type="number" required>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Ngày đi</label>
+                  <input class="form-control" type="date">
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Ngày về</label>
+                  <input class="form-control" type="date">
+                </div>
+                <div class="form-group col-md-3">
+                  <label class="control-label">Phương tiện</label>
+                  <input class="form-control" type="text" required>
+                </div>
+                <div class="form-group col-md-3">
+                  <label class="control-label">Giá</label>
+                  <input class="form-control" type="number" required>
+                </div>
+                <div class="form-group col-md-3">
+                  <label class="control-label">Giá giảm còn</label>
+                  <input class="form-control" type="text" required>
+                </div>
+                <div class="form-group col-md-3">
+                  <label class="control-label">Chi tiết lịch trình</label>
+                  <textarea class="form-control" type="text" required></textarea>
+                </div>
+                <div class="form-group col-md-12">
+                  <label class="control-label">Ảnh minh họa tour</label>
+                  <div id="myfileupload">
+                    <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
+                  </div>
+                  <div id="thumbbox">
+                    <img height="300" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
+                    <a class="removeimg" href="javascript:"></a>
+                  </div>
+                  <div id="boxchoice">
+                    <a href="javascript:" class="Choicefile"><i class='bx bx-upload'></i></a>
+                    <p style="clear:both"></p>
+                  </div>
+                </div>
+            </div>
+            <button class="btn btn-save" type="button">Lưu lại</button>
+            <a class="btn btn-cancel" href="qlytour.ejs">Hủy bỏ</a>
+          </div>
+  
+    </main>
+    <!-- Essential javascripts for application to work-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+  
+  </body>
