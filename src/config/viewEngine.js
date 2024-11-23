@@ -8,6 +8,7 @@ const configViewEngine = (app) => {
     app.set('views', path.join(__dirname, '..', 'resources/views'))
     app.use(expressLayouts)
     app.set('layout', 'layouts/main')
+    app.set('layout extractScripts', true)
     console.log(path.join(__dirname, '..', 'resources/views'))
 }
 module.exports = configViewEngine

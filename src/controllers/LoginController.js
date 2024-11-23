@@ -25,11 +25,16 @@ class LoginController {
                 password: req.body.password,
             }
             const result = await loginService.checkUserCredentials(userData)
+            console.log(result)
             if (result.success) {
                 req.session.user = result.user
+                if (result.user.role === 'admin') {
+                    return res.json({ success: true, redirectTo: '/admin' })
+                }
+                return res.json({ success: true, redirectTo: '/homepage' })
             }
-            res.json({
-                success: result.success,
+            return res.json({
+                success: false,
                 message: result.message,
             })
         } catch (error) {

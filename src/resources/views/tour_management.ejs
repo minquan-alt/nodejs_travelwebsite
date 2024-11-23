@@ -1,0 +1,141 @@
+
+  <main class="app-content">
+    <div class="app-title">
+      <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active"><a href="#"><b>Danh sách tour</b></a></li>
+      </ul>
+      <div id="clock"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tile">
+          <div class="tile-body">
+
+            <div class="row element-button">
+              <div class="col-sm-2">
+
+                <a class="btn btn-add btn-sm" data-url="form-add-tour" title="Thêm" id="add-tour"><i class="fas fa-plus"></i>
+                  Tạo mới tour</a>
+              </div>
+              <div class="col-sm-2">
+                <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
+                    class="fas fa-trash-alt"></i> Xóa tất cả </a>
+              </div>
+            </div>
+            <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
+              id="sampleTable">
+              <thead>
+                <tr>
+                  <th width="10"><input type="checkbox" id="all"></th>
+                  <th width="50">Mã tour</th>
+                  <th width="100">Quốc gia</th>
+                  <th width="150">Tên tour</th>
+                  <th width="150">Ngày đi</th>
+                  <th width="150">Ngày về</th>
+                  <th width="150">Tình trạng</th>
+                  <th width="20">Số lượng khách</th>
+                  <th width="100">Giá giảm còn</th>
+                  <th width="100">Tính năng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                  <td>#CD12837</td>
+                  <td>Việt Nam</td>
+                  <td>Tràng AN- Hạ Long</td>
+                  <td>12/11/2024</td>
+                  <td>12/02/1999</td>
+                  <td>Không xác định</td>
+                  <th>30</th>
+                  <th>7.500.000</th>
+                  <td class="table-td-center">
+                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                      data-bs-toggle="modal" data-bs-target="#ModalDelete" id="deleteRow"><i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
+                      data-bs-toggle="modal" data-bs-target="#ModalUpdate"><i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL chỉnh sửa  -->
+<div class="modal fade" id="ModalUpdate" tabindex="-1" aria-labelledby="ModalUPLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalUPLabel">Chỉnh sửa thông tin tour cơ bản</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="country" class="form-label">Quốc Gia</label>
+            <input type="text" id="country" class="form-control" value="#CD2187" disabled>
+          </div>
+          <div class="col-md-6">
+            <label for="tourName" class="form-label">Tên tour</label>
+            <input type="text" id="tourName" class="form-control" value="Võ Trường">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="startDate" class="form-label">Ngày đi</label>
+            <input type="date" id="startDate" class="form-control" value="2024-02-18">
+          </div>
+          <div class="col-md-6">
+            <label for="endDate" class="form-label">Ngày về</label>
+            <input type="date" id="endDate" class="form-control" value="2024-02-21">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="price" class="form-label">Giá</label>
+            <input type="text" id="price" class="form-control" value="10.000.000">
+          </div>
+          <div class="col-md-6">
+            <label for="discountPrice" class="form-label">Giá giảm còn</label>
+            <input type="text" id="discountPrice" class="form-control" value="7.500.000">
+          </div>
+        </div>
+        <a href="#" class="text-danger fw-bold float-end">Chỉnh sửa nâng cao</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Lưu lại</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- MODAL chỉnh sửa  -->
+
+  <!-- MODAL xoá  -->
+  <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalConfirmDeleteLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalConfirmDeleteLabel">Xác nhận xóa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Bạn có chắc chắn muốn xóa dòng này không?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteButton">Xóa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- MODAL xoá  -->
+
+  <script src="/js/tour_management.js"></script>

@@ -1,21 +1,8 @@
 const bcrypt = require('bcrypt')
 const connection = require('../config/connectDB')
+const hashPassword = require('../utils/hashPassword')
 
 class SignupService {
-    hashUserPassword(password) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const salt = await bcrypt.genSalt(10)
-                const hashedPassword = await bcrypt.hash(password, salt)
-                resolve(hashedPassword)
-                console.log('Mật khẩu gốc:', password)
-                console.log('Mật khẩu đã băm:', hashedPassword)
-            } catch (error) {
-                reject(error)
-            }
-        })
-    }
-
     async createNewUser(userData) {
         try {
             const { full_name, gender, dob, phone, email, password } = userData
@@ -35,7 +22,7 @@ class SignupService {
                     message: 'Email hoặc số điện thoại đã tồn tại',
                 }
             }
-            const hashedPassword = await this.hashUserPassword(password)
+            const hashedPassword = await hashPassword(password)
             const query =
                 'INSERT INTO Users (full_name, gender, dob, phone, email, password, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())'
             const values = [

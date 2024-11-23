@@ -1,0 +1,223 @@
+<!-- Sidebar menu-->
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active"><a href="#"><b>Thông tin Khách hàng</b></a></li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+          <div class="row element-button">
+            <div class="col-sm-2">
+              <button class="btn btn-add btn-sm add" type="button" title="Tạo mới" data-bs-toggle="modal"
+                data-bs-target="#ModalCreate"><i class="fas fa-plus"></i>
+                Tạo mới
+              </button>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-danger btn-sm trash" type="button" title="Xoá tất cả" id="deleteAll"><i class="fas fa-trash-alt"></i>
+                Xoá tất cả
+              </button>
+            </div>
+          </div>
+          <table class="table table-hover table-bordered" id="sampleTable">
+            <thead>
+              <tr>
+                <th width="10"><input type="checkbox" id="all"></th>
+                <th>ID khách hàng</th>
+                <th>Tên khách hàng</th>
+                <th>Giới Tính</th>
+                <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Ngày sinh</th>
+                <th>Quốc gia</th>
+                <th>Tính năng</th>
+              </tr>
+            </thead>
+            <tbody class="customer-container">
+              <%- include('admin_customer/show', { customers: customers }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<!-- Modal Tạo Mới -->
+<div class="modal fade" id="ModalCreate" tabindex="-1" aria-labelledby="ModalCreateLabel" aria-hidden="true"
+  data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="createCustomerForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalCreateLabel">Tạo Mới Khách Hàng</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="add-customer">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="customerName" class="form-label">Tên khách hàng</label>
+              <input type="text" id="customerName" name="full_name" class="form-control"
+                placeholder="Nhập tên khách hàng" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="gender" class="form-label">Giới Tính</label>
+              <select id="gender" class="form-select" name="gender" required>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="dob" class="form-label">Ngày sinh</label>
+              <input type="date" id="dob" class="form-control" name="dob" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Số điện thoại</label>
+              <input type="text" id="phone" name="phone" class="form-control" placeholder="Nhập số điện thoại" required>
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Nhập email" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="address" class="form-label">Địa chỉ</label>
+              <input type="text" id="address" name="city" class="form-control" placeholder="Nhập địa chỉ" required>
+            </div>
+            <div class="col-md-6">
+              <label for="country" class="form-label">Quốc gia</label>
+              <input type="text" id="country" name="country" class="form-control" placeholder="Nhập quốc gia" required>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="save-customer">Lưu</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal Tạo Mới -->
+
+ <!-- Modal Chỉnh sửa -->
+<div class="modal fade" id="ModalUpdate" tabindex="-1" aria-labelledby="ModalUpdateLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalUpdateLabel">Chỉnh sửa thông tin khách hàng</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="editCustomerId" class="form-label">ID khách hàng</label>
+            <input type="text" id="editCustomerId" class="form-control" disabled>
+          </div>
+          <div class="col-md-6">
+            <label for="editCustomerName" class="form-label">Tên khách hàng</label>
+            <input type="text" id="editCustomerName" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="editGender" class="form-label">Giới Tính</label>
+            <select id="editGender" class="form-select">
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="editDob" class="form-label">Ngày sinh</label>
+            <input type="date" id="editDob" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="editPhone" class="form-label">Số điện thoại</label>
+            <input type="text" id="editPhone" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label for="editEmail" class="form-label">Email</label>
+            <input type="email" id="editEmail" class="form-control">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="editAddress" class="form-label">Địa chỉ</label>
+            <input type="text" id="editAddress" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label for="editCountry" class="form-label">Quốc gia</label>
+            <input type="text" id="editCountry" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="updateCustomer">Cập nhật</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Chỉnh sửa -->
+
+<!-- Modal Xóa -->
+<div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalDeleteLabel" aria-hidden="true"
+  data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalDeleteLabel">Xác nhận xóa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa khách hàng này không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="notConfirmDeleteButton">Hủy</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Xóa -->
+
+<!-- Modal Xóa All -->
+<div class="modal fade" id="ModalDeleteAll" tabindex="-1" aria-labelledby="ModalDeleteAllLabel" aria-hidden="true"
+  data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalDeleteAllLabel">Xác nhận xóa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa các khách hàng đã chọn không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteAllButton">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Xóa All -->
+<script>
+  // Hàm để load dữ liệu khách hàng và phân trang động
+  // Hàm để load dữ liệu khách hàng và phân trang động
+
+
+</script>
+<script src="/js/customer_management.js"></script>
