@@ -1,4 +1,4 @@
-     <% tours.forEach(tour => { %>
+<% tours.slice(currentIndex, currentIndex + 3).forEach(tour => { %>
     <div class="col-md-4 mb-4">
         <div class="card tour-card">
             <img src="<%= tour.image %>" class="card-img-top" alt="<%= tour.tour_name %>">

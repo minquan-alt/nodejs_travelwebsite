@@ -15661,6 +15661,13 @@ text-align:center;
   background-color: white;
   color: white;
 }
+#col-delete-all {
+  color: red;
+  :hover{
+    color: white;
+  }
+}
+
 .Choicefile {
         display: block;
         background: #14142B;

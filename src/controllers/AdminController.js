@@ -1,4 +1,5 @@
 const adminCustomerService = require('../services/AdminCustomerService')
+const adminTourService = require('../services/AdminTourService')
 
 class AdminController {
     getAdminDashboard(req, res) {
@@ -34,7 +35,6 @@ class AdminController {
             console.log('Lỗi tải trang:', error)
         }
     }
-
     updateCustomerDataView = async (req, res, methodResult) => {
         try {
             const result = await adminCustomerService.getCustomers(req)
@@ -111,14 +111,65 @@ class AdminController {
         await this.updateCustomerDataView(req, res, deletedAllResult)
     }
 
-    getTourManagement(req, res) {
+    // Tour Management
+
+    async getTourManagement(req, res) {
         try {
+            const result = await adminTourService.getTours(req)
+            if (result.success) {
+                result.data = result.data.map((tour) => {
+                    return {
+                        ...tour,
+                        time_go: tour.time_go.toLocaleDateString('vi-VN'),
+                        time_back: tour.time_back.toLocaleDateString('vi-VN'),
+                    }
+                })
+                return res.render('tour_management', {
+                    layout: false,
+                    tours: result.data,
+                })
+            }
             return res.render('tour_management', {
                 layout: false,
+                tours: result.data || [],
+                message: 'Lỗi truy vấn',
             })
         } catch (error) {
-            console.log('Error rendering tour management page')
+            console.log('Lỗi tải trang:', error)
         }
+    }
+    async addTour(req, res) {
+        const data = req.body
+        data['image'] =
+            `/uploads/${req.session.user.id}-${req.file.originalname}`
+        try {
+            const addResult = await adminTourService.addTours(req)
+            if (addResult.success) {
+                const result = await adminTourService.getTours(req)
+                if (result.success) {
+                    result.data = result.data.map((tour) => ({
+                        ...tour,
+                        time_go: tour.time_go.toLocaleDateString('vi-VN'),
+                        time_back: tour.time_back.toLocaleDateString('vi-VN'),
+                    }))
+                    return res.render('admin_tour/show', {
+                        layout: false,
+                        success: true,
+                        tours: result.data,
+                    })
+                }
+                return res.json({
+                    success: false,
+                    data: [],
+                    message: methodResult.message,
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    async updateTour(req, res) {
+        const data = req.body
     }
 }
 

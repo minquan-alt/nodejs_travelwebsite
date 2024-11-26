@@ -67,3 +67,15 @@ $(document).ready(function () {
         })
     })
 })
+document.addEventListener('click', function (event) {
+    const modal = document.querySelector('#ModalCreate') // Chọn modal của bạn
+
+    if (modal && modal.classList.contains('show')) {
+        const isInsideModal = event.target.closest('.modal-content') // Kiểm tra click trong modal-content
+
+        if (!isInsideModal) {
+            const bootstrapModal = bootstrap.Modal.getInstance(modal) // Lấy thể hiện modal của Bootstrap
+            bootstrapModal.hide() // Đóng modal
+        }
+    }
+})

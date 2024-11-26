@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "npm run watch -- --watch & npm start",
-    "start": "nodemon --exec babel-node src/index.js --ext js,json,ejs",
+    "start": "nodemon --exec babel-node src/index.js --ext js,json,ejs,css",
     "watch": "sass --watch src/resources/scss:src/public/css",
     "generate-models": "node generate-models.js",
     "prepare": "husky"
@@ -30,6 +30,7 @@
     "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "compile-sass": "^2.0.0",

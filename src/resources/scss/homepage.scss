@@ -1,7 +1,23 @@
 body {
     font-family: 'Open Sans', Helvetica;
 }
-
+#loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    background-color: #fff;
+    z-index: 99;
+  }
+  
+  #loading-image {
+    z-index: 100;
+  }
 /* Banner Section */
 .banner {
     background-image: url('/img/banner.jpg');
@@ -109,6 +125,7 @@ body {
     overflow: hidden; 
     background-color: #f8f9fa; 
     border-radius: 8px; /* Bo góc */
+    
 }
 
 /* Responsive cho màn hình nhỏ hơn */

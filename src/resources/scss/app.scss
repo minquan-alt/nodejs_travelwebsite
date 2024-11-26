@@ -1,4 +1,3 @@
-
 header {
     display: flex;
     justify-content: space-between;
@@ -9,126 +8,136 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    transition: transform 0.3s ease-in-out;
-  }
-  .hidden {
-    transform: translateY(-100%);
-    }
-  
-  /* Logo and Social Icons */
-  .left-section {
+    z-index: 98;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm box-shadow để tạo hiệu ứng */
+}
+
+header.hidden {
+    transform: translateY(-100%); /* Di chuyển header lên khi ẩn */
+}
+
+/* Tạo hiệu ứng shadow khi header xuất hiện */
+header:not(.hidden) {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo and Social Icons */
+.left-section {
     display: flex;
     align-items: center;
-  }
-  
-  .logo img {
+}
+
+.logo img {
     max-height: 100px;
     width: auto;
     margin-left: 100px;
-  }
-  
-  /* Right Section Links */
-  .right-section {
+}
+
+/* Right Section Links */
+.right-section {
     display: flex;
     align-items: center;
     gap: 30px;
     margin-right: 100px;
     position: relative;
-  }
-  
-  .right-section a {
+}
+
+.right-section a {
     color: #005387;
     font-size: 22px;
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 8px;
-  }
-  
-  /* Dropdown Menu */
-  .dropdown {
+}
+
+/* Dropdown Menu */
+.dropdown {
     position: relative;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: white;
     min-width: 200px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     color: #044c64;
     padding: 5px 10px;
     font-size: 22px;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown-content a:hover {
+}
+
+.dropdown-content a:hover {
     background-color: #044c64;
     color: #b0985a;
-  }
+}
 
-  /* Dropdown for Điểm đến */
-  .option1-dropdown {
+/* Dropdown for Điểm đến */
+.option1-dropdown {
     display: none;
     position: absolute;
     left: -167px;
     top: 55px;
     background-color: white;
     min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .option1-dropdown a {
+}
+
+.option1-dropdown a {
     padding: 5px 10px;
     font-size: 20px;
     color: #044c64;
-  }
+}
 
-  .option1-dropdown a:hover {
+.option1-dropdown a:hover {
     background-color: #044c64;
     color: #b0985a;
-  }
+}
 
-  .option2-dropdown {
+.option2-dropdown {
     display: none;
     position: absolute;
     left: -250px;
     top: 100px;
     background-color: white;
     min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .option2-dropdown a {
+}
+
+.option2-dropdown a {
     padding: 5px 10px;
     font-size: 20px;
     color: #044c64;
-  }
+}
 
-  .option2-dropdown a:hover {
+.option2-dropdown a:hover {
     background-color: #044c64;
     color: #b0985a;
-  }
-  
+}
+
 //FOOTER
 
 footer {
     background-color: #044c64;
     color: #fff;
-    padding: 30px 100px 0px 100px; /* Padding cho footer */
+    padding: 30px 100px 0px 100px;
+    /* Padding cho footer */
     text-align: left;
-    display:block;
-    bottom: 0; /* Đưa footer xuống dưới cùng */
-    left: 0; /* Đưa footer sang trái */
-    width: 100%; /* Đặt footer chiếm toàn bộ chiều rộng */
+    display: block;
+    bottom: 0;
+    /* Đưa footer xuống dưới cùng */
+    left: 0;
+    /* Đưa footer sang trái */
+    width: 100%;
+    /* Đặt footer chiếm toàn bộ chiều rộng */
 }
 
 .footer-container {
@@ -139,94 +148,121 @@ footer {
 
 .footer-left,
 .footer-right {
-    flex: 1; /* Cả hai phần chiếm không gian bằng nhau */
+    flex: 1;
+    /* Cả hai phần chiếm không gian bằng nhau */
     min-width: 200px;
-    margin-right: 20px; /* Thêm khoảng cách bên phải cho footer-left */
+    margin-right: 20px;
+    /* Thêm khoảng cách bên phải cho footer-left */
 }
 
 .footer-right {
-    margin-right: 0; /* Đặt margin-right cho footer-right về 0 */
+    margin-right: 0;
+    /* Đặt margin-right cho footer-right về 0 */
 }
 
 .footer-left h1,
 .footer-right h1 {
     margin-bottom: 10px;
-    font-size:23px;
+    font-size: 23px;
 }
-.footer-left h2{
-    font-size:20px;
+
+.footer-left h2 {
+    font-size: 20px;
 }
+
 .footer-left p,
 .footer-right p {
     color: white;
-    font-size: 16px; /* Đặt kích thước font cho tất cả các thẻ p */
+    font-size: 16px;
+    /* Đặt kích thước font cho tất cả các thẻ p */
 }
 
 .footer-right a {
-    color: white; /* Đặt màu sắc mặc định cho liên kết */
-    text-decoration: none; /* Không gạch chân */
-    font-size: 16px; /* Đặt kích thước font giống như các thẻ p */
-    display: block; /* Biến thẻ a thành block để mỗi liên kết xuống dòng */
-    margin-bottom: 20px; /* Tạo khoảng cách giữa các liên kết */
+    color: white;
+    /* Đặt màu sắc mặc định cho liên kết */
+    text-decoration: none;
+    /* Không gạch chân */
+    font-size: 16px;
+    /* Đặt kích thước font giống như các thẻ p */
+    display: block;
+    /* Biến thẻ a thành block để mỗi liên kết xuống dòng */
+    margin-bottom: 20px;
+    /* Tạo khoảng cách giữa các liên kết */
 }
 
 .footer-right a:hover {
-    color: #fbca4d; /* Thay đổi màu sắc khi hover */
+    color: #fbca4d;
+    /* Thay đổi màu sắc khi hover */
 }
 
 .footer-bottom {
-    display: flex; /* Sử dụng Flexbox cho phần dưới cùng */
-    justify-content: space-between; /* Chia đều không gian giữa hai phần */
+    display: flex;
+    /* Sử dụng Flexbox cho phần dưới cùng */
+    justify-content: space-between;
+    /* Chia đều không gian giữa hai phần */
     padding: 0px 20px;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 .footer-bottom-left {
-    text-align: left; /* Căn trái cho văn bản */
+    text-align: left;
+    /* Căn trái cho văn bản */
 }
 
 .footer-bottom-right {
-    text-align: right; /* Căn phải cho văn bản */
-    display: flex; /* Đảm bảo các biểu tượng nằm trên cùng một dòng */
-    align-items: center; /* Canh giữa theo chiều dọc */
+    text-align: right;
+    /* Căn phải cho văn bản */
+    display: flex;
+    /* Đảm bảo các biểu tượng nằm trên cùng một dòng */
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
 }
 
 .icon {
-    vertical-align: middle; /* Canh giữa biểu tượng với văn bản */
-    margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
+    vertical-align: middle;
+    /* Canh giữa biểu tượng với văn bản */
+    margin-right: 5px;
+    /* Khoảng cách giữa biểu tượng và văn bản */
     color: #fbca4d;
-    font-size:18px;
+    font-size: 18px;
 }
 
 .icon1 {
-    margin-right: 18px; /* Khoảng cách giữa biểu tượng và văn bản */
+    margin-right: 18px;
+    /* Khoảng cách giữa biểu tượng và văn bản */
     color: white;
     font-size: 20px;
 }
 
 .logo1 {
-    display: flex; /* Sử dụng Flexbox */
-    align-items: center; /* Căn giữa theo chiều dọc */
-    margin-top: 10px; /* Khoảng cách trên cùng */
+    display: flex;
+    /* Sử dụng Flexbox */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    margin-top: 10px;
+    /* Khoảng cách trên cùng */
 }
 
 .logo1 img {
     max-height: 40px;
     width: auto;
-    font-size:10px;
-    margin-right:10px;
+    font-size: 10px;
+    margin-right: 10px;
 }
 
 .footer-bottom-right a:hover {
-    color:#fbca4d ; /* Thay đổi màu sắc khi hover */
+    color: #fbca4d;
+    /* Thay đổi màu sắc khi hover */
 }
 
 .footer-bottom-right a {
-    margin-right: 10px; /* Khoảng cách giữa các liên kết mạng xã hội */
-    font-size:10px;
-    color:white;
+    margin-right: 10px;
+    /* Khoảng cách giữa các liên kết mạng xã hội */
+    font-size: 10px;
+    color: white;
     text-decoration: none;
 }
+
 .tour {
     display: flex;
     flex-direction: column;
@@ -238,14 +274,16 @@ footer {
     object-fit: cover; // Đảm bảo ảnh không bị méo khi thay đổi kích thước
 }
 
-.tour h2, .tour p {
+.tour h2,
+.tour p {
     margin-bottom: 10px; // Giảm khoảng cách giữa các phần tử để bố cục gọn gàng hơn
 }
 
 
 
 body {
-    background-color: #f5f5f5; /* Màu nền trang */
+    background-color: #f5f5f5;
+    /* Màu nền trang */
     margin: 0;
     padding: 0;
 }
@@ -254,7 +292,8 @@ body {
 .signup-container {
     width: 100%;
     max-width: 390px;
-    margin: 100px auto; /* Căn giữa */
+    margin: 100px auto;
+    /* Căn giữa */
     padding: 15px;
     background: white;
     border-radius: 8px;
@@ -264,52 +303,67 @@ body {
 .dki {
     text-align: center;
     margin-bottom: 5px;
-    font-size: 34px; /* Kích thước tiêu đề */
-    color: #044c64; /* Màu chữ tiêu đề */
+    font-size: 34px;
+    /* Kích thước tiêu đề */
+    color: #044c64;
+    /* Màu chữ tiêu đề */
 }
 
 .form-group-dki {
     margin-bottom: 5px;
 }
-.gender{
+
+.gender {
     font-size: 17px;
 }
 
 .dki-label {
     display: block;
     margin-bottom: 5px;
-    font-size: 17px; /* Kích thước chữ nhãn */
-    color: black; /* Màu chữ nhãn */
+    font-size: 17px;
+    /* Kích thước chữ nhãn */
+    color: black;
+    /* Màu chữ nhãn */
 }
+
 .dki-select {
     width: 25%;
     padding: 10px;
-    border: 1px solid #ccc; /* Đường viền input */
+    border: 1px solid #ccc;
+    /* Đường viền input */
     border-radius: 4px;
-    font-size: 17px; /* Kích thước chữ trong input */
+    font-size: 17px;
+    /* Kích thước chữ trong input */
 }
+
 input {
     width: 100%;
     padding: 5px;
-    border: 1px solid #ccc; /* Đường viền input */
+    border: 1px solid #ccc;
+    /* Đường viền input */
     border-radius: 4px;
-    font-size: 17px; /* Kích thước chữ trong input */
+    font-size: 17px;
+    /* Kích thước chữ trong input */
 }
 
 .dki-button {
     width: 100%;
     padding: 10px;
-    background-color: #DAA520; /* Màu nền nút */
+    background-color: #DAA520;
+    /* Màu nền nút */
     color: black;
     border: none;
     border-radius: 4px;
-    font-size: 17px; /* Kích thước chữ nút */
+    font-size: 17px;
+    /* Kích thước chữ nút */
     cursor: pointer;
-    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+    transition: background-color 0.3s;
+    /* Hiệu ứng chuyển màu */
 }
 
 button:hover {
-    background-color: #fc3; /* Màu nền nút khi hover */
+    background-color: #fc3;
+    /* Màu nền nút khi hover */
 }
 
 .notification {
@@ -318,83 +372,110 @@ button:hover {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #28a745; /* Màu nền thông báo */
-    color: white; /* Màu chữ thông báo */
+    background-color: #28a745;
+    /* Màu nền thông báo */
+    color: white;
+    /* Màu chữ thông báo */
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Đặt lên trên các phần tử khác */
+    z-index: 1000;
+    /* Đặt lên trên các phần tử khác */
 }
 
 .error-message {
-    color: red; /* Màu chữ thông báo lỗi */
-    font-size: 14px; /* Kích thước chữ thông báo lỗi */
-    margin-top: 5px; /* Khoảng cách trên với trường input */
-    display: none; /* Ẩn thông báo lỗi ban đầu */
+    color: red;
+    /* Màu chữ thông báo lỗi */
+    font-size: 14px;
+    /* Kích thước chữ thông báo lỗi */
+    margin-top: 5px;
+    /* Khoảng cách trên với trường input */
+    display: none;
+    /* Ẩn thông báo lỗi ban đầu */
 }
+
 /* QUEN MK FORM*/
 .quenmk-container {
     width: 100%;
-    max-width: 650px; /* Giảm chiều rộng để phù hợp với di động */
-    margin: 300px auto; /* Căn giữa */
+    max-width: 650px;
+    /* Giảm chiều rộng để phù hợp với di động */
+    margin: 300px auto;
+    /* Căn giữa */
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+
 .form-group-forgotpw {
     margin-bottom: 15px;
 }
+
 .quenmk-h1 {
     text-align: center;
-    font-size: 38px; /* Giảm kích thước tiêu đề */
+    font-size: 38px;
+    /* Giảm kích thước tiêu đề */
     color: #044c64;
     margin-bottom: 20px;
 }
+
 .quenmk-text {
     width: 100%;
-    margin-bottom: 20px; /* Thêm khoảng cách dưới khối text */
+    margin-bottom: 20px;
+    /* Thêm khoảng cách dưới khối text */
     background-color: #fff;
     border-radius: 8px;
-    padding:30px;
+    padding: 30px;
 }
+
 .quenmk-p {
     text-align: left;
-    margin: 10px 0; /* Điều chỉnh khoảng cách trên và dưới */
-    font-size:22px;
+    margin: 10px 0;
+    /* Điều chỉnh khoảng cách trên và dưới */
+    font-size: 22px;
 }
+
 input.quenmk {
     width: 100%;
     padding: 10px;
-    margin-top: 8px; /* Thêm khoảng cách trên */
+    margin-top: 8px;
+    /* Thêm khoảng cách trên */
     font-size: 16px;
 }
+
 .quenmk-button {
     width: 100%;
     padding: 10px;
-    margin-top: 20px; /* Thêm khoảng cách trên */
+    margin-top: 20px;
+    /* Thêm khoảng cách trên */
     background-color: #DAA520;
     color: black;
-    border: 1px solid #DAA520 ;
+    border: 1px solid #DAA520;
     border-radius: 4px;
     font-size: 20px;
     cursor: pointer;
     font-weight: bolder;
 
 }
+
 .quenmk-button:hover {
-    background-color: white  ; /* Thay đổi màu khi hover */
+    background-color: white;
+    /* Thay đổi màu khi hover */
 }
-input.forgotpw{
+
+input.forgotpw {
     width: 100%;
     padding: 10px;
-    margin-top: 8px; /* Thêm khoảng cách trên */
+    margin-top: 8px;
+    /* Thêm khoảng cách trên */
     font-size: 16px;
 }
+
 /*DANG NHAP FORM*/
 .login-container {
     width: 100%;
     max-width: 650px;
-    margin: 300px auto; /* Căn giữa */
+    margin: 300px auto;
+    /* Căn giữa */
     padding: 30px;
     background: white;
     border-radius: 8px;
@@ -404,8 +485,10 @@ input.forgotpw{
 .login-h1 {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 44px; /* Kích thước tiêu đề */
-    color: #044c64; /* Màu chữ tiêu đề */
+    font-size: 44px;
+    /* Kích thước tiêu đề */
+    color: #044c64;
+    /* Màu chữ tiêu đề */
 }
 
 .login-form-group {
@@ -415,45 +498,59 @@ input.forgotpw{
 .login-label {
     display: block;
     margin-bottom: 5px;
-    font-size: 20px; /* Kích thước chữ nhãn */
-    color: black; /* Màu chữ nhãn */
+    font-size: 20px;
+    /* Kích thước chữ nhãn */
+    color: black;
+    /* Màu chữ nhãn */
 }
 
 input.login {
     width: 100%;
     padding: 15px;
-    border: 1px solid #ccc; /* Đường viền input */
+    border: 1px solid #ccc;
+    /* Đường viền input */
     border-radius: 4px;
-    font-size: 14px; /* Kích thước chữ trong input */
+    font-size: 14px;
+    /* Kích thước chữ trong input */
 }
 
 input.login:focus {
-    border-color: #044c64; /* Màu viền khi focus */
-    outline: none; /* Bỏ outline */
+    border-color: #044c64;
+    /* Màu viền khi focus */
+    outline: none;
+    /* Bỏ outline */
 }
 
 .login-button {
     width: 100%;
     padding: 10px;
-    background-color: #044c64; /* Màu nền nút */
+    background-color: #044c64;
+    /* Màu nền nút */
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 20px; /* Kích thước chữ nút */
+    font-size: 20px;
+    /* Kích thước chữ nút */
     cursor: pointer;
-    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+    transition: background-color 0.3s;
+    /* Hiệu ứng chuyển màu */
 }
 
 .login-button:hover {
-    background-color: #00ccff; /* Màu nền nút khi hover */
+    background-color: #00ccff;
+    /* Màu nền nút khi hover */
 }
 
 .login-links {
-    text-align: right; /* Căn phải */
-    margin-top: 10px; /* Khoảng cách trên */
+    text-align: right;
+    /* Căn phải */
+    margin-top: 10px;
+    /* Khoảng cách trên */
 }
 
-.login-forgot-password, .login-dkitaikhoan, .text {
+.login-forgot-password,
+.login-dkitaikhoan,
+.text {
     margin-top: 10px;
     display: inline;
 }
@@ -461,67 +558,86 @@ input.login:focus {
 /* Định nghĩa liên kết */
 .login-dkitaikhoan,
 .login-forgot-password {
-    color: rgb(20, 114, 157); /* Màu chữ liên kết */
-    text-decoration: none; /* Không gạch chân */
+    color: rgb(20, 114, 157);
+    /* Màu chữ liên kết */
+    text-decoration: none;
+    /* Không gạch chân */
 }
 
 .login-dkitaikhoan:hover,
 .login-forgot-password:hover {
-    color: rgb(66, 220, 247); /* Màu khi hover */
-    text-decoration: underline; /* Gạch chân khi hover */
+    color: rgb(66, 220, 247);
+    /* Màu khi hover */
+    text-decoration: underline;
+    /* Gạch chân khi hover */
 }
 
 /* RESET MK
 /* QUEN MK FORM*/
 .resetpw-container {
     width: 100%;
-    max-width: 550px; /* Giảm chiều rộng để phù hợp với di động */
-    margin: 300px auto; /* Căn giữa */
+    max-width: 550px;
+    /* Giảm chiều rộng để phù hợp với di động */
+    margin: 300px auto;
+    /* Căn giữa */
     padding: 30px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+
 .resetpw-h1 {
     text-align: left;
-    font-size: 38px; /* Giảm kích thước tiêu đề */
+    font-size: 38px;
+    /* Giảm kích thước tiêu đề */
     color: #044c64;
     margin-bottom: 20px;
 }
+
 .resetpw-text {
     width: 100%;
-    margin-bottom: 20px; /* Thêm khoảng cách dưới khối text */
+    margin-bottom: 20px;
+    /* Thêm khoảng cách dưới khối text */
     background-color: #fff;
     border-radius: 8px;
-    padding:30px;
+    padding: 30px;
 }
+
 .resetpw-p {
     text-align: left;
-    margin: 10px 0; /* Điều chỉnh khoảng cách trên và dưới */
-    font-size:22px;
+    margin: 10px 0;
+    /* Điều chỉnh khoảng cách trên và dưới */
+    font-size: 22px;
 }
+
 input.resetpw {
     width: 100%;
     padding: 10px;
-    margin-top: 8px; /* Thêm khoảng cách trên */
+    margin-top: 8px;
+    /* Thêm khoảng cách trên */
     font-size: 16px;
 }
+
 .resetpw-button {
     width: 100%;
     padding: 10px;
-    margin-top: 20px; /* Thêm khoảng cách trên */
+    margin-top: 20px;
+    /* Thêm khoảng cách trên */
     background-color: #DAA520;
     color: black;
-    border: 1px solid #DAA520 ;
+    border: 1px solid #DAA520;
     border-radius: 4px;
     font-size: 20px;
     cursor: pointer;
     font-weight: bolder;
 
 }
+
 .resetpw-button:hover {
-    background-color: white  ; /* Thay đổi màu khi hover */
+    background-color: white;
+    /* Thay đổi màu khi hover */
 }
+
 .form-group-resetpw {
     margin-bottom: 15px;
 }

@@ -7,14 +7,19 @@ const fsExtrA = require('fs-extra')
 // SET STORAGE
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        let path = 'src/public/uploads'
+        let path = '/img'
         if (!fsExtrA.existsSync(path)) {
             fsExtrA.mkdirSync(path)
         }
         cb(null, path)
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname)
+        if (req.session && req.session.user && req.session.user.id) {
+            cb(null, `${req.session.user.id}-${file.originalname}`)
+        } else {
+            // Handle cases where session or user ID is not available
+            cb(new Error('User session or ID is missing'))
+        }
     },
 })
 const upload = multer({ storage: storage })

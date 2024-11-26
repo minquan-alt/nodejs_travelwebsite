@@ -1,28 +1,46 @@
-let threshold = 5 // Độ cao ngưỡng
-let lastScrollTop = 0
-const header = document.querySelector('header')
+$(window).on('load', function () {
+    // Ẩn loading khi DOM và ảnh đã tải xong
+    $('#loading').hide()
+    AOS.init({
+        duration: 1500,
+        once: true,
+    })
 
-window.addEventListener('scroll', function () {
-    let currentScroll = window.pageYOffset || document.documentElement.scrollTop
+    let prevScrollpos = window.scrollY // Initialize with scrollY
+    let threshold = 50 // Set a threshold value for scroll position
+    let ticking = false
 
-    if (currentScroll > threshold && currentScroll > lastScrollTop) {
-        header.classList.add('hidden')
-    } else if (
-        currentScroll < lastScrollTop &&
-        currentScroll < lastScrollTop - threshold
-    ) {
-        header.classList.remove('hidden')
-    }
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                let currentScrollPos = window.scrollY
 
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
-})
-$('document').ready(function () {
+                // If scrolling down and the scroll position is greater than threshold
+                if (
+                    prevScrollpos > currentScrollPos &&
+                    currentScrollPos > threshold
+                ) {
+                    document.querySelector('header').classList.remove('hidden')
+                } else if (
+                    prevScrollpos < currentScrollPos &&
+                    currentScrollPos > threshold
+                ) {
+                    document.querySelector('header').classList.add('hidden')
+                }
+                // Update prevScrollpos with the current scroll position
+                prevScrollpos = currentScrollPos
+                ticking = false
+            })
+            ticking = true
+        }
+    })
+    // Logic xử lý thanh header ẩn/hiện khi cuộn trang
+
+    // Sự kiện xử lý dropdown và tìm kiếm
     let beChanged = false
+
     $('.dropdown.search').on('click', '.dropdown-item', function (event) {
         event.preventDefault()
-        console.log('Chứa init không: ', $(this).hasClass('init'))
-        console.log('Chứa data-value không: ', $(this).attr('data-value'))
-
         let selectedValue = $(this).text()
         let parentOfItem = $(this).closest('.dropdown')
         let findToggleInParentOfItem = parentOfItem.find('.dropdown-toggle')
@@ -33,7 +51,6 @@ $('document').ready(function () {
             if (dataValue !== undefined) {
                 findToggleInParentOfItem.removeAttr('data-value')
                 var textDefault = $(this).attr('text-default')
-                console.log(textDefault)
                 findToggleInParentOfItem.text(textDefault)
             }
             return
@@ -74,8 +91,6 @@ $('document').ready(function () {
                 .then((response) => response.text())
                 .then((text) => {
                     console.log(text)
-                    // if (data.success) {
-                    // console.log('Tours Data:', data.tours)
                     $('#tour-container').html(text)
                     const offset = $('#tour-container').offset().top - 90
                     $('html, body').animate(
@@ -84,10 +99,6 @@ $('document').ready(function () {
                         },
                         0
                     )
-                    // document.getElementById('tour-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // } else {
-                    // console.log('Failure')
-                    // }
                 })
         } else {
             console.log('Nothing to search')
