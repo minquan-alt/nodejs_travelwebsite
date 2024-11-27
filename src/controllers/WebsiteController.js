@@ -68,6 +68,16 @@ class WebsiteController {
         }
         res.send(files)
     }
+    getTourDetailPage(req, res) {
+        let isLoggedIn = false
+        if (req.session && req.session.user) {
+            isLoggedIn = true
+        }
+        res.render('tour_detail', {
+            layout: false,
+            isLoggedIn,
+        })
+    }
 }
 
 module.exports = new WebsiteController()
