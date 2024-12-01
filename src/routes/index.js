@@ -8,6 +8,7 @@ const routerResetPassword = require('./reset_password')
 const routerAPI = require('./api')
 //const routerShowForm = require
 
+
 let initWebRoutes = (app) => {
     app.use('/api', routerAPI)
     app.use('/reset_password', routerResetPassword)

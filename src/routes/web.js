@@ -40,5 +40,6 @@ routerWeb.post(
     upload.array('uploaded_files', 12),
     WebsiteController.uploadMultiple
 )
-
+routerWeb.get('/tour_detail/:id', WebsiteController.getTourDetailPage);
+// routerWeb.get('/cart', WebsiteController.viewCart); // Xem giỏ hàng
 module.exports = routerWeb
