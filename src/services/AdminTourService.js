@@ -114,6 +114,8 @@ class AdminTourService {
             if (connection) connection.release()
         }
     }
+    
 }
+
 
 module.exports = new AdminTourService()

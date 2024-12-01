@@ -21,7 +21,7 @@ const getTours = async (req, res) => {
 
         // Truy vấn chi tiết các tour dựa trên danh sách tour_id
         const tours_query = `
-            SELECT id, nation, tour_name, time_go, time_back, status, max_quantity_of_people, original_price 
+            SELECT *
             FROM Tours 
             WHERE id IN (?)
         `

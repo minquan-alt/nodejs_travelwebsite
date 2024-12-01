@@ -1,6 +1,6 @@
 const websiteService = require('../services/WebsiteService')
 const path = require('path')
-
+const pool = require('../config/connectDB')
 class WebsiteController {
     async searchTours(req, res) {
         try {
@@ -68,15 +68,38 @@ class WebsiteController {
         }
         res.send(files)
     }
-    getTourDetailPage(req, res) {
-        let isLoggedIn = false
-        if (req.session && req.session.user) {
-            isLoggedIn = true
+    async getTourDetailPage(req, res) {
+        try {
+            const { tourId } = req.query; // Lấy tourId từ query string
+            if (!tourId) {
+                return res.status(400).send('Tour ID is required');
+            }
+
+            // Query dữ liệu từ database
+            const [tourRows] = await pool.query('SELECT * FROM Tours WHERE id = ?', [tourId]);
+
+            if (tourRows.length === 0) {
+                return res.status(404).send('Tour not found');
+            }
+
+            const tour = tourRows[0];
+
+            let isLoggedIn = false;
+            if (req.session && req.session.user) {
+                isLoggedIn = true;
+            }
+
+            // Render giao diện chi tiết tour
+            res.render('tour_detail', {
+                layout: false,
+                isLoggedIn,
+                tour,
+            });
+        } catch (error) {
+            console.log('Error fetching tour detail:', error);
+            res.status(500).send(`Internal Server Error: ${error.message}`);
         }
-        res.render('tour_detail', {
-            layout: false,
-            isLoggedIn,
-        })
+
     }
 }
 

@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-routerWeb.get('/tour_detail', WebsiteController.getTourDetailPage)
+routerWeb.get('/tour_detail/', WebsiteController.getTourDetailPage)
 routerWeb.get('/search', WebsiteController.searchTours)
 routerWeb.get('/logout', WebsiteController.logout)
 routerWeb.get('/homepage/logout', WebsiteController.logout)
