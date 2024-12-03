@@ -83,6 +83,12 @@ class WebsiteController {
             }
 
             const tour = tourRows[0];
+            // Query danh sách điểm tham quan từ bảng Tours_Attractions
+            const [attractionsRows] = await pool.query(
+                'SELECT name, image FROM Tours_Attractions WHERE tour_id = ?',
+                [tourId]
+            );
+            console.log('Attractions:', attractionsRows); // Thêm dòng này sau câu truy vấn
 
             let isLoggedIn = false;
             if (req.session && req.session.user) {
@@ -94,6 +100,7 @@ class WebsiteController {
                 layout: false,
                 isLoggedIn,
                 tour,
+                tour_attraction: attractionsRows,
             });
         } catch (error) {
             console.log('Error fetching tour detail:', error);

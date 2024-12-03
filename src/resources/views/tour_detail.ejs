@@ -88,26 +88,19 @@
         <div class="sight">
           <h2><strong>ĐIỂM THAM QUAN</strong></h2>
           <div class="owl-carousel">
-            <div class="item">
-              <img src="tải xuống (1).jfif" />
-              <h4>Miếu Văn Võ</h4>
-            </div>
-            <div class="item">
-              <img src="tải xuống.jfif" />
-              <h4>Vườn quốc gia A Lý Sơn</h4>
-            </div>
-            <div class="item">
-              <img src="tải xuống (2).jfif" />
-              <h4>Đầm Tỷ Muội</h4>
-            </div>
-            <div class="item">
-              <img src="tải xuống (3).jfif" />
-              <h4>Tháp Long Hổ</h4>
-            </div>
-            <div class="item">
-              <img src="th.jfif" />
-              <h4>Phật Quang Sơn</h4>
-            </div>
+            <% if (tour_attraction && tour_attraction.length> 0) { %>
+              <% tour_attraction.forEach(attraction=> { %>
+                <div class="item">
+                  <img src="<%= attraction.image %>" alt="<%= attraction.name %>" />
+                  <h4>
+                    <%= attraction.name %>
+                  </h4>
+                </div>
+                <% }); %>
+                  <% } else { %>
+                    <p>Không có điểm tham quan nào.</p>
+                    <% } %>
+
           </div>
         </div>
         <div class="timeline1">
@@ -138,35 +131,54 @@
               <div class="detail">
                 <div class="depart">
                   <div class="tren">
+                    <!-- Ngày đi -->
                     <div class="ngaydi">
-                      <p><strong>Thứ 6</strong></p>
-                      <h5><strong>31 tháng 01, 2025</strong></h5>
+                      <p><strong>
+                          <%= new Date(tour.time_go).toLocaleDateString('vi-VN', { weekday: 'long' }) %>
+                        </strong></p>
+                      <h5><strong>
+                          <%= new Date(tour.time_go).toLocaleDateString('vi-VN', { day: 'numeric' , month: 'long' ,
+                            year: 'numeric' }) %>
+                        </strong></h5>
                     </div>
+
                     <div class="icon">
                       <i class="fa-solid fa-arrow-right-arrow-left"></i>
                     </div>
+
+                    <!-- Ngày về -->
                     <div class="ngayve">
-                      <p><strong>Thứ 3</strong></p>
-                      <h5><strong>04 tháng 02, 2025</strong></h5>
+                      <p><strong>
+                          <%= new Date(tour.time_back).toLocaleDateString('vi-VN', { weekday: 'long' }) %>
+                        </strong></p>
+                      <h5><strong>
+                          <%= new Date(tour.time_back).toLocaleDateString('vi-VN', { day: 'numeric' , month: 'long' ,
+                            year: 'numeric' }) %>
+                        </strong></h5>
                     </div>
                   </div>
                   <div class="duoi">
                     <h1>
-                      <strong>MUA SỚM GIẢM SÂU - GIẢM 1.000.000VNĐ ĐẾN 23/11</strong>
+                      <strong>MUA SỚM GIẢM SÂU - GIẢM <%= tour.original_price - tour.discounted_price %> VND</strong>
                     </h1>
                   </div>
                 </div>
                 <div class="price">
                   <div class="goc">
-                    <p><strong>26,990,000</strong></p>
+                    <p><strong>
+                        <%= tour.original_price%>
+                      </strong></p>
                   </div>
                   <div class="moi">
-                    <p><strong>25,900,000</strong></p>
+                    <p><strong>
+                        <%= tour.discounted_price%>
+                      </strong></p>
                   </div>
-                  <button class="btn">Đặt tour</button>
+                  <button class="btn" id="checkoutTour">Đặt tour</button>
                 </div>
               </div>
             </div>
+
             <div class="include">
               <!-- Bao gồm -->
               <div class="include">
@@ -272,12 +284,12 @@
                               <%=tour.transportation%>
                             </h1>
                             <h1>
-                              <%tour.tour_code%>
+                              <%=tour.tour_code%>
                             </h1>
                             <div style="display: flex">
                               <h1 id="price"></h1>
                               <h1>
-                                <%tour.original_price%>VND
+                                <%= tour.original_price%>VND
                               </h1>
                             </div>
                     </div>
@@ -290,15 +302,15 @@
                 <div class="post">
                   <p>Bài viết mới nhất</p>
                   <div class="session">
-                    <img src="image copy.png" />
+                    <img src="uploads/muathu.png" />
                     <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
                   </div>
                   <div class="session">
-                    <img src="Ảnh chụp màn hình 2024-11-23 033732.png" />
+                    <img src="uploads/muathu.png" />
                     <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
                   </div>
                   <div class="session">
-                    <img src="Ảnh chụp màn hình 2024-11-23 033732.png" />
+                    <img src="uploads/muathu.png" />
                     <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
                   </div>
                 </div>
@@ -417,13 +429,17 @@
                       <p>Giá từ:</p>
                     </div>
                     <div class="phai">
-                      <p>Hồ Chí Minh</p>
-                      <p>HK101.04</p>
+                      <p>
+                        <%= tour.departure_location %>
+                      </p>
+                      <p>
+                        <%= tour.tour_code %>
+                      </p>
                     </div>
                   </div>
                   <div class="price-btn">
                     <div class="tour-price">
-                      15,000,000
+                      <%= tour.discounted_price %>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                       <a href="#" class="btn btn-primary btn-sm">Chọn</a>
@@ -515,7 +531,17 @@
               const content = element.nextElementSibling;
               content.classList.toggle('show');
             }
-
+            $('#checkoutTour').on('click', function () {
+              const url = window.location.href
+              const tourId = url.split('/').pop()
+              fetch(`/checkout/${tourId}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              })
+                .then(console.log('Redirect successfully'))
+            })
           </script>
           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
