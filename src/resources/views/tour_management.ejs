@@ -20,7 +20,7 @@
               </a>
             </div>
             <div class="col-sm-2" id="col-delete-all">
-              <a class="btn btn-danger btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i
+              <a class="btn btn-danger btn-sm trash" id="deleteAll" type="button" title="Xóa" data-bs-toggle="modal" data-bs-target="#ModalDeleteAll"><i
                   class="fas fa-trash-alt"></i> Xóa tất cả </a>
             </div>
           </div>
@@ -263,7 +263,26 @@
   </div>
 </div>
 <!-- MODAL xoá  -->
-
+<!-- MODAL xoá all -->
+<div class="modal fade" id="ModalDeleteAll" tabindex="-1" aria-labelledby="ModalConfirmDeleteAllLabel" aria-hidden="true"
+  data-bs-backdrop="true" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalConfirmDeleteAllLabel">Xác nhận xóa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa các dòng đã chọn không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteAllButton">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL xoá all -->
 
 <!-- Modal Tạo Mới Tour -->
 <div class="modal fade" id="ModalCreate" tabindex="-1" aria-labelledby="ModalCreateLabel" aria-hidden="true"
@@ -416,5 +435,5 @@
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/tour_management.js"></script>

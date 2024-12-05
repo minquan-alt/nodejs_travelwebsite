@@ -5,6 +5,7 @@ const fsExtrA = require('fs-extra')
 const { getTours } = require('../api/tour_management/get_tours')
 const { get_one_tour } = require('../api/tour_management/get_one_tour')
 const { update_tour } = require('../api/tour_management/update_tour')
+const delete_tour = require('../api/tour_management/delete_tour')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -26,6 +27,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 // Định nghĩa route xử lý
+router.post('/tour_management/delete_tour/:id', async (req, res) => {
+    await delete_tour(req, res)
+})
 router.post(
     '/tour_management/update_tour/:id',
     upload.single('image'),

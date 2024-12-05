@@ -240,33 +240,6 @@ $(document).ready(function () {
             $('#ModalUpdate').modal('hide')
         }
     })
-
-    $('#confirmDeleteButton').on('click', function () {
-        rowToDelete = $('#deleteRow').closest('tr')
-        deleteId = rowToDelete.find('td').eq(1).text()
-        console.log('deleteId: ', deleteId)
-        fetch(`/admin/tour_management/delete/${deleteId}`, {
-            method: 'delete',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(() => {
-                console.log('Đã xoá thành công')
-            })
-            .catch((error) => {
-                console.log('Unknown Error: ', error)
-            })
-
-        rowToDelete.remove()
-        $('#ModalDelete').modal('hide')
-        $('#ModalDelete').attr('aria-hidden', 'true')
-    })
-    $('#deleteRow').on('click', function () {
-        $('#ModalDelete').modal('show')
-        $('#ModalDelete').attr('aria-hidden', 'false')
-    })
-
     $('#save-tour').on('click', function (event) {
         event.preventDefault() // Ngăn gửi form mặc định
 
@@ -389,4 +362,107 @@ $(document).ready(function () {
         $('.preview').removeClass('show-preview')
         $('.overlay').removeClass('show')
     })
+})
+
+$('.deleteRow').on('click', function () {
+    let tourId = $(this).closest('tr').find('#tour-id').text().trim()
+    let row = $(this).closest('tr')
+    // Gán giá trị vào data-value của nút confirmDeleteButton
+    $('#ModalDelete').data('tour-id', tourId)
+    $('#ModalDelete').data('row-element', row)
+})
+
+$('#confirmDeleteButton').on('click', function () {
+    let deleteTourId = $('#ModalDelete').data('tour-id')
+    let deleteRowElement = $('#ModalDelete').data('row-element')
+    if (deleteTourId) {
+        console.log('deleted id: ', deleteTourId)
+        fetch(`/api/tour_management/delete_tour/${deleteTourId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    deleteRowElement.remove()
+                    $('#ModalDelete').modal('hide')
+                    Swal.fire({
+                        title: 'Deleted successfully!',
+                        icon: 'success',
+                    })
+                } else {
+                    $('#ModalDelete').modal('hide')
+                    Swal.fire({
+                        title: 'Deleted failed!',
+                        icon: 'error',
+                    })
+                    console.log('deleted failed')
+                }
+            })
+    }
+})
+$('#ModalDelete').on('hidden.bs.modal', function () {
+    // Xóa dữ liệu lưu trong modal
+    $(this).removeData('tour-id').removeData('row-element')
+    console.log('Dữ liệu modal đã được xóa.') // Debug
+})
+
+$('#all').on('change', function () {
+    let isChecked = $(this).prop('checked')
+    $('input[name="check1"]').prop('checked', isChecked)
+})
+$('#deleteAll').on('click', function () {
+    const checkedRows = $('input[name="check1"]:checked')
+    if (checkedRows.length == 0) {
+        Swal.fire({
+            title: 'There is no tour to delete!',
+            icon: 'error',
+        })
+    }
+    const listIds = []
+    checkedRows.each(function () {
+        listIds.push($(this).closest('tr').find('#tour-id').text().trim())
+    })
+    $('#ModalDeleteAll').data('ids', listIds.join(','))
+})
+$('#confirmDeleteAllButton').on('click', async function () {
+    const deletedIds = $('#ModalDeleteAll').data('ids').split(',')
+    console.log(deletedIds)
+
+    try {
+        // Wait for all delete operations to complete
+        for (const deleteTourId of deletedIds) {
+            const response = await fetch(
+                `/api/tour_management/delete_tour/${deleteTourId}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+
+            const data = await response.json()
+            if (data.success) {
+                $(`#tour-row-${deleteTourId}`).remove() // Remove row from the UI
+            } else {
+                console.error(`Failed to delete tour with ID: ${deleteTourId}`)
+            }
+        }
+
+        console.log('Deleted Successfully')
+        $('#ModalDeleteAll').modal('hide')
+        Swal.fire({
+            title: 'Deleted successfully!',
+            icon: 'success',
+        })
+    } catch (error) {
+        console.log(error)
+        Swal.fire({
+            title: 'Deleted failed!',
+            icon: 'error',
+        })
+    }
 })
