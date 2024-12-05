@@ -75,7 +75,7 @@ class WebsiteController {
                 return res.status(400).send('Tour ID is required');
             }
 
-            // Query dữ liệu từ database
+            // Query dữ liệu từ database cho tour cụ thể
             const [tourRows] = await pool.query('SELECT * FROM Tours WHERE id = ?', [tourId]);
 
             if (tourRows.length === 0) {
@@ -83,12 +83,19 @@ class WebsiteController {
             }
 
             const tour = tourRows[0];
+
+            // Query danh sách tất cả các tour (allTours)
+            const [allToursRows] = await pool.query('SELECT * FROM Tours');
+
+            // Lấy 4 tour ngẫu nhiên
+            const randomTours = allToursRows.sort(() => Math.random() - 0.5).slice(0, 4); // Lấy 4 tour ngẫu nhiên
+
             // Query danh sách điểm tham quan từ bảng Tours_Attractions
             const [attractionsRows] = await pool.query(
                 'SELECT name, image FROM Tours_Attractions WHERE tour_id = ?',
                 [tourId]
             );
-            console.log('Attractions:', attractionsRows); // Thêm dòng này sau câu truy vấn
+            console.log('Attractions:', attractionsRows);
 
             let isLoggedIn = false;
             if (req.session && req.session.user) {
@@ -101,12 +108,12 @@ class WebsiteController {
                 isLoggedIn,
                 tour,
                 tour_attraction: attractionsRows,
+                tours: randomTours, // Đảm bảo tours được truyền vào view
             });
         } catch (error) {
             console.log('Error fetching tour detail:', error);
             res.status(500).send(`Internal Server Error: ${error.message}`);
         }
-
     }
 }
 

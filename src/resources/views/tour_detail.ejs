@@ -320,135 +320,61 @@
           <div class="moreInfo">
             <h1 style="color:#044c64"><strong>CÓ THỂ BẠN QUAN TÂM</strong></h1>
             <div class="carousel-tour owl-carousel">
-              <!-- Card 1 -->
-              <div class="card tour-card">
-                <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="TOUR ĐÀI LOAN">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="tour-info">
-                      <i class="fas fa-sun"></i> 5 ngày
-                      <i class="fas fa-moon"></i> 5 đêm
-                    </span>
-                  </div>
-                  <h5 class="tour-title">TOUR ĐÀI LOAN: RỰC RỠ SẮC HỒNG HOA ANH ĐÀO</h5>
-                  <div class="rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-                  </div>
-                  <p class="card-text">Mùa xuân là thời điểm lý tưởng để khám phá Đài Loan với sắc hồng của hoa anh đào.
-                  </p>
-                  <div class="tt">
-                    <div class="trai">
-                      <p>Khởi hành:</p>
-                      <p>Mã tour:</p>
-                      <p>Giá từ:</p>
+              <% tours.forEach(tour=> { %>
+                <div class="card tour-card">
+                  <img src="<%= tour.image || 'https://via.placeholder.com/400x200' %>" class="card-img-top"
+                    alt="<%= tour.tour_name %>">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="tour-info">
+                        <i class="fas fa-sun"></i>
+                        <%= tour.days %> ngày
+                          <i class="fas fa-moon"></i>
+                          <%= tour.nights %> đêm
+                      </span>
                     </div>
-                    <div class="phai">
-                      <p>Hồ Chí Minh</p>
-                      <p>HK101.04</p>
+                    <h5 class="tour-title">
+                      <%= tour.tour_name %>
+                    </h5>
+                    <div class="rating">
+                      <%- '★' .repeat(Math.floor(tour.rating)) %>
+                        <%- tour.rating %>
                     </div>
-                  </div>
-                  <div class="price-btn">
-                    <div class="tour-price">
-                      15,000,000
+                    <p class="card-text">
+                      <%= tour.description.slice(0, 100) %>...
+                    </p>
+                    <div class="tt">
+                      <div class="trai">
+                        <p>Khởi hành:</p>
+                        <p>Mã tour:</p>
+                        <p>Giá từ:</p>
+                      </div>
+                      <div class="phai">
+                        <p>
+                          <%= tour.departure_location %>
+                        </p>
+                        <p>
+                          <%= tour.tour_code %>
+                        </p>
+                        <p>
+                          <%= tour.discounted_price %> VND
+                        </p>
+                      </div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <a href="#" class="btn btn-primary btn-sm">Chọn</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Card 2 -->
-              <div class="card tour-card">
-                <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="TOUR NHẬT BẢN">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="tour-info">
-                      <i class="fas fa-sun"></i> 6 ngày
-                      <i class="fas fa-moon"></i> 5 đêm
-                    </span>
-                  </div>
-                  <h5 class="tour-title">TOUR NHẬT BẢN: MÙA LÁ ĐỎ</h5>
-                  <div class="rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-                  </div>
-                  <p class="card-text">Hành trình thưởng ngoạn cảnh sắc mùa thu Nhật Bản với những tán lá đỏ tuyệt đẹp.
-                  </p>
-                  <div class="tt">
-                    <div class="trai">
-                      <p>Khởi hành:</p>
-                      <p>Mã tour:</p>
-                      <p>Giá từ:</p>
-                    </div>
-                    <div class="phai">
-                      <p>Hồ Chí Minh</p>
-                      <p>HK101.04</p>
-                    </div>
-                  </div>
-                  <div class="price-btn">
-                    <div class="tour-price">
-                      15,000,000
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <a href="#" class="btn btn-primary btn-sm">Chọn</a>
+                    <div class="price-btn">
+                      <div class="tour-price">
+                        <%= tour.discounted_price %>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <a href="#" class="btn btn-primary btn-sm">Chọn</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- Card 3 -->
-              <div class="card tour-card">
-                <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="TOUR NHẬT BẢN">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="tour-info">
-                      <i class="fas fa-sun"></i> 6 ngày
-                      <i class="fas fa-moon"></i> 5 đêm
-                    </span>
-                  </div>
-                  <h5 class="tour-title">TOUR NHẬT BẢN: MÙA LÁ ĐỎ</h5>
-                  <div class="rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-                  </div>
-                  <p class="card-text">Hành trình thưởng ngoạn cảnh sắc mùa thu Nhật Bản với những tán lá đỏ tuyệt đẹp.
-                  </p>
-                  <div class="tt">
-                    <div class="trai">
-                      <p>Khởi hành:</p>
-                      <p>Mã tour:</p>
-                      <p>Giá từ:</p>
-                    </div>
-                    <div class="phai">
-                      <p>
-                        <%= tour.departure_location %>
-                      </p>
-                      <p>
-                        <%= tour.tour_code %>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="price-btn">
-                    <div class="tour-price">
-                      <%= tour.discounted_price %>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <a href="#" class="btn btn-primary btn-sm">Chọn</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <% }); %>
             </div>
           </div>
+
           <div class="sticky-bottom">
             <div class="summary">
               <div class="star">
@@ -466,7 +392,6 @@
               </div>
             </div>
           </div>
-
           <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
           <script>
