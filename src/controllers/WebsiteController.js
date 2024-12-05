@@ -2,7 +2,6 @@ const websiteService = require('../services/WebsiteService')
 const path = require('path')
 const pool = require('../config/connectDB')
 const axios = require('axios')
-const e = require('cors')
 
 class WebsiteController {
     constructor() {
@@ -72,15 +71,57 @@ class WebsiteController {
         }
         res.send(files)
     }
-    getTourDetailPage(req, res) {
-        let isLoggedIn = false
-        if (req.session && req.session.user) {
-            isLoggedIn = true
+    async getTourDetailPage(req, res) {
+        try {
+            const tourId = req.params.id // Lấy tourId từ query string
+            if (!tourId) {
+                return res.status(400).send('Tour ID is required')
+            }
+
+            // Query dữ liệu từ database cho tour cụ thể
+            const [tourRows] = await pool.query(
+                'SELECT * FROM Tours WHERE id = ?',
+                [tourId]
+            )
+
+            if (tourRows.length === 0) {
+                return res.status(404).send('Tour not found')
+            }
+
+            const tour = tourRows[0]
+
+            // Query danh sách tất cả các tour (allTours)
+            const [allToursRows] = await pool.query('SELECT * FROM Tours')
+
+            // Lấy 4 tour ngẫu nhiên
+            const randomTours = allToursRows
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 4) // Lấy 4 tour ngẫu nhiên
+
+            // Query danh sách điểm tham quan từ bảng Tours_Attractions
+            const [attractionsRows] = await pool.query(
+                'SELECT name, image FROM Tours_Attractions WHERE tour_id = ?',
+                [tourId]
+            )
+            console.log('Attractions:', attractionsRows)
+
+            let isLoggedIn = false
+            if (req.session && req.session.user) {
+                isLoggedIn = true
+            }
+
+            // Render giao diện chi tiết tour
+            res.render('tour_detail', {
+                layout: false,
+                isLoggedIn,
+                tour,
+                tour_attraction: attractionsRows,
+                tours: randomTours, // Đảm bảo tours được truyền vào view
+            })
+        } catch (error) {
+            console.log('Error fetching tour detail:', error)
+            res.status(500).send(`Internal Server Error: ${error.message}`)
         }
-        res.render('tour_detail', {
-            layout: false,
-            isLoggedIn,
-        })
     }
     async getCheckoutPage(req, res) {
         let isLoggedIn = false
@@ -129,7 +170,7 @@ class WebsiteController {
             const day_go = timeGoFormatted.dayOfWeek
             const day_back = timeBackFormatted.dayOfWeek
 
-            res.render('checkout', {
+            return res.render('checkout', {
                 layout: false,
                 isLoggedIn,
                 tour: result[0],

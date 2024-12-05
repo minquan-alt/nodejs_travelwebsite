@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
-    <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="/css/tour_detail.css">
-    <title>Chi tiết tour</title>
-  </head>
-  <body>
-    <%- include('./partials/header') %>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/tour_detail.css">
+  <title>Chi tiết tour</title>
+</head>
+
+<body>
+  <%- include('./partials/header') %>
     <div class="banner">
       <img src="th.jfif" />
     </div>
@@ -34,7 +38,9 @@
           <a href="">Du lich Viet Nam</a>
         </div>
         <div class="title">
-          <h1><strong>DU LỊCH ĐÀI LOAN ĐÓN TẾT CỔ TRUYỀN 2025</strong></h1>
+          <h1><strong>
+              <%= tour.tour_name%>
+            </strong></h1>
         </div>
         <div class="review">
           <div class="rating">
@@ -47,622 +53,428 @@
           <div class="like-number">
             <p>123 lượt thích</p>
             <div class="icon-container">
-                <i class="fa-regular fa-heart"></i> <!-- Biểu tượng trái tim rỗng -->
-                <i class="fa-solid fa-heart hidden"></i> <!-- Biểu tượng trái tim đầy -->
+              <i class="fa-regular fa-heart"></i> <!-- Biểu tượng trái tim rỗng -->
+              <i class="fa-solid fa-heart hidden"></i> <!-- Biểu tượng trái tim đầy -->
             </div>
           </div>
         </div>
         <div class="intro-content">
           <p>
-            Vào dịp Tết Nguyên Đán, vẻ đẹp thơ mộng của Đài Loan trở nên huyền
-            bí và quyến rũ hơn bao giờ hết. Cảnh sắc tươi đẹp tại núi A Li Shan
-            trở thành điểm nhấn không thể bỏ qua trong hành trình của TransViet.
-          </p>
-          <p>
-            Tết đến xuân về, núi A Li Shan - biểu tượng của thiên nhiên hùng vĩ,
-            hữu tình của xứ đảo với đỉnh núi cao ngất mà đứng ở vị trí này, bạn
-            có thể phóng tầm mắt nhìn thấy đường biển dài trong xanh tít tắp
-            ngoài xa. Để tham quan trọn cảnh đẹp của ngọn núi, bạn sẽ được trải
-            nghiệm tuyến tàu lửa chạy quanh khu rừng. Nếu may mắn, bạn sẽ bắt
-            gặp những bông hoa anh đào đầu tiên thuộc giống Yoshino nở sớm được
-            trồng dọc theo đường ray. Và cũng bởi vẻ đẹp hấp dẫn của Đài Loan
-            vào đầu xuân mà đã có biết bao du khách lưu luyến muốn quay trở lại
-            để được thưởng ngoạn thêm lần nữa cảnh sắc thần tiên của hòn đảo
-            mang danh "một trong bốn con rồng Châu Á" này.
+            <% if (tour.overview) { %>
+              <% const overview=tour.overview.split('\n'); %>
+
+                <% overview.forEach(item=> { %>
+                  <p>
+                    <%= item %>
+                  </p>
+                  <% }); %>
+                    <% } %>
           </p>
         </div>
         <div class="highlight">
           <h2><strong>ĐIỂM NHẤN NỔI BẬT</strong></h2>
           <div class="highlight-detail">
-            <p>
-              <span class="sparkles">&#10024;</span>Tặng 1 phần trà sữa mang
-              hương vị đặc trưng tại Đài Loan
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Thưởng thức các món ăn nổi
-              tiếng: Mỳ Bò, nướng Mông Cổ, Lẩu buffet, Lẩu 1 người,...
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Tặng trải nghiệm xe lửa 1
-              chiều tại Alishan
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Tặng trải nghiệm 1 chặng tàu
-              Formosa
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Trải nghiệm thả đèn trời đầy
-              lãng mạn tại phố cổ Thập Phần
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Ngắm nhìn vẻ đẹp bồng lai
-              tiên cảnh của Nhật Nguyệt Đàm
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Văn Võ Miếu - công trình
-              kiến trúc mang tinh hoa nghệ thuật độc đáo
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Hòa mình vào chốn bồng lai
-              tiên cảnh núi Alishan
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Viếng thăm Phật Quang Sơn Tự
-              - Kinh đô phật giáo ấn tượng nhất xứ Đài
-            </p>
-            <p>
-              <span class="sparkles">&#10024;</span>Tự do khám phá nét văn hóa
-              và ẩm thực đặc sắc của chợ đêm Đài Loan
-            </p>
+            <% if (tour.highlights) { %>
+              <% const highlights=tour.highlights.split('\n'); %>
+                <% highlights.forEach(item=> { %>
+                  <p>
+                    <span class="sparkles">&#10024;</span>
+                    <%= item %>
+                  </p>
+                  <% }); %>
+                    <% } %>
           </div>
         </div>
         <div class="sight">
           <h2><strong>ĐIỂM THAM QUAN</strong></h2>
           <div class="owl-carousel">
-            <div class="item">
-              <img src="tải xuống (1).jfif" />
-              <h4>Miếu Văn Võ</h4>
-            </div>
-            <div class="item">
-              <img src="tải xuống.jfif" />
-              <h4>Vườn quốc gia A Lý Sơn</h4>
-            </div>
-            <div class="item">
-              <img src="tải xuống (2).jfif" />
-              <h4>Đầm Tỷ Muội</h4>
-            </div>
-            <div class="item">
-              <img src="tải xuống (3).jfif" />
-              <h4>Tháp Long Hổ</h4>
-            </div>
-            <div class="item">
-              <img src="th.jfif" />
-              <h4>Phật Quang Sơn</h4>
-            </div>
+            <% if (tour_attraction && tour_attraction.length> 0) { %>
+              <% tour_attraction.forEach(attraction=> { %>
+                <div class="item">
+                  <img src="<%= attraction.image %>" alt="<%= attraction.name %>" />
+                  <h4>
+                    <%= attraction.name %>
+                  </h4>
+                </div>
+                <% }); %>
+                  <% } else { %>
+                    <p>Không có điểm tham quan nào.</p>
+                    <% } %>
+
           </div>
         </div>
         <div class="timeline1">
           <h2><strong>LỊCH TRÌNH</strong></h2>
           <p><em>(Nhấp từng ngày để xem chi tiết)</em></p>
           <div class="timeline">
-            <!-- Đêm trước ngày khởi hành -->
-            <div class="timeline-item">
-                <div class="frame">
-                    <div class="timeline-item-title" onclick="toggleContent(this)" >Đêm trước ngày khởi hành: TP.HCM – BUSAN</div>
-                        <div class="timeline-content">
-                        <p>Quý khách tập trung tại sân bay Tân Sơn Nhất, Ga Quốc Tế, lầu 2. Hướng dẫn viên Transviet Travel đón và hỗ trợ quý khách làm thủ tục đáp chuyến bay đi Busan – Hàn Quốc.</p>
-                        <p><strong>Chuyến bay dự kiến:</strong> VJ 868 SGN PUS 00:35 07:45</p>
-                        <p>Quý khách nghỉ đêm trên máy bay.</p>
-                </div>
-                </div>
-            </div>
-
-            <!-- Ngày 1 -->
-            <div class="timeline-item">
-                <div class="frame">
-                    <div class="timeline-item-title" onclick="toggleContent(this)" >Ngày 1: BUSAN – GAMCHEON VILLAGE – HAEDONG YONGGUNGSA</div>
-                    <div class="timeline-content">
-                    <p>(Ăn sáng, trưa, tối)</p>
-                </div>
-                </div>
-            </div>
-
-            <!-- Ngày 2 -->
-            <div class="timeline-item">
-                <div class="frame">
-                    <div class="timeline-item-title" onclick="toggleContent(this)">Ngày 2: BUSAN – SEOUL</div>
-                <div class="timeline-content">
-                    <p>(Ăn sáng, trưa, tối)</p>
-                </div>
-                </div>
-            </div>
-
-            <!-- Ngày 3 -->
-            <div class="timeline-item">
-                <div class="frame">
-                    <div class="timeline-item-title" onclick="toggleContent(this)">Ngày 3: TRẢI NGHIỆM TRƯỢT TUYẾT – THÁP NAMSAN</div>
-                <div class="timeline-content">
-                    <p>(Ăn sáng, trưa, tối)</p>
-                </div>
-                </div>
-            </div>
-
-            
-            <!-- Ngày 4 -->
-            <div class="timeline-item">
-                <div class="frame">
-                    <div class="timeline-item-title" onclick="toggleContent(this)">Ngày 4: LÀNG EUNPYEONG HANOK – CÂY THÔNG CÔ ĐƠN</div>
-                <div class="timeline-content">
-                    <p>(Ăn sáng, trưa, tối)</p>
-                </div>
-                </div>
-            </div>
-
-            <!-- Ngày 5 -->
-            <div class="timeline-item">
-                <div class="frame">
-                    <div class="timeline-item-title" onclick="toggleContent(this)">Ngày 5: SEOUL – HỒ CHÍ MINH</div>
-                    <div class="timeline-content">
-                    <p>(Ăn sáng)</p>
-                </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="depart-price" id="departPriceSection">
-          <h2><strong>LỊCH KHỞI HÀNH VÀ GIÁ</strong></h2>
-          <div class="detail">
-            <div class="depart">
-              <div class="tren">
-                <div class="ngaydi">
-                  <p><strong>Thứ 6</strong></p>
-                  <h5><strong>31 tháng 01, 2025</strong></h5>
-                </div>
-                <div class="icon">
-                  <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                </div>
-                <div class="ngayve">
-                  <p><strong>Thứ 3</strong></p>
-                  <h5><strong>04 tháng 02, 2025</strong></h5>
-                </div>
-              </div>
-              <div class="duoi">
-                <h1>
-                  <strong
-                    >MUA SỚM GIẢM SÂU - GIẢM 1.000.000VNĐ ĐẾN 23/11</strong
-                  >
-                </h1>
-              </div>
-            </div>
-            <div class="price">
-              <div class="goc">
-                <p><strong>26,990,000</strong></p>
-              </div>
-              <div class="moi">
-                <p><strong>25,900,000</strong></p>
-              </div>
-              <button class="btn" id="checkoutTour">Đặt tour</button>
-            </div>
-          </div>
-        </div>
-        <div class="include">
-          <h2><strong>TOUR BAO GỒM</strong></h2>
-          <div class="include-st">
-            <i class="fa-solid fa-square-check"></i>
-            <p>
-              Vé máy bay theo hành trình bao gồm 7kg xách tay và 20kg ký gửi
-              (Trường hợp mua tour vé lẻ: theo điều kiện của hãng hàng không).
-            </p>
-          </div>
-          <div class="include-st">
-            <i class="fa-solid fa-square-check"></i>
-            <p>
-              Bảo hiểm du lịch với giá trị hợp đồng tối đa là
-              735.000.000VNĐ/trường hợp. Khách từ 85 tuổi trở lên phụ thu gói
-              bảo hiểm du lịch riêng biệt (mức phí tùy theo hành trình và độ
-              tuổi của khách).
-            </p>
-          </div>
-          <div class="include-st">
-            <i class="fa-solid fa-square-check"></i>
-            <p>
-              Nghỉ đêm tại khách sạn tiêu chuẩn 3 sao: 2 người lớn/phòng, phòng
-              3 sẽ được bố trí khi cần thiết và thông báo trước cho khách hàng.
-            </p>
-          </div>
-          <div class="include-st">
-            <i class="fa-solid fa-square-check"></i>
-            <p>
-              Hướng dẫn viên từ Việt Nam theo suốt chương trình và Hướng dẫn
-              viên đón đoàn từ Đài Loan.
-            </p>
-          </div>
-        </div>
-        <div class="not-include">
-          <h2><strong>TOUR KHÔNG BAO GỒM</strong></h2>
-          <div class="not-include-st">
-            <i class="fa-solid fa-circle-xmark"></i>
-            <p>
-              Hộ chiếu (bắt buộc còn thời hạn sử dụng trên 6 tháng - tính từ
-              ngày nhập cảnh lại Việt Nam).
-            </p>
-          </div>
-          <div class="not-include-st">
-            <i class="fa-solid fa-circle-xmark"></i>
-            <p>Xe đón tiễn sân bay Tân Sơn Nhât.</p>
-          </div>
-          <div class="not-include-st">
-            <i class="fa-solid fa-circle-xmark"></i>
-            <p>Phí phụ thu phòng đơn.</p>
-          </div>
-          <div class="not-include-st">
-            <i class="fa-solid fa-circle-xmark"></i>
-            <p>Hành lý quá cước quy định, xe vận chuyển ngoài chương trình.</p>
-          </div>
-          <div class="not-include-st">
-            <i class="fa-solid fa-circle-xmark"></i>
-            <p>Phụ thu khách quốc tịch nước ngoài 500.000 VNĐ</p>
-          </div>
-          <div class="not-include-st">
-            <i class="fa-solid fa-circle-xmark"></i>
-            <p>
-              Lệ phí Visa nhập cảnh Đài Loan 1.700.000 VNĐ/ khách (đối với
-              trường hợp khách phải nộp hồ sơ xin visa tại Phòng Kinh Tế và Văn
-              Hóa Đài Bắc, thời gian xét duyệt tối thiểu 6 ngày làm việc)
-            </p>
-          </div>
-        </div>
-        <div class="children-price">
-          <h2><strong>GIÁ TRẺ EM</strong></h2>
-          <p>
-            Trẻ nhỏ dưới 2 tuổi: 30% giá tour người lớn (sử dụng giường chung
-            với người lớn) Trẻ em từ 2 tuổi đến dưới 10 tuổi: 90% giá tour người
-            lớn (Không có chế độ giường riêng) Trẻ em từ 2 tuổi đến dưới 10
-            tuổi: 100% giá tour người lớn (Có chế độ giường riêng) Trẻ em đủ 10
-            tuổi trở lên: 100% giá tour người lớn LƯU Ý: Trẻ em dưới 2 tuổi
-            không có chỗ ngồi trên máy bay, không bao gồm hành lý theo quy định
-            của hãng hàng không và một số dịch vụ khác.
-          </p>
-        </div>
-        <div class="note">
-          <h2><strong>LƯU Ý</strong></h2>
-          <p>
-            Chương trình tour là du lịch trọn gói kết hợp tham quan mua sắm,
-            khách hàng không tự ý tách đoàn dưới bất cứ hình thức nào, các dịch
-            vụ không sử dụng sẽ không được hoàn lại. Tùy vào trường hợp cần
-            thiết muốn tách đoàn quý khách phải báo trước với công ty ngay tại
-            thời điểm đăng ký tour để được xem xét và chịu phí theo quy định
-            (phí này sẽ không được hoàn lại).
-          </p>
-
-          <p>
-            Trường hợp Quý khách đã có visa, chi phí giảm trừ lại là 0vnđ ( Visa
-            Quan Hồng/Evisa không mất phí )
-          </p>
-          <p>
-            Trường hợp Quý khách bị từ chối visa, chi phí không hoàn lại là
-            1.500.000vnđ/Khách
-          </p>
-          <p>
-            Sau khi được cấp visa vì bất kỳ lý do gì quý khách không tham gia
-            tour theo đoàn cùng Công ty, TransViet Travel có quyền báo hủy visa
-            đã được cấp của quý khách với nhà chức trách và không hoàn trả bất
-            kỳ chi phí nào.
-          </p>
-          <p>
-            Trường hợp Quý khách trong diện làm Visa điện tử (E-Visa) hoặc diện
-            miễn giảm nhưng hệ thống xin Visa không chấp nhận vì 1 số lý do
-            khách quan từ chối từ phía hệ thống, vui lòng nộp hồ sơ gốc theo qui
-            định để xin Visa tại Phòng Văn Hóa Đài Bắc và đóng phụ phí theo qui
-            định. Sau chuyến tham quan vui lòng gửi lại passport gốc có nộp Visa
-            Đài Loan cho trưởng đoàn để trình diện lên Phòng Văn hóa Đài Bắc
-            (Đối với trường hợp visa dán).
-          </p>
-          <p>
-            Miễn thị thực nhập cảnh Đài Loan đối với khách có quốc tịch Mỹ,
-            Canada, các nước khối Schengen, Anh, Úc, New Zealand, Nhật Bản, Hàn
-            Quốc và Khách có visa Mỹ, Úc, Canada, khối Schengen, Nhật, Hàn Quốc,
-            Anh, Newzealand còn hạn và hết hạn trong vòng 10 năm: đăng ký visa
-            điện tử (không dán visa vào hộ chiếu và không trừ phí trên giá
-            tour). Quý khách vui lòng mang theo hộ chiếu có dán 1 trong các Visa
-            này hoặc Visa rời cùng với hộ chiếu sử dụng cho chuyến đi này để
-            xuất trình khi nhập cảnh Đài Loan cùng với E-visa.
-          </p>
-        </div>
-        <div class="docs">
-          <button class="tk">Thông tin tham khảo</button>
-        </div>
-      </div>
-      <div class="right-content">
-        <section class="p-4 text-center w-100">
-          <!-- Facebook -->
-          <a class="m-1" style="color: #3b5998" href="#!" role="button"
-            ><i class="fab fa-facebook-f fa-lg"></i
-          ></a>
-
-          <!-- Twitter -->
-          <a class="m-1" style="color: #55acee" href="#!" role="button"
-            ><i class="fab fa-twitter fa-lg"></i
-          ></a>
-
-          <!-- Google -->
-          <a class="m-1" style="color: #dd4b39" href="#!" role="button"
-            ><i class="fab fa-google fa-lg"></i
-          ></a>
-
-          <!-- Instagram -->
-          <a class="m-1" style="color: #ac2bac" href="#!" role="button"
-            ><i class="fab fa-instagram fa-lg"></i
-          ></a>
-        </section>
-        <div class="sticky-element">
-            <div class="info">
-                <div class="info1">
-                  <div class="col1">
-                    <h1>Thời gian:</h1>
-                    <h1>Nơi khởi hành:</h1>
-                    <h1>Phương tiện:</h1>
-                    <h1>Mã tour:</h1>
-                    <h1>Giá từ:</h1>
+            <div class="timeline">
+              <% if (tour.itinerary) { %>
+                <% tour.itinerary.forEach((item, index)=> { %>
+                  <div class="timeline-item">
+                    <div class="frame">
+                      <div class="timeline-item-title" onclick="toggleContent(this)">
+                        <%= item.day %>
+                      </div>
+                      <div class="timeline-content">
+                        <p>
+                          <%= item.description %>
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col2">
-                    <h1>5 Ngày 5 Ðêm</h1>
-                    <h1>Hồ Chí Minh</h1>
-                    <h1>VIETJET AIR</h1>
-                    <h1>KR107.05</h1>
-                    <div style="display: flex">
-                      <h1 id="price">25,990,000</h1>
-                      <h1>VND</h1>
+                  <% }); %>
+                    <% } %>
+            </div>
+
+            <div class="depart-price" id="departPriceSection">
+              <h2><strong>LỊCH KHỞI HÀNH VÀ GIÁ</strong></h2>
+              <div class="detail">
+                <div class="depart">
+                  <div class="tren">
+                    <!-- Ngày đi -->
+                    <div class="ngaydi">
+                      <p><strong>
+                          <%= new Date(tour.time_go).toLocaleDateString('vi-VN', { weekday: 'long' }) %>
+                        </strong></p>
+                      <h5><strong>
+                          <%= new Date(tour.time_go).toLocaleDateString('vi-VN', { day: 'numeric' , month: 'long' ,
+                            year: 'numeric' }) %>
+                        </strong></h5>
+                    </div>
+
+                    <div class="icon">
+                      <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </div>
+
+                    <!-- Ngày về -->
+                    <div class="ngayve">
+                      <p><strong>
+                          <%= new Date(tour.time_back).toLocaleDateString('vi-VN', { weekday: 'long' }) %>
+                        </strong></p>
+                      <h5><strong>
+                          <%= new Date(tour.time_back).toLocaleDateString('vi-VN', { day: 'numeric' , month: 'long' ,
+                            year: 'numeric' }) %>
+                        </strong></h5>
+                    </div>
+                  </div>
+                  <div class="duoi">
+                    <h1>
+                      <strong>MUA SỚM GIẢM SÂU - GIẢM <%= tour.original_price - tour.discounted_price %> VND</strong>
+                    </h1>
+                  </div>
+                </div>
+                <div class="price">
+                  <div class="goc">
+                    <p><strong>
+                        <%= tour.original_price%>
+                      </strong></p>
+                  </div>
+                  <div class="moi">
+                    <p><strong>
+                        <%= tour.discounted_price%>
+                      </strong></p>
+                  </div>
+                  <button class="btn" id="checkoutTour">Đặt tour</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="include">
+              <!-- Bao gồm -->
+              <div class="include">
+                <h2><strong></strong></h2>
+                <div class="include-detail">
+                  <% if (tour.inclusions) { %>
+                    <% const inclusions=tour.inclusions.split('\n'); %>
+                      <% inclusions.forEach(item=> { %>
+                        <div class="include-st">
+                          <i class="fa-solid fa-square-check"></i>
+                          <p>
+                            <%= item %>
+                          </p>
+                        </div>
+                        <% }); %>
+                          <% } %>
+                </div>
+              </div>
+
+              <!-- Không bao gồm -->
+              <div class="not-include">
+                <h2><strong></strong></h2>
+                <div class="not-include-detail">
+                  <% if (tour.exclusions) { %>
+                    <% const exclusions=tour.exclusions.split('\n'); %>
+                      <% exclusions.forEach(item=> { %>
+                        <div class="not-include-st">
+                          <i class="fa-solid fa-circle-xmark"></i>
+                          <p>
+                            <%= item %>
+                          </p>
+                        </div>
+                        <% }); %>
+                          <% } %>
+                </div>
+              </div>
+              <div class="children-price">
+                <h2><strong>GIÁ TRẺ EM</strong></h2>
+                <p>
+                  <% if (tour.child_price) { %>
+                    <% const childPrice=tour.child_price.split('\n'); %>
+                      <!-- Phân tách chuỗi child_price tại mỗi dấu xuống dòng -->
+                      <% childPrice.forEach(item=> { %> <!-- Duyệt qua từng phần tử trong mảng childPrice -->
+                        <p>
+                          <%= item %> <!-- Hiển thị từng dòng thông tin về giá trẻ em -->
+                        </p>
+                        <% }); %>
+                          <% } %>
+
+                </p>
+              </div>
+
+              <div class="note">
+                <h2><strong>LƯU Ý</strong></h2>
+                <p>
+                  <% if (tour.notes) { %>
+                    <% const notes=tour.notes.split('\n'); %>
+
+                      <% notes.forEach(item=> { %>
+                        <p>
+                          <%= item %>
+                        </p>
+                        <% }); %>
+                          <% } %>
+                </p>
+              </div>
+              <div class="docs">
+                <button class="tk">Thông tin tham khảo</button>
+              </div>
+            </div>
+            <div class="right-content">
+              <section class="p-4 text-center w-100">
+                <!-- Facebook -->
+                <a class="m-1" style="color: #3b5998" href="#!" role="button"><i
+                    class="fab fa-facebook-f fa-lg"></i></a>
+
+                <!-- Twitter -->
+                <a class="m-1" style="color: #55acee" href="#!" role="button"><i class="fab fa-twitter fa-lg"></i></a>
+
+                <!-- Google -->
+                <a class="m-1" style="color: #dd4b39" href="#!" role="button"><i class="fab fa-google fa-lg"></i></a>
+
+                <!-- Instagram -->
+                <a class="m-1" style="color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram fa-lg"></i></a>
+              </section>
+              <div class="sticky-element">
+                <div class="info">
+                  <div class="info1">
+                    <div class="col1">
+                      <h1>Thời gian:</h1>
+                      <h1>Nơi khởi hành:</h1>
+                      <h1>Phương tiện:</h1>
+                      <h1>Mã tour:</h1>
+                      <h1>Giá từ:</h1>
+                    </div>
+                    <div class="col2">
+                      <h1>
+                        <%=tour.days%> Ngày <%=tour.nights%> Đêm
+                            <h1>
+                              <%=tour.departure_location%>
+                            </h1>
+                            <h1>
+                              <%=tour.transportation%>
+                            </h1>
+                            <h1>
+                              <%=tour.tour_code%>
+                            </h1>
+                            <div style="display: flex">
+                              <h1 id="price"></h1>
+                              <h1>
+                                <%= tour.original_price%>VND
+                              </h1>
+                            </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="ads">
-                <img src="image.png" />
-                <button class="qt">Quan tâm</button>
-              </div>
-              <div class="post">
-                <p>Bài viết mới nhất</p>
-                <div class="session">
-                  <img src="image copy.png" />
-                  <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+                <div class="ads">
+                  <img src="image.png" />
+                  <button class="qt">Quan tâm</button>
                 </div>
-                <div class="session">
-                  <img src="Ảnh chụp màn hình 2024-11-23 033732.png" />
-                  <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-                </div>
-                <div class="session">
-                  <img src="Ảnh chụp màn hình 2024-11-23 033732.png" />
-                  <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+                <div class="post">
+                  <p>Bài viết mới nhất</p>
+                  <div class="session">
+                    <img src="uploads/muathu.png" />
+                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+                  </div>
+                  <div class="session">
+                    <img src="uploads/muathu.png" />
+                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+                  </div>
+                  <div class="session">
+                    <img src="uploads/muathu.png" />
+                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+                  </div>
                 </div>
               </div>
-        </div>
-      </div>
-    </div>
-    <div class="moreInfo">
+            </div>
+          </div>
+          <div class="moreInfo">
             <h1 style="color:#044c64"><strong>CÓ THỂ BẠN QUAN TÂM</strong></h1>
-        <div class="carousel-tour owl-carousel">
-            <!-- Card 1 -->
-            <div class="card tour-card">
-                <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="TOUR ĐÀI LOAN">
-                <div class="card-body">
+            <div class="carousel-tour owl-carousel">
+              <% tours.forEach(tour=> { %>
+                <div class="card tour-card">
+                  <img src="<%= tour.image || 'https://via.placeholder.com/400x200' %>" class="card-img-top"
+                    alt="<%= tour.tour_name %>">
+                  <div class="card-body">
                     <div class="d-flex justify-content-between mb-2">
-                        <span class="tour-info">
-                            <i class="fas fa-sun"></i> 5 ngày
-                            <i class="fas fa-moon"></i> 5 đêm
-                        </span>
+                      <span class="tour-info">
+                        <i class="fas fa-sun"></i>
+                        <%= tour.days %> ngày
+                          <i class="fas fa-moon"></i>
+                          <%= tour.nights %> đêm
+                      </span>
                     </div>
-                    <h5 class="tour-title">TOUR ĐÀI LOAN: RỰC RỠ SẮC HỒNG HOA ANH ĐÀO</h5>
+                    <h5 class="tour-title">
+                      <%= tour.tour_name %>
+                    </h5>
                     <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
+                      <%- '★' .repeat(Math.floor(tour.rating)) %>
+                        <%- tour.rating %>
                     </div>
-                    <p class="card-text">Mùa xuân là thời điểm lý tưởng để khám phá Đài Loan với sắc hồng của hoa anh đào.</p>
+                    <p class="card-text">
+                      <%= tour.description.slice(0, 100) %>...
+                    </p>
                     <div class="tt">
-                        <div class="trai">
-                            <p>Khởi hành:</p>
-                            <p>Mã tour:</p>
-                            <p>Giá từ:</p>
-                        </div>
-                        <div class="phai">
-                            <p>Hồ Chí Minh</p>
-                            <p>HK101.04</p>
-                        </div>
+                      <div class="trai">
+                        <p>Khởi hành:</p>
+                        <p>Mã tour:</p>
+                        <p>Giá từ:</p>
+                      </div>
+                      <div class="phai">
+                        <p>
+                          <%= tour.departure_location %>
+                        </p>
+                        <p>
+                          <%= tour.tour_code %>
+                        </p>
+                        <p>
+                          <%= tour.discounted_price %> VND
+                        </p>
+                      </div>
                     </div>
                     <div class="price-btn">
-                        <div class="tour-price">
-                            15,000,000
-                       </div>
-                       <div class="d-flex justify-content-between align-items-center">
-                           <a href="#" class="btn btn-primary btn-sm">Chọn</a>
-                       </div>
+                      <div class="tour-price">
+                        <%= tour.discounted_price %>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <a href="#" class="btn btn-primary btn-sm">Chọn</a>
+                      </div>
                     </div>
+                  </div>
                 </div>
+                <% }); %>
             </div>
-            <!-- Card 2 -->
-            <div class="card tour-card">
-                <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="TOUR NHẬT BẢN">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="tour-info">
-                            <i class="fas fa-sun"></i> 6 ngày
-                            <i class="fas fa-moon"></i> 5 đêm
-                        </span>
-                    </div>
-                    <h5 class="tour-title">TOUR NHẬT BẢN: MÙA LÁ ĐỎ</h5>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <p class="card-text">Hành trình thưởng ngoạn cảnh sắc mùa thu Nhật Bản với những tán lá đỏ tuyệt đẹp.</p>
-                    <div class="tt">
-                        <div class="trai">
-                            <p>Khởi hành:</p>
-                            <p>Mã tour:</p>
-                            <p>Giá từ:</p>
-                        </div>
-                        <div class="phai">
-                            <p>Hồ Chí Minh</p>
-                            <p>HK101.04</p>
-                        </div>
-                    </div>
-                    <div class="price-btn">
-                        <div class="tour-price">
-                            15,000,000 
-                       </div>
-                       <div class="d-flex justify-content-between align-items-center">
-                           <a href="#" class="btn btn-primary btn-sm">Chọn</a>
-                       </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="card tour-card">
-                <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="TOUR NHẬT BẢN">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="tour-info">
-                            <i class="fas fa-sun"></i> 6 ngày
-                            <i class="fas fa-moon"></i> 5 đêm
-                        </span>
-                    </div>
-                    <h5 class="tour-title">TOUR NHẬT BẢN: MÙA LÁ ĐỎ</h5>
-                    <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
-                    </div>
-                    <p class="card-text">Hành trình thưởng ngoạn cảnh sắc mùa thu Nhật Bản với những tán lá đỏ tuyệt đẹp.</p>
-                    <div class="tt">
-                        <div class="trai">
-                            <p>Khởi hành:</p>
-                            <p>Mã tour:</p>
-                            <p>Giá từ:</p>
-                        </div>
-                        <div class="phai">
-                            <p>Hồ Chí Minh</p>
-                            <p>HK101.04</p>
-                        </div>
-                    </div>
-                    <div class="price-btn">
-                        <div class="tour-price">
-                            15,000,000
-                       </div>
-                       <div class="d-flex justify-content-between align-items-center">
-                           <a href="#" class="btn btn-primary btn-sm">Chọn</a>
-                       </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sticky-bottom">
-        <div class="summary">
-            <div class="star">
+          </div>
+
+          <div class="sticky-bottom">
+            <div class="summary">
+              <div class="star">
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-half"></i>
-            </div>
-            <div class="like_number">
+              </div>
+              <div class="like_number">
                 <p>123 lượt thích</p>
-            </div>
-            <div class="lich">
+              </div>
+              <div class="lich">
                 <button class="schedule" id="scheduleButton">Lịch khởi hành</button>
+              </div>
             </div>
-        </div>
-    </div>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+          <script>
+            const heartIcons = document.querySelectorAll('.fa-heart');
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script>
-        const heartIcons = document.querySelectorAll('.fa-heart');
+            heartIcons[0].addEventListener('click', () => {
+              heartIcons[0].classList.toggle('hidden'); // Ẩn biểu tượng rỗng
+              heartIcons[1].classList.toggle('hidden'); // Hiện biểu tượng đầy
+            });
 
-        heartIcons[0].addEventListener('click', () => {
-            heartIcons[0].classList.toggle('hidden'); // Ẩn biểu tượng rỗng
-            heartIcons[1].classList.toggle('hidden'); // Hiện biểu tượng đầy
-        });
+            heartIcons[1].addEventListener('click', () => {
+              heartIcons[0].classList.toggle('hidden'); // Hiện lại biểu tượng rỗng
+              heartIcons[1].classList.toggle('hidden'); // Ẩn biểu tượng đầy
+            });
+            const button = document.getElementById('scheduleButton');
+            const targetSection = document.getElementById('departPriceSection');
 
-        heartIcons[1].addEventListener('click', () => {
-            heartIcons[0].classList.toggle('hidden'); // Hiện lại biểu tượng rỗng
-            heartIcons[1].classList.toggle('hidden'); // Ẩn biểu tượng đầy
-        });
-        const button = document.getElementById('scheduleButton');
-        const targetSection = document.getElementById('departPriceSection');
+            button.addEventListener('click', () => {
+              targetSection.scrollIntoView({ behavior: 'smooth' }); // Cuộn đến phần mục tiêu
+            });
+            $(document).ready(function () {
+              $(".owl-carousel").owlCarousel({
+                loop: true, // Vòng lặp
+                autoplay: true,
+                autoplayTimeout: 1500, // Thời gian giữa các lần chuyển
+                autoplayHoverPause: true, // Tạm dừng khi di chuột qua
+                margin: 10, // Khoảng cách giữa các item
+                nav: true, // Hiển thị nút điều hướng
+                responsive: {
+                  0: {
+                    items: 1, // 1 item trên màn hình nhỏ
+                  },
+                  600: {
+                    items: 1, // 1 item trên màn hình trung bình
+                  },
+                  1200: {
+                    items: 3, // 3 item trên màn hình lớn
+                  },
+                },
+              });
+              $(".carousel-tour").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                responsive: {
+                  0: {
+                    items: 1,
+                  },
+                  600: {
+                    items: 5,
+                  },
+                  1000: {
+                    items: 4,
+                  },
+                },
+              });
 
-        button.addEventListener('click', () => {
-            targetSection.scrollIntoView({ behavior: 'smooth' }); // Cuộn đến phần mục tiêu
-        });
-      $(document).ready(function () {
-        $(".owl-carousel").owlCarousel({
-          loop: true, // Vòng lặp
-          autoplay: true,
-          autoplayTimeout: 1500, // Thời gian giữa các lần chuyển
-          autoplayHoverPause: true, // Tạm dừng khi di chuột qua
-          margin: 10, // Khoảng cách giữa các item
-          nav: true, // Hiển thị nút điều hướng
-          responsive: {
-            0: {
-              items: 1, // 1 item trên màn hình nhỏ
-            },
-            600: {
-              items: 1, // 1 item trên màn hình trung bình
-            },
-            1200: {
-              items: 3, // 3 item trên màn hình lớn
-            },
-          },
-        });
-        $(".carousel-tour").owlCarousel({
-          loop: true,
-          margin: 10,
-          nav: true,
-          autoplay: true,
-          autoplayTimeout: 3000,
-          responsive: {
-            0: {
-              items: 1,
-            },
-            600: {
-              items: 5,
-            },
-            1000: {
-              items: 4,
-            },
-          },
-        });
-        
-      });
-      function toggleContent(element) {
-            const content = element.nextElementSibling;
-            content.classList.toggle('show');
-        }
-      $('#checkoutTour').on('click', function(){
-        const url = window.location.href
-        const tourId = url.split('/').pop()
-        fetch(`/checkout/${tourId}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then(console.log('Redirect successfully'))
-      })
+            });
+            function toggleContent(element) {
+              const content = element.nextElementSibling;
+              content.classList.toggle('show');
+            }
+            $('#checkoutTour').on('click', function () {
+              const url = window.location.href
+              const tourId = url.split('/').pop()
+              fetch(`/checkout/${tourId}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              })
+              .then(data => {
+                window.location.href = data.url
+              })
+            })
+          </script>
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+</body>
 
-        
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  </body>
 </html>

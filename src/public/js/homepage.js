@@ -142,6 +142,12 @@ $(window).on('load', function () {
             $('#loading-tour').hide()
         }
     })
+
+    // $('a').on('click', function(event){
+    //     event.preventDefault()
+    //     console.log('data-value: ', $(this).attr('href'))
+    // })
+
     $(document)
         .on('mouseenter', '.menu-item', function () {
             $(this).css('color', 'blue')

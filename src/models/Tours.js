@@ -67,6 +67,41 @@ module.exports = function (sequelize, DataTypes) {
                 type: DataTypes.STRING(255),
                 allowNull: true,
             },
+            transportation: {
+                // Phương tiện
+                type: DataTypes.STRING(255),
+                allowNull: true,
+            },
+            overview: {
+                // Sơ lược
+                type: DataTypes.TEXT,
+                allowNull: true,
+            },
+            highlights: {
+                // Điểm nhấn nổi bật
+                type: DataTypes.TEXT,
+                allowNull: true,
+            },
+            itinerary: {
+                // Lịch trình
+                type: DataTypes.JSON,
+                allowNull: true,
+            },
+            inclusions: {
+                // Bao gồm
+                type: DataTypes.TEXT,
+                allowNull: true,
+            },
+            child_price: {
+                // Giá trẻ em
+                type: DataTypes.TEXT,
+                allowNull: true,
+            },
+            notes: {
+                // Lưu ý
+                type: DataTypes.TEXT,
+                allowNull: true,
+            },
         },
         {
             sequelize,
