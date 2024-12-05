@@ -1,0 +1,395 @@
+
+main{
+    padding: 50px;
+    background-color: #FFFFFF;
+}
+.text {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  .arrow {
+    width: 100%;
+    margin-top: 100px;
+  }
+  .arrow i {
+    color: orange;
+    font-size: 20px;
+    margin-top: -5px;
+  }
+  .arrow a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+  }
+  .arrow a:hover {
+    color: aquamarine;
+  }
+  .info {
+    display: flex;
+    color: rgba(8, 6, 6, 0.782);
+  }
+  .info h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .pics {
+    width: 4%;
+    margin-top: 20px;
+  }
+  .timeline {
+    width: 100%;
+    margin-top: 20px;
+    margin-right: 300px;
+  }
+  .ve {
+    margin-top: 30px;
+  }
+  .plan {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+  }
+  .plan h1 {
+    margin-bottom: 20px;
+  }
+  .left-plan {
+    width: 80%;
+  }
+  .right-plan h1 {
+    text-align: right;
+  }
+
+  .title {
+    display: flex;
+  }
+  .title h1 {
+    color: rgb(27, 64, 116);
+    margin-top: 30px;
+    font-size: 36px;
+    margin-right: 70px;
+  }
+  .contact h1{
+    color: black;
+    font-size: 36px;
+  }
+  .title img {
+    margin: auto;
+    margin-left: 200px;
+  }
+  .solid-line {
+    border-top: 5px solid orange; /*Độ dày và màu sắc */
+    margin: 20px 0; /* Khoảng cách phía trên và dưới */
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .total {
+    width: 50%;
+    margin-top: 100px;
+  }
+  .frame {
+    width: 100%;
+    display: inline-block;
+    border: 5px solid orange;
+  }
+  .frame1 {
+    margin-bottom: 10px;
+  }
+  .line1 {
+    margin-top: 30px;
+    display:flex;
+  }
+  .line1 h1 {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000db;
+  }
+  .line1 img{
+    margin:auto;
+    margin-top:-20px;
+  }
+  .line1 h2 {
+    margin-left: 40px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #000000af;
+  }
+  .line2 {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  .adult{
+    display:flex;
+    gap:60px;
+    margin-bottom:5px;
+  }
+  .line2 h2 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .line2 h2 {
+    margin-top: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #000000af;
+  }
+  .line3 {
+    margin-top: 8px;
+    margin-left: 20px;
+    text-align: right;
+    display:flex;
+    margin-right:20px;
+  }
+  .line3 h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000db;
+  }
+  .h1-red {
+    color: #000000af;
+    font-size: 60px;
+    font-weight: bold;
+  }
+  .customer-total {
+    display: flex;
+  }
+  .customer {
+    width: 70%;
+    margin-right: 100px;
+  }
+  .cus-info h1{
+    font-size: 36px;
+    margin-bottom:30px;
+  }
+  .session {
+    width: 100%;
+    display: flex;
+  }
+  .sum {
+    width: 40%;
+  }
+  .left {
+    width: 100%;
+    margin-right: 300px;
+  }
+  .customer h1 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 36px;
+  }
+  .left h5 {
+    font-size: 26px;
+  }
+  .right {
+    width: 40%;
+  }
+  .left p {
+    font-size: 20px;
+    color: rgb(0, 142, 173);
+    font-weight: bold;
+  }
+  .right i {
+    font-size: 30px;
+    color: rgba(128, 128, 128, 0.46);
+    font-weight: bold;
+  }
+  .right i:hover {
+    color: rgb(29, 131, 255);
+  }
+  .count {
+    font-size: 30px;
+  }
+  .form-container {
+    width: 100%;
+  }
+  .line {
+    display: flex;
+    gap: 100px;
+  }
+  input {
+    width: 80%;
+    margin-right: 500px;
+    height: 50px;
+  }
+  .form-label {
+    font-size: 18px;
+  }
+  .red {
+    color: red;
+  }
+  .grey {
+    background-color: rgba(232, 232, 232, 0.497);
+    width: 100%;
+    display: inline-block;
+    padding: 30px;
+  }
+  .custom-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the default checkbox */
+  .custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 3px;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .custom-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  /* When the checkbox is checked, add a blue background */
+  .custom-checkbox input:checked ~ .checkmark {
+    background-color: #2196f3;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  .custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .custom-checkbox .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .thongtin {
+    display: flex;
+    gap: 20px;
+  }
+  .hoten {
+    width: 40%;
+  }
+  .loaikhach {
+    width: 20%;
+  }
+  .sdt {
+    width: 15%;
+  }
+  .date {
+    width: 20%;
+  }
+  .thongtin input {
+    border-bottom: 1px solid blue;
+  }
+  .form-control {
+    font-size: 20px; /* Kích thước chữ lớn hơn */
+  }
+  .loaikhach input,
+  .loaikhach input:focus {
+    background-color: rgba(196, 190, 190, 0.212);
+  }
+  .provision {
+    max-height: 400px; /* Chiều cao tối đa */
+    margin-top: 50px;
+    overflow: auto; /* Thêm thanh cuộn khi nội dung vượt quá chiều cao */
+  }
+  #commit {
+    display: flex;
+  }
+  #red {
+    color: red;
+  }
+  .provision h2 {
+    font-size: 36px;
+    text-align: center;
+  }
+  .provision h1 {
+    font-weight: bold;
+    color: #0d304dae;
+    font-size: 24px;
+  }
+  .provision li {
+    margin-left: 20px;
+    font-size: 20px;
+  }
+  .provision p {
+    margin-left: 20px;
+    font-size: 20px;
+  }
+  .commit {
+    margin-top: 20px;
+  }
+  .commit p {
+    font-size: 20px;
+    margin-top: -5px;
+  }
+  .confirm button {
+    color: white;
+    font-size: 24px;
+    border: none;
+    background-color: #2196f3;
+    border-radius: 3px;
+    height: 50px;
+  }
+  .confirm button:hover,
+  .confirm button:focus {
+    background-color: green;
+    box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Đổ bóng khi focus */
+  }
+  .line-item{
+    display:flex;
+    font-size: 10px;
+    font-size: 26px;
+    color: #000000af;
+  }
+  .line-item h3{
+    font-size: 26px;
+    color: #000000af;
+  }
+  .between-item{
+    flex:25%;
+    color:#000000af;
+    margin-right:60px;
+  }
+  .between-item p{
+    text-align: right;
+    font-weight: bold;
+
+  }
+  .left-item{
+    flex:39%;
+    display:flex;
+  }
+  .right-item{
+    flex:12%;
+  }
+  .right-item p{
+    font-weight: bold;
+  }

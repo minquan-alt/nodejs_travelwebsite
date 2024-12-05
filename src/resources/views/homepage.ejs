@@ -1,10 +1,10 @@
     <!-- Banner -->
-    <div class="banner" data-aos="fade-up">
+    <div class="banner">
     </div>
 
 
     <!-- Taskbar Section -->
-    <div class="taskbar d-flex justify-content-around align-items-center py-3 bg-white shadow-sm" data-aos="fade-up" data-aos-offset="100">
+    <div class="taskbar d-flex justify-content-around align-items-center py-3 bg-white shadow-sm" >
         <div class="d-flex align-items-center">
             <i class="fas fa-camera-retro fa-lg text-primary me-2"></i>
             <a href="#" class="text-primary">Thiết kế tour</a>
@@ -158,20 +158,49 @@
     </div>
 
     <!-- TOUR CHO BẠN -->
+    <div id="loading-tour" style="display: none;">
+        <img src="/img/loading-tour.gif" alt="Loading..." />
+    </div>
 
     <div class="container my-4">
-        <h3 class="tour-title" data-aos="fade-up">
+        <h3 class="tour-title">
             <i class="fas fa-compass text-primary me-2"></i> TOUR CHO BẠN
         </h3>
-        <!-- add tour-container partials -->
-        <% for (let i = 0; i < 9; i += 3) { %>
-            <div class="row" id="tour-container" data-aos="zoom-in-down" data-aos-offset="50">
-                <%- include('tour/show', { tours: tours, currentIndex: i }) %>
-            </div>
-        <% } %>
-        
-           
-        
+        <div class="row" id="tour-container">
+            <!-- Render từng tour -->
+            <% tours.forEach(tour => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card tour-card">
+                        <img src="<%= tour.image %>" class="card-img-top" alt="<%= tour.tour_name %>">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="tour-info">
+                                    <i class="fas fa-sun"></i> <%= tour.days %> ngày
+                                    <i class="fas fa-moon"></i> <%= tour.nights %> đêm
+                                </span>
+                            </div>
+                            <h5 class="tour-title"><%= tour.tour_name %></h5>
+                            <div class="d-flex align-items-center mb-2">
+                                <% for (let i = 0; i < tour.rating; i++) { %>
+                                    <i class="fas fa-star text-warning"></i>
+                                <% } %>
+                                <% if (tour.rating % 1 !== 0) { %>
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                <% } %>
+                            </div>
+                            <p class="card-text"><%= tour.description %></p>
+                            <ul class="list-unstyled mb-3">
+                                <li><strong>Khởi hành:</strong> <%= tour.departure_location %></li>
+                                <li><strong>Mã tour:</strong> <%= tour.tour_code %></li>
+                            </ul>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="btn btn-primary btn-sm">Chọn</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
     </div>
 
     <!-- VÍ DỤ KHI INSERT DỮ LIỆU
@@ -196,11 +225,11 @@
 
 
     <div class="container destination-section">
-        <h3 class="destination-title" data-aos="fade-down">
+        <h3 class="destination-title" >
             <i class="fas fa-globe-asia"></i> KHÁM PHÁ CÁC ĐIỂM ĐẾN
         </h3>
         <% for (let i = 0; i < 6; i += 3) { %>
-        <div class="row" data-aos="zoom-in-down">
+        <div class="row" >
             <!-- Loop through each destination in the current group -->
             <% destinations.slice(i, i + 3).forEach(destination => { %>
             <div class="col-md-4 mb-3">
@@ -237,34 +266,30 @@
 ]
 -->
     <!-- CHÚNG TÔI TỰ HÀO -->
-    <h3 style="text-align: center; margin-top: 0;" data-aos="fade-up"><i class="fas fa-trophy"></i> CHÚNG TÔI TỰ HÀO</h3>
+    <h3 style="text-align: center; margin-top: 0;"><i class="fas fa-trophy"></i> CHÚNG TÔI TỰ HÀO</h3>
 
     <div class="container-proud my-5 text-center">
         <div class="row mt-4">
             <!-- Customer Count -->
-            <div class="col-md-3" data-aos="fade-up"
-            data-aos-duration="1500">>
+            <div class="col-md-3" >
                 <div class="counter-icon"><i class="fas fa-passport"></i></div>
                 <h2 class="counter" data-target="102.417">102.417</h2>
                 <p>Khách hàng</p>
             </div>
             <!-- Places Count -->
-            <div class="col-md-3" data-aos="fade-up"
-            data-aos-duration="1500">>
+            <div class="col-md-3">
                 <div class="counter-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <h2 class="counter" data-target="589">587</h2>
                 <p>Điểm tham quan</p>
             </div>
             <!-- Tours Count -->
-            <div class="col-md-3" data-aos="fade-up"
-            data-aos-duration="1500">>
+            <div class="col-md-3" >
                 <div class="counter-icon"><i class="fas fa-globe"></i></div>
                 <h2 class="counter" data-target="274">274</h2>
                 <p>Tours</p>
             </div>
             <!-- Tour Types Count -->
-            <div class="col-md-3" data-aos="fade-up"
-            data-aos-duration="1500">>
+            <div class="col-md-3" >
                 <div class="counter-icon"><i class="fas fa-landmark"></i></div>
                 <h2 class="counter" data-target="3">3</h2>
                 <p>Loại tour</p>

@@ -4,10 +4,10 @@
   </div>
 
   <div class="right-section">
-    <a href="#"><i class="material-icons">local_mall</i>Chuyến đi của tôi</a>
-    <a href="#"><i class="material-icons">call</i>Liên hệ</a>
+    <a href="#" id="menu-item"><i class="material-icons">local_mall</i>Chuyến đi của tôi</a>
+    <a href="#" id="menu-item"><i class="material-icons">call</i>Liên hệ</a>
     <div class="dropdown">
-      <a href="javascript:void(0);" onclick="toggleDropdown(event, 'dropdownMenu')"><i class="material-icons">reorder</i>Danh mục</a>
+      <a href="javascript:void(0);" id="menu-item" onclick="toggleDropdown(event, 'dropdownMenu')"><i class="material-icons">reorder</i>Danh mục</a>
       <div class="dropdown-content" id="dropdownMenu">
         <a href="javascript:void(0);" onclick="toggleOptionDropdown(event, 'option1Dropdown')">Điểm đến</a>
         <div class="option1-dropdown" id="option1Dropdown">
@@ -24,9 +24,9 @@
           <a href="#">Hành hương Công giáo</a>
           <a href="#">Du lịch độc lạ</a>
         </div>
-        <a href="#">Góc kiến thức</a>
-        <a href="#">Thông tin hữu ích</a>
-        <a href="#">Về ViVaViet</a>
+        <a href="#" id="menu-item">Góc kiến thức</a>
+        <a href="#" id="menu-item">Thông tin hữu ích</a>
+        <a href="#" id="menu-item">Về ViVaViet</a>
       </div>
     </div>
     <% if(isLoggedIn) { %>

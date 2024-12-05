@@ -50,6 +50,59 @@ html {
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+.shrink-image{
+  width: 60px;
+  height: 45px;
+  cursor: pointer;
+}
+.preview {
+  display: none;
+  background-size: cover;
+  background-position: center;
+  width: 600px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #000;
+}
+.preview.show-preview {
+  display: block;
+  z-index: 2000;
+}
+.preview .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+  line-height: 30px;
+  transition: all 0.3s;
+}
+.close-btn:hover{
+  background-color:#001b19;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 200vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1999;
+}
+.overlay.show {
+  display: block;
+}
 
 @-ms-viewport {
   width: device-width;

@@ -168,9 +168,6 @@ class AdminController {
             console.log(error)
         }
     }
-    async updateTour(req, res) {
-        const data = req.body
-    }
 }
 
 module.exports = new AdminController()

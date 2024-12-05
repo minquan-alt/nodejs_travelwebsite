@@ -1,65 +1,65 @@
 const pool = require('../../config/connectDB')
 
 const update_tour = async (req, res) => {
-    const updatedData = req.body // Dữ liệu được gửi từ client
+    try {
+        const tourId = req.params.id // ID của tour cần cập nhật
+        const updatedData = req.body // Dữ liệu form
+        const file = req.file // File upload (nếu có)
 
-    const { tourId } = updatedData // Giả sử bạn nhận tourId để xác định tour cần cập nhật
+        console.log('Updated Data:', updatedData)
+        console.log('Uploaded File:', file)
 
-    // Truy vấn cơ sở dữ liệu để lấy dữ liệu tour hiện tại
-    const sql = 'SELECT * FROM tours WHERE id = ?'
+        // Kiểm tra xem tour có tồn tại không
+        const checkSql = 'SELECT * FROM Tours WHERE id = ?'
+        const [existingTour] = await pool.query(checkSql, [tourId])
 
-    db.query(sql, [tourId], (err, results) => {
-        if (err) {
-            console.error('Error fetching tour data:', err)
-            return res
-                .status(500)
-                .json({ success: false, message: 'Database error' })
-        }
-
-        if (results.length === 0) {
+        if (existingTour.length === 0) {
             return res
                 .status(404)
                 .json({ success: false, message: 'Tour not found' })
         }
 
-        const existingTour = results[0] // Lấy dữ liệu tour hiện tại
+        // Chuẩn bị dữ liệu cập nhật
+        const updateFields = []
+        const updateValues = []
 
-        // Kiểm tra sự thay đổi và chuẩn bị đối tượng cập nhật
-        let updateFields = []
-
-        for (let key in updatedData) {
-            if (updatedData[key] !== existingTour[key]) {
+        for (const key in updatedData) {
+            if (updatedData[key] !== existingTour[0][key]) {
                 updateFields.push(`${key} = ?`)
+                updateValues.push(updatedData[key])
             }
+        }
+
+        // Nếu có file upload, cập nhật đường dẫn file
+        if (file) {
+            updateFields.push(`image = ?`)
+            updateValues.push(file.path) // Lưu đường dẫn file vào database
         }
 
         if (updateFields.length === 0) {
             return res.json({ success: false, message: 'No changes detected' })
         }
 
-        const updateValues = Object.values(updatedData).filter(
-            (value, index) => {
-                const key = Object.keys(updatedData)[index]
-                return updatedData[key] !== existingTour[key]
-            }
-        )
+        updateValues.push(tourId)
 
-        const updateSql = `UPDATE tours SET ${updateFields.join(', ')} WHERE id = ?`
+        const updateSql = `UPDATE Tours SET ${updateFields.join(', ')} WHERE id = ?`
+        console.log(updateSql)
+        const [updateResult] = await pool.query(updateSql, updateValues)
 
-        db.query(updateSql, [...updateValues, tourId], (err, result) => {
-            if (err) {
-                console.error('Error updating tour data:', err)
-                return res
-                    .status(500)
-                    .json({ success: false, message: 'Database error' })
-            }
-
+        if (updateResult.affectedRows > 0) {
             return res.json({
                 success: true,
                 message: 'Tour updated successfully',
             })
-        })
-    })
+        } else {
+            return res
+                .status(500)
+                .json({ success: false, message: 'Failed to update tour' })
+        }
+    } catch (error) {
+        console.error('Error updating tour:', error)
+        return res.status(500).json({ success: false, message: 'Server error' })
+    }
 }
 
 module.exports = { update_tour }

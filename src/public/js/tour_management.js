@@ -73,16 +73,17 @@ function dateToFormat(myDate) {
     return datestring
 }
 $(document).ready(function () {
+    let initialValues = {}
+
     $(document).on('click', '#basicEdit', function () {
         const row = $(this).closest('tr')
         const tour_id = row.find('td').eq(1).text().trim()
         const tour_name = row.find('td').eq(3).text().trim()
         const time_go_str = row.find('td').eq(4).text().trim()
         const time_back_str = row.find('td').eq(5).text().trim()
-        const status = row.find('td').eq(6).text().trim()
-        const max_quantity_of_people = row.find('td').eq(7).text().trim()
-        const original_price = row.find('td').eq(8).text().trim()
-        const discounted_price = row.find('td').eq(9).text().trim()
+        const max_quantity_of_people = row.find('td').eq(6).text().trim()
+        const original_price = row.find('td').eq(7).text().trim()
+        const discounted_price = row.find('td').eq(8).text().trim()
 
         const time_go = stringDate(time_go_str)
         const time_back = stringDate(time_back_str)
@@ -91,28 +92,29 @@ $(document).ready(function () {
         $('#basicTourName').val(tour_name)
         $('#basicTimeGo').val(time_go)
         $('#basicTimeBack').val(time_back)
-        $('#basicStatus').val(status)
         $('#basicMaxQuantity').val(max_quantity_of_people)
         $('#basicOriginalPrice').val(original_price)
         $('#basicDiscountedPrice').val(discounted_price)
 
         $('#basicEditModal').modal('show')
     })
+    // When the modal is hidden
 
-    $(document).on('click', '#detailEdit', function () {
+    $(document).on('click', '#detailEdit', function (event) {
+        event.preventDefault()
         $('#basicEditModal').modal('hide')
         const id = $('#basicTourId').val()
+        console.log(id)
         fetch(`/api/tour_management/get_one_tour/${id}`)
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
                     const [tourData] = data.data
-                    const initialValues = {
+                    initialValues = {
                         tour_name: tourData.tour_name,
                         description: tourData.description,
                         days: tourData.days,
                         nights: tourData.nights,
-                        rating: tourData.rating,
                         departure_location: tourData.departure_location,
                         tour_code: tourData.tour_code,
                         original_price: tourData.original_price,
@@ -122,10 +124,8 @@ $(document).ready(function () {
                         type: tourData.type,
                         nation: tourData.nation,
                         max_quantity_of_people: tourData.max_quantity_of_people,
-                        time_go: tourData.time_go,
-                        time_back: tourData.time_back,
-                        status: tourData.status,
-                        image: tourData.image,
+                        time_go: dateToFormat(tourData.time_go),
+                        time_back: dateToFormat(tourData.time_back),
                     }
 
                     $('#updateName').val(tourData.tour_name) // Tour Name
@@ -139,209 +139,108 @@ $(document).ready(function () {
                     $('#updateTourCode').val(tourData.tour_code) // Tour Code
                     $('#updateOriginalPrice').val(tourData.original_price) // Original Price
                     $('#updateDiscountedPrice').val(tourData.discounted_price) // Discounted Price
-                    $('#updateIsFeatured').prop(
-                        'checked',
-                        tourData.is_featured == 1
-                    ) // Featured (Checkbox)
-                    $('#updateIsActive').prop(
-                        'checked',
-                        tourData.is_active == 1
-                    ) // Active (Checkbox)
+                    $('#updateIsFeatured').val(tourData.is_featured) // Featured (Select)
+                    $('#updateIsActive').val(tourData.is_active) // Active (Select)
                     $('#updateType').val(tourData.type) // Type
                     $('#updateNation').val(tourData.nation) // Nation
                     $('#updateMaxQuantity').val(tourData.max_quantity_of_people) // Max Quantity of People
                     $('#updateTimeGo').val(dateToFormat(tourData.time_go)) // Time Go
                     $('#updateTimeBack').val(dateToFormat(tourData.time_back)) // Time Back
-                    $('#updateStatus').val(tourData.status) // Status
                     $('#updatePreviewImage').attr('src', tourData.image) // Hiển thị hình ảnh
-
-                    let updatedData = {}
-
-                    // So sánh và lưu lại giá trị thay đổi
-                    $('#updateName').on('input', function () {
-                        if ($(this).val() !== initialValues.tour_name) {
-                            updatedData.tour_name = $(this).val()
-                        } else {
-                            delete updatedData.tour_name
-                        }
-                    })
-
-                    $('#updateDescription').on('input', function () {
-                        if ($(this).val() !== initialValues.description) {
-                            updatedData.description = $(this).val()
-                        } else {
-                            delete updatedData.description
-                        }
-                    })
-
-                    $('#updateDays').on('input', function () {
-                        if ($(this).val() !== initialValues.days) {
-                            updatedData.days = $(this).val()
-                        } else {
-                            delete updatedData.days
-                        }
-                    })
-
-                    $('#updateNights').on('input', function () {
-                        if ($(this).val() !== initialValues.nights) {
-                            updatedData.nights = $(this).val()
-                        } else {
-                            delete updatedData.nights
-                        }
-                    })
-
-                    $('#updateRating').on('input', function () {
-                        if ($(this).val() !== initialValues.rating) {
-                            updatedData.rating = $(this).val()
-                        } else {
-                            delete updatedData.rating
-                        }
-                    })
-
-                    $('#updateDepartureLocation').on('input', function () {
-                        if (
-                            $(this).val() !== initialValues.departure_location
-                        ) {
-                            updatedData.departure_location = $(this).val()
-                        } else {
-                            delete updatedData.departure_location
-                        }
-                    })
-
-                    $('#updateTourCode').on('input', function () {
-                        if ($(this).val() !== initialValues.tour_code) {
-                            updatedData.tour_code = $(this).val()
-                        } else {
-                            delete updatedData.tour_code
-                        }
-                    })
-
-                    $('#updateOriginalPrice').on('input', function () {
-                        if ($(this).val() !== initialValues.original_price) {
-                            updatedData.original_price = $(this).val()
-                        } else {
-                            delete updatedData.original_price
-                        }
-                    })
-
-                    $('#updateDiscountedPrice').on('input', function () {
-                        if ($(this).val() !== initialValues.discounted_price) {
-                            updatedData.discounted_price = $(this).val()
-                        } else {
-                            delete updatedData.discounted_price
-                        }
-                    })
-
-                    $('#updateIsFeatured').on('change', function () {
-                        if (
-                            $(this).prop('checked') !==
-                            initialValues.is_featured
-                        ) {
-                            updatedData.is_featured = $(this).prop('checked')
-                                ? 1
-                                : 0
-                        } else {
-                            delete updatedData.is_featured
-                        }
-                    })
-
-                    $('#updateIsActive').on('change', function () {
-                        if (
-                            $(this).prop('checked') !== initialValues.is_active
-                        ) {
-                            updatedData.is_active = $(this).prop('checked')
-                                ? 1
-                                : 0
-                        } else {
-                            delete updatedData.is_active
-                        }
-                    })
-
-                    $('#updateType').on('input', function () {
-                        if ($(this).val() !== initialValues.type) {
-                            updatedData.type = $(this).val()
-                        } else {
-                            delete updatedData.type
-                        }
-                    })
-
-                    $('#updateNation').on('input', function () {
-                        if ($(this).val() !== initialValues.nation) {
-                            updatedData.nation = $(this).val()
-                        } else {
-                            delete updatedData.nation
-                        }
-                    })
-
-                    $('#updateMaxQuantity').on('input', function () {
-                        if (
-                            $(this).val() !==
-                            initialValues.max_quantity_of_people
-                        ) {
-                            updatedData.max_quantity_of_people = $(this).val()
-                        } else {
-                            delete updatedData.max_quantity_of_people
-                        }
-                    })
-
-                    $('#updateTimeGo').on('input', function () {
-                        if ($(this).val() !== initialValues.time_go) {
-                            updatedData.time_go = $(this).val()
-                        } else {
-                            delete updatedData.time_go
-                        }
-                    })
-
-                    $('#updateTimeBack').on('input', function () {
-                        if ($(this).val() !== initialValues.time_back) {
-                            updatedData.time_back = $(this).val()
-                        } else {
-                            delete updatedData.time_back
-                        }
-                    })
-
-                    $('#updateStatus').on('input', function () {
-                        if ($(this).val() !== initialValues.status) {
-                            updatedData.status = $(this).val()
-                        } else {
-                            delete updatedData.status
-                        }
-                    })
-
-                    // Gửi yêu cầu cập nhật nếu có thay đổi
-                    function updateTourData() {
-                        if (Object.keys(updatedData).length > 0) {
-                            fetch('/api/update_tour', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(updatedData),
-                            })
-                                .then((response) => response.json())
-                                .then((responseData) => {
-                                    console.log(
-                                        'Update successful:',
-                                        responseData
-                                    )
-                                })
-                                .catch((error) => {
-                                    console.error('Error updating tour:', error)
-                                })
-                        } else {
-                            console.log('No changes detected.')
-                        }
-                    }
-                    $('#updateForm').on('submit', function (e) {
-                        e.preventDefault()
-                        updateTourData()
-                    })
-                } else {
-                    console.log(data.message)
                 }
             })
-        $('#ModalUpdate').modal('show')
     })
+    $(document).on('submit', '#updateTourForm', function (event) {
+        event.preventDefault()
+        // Lấy giá trị hiện tại của form
+        console.log('Check for debug: ')
+        const currentValues = {
+            tour_name: $('#updateName').val(),
+            description: $('#updateDescription').val(),
+            days: $('#updateDays').val(),
+            nights: $('#updateNights').val(),
+            departure_location: $('#updateDepartureLocation').val(),
+            tour_code: $('#updateTourCode').val(),
+            original_price: $('#updateOriginalPrice').val(),
+            discounted_price: $('#updateDiscountedPrice').val(),
+            is_featured: $('#updateIsFeatured').val(),
+            is_active: $('#updateIsActive').val(),
+            type: $('#updateType').val(),
+            nation: $('#updateNation').val(),
+            max_quantity_of_people: $('#updateMaxQuantity').val(),
+            time_go: $('#updateTimeGo').val(),
+            time_back: $('#updateTimeBack').val(),
+        }
+
+        // Kiểm tra sự thay đổi và cập nhật FormData
+        const updateFormData = new FormData()
+
+        let isChanged = false
+        Object.keys(initialValues).forEach((key) => {
+            console.log(
+                `initial ${key}: ${initialValues[key]}, current ${key}: ${currentValues[key]} `
+            )
+            console.log(
+                `is changed: ${initialValues[key] != currentValues[key]}`
+            )
+            // So sánh giá trị của từng trường (có thể chuyển đổi về kiểu dữ liệu thống nhất)
+            if (initialValues[key] != currentValues[key]) {
+                isChanged = true
+            }
+        })
+        const fileInput = $('#updateFile')[0]
+        if (fileInput && fileInput.files.length > 0) {
+            const file = fileInput.files[0]
+            updateFormData.append('image', file)
+            isChanged = true
+        }
+
+        if (isChanged) {
+            initialValues = {}
+            console.log('Data has changed, updating FormData...')
+            // Cập nhật FormData với các giá trị hiện tại
+            Object.keys(currentValues).forEach((key) => {
+                updateFormData.append(key, currentValues[key])
+            })
+
+            // Thêm file nếu có
+
+            console.log('Dữ liệu trong updateFormData:')
+            for (const [key, value] of updateFormData.entries()) {
+                console.log(`${key}: ${value}`)
+            }
+
+            // Gửi request update
+            const id = $('#basicTourId').val()
+            fetch(`/api/tour_management/update_tour/${id}`, {
+                method: 'POST',
+                body: updateFormData,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        fetch('/api/tour_management/get_tours')
+                            .then((response) => response.json())
+                            .then((data) => {
+                                if (data.success) {
+                                    console.log('Get tours thanh cong')
+                                }
+                            })
+                        console.log('Tour updated successfully!')
+                        $('#ModalUpdate').modal('hide')
+                    } else {
+                        console.error('Failed to update the tour.')
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
+        } else {
+            console.log('No changes detected')
+            $('#ModalUpdate').modal('hide')
+        }
+    })
+
     $('#confirmDeleteButton').on('click', function () {
         rowToDelete = $('#deleteRow').closest('tr')
         deleteId = rowToDelete.find('td').eq(1).text()
@@ -425,7 +324,7 @@ $(document).ready(function () {
                 if (typeof data === 'string') {
                     $('.tour-container').html(data)
                     $('#ModalCreate').modal('hide')
-                    $('#createtourForm').reset()
+                    $('#createtourForm')[0].reset()
                 } else if (!data.success) {
                     alert(data.message)
                 } else {
@@ -441,23 +340,26 @@ $(document).ready(function () {
     $('#createtourForm').on('submit', function (event) {
         event.preventDefault() // Ngăn gửi form
     })
-    $('#file').on('change', function (event) {
+    function handleFileChange(event, previewId) {
         var file = event.target.files[0]
         if (file) {
             var reader = new FileReader()
             reader.onload = function (e) {
-                $('#previewImage').attr('src', e.target.result)
-                $('#previewImage').show() // Show the preview image after loading
+                $(previewId).attr('src', e.target.result) // Cập nhật ảnh preview
+                $(previewId).show() // Hiển thị ảnh preview
             }
-            reader.readAsDataURL(file)
+            reader.readAsDataURL(file) // Đọc file và chuyển thành data URL
         }
+    }
+
+    // Áp dụng cho file input #file
+    $('#file').on('change', function (event) {
+        handleFileChange(event, '#previewImage') // Đảm bảo preview cho file input #file
     })
 
-    // Open modal with full image when the preview image is clicked
-    $('#previewImage').on('click', function () {
-        var fullImageSrc = $(this).attr('src') // Get the src of the preview image
-        $('#modalImage').attr('src', fullImageSrc) // Set the src in the modal
-        $('#fullImageModal').modal('show') // Show the modal
+    // Áp dụng cho file input #updateFile
+    $('#updateFile').on('change', function (event) {
+        handleFileChange(event, '#updatePreviewImage') // Đảm bảo preview cho file input #updateFile
     })
 
     const modalCreate = document.getElementById('ModalCreate')
@@ -468,5 +370,23 @@ $(document).ready(function () {
 
     modalCreate.addEventListener('hidden.bs.modal', () => {
         document.querySelector('[data-bs-target="#ModalCreate"]').focus() // Return focus to the trigger button
+    })
+    $('.shrink-image').on('click', function () {
+        const srcImage = $('#updatePreviewImage').attr('src')
+        console.log('src image: ', srcImage)
+
+        // Mã hóa URL để xử lý khoảng trắng
+        const encodedSrcImage = encodeURI(srcImage)
+
+        $('.preview')
+            .css('background-image', `url(${encodedSrcImage})`)
+            .toggleClass('show-preview')
+        $('.overlay').addClass('show')
+    })
+
+    $('.close-btn, .overlay').on('click', function (event) {
+        event.preventDefault()
+        $('.preview').removeClass('show-preview')
+        $('.overlay').removeClass('show')
     })
 })

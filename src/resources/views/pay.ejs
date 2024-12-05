@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Document</title>
+    <style>
+        .text {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        .arrow {
+            width: 100%;
+            margin-top: 100px;
+        }
+
+        .arrow i {
+            color: orange;
+            font-size: 20px;
+            margin-top: -5px;
+        }
+
+        .arrow a {
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+        }
+
+        .arrow a:hover {
+            color: aquamarine;
+        }
+
+        .info {
+            display: flex;
+            color: rgba(8, 6, 6, 0.782);
+        }
+
+        .info h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .pics {
+            width: 4%;
+            margin-top: 20px;
+        }
+
+        .timeline {
+            width: 100%;
+            margin-top: 20px;
+            margin-right: 300px;
+        }
+
+        .ve {
+            margin-top: 30px;
+        }
+
+        .plan {
+            width: 100%;
+            margin-top: 30px;
+            display: flex;
+        }
+
+        .plan h1 {
+            margin-bottom: 20px;
+        }
+
+        .left-plan {
+            width: 80%;
+        }
+
+        .right-plan h1 {
+            text-align: right;
+        }
+
+        .title {
+            display: flex;
+        }
+
+        .title h1 {
+            color: rgb(27, 64, 116);
+            margin-top: 30px;
+            font-size: 36px;
+            margin-right: 70px;
+        }
+
+        .contact h1 {
+            color: black;
+            font-size: 36px;
+        }
+
+        .title img {
+            margin: auto;
+            margin-left: 200px;
+        }
+
+        .solid-line {
+            border-top: 5px solid orange;
+            /*Độ dày và màu sắc */
+            margin: 20px 0;
+            /* Khoảng cách phía trên và dưới */
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+
+        .total {
+            width: 40%;
+            margin-left: 800px;
+            margin-bottom: 50px;
+        }
+
+        .frame {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .frame1 {
+            margin-bottom: 10px;
+        }
+
+        .line1 {
+            margin-top: 30px;
+            display: flex;
+        }
+
+        .line1 h1 {
+            margin-left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000db;
+        }
+
+        .line1 img {
+            margin: auto;
+            margin-top: -20px;
+        }
+
+        .line2 {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .adult {
+            display: flex;
+            gap: 60px;
+            margin-bottom: 5px;
+        }
+
+        .line2 h2 {
+            margin-right: 10px;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000af;
+        }
+
+        .line3 {
+            margin-top: 8px;
+            margin-left: 20px;
+            text-align: right;
+            display: flex;
+            margin-right: 50px;
+        }
+
+        .line3 h1 {
+            font-size: 30px;
+            font-weight: bold;
+            color: #000000db;
+        }
+
+        input {
+            width: 80%;
+            margin-right: 500px;
+            height: 50px;
+        }
+
+        .voucher {
+            width: 60%;
+        }
+
+        .mbbank h1,
+        .other h1 {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #000000db;
+        }
+
+        .mbbank p,
+        .other p {
+            text-align: justify;
+        }
+
+        .mb,
+        .ot {
+            display: flex;
+            width: 100%;
+        }
+
+        .mb input,
+        .ot input {
+            margin-right: 0px;
+            flex: 30%;
+            padding: 0px 10px;
+            height: 40px;
+        }
+
+        .ot input {
+            width: 500px;
+        }
+
+        .ot button {
+            width: 30%;
+        }
+
+        .blue {
+            color: #2196f3;
+            font-weight: bold;
+        }
+
+        .datcoc {
+            background-color: #35bdfc;
+            color: white;
+            padding: 20px 30px;
+        }
+
+        .datcoc p,
+        .datcoc h5 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .datcoc h5 {
+            margin-top: -10px;
+        }
+
+        .payment-info {
+            display: flex;
+            position: relative;
+        }
+
+        .gender-radio {
+            margin-bottom: 10px;
+        }
+
+        .form-check-label {
+            margin-left: -480px;
+            font-size: 24px;
+        }
+
+        .form-check-input {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+
+        .container h2 {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .payment-info {
+            display: flex;
+            height: auto;
+        }
+
+        .office {
+            margin-top: 100px;
+            border: 5px solid rgb(255, 196, 0);
+            flex: 70%;
+            height: 150px;
+            padding: 5px 30px;
+            margin-bottom: 50px;
+        }
+
+        .office h1 {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        .office a {
+            text-decoration: none;
+        }
+
+        .hidden {
+            display: none !important;
+            /* Ẩn các div */
+        }
+
+        .offline {
+            margin-top: 100px;
+            border: 5px solid rgb(255, 196, 0);
+            flex: 70%;
+            height: 500px;
+            padding: 5px 30px;
+            margin-bottom: 50px;
+        }
+
+        .offline img {
+            width: 100%;
+            height: 400px;
+        }
+
+        .offline h1 {
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .ck {
+            margin-top: 100px;
+            border: 5px solid rgb(255, 196, 0);
+            flex: 70%;
+            height: 160px;
+            padding: 5px 30px;
+            margin-bottom: 50px;
+        }
+
+        .ck h1 {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .mb button:hover,
+        .ot button:hover {
+            background-color: rgb(105, 212, 43);
+            color: white;
+        }
+
+        .left-item {
+            flex: 39%;
+            display: flex;
+        }
+
+        .right-item {
+            flex: 12%;
+        }
+
+        #check-order {
+            position: absolute;
+            right: 200px;
+        }
+        .payment-momo {
+            position: absolute;
+            right: 300px;
+            bottom: 75px;
+            display: inline-flex;
+            height: 50px;
+            width: 500px;
+            align-items: center; /* Căn giữa icon và text theo chiều dọc */
+            justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+            background-color: #a62d97;
+            color: white;
+            padding: 5px 10px; /* Điều chỉnh khoảng cách bên trong */
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 26px; /* Kích thước chữ */
+            line-height: 1; /* Giảm chiều cao dòng */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+            gap: 5px; /* Khoảng cách giữa icon và chữ */
+        }
+        
+        .momo-logo {
+            height: 40px; /* Chiều cao của icon */
+            width: auto; /* Tự động điều chỉnh chiều rộng để giữ tỉ lệ */
+            display: block;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="text">
+        <div class="arrow">
+            <a href="/homepage">TRANG CHỦ</a>
+            <i class="bi bi-chevron-right"></i>
+            <a href="#" id="order-id" data-value="<%= order_id %>">Mã đặt chỗ: <%= order_id %></a>
+        </div>
+        <div class="title">
+            <h1><strong><%= tour.tour_name %></strong></h1>
+            <img src="/img/plane.png" />
+        </div>
+        <div class="solid-line"></div>
+        <div class="info">
+            <div class="pics">
+                <img src="/img/roadmap.png" />
+            </div>
+            <div class="timeline">
+                <div class="di">
+                    <h1> <%= tour.day_go %> </h1>
+                    <h1> <%= tour.time_go %> </h1>
+                </div>
+                <div class="ve">
+                    <h1> <%= tour.day_back %> </h1>
+                    <h1> <%= tour.time_back %> </h1>
+                </div>
+            </div>
+            <div class="plan">
+                <div class="left-plan">
+                    <h1>Thời gian:</h1>
+                    <h1>Mã tour:</h1>
+                    <h1>Phương tiện:</h1>
+                    <h1>Khởi hành:</h1>
+                </div>
+                <div class="right-plan">
+                    <h1><%= tour.days %> Ngày <%= tour.nights %> Ðêm</h1>
+                    <h1><%= tour.tour_code %> </h1>
+                    <h1><%= tour.vehicle %> </h1>
+                    <h1><%= tour.departure_location %> </h1>
+                </div>
+            </div>
+        </div>
+        <div class="voucher">
+            <div class="mbbank">
+                <h1>MB-Bank Voucher:</h1>
+                <p>Quý khách vui lòng nhập mã ưu đãi và thanh toán bằng thẻ MB để hoàn tất áp dụng ưu đãi. Mã ưu đãi chỉ
+                    được áp dụng nếu quý khách hoàn tất thanh toán online bằng thẻ MB.</p>
+                <form class="mb">
+                    <input type="text" placeholder="Mã voucher - 8 ký tự">
+                    <input type="text" placeholder="6 số thẻ đầu tiên (4 với thẻ ATM)">
+                    <button>Kiểm tra và Sử dụng</button>
+                </form>
+            </div>
+            <div class="other">
+                <h1>Other Voucher:</h1>
+                <form class="ot">
+                    <input type="text" placeholder="Mã voucher">
+                    <button>Kiểm tra và Sử dụng</button>
+                </form>
+            </div>
+        </div>
+        <div class="total">
+            <div class="frame">
+                <div class="frame1">
+                    <div class="line1">
+                        <h1>Hành khách</h1>
+                        <img src="/img/people.png" />
+                    </div>
+                    <div class="line2">
+                        <div class="adult">
+                            <h2>Số lượng khách</h2>
+                            <h2> <%= number_of_passengers %> </h2>
+                        </div>
+                    </div>
+                    <div class="line3">
+                        <h1 class="left-item">Tổng cộng:</h1>
+                        <h2 class="blue" id="total-price"><%= total_price %></h2>
+                        <h1 class="right-item">VND</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="datcoc">
+            <p class="datcoc-text"></p> <!-- Đổi lớp thành datcoc-text để không bị trùng với lớp div -->
+            <h5>Sau thời gian này, nếu chưa thanh toán lần 1 (hoặc đặt cọc) hệ thống sẽ tự động hủy việc đặt chỗ của quý
+                khách.</h5>
+        </div>
+        <div class="payment-info">
+            <div class="container mt-5">
+                <h2>Thông tin thanh toán</h2>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pay" id="viva" value="viva" checked
+                        onclick="toggleDisplay()">
+                    <label class="form-check-label" for="viva">Thanh toán tại VivaViet Travel</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pay" id="cash" value="cash"
+                        onclick="toggleDisplay()">
+                    <label class="form-check-label" for="cash">Thanh toán tại địa chỉ liên hệ</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pay" id="banking" value="banking"
+                        onclick="toggleDisplay()">
+                    <label class="form-check-label" for="banking">Thanh toán chuyển khoản</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pay" id="momo" value="momo"
+                        onclick="toggleDisplay()">
+                    <label class="form-check-label" for="momo">Thanh toán bằng Momo</label>
+                </div>
+            </div>
+
+            <div class="office hidden">
+                <h1>TP.HCM</h1>
+                <p>Khu phố 6, P.Linh Trung, Tp.Thủ Đức, Tp.Hồ Chí Minh.</p>
+                <a href="#">Xem trên bản đồ Google</a>
+            </div>
+            <div class="offline hidden">
+                <h1>VivaViet Travel sẽ xác nhận và đến thu tiền trực tiếp tại địa chỉ của Quý khách.</h1>
+                <img src="/img/like.jpg">
+            </div>
+            <div class="ck hidden">
+                <h1>Thông tin tài khoản: TP.HCM</h1>
+                <h5>Công Ty TNHH Du Lịch Trần Việt</h5>
+                <div class="stk" style="display:flex">
+                    <h5 style="margin-right:5px">Số tài khoản:</h5>
+                    <h5 style="color:#35bdfc"> (028) 372 52002</h5>
+                </div>
+                <div class="bank" style="display:flex">
+                    <h5 style="margin-right:5px">Ngân hàng:</h5>
+                    <h5 style="color:rgb(2, 175, 118)"> Techcombank
+                        - Chi nhánh Tân Bình</h5>
+                </div>
+                <button id="check-order">Nếu bạn đã thanh toán <br> Hãy nhấn vào đây để hệ thống kiểm tra</button>
+            </div>
+            <div class="momo hidden payment-momo" id="handleMomoPayment" onclick="handleMoMoPayment()">
+                <img src="/img/momo_logo.png" alt="MoMo Logo" class="momo-logo">
+                Thanh toán bằng MoMo
+            </div>
+            
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const showLoading = function () {
+            Swal.fire({
+                title: 'Now checking for order',
+                allowEscapeKey: false,
+                allowOutsideClick: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then(
+                () => {},
+                (dismiss) => {
+                    if (dismiss === 'timer') {
+                        console.log('closed by timer!!!!');
+                        Swal.fire({
+                            title: 'Finished!',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    }
+                }
+            );
+        }
+
+        function toggleDisplay() {
+            // Ẩn tất cả các div
+            document.querySelector('.office').classList.add('hidden')
+            document.querySelector('.offline').classList.add('hidden')
+            document.querySelector('.ck').classList.add('hidden')
+            document.querySelector('.momo').classList.add('hidden')
+
+            // Lấy giá trị của radio button được chọn
+            const selectedValue = document.querySelector('input[name="pay"]:checked').value
+
+            // Hiển thị div tương ứng dựa trên giá trị đã chọn
+            if (selectedValue === 'viva') {
+                document.querySelector('.office').classList.remove('hidden')
+            } else if (selectedValue === 'cash') {
+                document.querySelector('.offline').classList.remove('hidden')
+            } else if (selectedValue === 'banking') {
+                document.querySelector('.ck').classList.remove('hidden')
+            } else if (selectedValue === 'momo') {
+                document.querySelector('.momo').classList.remove('hidden')
+            }
+        }
+        // Lấy thời gian hiện tại
+        const now = new Date()
+
+        now.setMinutes(now.getMinutes() + 5)
+
+        // Định dạng lại ngày giờ theo kiểu "hh:mm ngày dd-mm-yyyy"
+        const hours = now.getHours().toString().padStart(2, '0')
+        const minutes = now.getMinutes().toString().padStart(2, '0')
+        const day = now.getDate().toString().padStart(2, '0')
+        const month = (now.getMonth() + 1).toString().padStart(2, '0') // Tháng bắt đầu từ 0
+        const year = now.getFullYear()
+
+        // Tạo chuỗi định dạng ngày giờ mới
+        const formattedTime = `${hours}:${minutes} ngày ${day}-${month}-${year}`
+
+        // Cập nhật nội dung trong thẻ <p>
+        $('.datcoc-text').text(`Quý khách vui lòng thanh toán lần 1 (hoặc đặt cọc) trước ${formattedTime}.`)
+        // Gọi hàm toggleDisplay để hiển thị mặc định khi trang tải
+        window.onload = toggleDisplay
+
+        $('#check-order').click(function () {
+            Swal.fire({
+                title: 'Now checking for order',
+                allowEscapeKey: false,
+                allowOutsideClick: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            })
+            const order_id = $('#order-id').data('value')
+
+            function checkOrder(order_id, retryCount = 0) {
+                fetch(`/check_order/${order_id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire({
+                                title: 'Order Completed!',
+                                text: 'Redirecting you to the homepage...',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false,
+                            }).then(() => {
+                                window.location.href = data.redirectTo; // Điều hướng tới URL trả về
+                            });
+                        } else {
+                            // Nếu không thành công và retryCount < 10, thử lại sau 5 giây
+                            if (retryCount < 10) {
+                                setTimeout(() => {
+                                    checkOrder(order_id, retryCount + 1); // Gọi lại hàm để thử lại
+                                }, 5000); // 5 giây
+                            } else {
+                                Swal.fire({
+                                    title: 'Order not completed',
+                                    text: 'We were unable to process your order. Please try again later.',
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error while fetching order status:', error);
+                        if (retryCount < 3) {
+                            setTimeout(() => {
+                                checkOrder(order_id, retryCount + 1); // Gọi lại hàm để thử lại
+                            }, 5000); // 5 giây
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Unable to connect. Please try again later.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+            }
+            // Gọi hàm
+            checkOrder(order_id);
+            
+        })
+        function showErrorAlert(message) {
+            Swal.fire({
+                icon: 'error',
+                text: message,
+                timer: 3000,
+                allowOutsideClick: false, 
+            });
+        }
+        async function handleMoMoPayment() {
+            const order_id = $('#order-id').data('value')
+            let amount = $('#total-price').text()
+            amount = 1000
+            const redirectTo = window.location.href
+            console.log('amount: ', amount)
+            fetch('/payment',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    order_id,
+                    amount,
+                    redirectTo
+                })
+            })
+            .then(response => response.json())
+            .then((data) => {
+                console.log(data)
+                if(data.payUrl) {
+                    window.location.href = data.payUrl
+                }
+            })
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

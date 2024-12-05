@@ -31,10 +31,12 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "compile-sass": "^2.0.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
@@ -54,7 +56,8 @@
     "path": "^0.12.7",
     "save-dev": "^0.0.1-security",
     "sequelize": "^6.37.5",
-    "sequelize-auto": "^0.8.8"
+    "sequelize-auto": "^0.8.8",
+    "sweetalert2": "^11.14.5"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",

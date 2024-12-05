@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán thành công</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Hiển thị thông báo thành công
+        Swal.fire({
+            title: 'Thanh toán thành công!',
+            text: 'Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'Trang chủ',
+            cancelButtonText: 'Xem vé của bạn',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Chuyển về trang chủ
+                window.location.href = '/';
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Chuyển tới trang xem vé
+                window.location.href = '/your-ticket'; // Thay đường dẫn bằng route xem vé
+            }
+        });
+    </script>
+</body>
+</html>

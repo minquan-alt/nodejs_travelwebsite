@@ -11,6 +11,7 @@ const getTours = async (req, res) => {
 
         if (!tour_ids_result.length) {
             return res.status(404).json({
+                success: true,
                 message: 'No tours found for the user.',
                 tours: [],
             })
@@ -21,21 +22,25 @@ const getTours = async (req, res) => {
 
         // Truy vấn chi tiết các tour dựa trên danh sách tour_id
         const tours_query = `
-            SELECT id, nation, tour_name, time_go, time_back, status, max_quantity_of_people, original_price 
+            SELECT id, nation, tour_name, time_go, time_back, max_quantity_of_people, original_price 
             FROM Tours 
             WHERE id IN (?)
         `
         const [tours_result] = await pool.query(tours_query, [tour_ids])
+        console.log(tours_result)
 
         // Trả về danh sách các tour
-        return res.status(200).json({
+        return res.status(200).render('admin_tour/show', {
+            layout: false,
             message: 'Tours fetched successfully.',
+            success: true,
             tours: tours_result,
         })
     } catch (error) {
         console.error('Error fetching tours:', error)
         return res.status(500).json({
             message: 'An error occurred while fetching tours.',
+            success: false,
             error: error.message,
         })
     }

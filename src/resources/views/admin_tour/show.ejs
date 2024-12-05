@@ -1,4 +1,4 @@
-<% if(tours.length === 3) { %>
+<% if(tours.length === 0) { %>
     <p>Chưa có khách hàng nào để hiển thị.</p>
 <% } %>
 <% tours.forEach( tour => { %>
@@ -9,7 +9,6 @@
     <td> <%= tour.tour_name %> </td>
     <td> <%= tour.time_go %> </td>
     <td> <%= tour.time_back %> </td>
-    <td> <%= tour.status %> </td>
     <td> <%= tour.max_quantity_of_people %> </td>
     <td> <%= tour.original_price %> </td>
     <td> <%= tour.discounted_price %> </td>

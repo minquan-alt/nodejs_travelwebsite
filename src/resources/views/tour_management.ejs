@@ -1,63 +1,63 @@
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active"><a href="#"><b>Danh sách tour</b></a></li>
+    </ul>
+    <div id="clock"></div>
+  </div>
 
-  <main class="app-content">
-    <div class="app-title">
-      <ul class="app-breadcrumb breadcrumb side">
-        <li class="breadcrumb-item active"><a href="#"><b>Danh sách tour</b></a></li>
-      </ul>
-      <div id="clock"></div>
-    </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="tile">
-          <div class="tile-body">
+          <div class="row element-button">
+            <div class="col-sm-2" id="add-new-element">
 
-            <div class="row element-button">
-              <div class="col-sm-2" id="add-new-element">
-
-                <a class="btn btn-add btn-sm add" data-url="form-add-tour" data-bs-toggle="modal"
+              <a class="btn btn-add btn-sm add" data-url="form-add-tour" data-bs-toggle="modal"
                 data-bs-target="#ModalCreate" title="Thêm" id="add-tour"><i class="fas fa-plus"></i>
-                  Tạo mới tour
-                </a>
-              </div>
-              <div class="col-sm-2" id="col-delete-all">
-                <a class="btn btn-danger btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i
-                    class="fas fa-trash-alt"></i> Xóa tất cả </a>
-              </div>
+                Tạo mới tour
+              </a>
             </div>
-            <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
-              id="sampleTable">
-              <thead>
-                <tr>
-                  <th width="10"><input type="checkbox" id="all"></th>
-                  <th width="50">Mã tour</th>
-                  <th width="100">Quốc gia</th>
-                  <th width="150">Tên tour</th>
-                  <th width="150">Ngày đi</th>
-                  <th width="150">Ngày về</th>
-                  <th width="150">Tình trạng</th>
-                  <th width="20">Số lượng khách</th>
-                  <th width="100">Giá giảm còn</th>
-                  <th width="100">Tính năng</th>
-                </tr>
-              </thead>
-              <tbody class="tour-container">
-                <%- include('admin_tour/show', {tours: tours}) %>
-              </tbody>
-            </table>
+            <div class="col-sm-2" id="col-delete-all">
+              <a class="btn btn-danger btn-sm trash" type="button" title="Xóa" onclick="myFunction(this)"><i
+                  class="fas fa-trash-alt"></i> Xóa tất cả </a>
+            </div>
           </div>
+          <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
+            id="sampleTable">
+            <thead>
+              <tr>
+                <th width="10"><input type="checkbox" id="all"></th>
+                <th width="50">Mã tour</th>
+                <th width="100">Quốc gia</th>
+                <th width="150">Tên tour</th>
+                <th width="150">Ngày đi</th>
+                <th width="150">Ngày về</th>
+                <th width="20">Số lượng khách</th>
+                <th width="100">Giá gốc</th>
+                <th width="100">Giá giảm còn</th>
+                <th width="100">Tính năng</th>
+              </tr>
+            </thead>
+            <tbody class="tour-container">
+              <%- include('admin_tour/show', {tours: tours}) %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </main>
+  </div>
+</main>
 
 <!-- Modal Cập Nhật Tour -->
 
 
-<div class="modal fade" id="ModalUpdate" tabindex="-1" aria-labelledby="ModalUpdateLabel" data-bs-backdrop="static" data-bs-keyboard="false" >
+<div class="modal fade" id="ModalUpdate" tabindex="-1" aria-labelledby="ModalUpdateLabel" data-bs-backdrop="static"
+  data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <form id="updatetourForm">
+      <form id="updateTourForm">
         <div class="modal-header">
           <h5 class="modal-title" id="ModalUpdateLabel">Cập Nhật Tour</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -66,14 +66,16 @@
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="updateName" class="form-label">Tên chuyến đi</label>
-              <input type="text" id="updateName" name="tour_name" class="form-control" placeholder="Nhập tên chuyến đi" required>
+              <input type="text" id="updateName" name="tour_name" class="form-control" placeholder="Nhập tên chuyến đi"
+                required>
             </div>
             <div class="col-md-6">
               <label for="updateDescription" class="form-label">Mô tả</label>
-              <textarea id="updateDescription" name="description" class="form-control" placeholder="Nhập mô tả" required></textarea>
+              <textarea id="updateDescription" name="description" class="form-control" placeholder="Nhập mô tả"
+                required></textarea>
             </div>
           </div>
-          
+
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="updateDays" class="form-label">Số ngày</label>
@@ -81,58 +83,71 @@
             </div>
             <div class="col-md-6">
               <label for="updateNights" class="form-label">Số đêm</label>
-              <input type="number" id="updateNights" name="nights" class="form-control" placeholder="Nhập số đêm" required>
+              <input type="number" id="updateNights" name="nights" class="form-control" placeholder="Nhập số đêm"
+                required>
             </div>
           </div>
-
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="updateDepartureLocation" class="form-label">Địa điểm khởi hành</label>
-              <input type="text" id="updateDepartureLocation" name="departure_location" class="form-control" placeholder="Nhập địa điểm khởi hành" required>
+              <input type="text" id="updateDepartureLocation" name="departure_location" class="form-control"
+                placeholder="Nhập địa điểm khởi hành" required>
             </div>
             <div class="col-md-6">
               <label for="image" class="form-label">Hình ảnh đại diện</label>
               <div class="image d-flex justify-content-between">
                 <input type="file" name="image" id="updateFile" class="form-control" accept=".jpg, .png" />
-                <img id="updatePreviewImage" src="#" alt="Preview" style="cursor: pointer; width: 100px; height: 45px;" />
+                <div class="shrink-image">
+                  <img id="updatePreviewImage" src="#" alt="Preview" style="width: 100%" />
+                </div>
+                <div class="overlay"></div>
+                <div class="preview">
+                  <button class="close-btn">X</button>
+                </div>
               </div>
             </div>
           </div>
-          
+
 
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="updateTourCode" class="form-label">Mã Tour</label>
-              <input type="text" id="updateTourCode" name="tour_code" class="form-control" placeholder="Nhập mã tour" required>
+              <input type="text" id="updateTourCode" name="tour_code" class="form-control" placeholder="Nhập mã tour"
+                required>
             </div>
             <div class="col-md-6">
               <label for="updateNation" class="form-label">Quốc gia</label>
-              <input type="text" id="updateNation" name="nation" class="form-control" placeholder="Nhập quốc gia" required>
-            </div>
-          </div>
-          
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="updateOriginalPrice" class="form-label">Giá gốc</label>
-              <input type="number" step="0.01" id="updateOriginalPrice" name="original_price" class="form-control" placeholder="Nhập giá gốc" required>
-            </div>
-            <div class="col-md-6">
-              <label for="updateDiscountedPrice" class="form-label">Giá giảm</label>
-              <input type="number" step="0.01" id="updateDiscountedPrice" name="discounted_price" class="form-control" placeholder="Nhập giá giảm">
+              <input type="text" id="updateNation" name="nation" class="form-control" placeholder="Nhập quốc gia"
+                required>
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col-md-6">
-              <label for="updateStatus" class="form-label">Trạng thái</label>
-              <select id="updateStatus" name="status" class="form-select" required>
-                <option value="available">Có sẵn</option>
-                <option value="not available">Không có sẵn</option>
+              <label for="updateOriginalPrice" class="form-label">Giá gốc</label>
+              <input type="number" step="0.01" id="updateOriginalPrice" name="original_price" class="form-control"
+                placeholder="Nhập giá gốc" required>
+            </div>
+            <div class="col-md-6">
+              <label for="updateDiscountedPrice" class="form-label">Giá giảm</label>
+              <input type="number" step="0.01" id="updateDiscountedPrice" name="discounted_price" class="form-control"
+                placeholder="Nhập giá giảm">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="type" class="form-label">Loại hình</label>
+              <select id="updateType" name="type" class="form-select">
+                <option value="Du lịch độc lạ">Du lịch độc lạ</option>
+                <option value="Hành hương Công giáo">Hành hương Công giáo</option>
+                <option value="Tour theo lịch trình có sẵn">Tour theo lịch trình có sẵn</option>
               </select>
             </div>
             <div class="col-md-6">
               <label for="updateMaxQuantity" class="form-label">Số lượng tối đa người tham gia</label>
-              <input type="number" id="updateMaxQuantity" name="max_quantity_of_people" class="form-control" placeholder="Nhập số lượng tối đa" required>
+              <input type="number" id="updateMaxQuantity" name="max_quantity_of_people" class="form-control"
+                placeholder="Nhập số lượng tối đa" required>
             </div>
           </div>
 
@@ -149,15 +164,15 @@
 
           <div class="row mb-3">
             <div class="col-md-6">
-              <label for="updateIsFeatured" class="form-label">Có nổi bật</label>
-              <select id="updateIsFeatured" name="is_featured" class="form-select">
-                <option value="1">Có</option>
-                <option value="0">Không</option>
+              <label for="updateIsActive" class="form-label">Trạng thái</label>
+              <select id="updateIsActive" name="is_active" class="form-select" required>
+                <option value="1">Có sẵn</option>
+                <option value="0">Không có sẵn</option>
               </select>
             </div>
             <div class="col-md-6">
-              <label for="updateIsActive" class="form-label">Hoạt động</label>
-              <select id="updateIsActive" name="is_active" class="form-select">
+              <label for="updateIsFeatured" class="form-label">Ưu tiên</label>
+              <select id="updateIsFeatured" name="is_featured" class="form-select" required>
                 <option value="1">Có</option>
                 <option value="0">Không</option>
               </select>
@@ -175,7 +190,7 @@
 </div>
 <!-- Modal Cập Nhật Tour -->
 
-<div class="modal fade" id="basicEditModal" tabindex="-1" aria-labelledby="basicEditModalLabel" >
+<div class="modal fade" id="basicEditModal" tabindex="-1" aria-labelledby="basicEditModalLabel">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -201,13 +216,6 @@
             <input type="date" id="basicTimeBack" name="time_back" class="form-control">
           </div>
           <div class="mb-3">
-            <label for="basicStatus" class="form-label">Trạng Thái</label>
-            <select id="basicStatus" name="status" class="form-select">
-              <option value="available">Có sẵn</option>
-              <option value="not available">Không có sẵn</option>
-            </select>
-          </div>
-          <div class="mb-3">
             <label for="basicMaxQuantity" class="form-label">Số Lượng Khách Tối Đa</label>
             <input type="number" id="basicMaxQuantity" name="max_quantity_of_people" class="form-control">
           </div>
@@ -221,7 +229,8 @@
           </div>
           <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
-            <button type="button" class="btn btn-secondary" id="detailEdit" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ModalUpdate">
+            <button type="button" class="btn btn-secondary" id="detailEdit" data-bs-dismiss="modal"
+              data-bs-toggle="modal" data-bs-target="#ModalUpdate">
               Chỉnh Sửa Chi Tiết
             </button>
           </div>
@@ -234,25 +243,26 @@
 
 
 
-  <!-- MODAL xoá  -->
-  <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalConfirmDeleteLabel" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalConfirmDeleteLabel">Xác nhận xóa</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Bạn có chắc chắn muốn xóa dòng này không?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-danger" id="confirmDeleteButton">Xóa</button>
-        </div>
+<!-- MODAL xoá  -->
+<div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalConfirmDeleteLabel" aria-hidden="true"
+  data-bs-backdrop="true" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalConfirmDeleteLabel">Xác nhận xóa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa dòng này không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Xóa</button>
       </div>
     </div>
   </div>
-  <!-- MODAL xoá  -->
+</div>
+<!-- MODAL xoá  -->
 
 
 <!-- Modal Tạo Mới Tour -->
@@ -269,14 +279,16 @@
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="tourName" class="form-label">Tên chuyến đi</label>
-              <input type="text" id="tourName" name="tour_name" class="form-control" placeholder="Nhập tên chuyến đi" required>
+              <input type="text" id="tourName" name="tour_name" class="form-control" placeholder="Nhập tên chuyến đi"
+                required>
             </div>
             <div class="col-md-6">
               <label for="description" class="form-label">Mô tả</label>
-              <textarea id="description" name="description" class="form-control" placeholder="Nhập mô tả" required></textarea>
+              <textarea id="description" name="description" class="form-control" placeholder="Nhập mô tả"
+                required></textarea>
             </div>
           </div>
-          
+
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="days" class="form-label">Số ngày</label>
@@ -291,7 +303,8 @@
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="departureLocation" class="form-label">Địa điểm khởi hành</label>
-              <input type="text" id="departureLocation" name="departure_location" class="form-control" placeholder="Nhập địa điểm khởi hành" required>
+              <input type="text" id="departureLocation" name="departure_location" class="form-control"
+                placeholder="Nhập địa điểm khởi hành" required>
             </div>
             <div class="col-md-6">
               <label for="image" class="form-label">Hình ảnh đại diện</label>
@@ -299,15 +312,16 @@
                 <input type="file" name="image" id="file" class="form-control" accept=".jpg, .png" required />
                 <img id="previewImage" src="#" alt="Preview" style="cursor: pointer; width: 100px; height: 45px;" />
               </div>
-              
+
             </div>
           </div>
-          
+
 
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="tour_code" class="form-label">Mã Tour</label>
-              <input type="text" id="tour_code" name="tour_code" class="form-control" placeholder="Nhập mã tour" required>
+              <input type="text" id="tour_code" name="tour_code" class="form-control" placeholder="Nhập mã tour"
+                required>
             </div>
             <div class="col-md-6">
               <label for="nation" class="form-label">Quốc gia</label>
@@ -317,25 +331,29 @@
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="originalPrice" class="form-label">Giá gốc</label>
-              <input type="number" step="0.01" id="originalPrice" name="original_price" class="form-control" placeholder="Nhập giá gốc" required>
+              <input type="number" step="0.01" id="originalPrice" name="original_price" class="form-control"
+                placeholder="Nhập giá gốc" required>
             </div>
             <div class="col-md-6">
               <label for="discountedPrice" class="form-label">Giá giảm</label>
-              <input type="number" step="0.01" id="discountedPrice" name="discounted_price" class="form-control" placeholder="Nhập giá giảm" required>
+              <input type="number" step="0.01" id="discountedPrice" name="discounted_price" class="form-control"
+                placeholder="Nhập giá giảm" required>
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col-md-6">
-              <label for="status" class="form-label">Trạng thái</label>
-              <select id="status" name="status" class="form-select" required>
-                <option value="available">Có sẵn</option>
-                <option value="not available">Không có sẵn</option>
+              <label for="type" class="form-label">Loại hình</label>
+              <select id="type" name="type" class="form-select">
+                <option value="Du lịch độc lạ">Du lịch độc lạ</option>
+                <option value="Hành hương Công giáo">Hành hương Công giáo</option>
+                <option value="Tour theo lịch trình có sẵn">Tour theo lịch trình có sẵn</option>
               </select>
             </div>
             <div class="col-md-6">
               <label for="maxQuantity" class="form-label">Số lượng tối đa người tham gia</label>
-              <input type="number" id="maxQuantity" name="max_quantity_of_people" class="form-control" placeholder="Nhập số lượng tối đa" required>
+              <input type="number" id="maxQuantity" name="max_quantity_of_people" class="form-control"
+                placeholder="Nhập số lượng tối đa" required>
             </div>
           </div>
 
@@ -352,19 +370,20 @@
 
           <div class="row mb-3">
             <div class="col-md-6">
-              <label for="isFeatured" class="form-label">Có nổi bật</label>
+              <label for="isActive" class="form-label">Trạng thái</label>
+              <select id="isActive" name="is_active" class="form-select">
+                <option value="1">Có sẵn</option>
+                <option value="0">Không có sẵn</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="isFeatured" class="form-label">Ưu tiên</label>
               <select id="isFeatured" name="is_featured" class="form-select">
                 <option value="1">Có</option>
                 <option value="0">Không</option>
               </select>
             </div>
-            <div class="col-md-6">
-              <label for="isActive" class="form-label">Hoạt động</label>
-              <select id="isActive" name="is_active" class="form-select">
-                <option value="1">Có</option>
-                <option value="0">Không</option>
-              </select>
-            </div>
+
           </div>
 
         </div>
@@ -379,7 +398,8 @@
 <!-- Modal Tạo Mới Tour -->
 
 <!-- Modal for full image preview -->
-<div class="modal fade" id="fullImageModal" tabindex="-1" aria-labelledby="fullImageModalLabel" aria-hidden="true" data-bs-backdrop="true" hidden>
+<div class="modal fade" id="fullImageModal" tabindex="-1" aria-labelledby="fullImageModalLabel" aria-hidden="true"
+  data-bs-backdrop="true" hidden>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -397,4 +417,4 @@
 
 
 
-  <script src="/js/tour_management.js"></script>
+<script src="/js/tour_management.js"></script>
