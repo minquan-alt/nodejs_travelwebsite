@@ -11,7 +11,7 @@ img {
     font-size: 24px;
   }
   a:hover {
-    color: blue;
+    color: red;
   }
   .content {
     display: flex; /* Sử dụng Flexbox để căn chỉnh */
@@ -620,7 +620,4 @@ img {
         margin-bottom:10px;
         margin-top:15px;
     }
-    .sticky{
-        position:sticky;
-        bottom:0px;
-    }
+    
