@@ -50,10 +50,20 @@ document.getElementById('btnLoadMore').addEventListener('click', function () {
         })
 })
 
+$(document).on('click', '.icon-container', function () {
+    const icons = $(this).find('.fa-heart') // Tìm cả hai biểu tượng trong container
+    icons.each(function () {
+        $(this).toggleClass('hidden') // Chuyển đổi lớp 'hidden' cho từng biểu tượng
+        console.log('You clicked heart')
+    })
+})
+
 $(window).on('load', function () {
+    //hiệu ứng trái tim
     AOS.init({
         duration: 1000, // Set the default duration for all AOS animations
     })
+
     // Ẩn loading khi DOM và ảnh đã tải xong
     $('#loading').hide()
     let prevScrollpos = window.scrollY // Initialize with scrollY
