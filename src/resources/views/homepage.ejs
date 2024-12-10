@@ -163,13 +163,14 @@
     </div>
 
     <div class="container my-4">
-        <h3 class="tour-title">
+        <h3 class="tour-title" data-aos="fade-up"
+        data-aos-anchor-placement="center-bottom">
             <i class="fas fa-compass text-primary me-2"></i> TOUR CHO BẠN
         </h3>
-        <div class="row" id="tour-container" data-aos="zoom-in-down">
+        <div class="row" id="tour-container">
             <!-- Render từng tour -->
             <% tours.forEach(tour => { %>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4" data-aos="zoom-in-up">
                     <div class="card tour-card">
                         <img src="<%= tour.image %>" class="card-img-top" alt="<%= tour.tour_name %>">
                         <div class="card-body">
@@ -233,7 +234,7 @@
         <div class="row" >
             <!-- Loop through each destination in the current group -->
             <% destinations.slice(i, i + 3).forEach(destination => { %>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-3" data-aos="zoom-out-up">
                 <div class="card position-relative">
                     <img src="<%= destination.image %>" alt="<%= destination.name %>" class="card-img"
                         style="object-fit: cover; height: 200px;">
@@ -267,30 +268,41 @@
 ]
 -->
     <!-- CHÚNG TÔI TỰ HÀO -->
-    <h3 style="text-align: center; margin-top: 0;"><i class="fas fa-trophy"></i> CHÚNG TÔI TỰ HÀO</h3>
+     <div class=""></div>
+    <h3 style="text-align: center; margin-top: 0;"><i class="fas fa-trophy" data-aos="fade-down"
+        data-aos-easing="linear"
+        data-aos-duration="1000"></i><div class="" data-aos="fade-up"
+        data-aos-easing="linear"
+        data-aos-duration="1000" style="display:inline block">CHÚNG TÔI TỰ HÀO</div></h3>
 
     <div class="container-proud my-5 text-center">
         <div class="row mt-4">
             <!-- Customer Count -->
-            <div class="col-md-3" >
+            <div class="col-md-3" data-aos="fade-right"
+            data-aos-easing="ease-in-sine">
                 <div class="counter-icon"><i class="fas fa-passport"></i></div>
                 <h2 class="counter" data-target="102.417">102.417</h2>
                 <p>Khách hàng</p>
             </div>
             <!-- Places Count -->
-            <div class="col-md-3">
+            <div class="col-md-3" data-aos="fade-up"
+            data-aos-easing="ease-in-sine">
                 <div class="counter-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <h2 class="counter" data-target="589">587</h2>
                 <p>Điểm tham quan</p>
             </div>
             <!-- Tours Count -->
-            <div class="col-md-3" >
+            <div class="col-md-3" data-aos="fade-left"
+            data-aos-easing="ease-in-sine">
                 <div class="counter-icon"><i class="fas fa-globe"></i></div>
                 <h2 class="counter" data-target="274">274</h2>
                 <p>Tours</p>
             </div>
             <!-- Tour Types Count -->
-            <div class="col-md-3" >
+            <div class="col-md-3" 
+            data-aos="fade-up"
+            data-aos-anchor-placement="center-bottom"
+            data-aos-easing="ease-in-sine">
                 <div class="counter-icon"><i class="fas fa-landmark"></i></div>
                 <h2 class="counter" data-target="3">3</h2>
                 <p>Loại tour</p>
