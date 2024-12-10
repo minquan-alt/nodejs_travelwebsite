@@ -1,7 +1,61 @@
+document.getElementById('btnLoadMore').addEventListener('click', function () {
+    const tourContainer = document.getElementById('tour-container')
+    const currentPage = parseInt(this.dataset.page || '1', 10) + 1 // Lấy trang hiện tại
+    this.dataset.page = currentPage // Cập nhật số trang
+    console.log('currentpage: ', currentPage)
+    fetch(`/homepage?page=${currentPage}`, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            const { tours } = data
+            if (tours.length > 0) {
+                tours.forEach((tour) => {
+                    const tourHTML = `
+                        <div class="col-md-4 mb-4 tour-item">
+                            <div class="card tour-card">
+                                <img src="${tour.image}" class="card-img-top" alt="${tour.tour_name}">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="tour-info">
+                                            <i class="fas fa-sun"></i> ${tour.days} ngày
+                                            <i class="fas fa-moon"></i> ${tour.nights} đêm
+                                        </span>
+                                    </div>
+                                    <h5 class="tour-title">${tour.tour_name}</h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        ${'<i class="fas fa-star text-warning"></i>'.repeat(Math.floor(tour.rating))}
+                                        ${tour.rating % 1 !== 0 ? '<i class="fas fa-star-half-alt text-warning"></i>' : ''}
+                                    </div>
+                                    <p class="card-text">${tour.description}</p>
+                                    <ul class="list-unstyled mb-3">
+                                        <li><strong>Khởi hành:</strong> ${tour.departure_location}</li>
+                                        <li><strong>Mã tour:</strong> ${tour.tour_code}</li>
+                                    </ul>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="/tour_detail/${tour.id}" class="btn btn-primary btn-sm">Chọn</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                    tourContainer.insertAdjacentHTML('beforeend', tourHTML)
+                })
+            } else {
+                document.getElementById('btnLoadMore').style.display = 'none'
+            }
+        })
+        .catch((error) => {
+            console.error('Error loading more tours:', error)
+        })
+})
+
 $(window).on('load', function () {
+    AOS.init({
+        duration: 1000, // Set the default duration for all AOS animations
+    })
     // Ẩn loading khi DOM và ảnh đã tải xong
     $('#loading').hide()
-
     let prevScrollpos = window.scrollY // Initialize with scrollY
     let threshold = 50 // Set a threshold value for scroll position
     let ticking = false

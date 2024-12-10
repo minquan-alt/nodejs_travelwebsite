@@ -32,18 +32,25 @@ class WebsiteController {
     async getHomePage(req, res) {
         try {
             const result = await websiteService.renderHomepage(req)
-            const { tours, destinations, isLoggedIn, isAdmin } = result.data
+            const { tours } = result.data
+
+            if (req.xhr) {
+                // Kiểm tra nếu request là AJAX
+                return res.json({ tours })
+            }
+
+            const { destinations, isLoggedIn, isAdmin } = result.data
             res.render('homepage', {
-                tours: tours,
-                destinations: destinations,
+                tours,
+                destinations,
                 isLoggedIn,
-                path,
             })
         } catch (error) {
             console.log(error)
             res.status(500).send('Internal Server Error')
         }
     }
+
     logout(req, res) {
         req.session.destroy((err) => {
             if (err) {

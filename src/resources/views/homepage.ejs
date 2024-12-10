@@ -1,10 +1,10 @@
     <!-- Banner -->
-    <div class="banner">
+    <div class="banner" data-aos="fade-up">
     </div>
 
 
     <!-- Taskbar Section -->
-    <div class="taskbar d-flex justify-content-around align-items-center py-3 bg-white shadow-sm" >
+    <div class="taskbar d-flex justify-content-around align-items-center py-3 bg-white shadow-sm" data-aos="fade-up">
         <div class="d-flex align-items-center">
             <i class="fas fa-camera-retro fa-lg text-primary me-2"></i>
             <a href="#" class="text-primary">Thiết kế tour</a>
@@ -166,7 +166,7 @@
         <h3 class="tour-title">
             <i class="fas fa-compass text-primary me-2"></i> TOUR CHO BẠN
         </h3>
-        <div class="row" id="tour-container">
+        <div class="row" id="tour-container" data-aos="zoom-in-down">
             <!-- Render từng tour -->
             <% tours.forEach(tour => { %>
                 <div class="col-md-4 mb-4">
@@ -201,6 +201,7 @@
                 </div>
             <% }); %>
         </div>
+        <button type="button" class="btn btn-outline-primary load-more-tour" id="btnLoadMore">Xem thêm</button>
     </div>
 
     <!-- VÍ DỤ KHI INSERT DỮ LIỆU

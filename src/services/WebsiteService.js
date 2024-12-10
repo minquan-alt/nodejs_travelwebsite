@@ -43,11 +43,21 @@ class WebsiteService {
         }
     }
     async renderHomepage(req) {
+        const { page = 1 } = req.query // Lấy số trang từ query (mặc định là 1)
+        const limit = 6 // Số lượng tours mỗi lần load
+        const offset = (page - 1) * limit // Tính offset từ số trang
+
         try {
-            const [tours] = await pool.query('SELECT * FROM Tours')
+            // Lấy 6 tours từ cơ sở dữ liệu theo phân trang
+            const [tours] = await pool.query(
+                'SELECT * FROM Tours LIMIT ? OFFSET ?',
+                [limit, offset]
+            )
+
             const [destinations] = await pool.query(
                 'SELECT * FROM Destinations'
             )
+
             let isLoggedIn = false
             let isAdmin = false
 
@@ -58,7 +68,6 @@ class WebsiteService {
                     isAdmin = true
                 }
             }
-            console.log('isAdmin: ', isAdmin)
 
             return {
                 success: true,
