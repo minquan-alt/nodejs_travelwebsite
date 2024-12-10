@@ -370,3 +370,31 @@ p {
     font-size: 1.2em;
     color: #044c64;
 }
+
+.icon-container {
+    position: relative; /* Để chứa các biểu tượng */
+    display: inline-block; /* Để biểu tượng không chiếm toàn bộ chiều rộng */
+    cursor: pointer; /* Con trỏ khi hover */    
+    margin-right:40px;
+    margin-bottom:20px;
+}
+
+.fa-heart {
+    font-size: 24px;
+    position: absolute; /* Đặt các biểu tượng chồng lên nhau */
+    top: 0;
+    transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi độ mờ */
+    color: rgb(255, 217, 0); /* Màu sắc của biểu tượng */
+}
+
+.fa-heart.hidden {
+    opacity: 0; /* Ẩn biểu tượng */
+}
+
+.icon-container:hover .fa-heart:first-child {
+    opacity: 0; /* Ẩn biểu tượng rỗng khi hover */
+}
+
+.icon-container:hover .fa-heart:last-child {
+    opacity: 1; /* Hiện biểu tượng đầy khi hover */
+}
