@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/tour_detail.css">
   <title>Chi tiết tour</title>
@@ -106,7 +107,7 @@
         <div class="timeline1">
           <h2><strong>LỊCH TRÌNH</strong></h2>
           <p><em>(Nhấp từng ngày để xem chi tiết)</em></p>
-          <div class="timeline">
+          <div class="timeline1">
             <div class="timeline">
               <% if (tour.itinerary) { %>
                 <% tour.itinerary.forEach((item, index)=> { %>
@@ -249,80 +250,84 @@
                 <button class="tk">Thông tin tham khảo</button>
               </div>
             </div>
-            <div class="right-content">
-              <section class="p-4 text-center w-100">
-                <!-- Facebook -->
-                <a class="m-1" style="color: #3b5998" href="#!" role="button"><i
-                    class="fab fa-facebook-f fa-lg"></i></a>
+            
+          </div>
+        </div>
+      </div>
+      <div class="right-content">
+        <section class="p-4 text-center w-100">
+          <!-- Facebook -->
+          <a class="m-1" style="color: #3b5998" href="#!" role="button"><i
+              class="fab fa-facebook-f fa-lg"></i></a>
 
-                <!-- Twitter -->
-                <a class="m-1" style="color: #55acee" href="#!" role="button"><i class="fab fa-twitter fa-lg"></i></a>
+          <!-- Twitter -->
+          <a class="m-1" style="color: #55acee" href="#!" role="button"><i class="fab fa-twitter fa-lg"></i></a>
 
-                <!-- Google -->
-                <a class="m-1" style="color: #dd4b39" href="#!" role="button"><i class="fab fa-google fa-lg"></i></a>
+          <!-- Google -->
+          <a class="m-1" style="color: #dd4b39" href="#!" role="button"><i class="fab fa-google fa-lg"></i></a>
 
-                <!-- Instagram -->
-                <a class="m-1" style="color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram fa-lg"></i></a>
-              </section>
-              <div class="sticky-element">
-                <div class="info">
-                  <div class="info1">
-                    <div class="col1">
-                      <h1>Thời gian:</h1>
-                      <h1>Nơi khởi hành:</h1>
-                      <h1>Phương tiện:</h1>
-                      <h1>Mã tour:</h1>
-                      <h1>Giá từ:</h1>
-                    </div>
-                    <div class="col2">
+          <!-- Instagram -->
+          <a class="m-1" style="color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram fa-lg"></i></a>
+        </section>
+        <div class="sticky-element">
+          <div class="info">
+            <div class="info1">
+              <div class="col1">
+                <h1>Thời gian:</h1>
+                <h1>Nơi khởi hành:</h1>
+                <h1>Phương tiện:</h1>
+                <h1>Mã tour:</h1>
+                <h1>Giá từ:</h1>
+              </div>
+              <div class="col2">
+                <h1>
+                  <%=tour.days%> Ngày <%=tour.nights%> Đêm
                       <h1>
-                        <%=tour.days%> Ngày <%=tour.nights%> Đêm
-                            <h1>
-                              <%=tour.departure_location%>
-                            </h1>
-                            <h1>
-                              <%=tour.transportation%>
-                            </h1>
-                            <h1>
-                              <%=tour.tour_code%>
-                            </h1>
-                            <div style="display: flex">
-                              <h1 id="price"></h1>
-                              <h1>
-                                <%= tour.original_price%>VND
-                              </h1>
-                            </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="ads">
-                  <img src="image.png" />
-                  <button class="qt">Quan tâm</button>
-                </div>
-                <div class="post">
-                  <p>Bài viết mới nhất</p>
-                  <div class="session">
-                    <img src="uploads/muathu.png" />
-                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-                  </div>
-                  <div class="session">
-                    <img src="uploads/muathu.png" />
-                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-                  </div>
-                  <div class="session">
-                    <img src="uploads/muathu.png" />
-                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-                  </div>
-                </div>
+                        <%=tour.departure_location%>
+                      </h1>
+                      <h1>
+                        <%=tour.transportation%>
+                      </h1>
+                      <h1>
+                        <%=tour.tour_code%>
+                      </h1>
+                      <div style="display: flex">
+                        <h1 id="price"></h1>
+                        <h1>
+                          <%= tour.original_price%>VND
+                        </h1>
+                      </div>
               </div>
             </div>
           </div>
-          <div class="moreInfo">
+          <div class="ads">
+            <img src="image.png" />
+            <button class="qt">Quan tâm</button>
+          </div>
+          <div class="post">
+            <p>Bài viết mới nhất</p>
+            <div class="session">
+              <img src="uploads/muathu.png" />
+              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+            </div>
+            <div class="session">
+              <img src="uploads/muathu.png" />
+              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+            </div>
+            <div class="session">
+              <img src="uploads/muathu.png" />
+              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="moreInfo">
             <h1 style="color:#044c64"><strong>CÓ THỂ BẠN QUAN TÂM</strong></h1>
             <div class="carousel-tour owl-carousel">
               <% tours.forEach(tour=> { %>
                 <div class="card tour-card">
-                  <img src="<%= tour.image || 'https://via.placeholder.com/400x200' %>" class="card-img-top"
+                  <img src="<%= tour.image || 'https://via.placeholder.com/400x200' %>" style="max-height:100%;" class="card-img-top"
                     alt="<%= tour.tour_name %>">
                   <div class="card-body">
                     <div class="d-flex justify-content-between mb-2">
@@ -373,9 +378,8 @@
                 </div>
                 <% }); %>
             </div>
-          </div>
-
-          <div class="sticky-bottom">
+    </div>
+    <div class="sticky">
             <div class="summary">
               <div class="star">
                 <i class="bi bi-star-fill"></i>
@@ -391,7 +395,7 @@
                 <button class="schedule" id="scheduleButton">Lịch khởi hành</button>
               </div>
             </div>
-          </div>
+    </div>
           <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
           <script>
