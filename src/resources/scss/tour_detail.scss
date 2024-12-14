@@ -70,16 +70,12 @@ a:hover {
 .review {
   display: flex; /* Sử dụng Flexbox để căn chỉnh */
   margin: 20px 0px; /* Khoảng cách ngoài cho phần nội dung */
-  gap: 50%;
+  gap: 48%;
 }
 .rating {
   font-size: 20px;
   display: flex;
-  margin-right: 150px;
-}
-.like-number {
-  font-size: 5.5rem;
-  display: flex;
+  margin-right: 100px;
 }
 .bi-chevron-right {
   font-size: 24px;
@@ -90,8 +86,9 @@ a:hover {
 }
 .like-number {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   font-size: 20px;
+  text-align: right;
 }
 .icon-container {
       position: relative; /* Để chứa các biểu tượng */
@@ -508,7 +505,6 @@ span {
   margin-top: 20px;
   margin-left:100px;
   margin-right:100px;
-  margin-bottom: 200px;
 }
 .moreInfo h1{
   color:#0056b3;
@@ -517,6 +513,7 @@ span {
 }
 .carousel-tour .card {
   margin: 0 10px;
+  margin-bottom:100px;
 }
 
 .carousel-tour .carousel-control-prev,
