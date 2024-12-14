@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="/css/homepage.css">
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/tour_detail.css">
   <title>Chi tiết tour</title>
@@ -106,7 +107,7 @@
         <div class="timeline1">
           <h2><strong>LỊCH TRÌNH</strong></h2>
           <p><em>(Nhấp từng ngày để xem chi tiết)</em></p>
-          <div class="timeline">
+          <div class="timeline1">
             <div class="timeline">
               <% if (tour.itinerary) { %>
                 <% tour.itinerary.forEach((item, index)=> { %>
@@ -249,230 +250,234 @@
                 <button class="tk">Thông tin tham khảo</button>
               </div>
             </div>
-            <div class="right-content">
-              <section class="p-4 text-center w-100">
-                <!-- Facebook -->
-                <a class="m-1" style="color: #3b5998" href="#!" role="button"><i
-                    class="fab fa-facebook-f fa-lg"></i></a>
 
-                <!-- Twitter -->
-                <a class="m-1" style="color: #55acee" href="#!" role="button"><i class="fab fa-twitter fa-lg"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="right-content">
+        <section class="p-4 text-center w-100">
+          <!-- Facebook -->
+          <a class="m-1" style="color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f fa-lg"></i></a>
 
-                <!-- Google -->
-                <a class="m-1" style="color: #dd4b39" href="#!" role="button"><i class="fab fa-google fa-lg"></i></a>
+          <!-- Twitter -->
+          <a class="m-1" style="color: #55acee" href="#!" role="button"><i class="fab fa-twitter fa-lg"></i></a>
 
-                <!-- Instagram -->
-                <a class="m-1" style="color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram fa-lg"></i></a>
-              </section>
-              <div class="sticky-element">
-                <div class="info">
-                  <div class="info1">
-                    <div class="col1">
-                      <h1>Thời gian:</h1>
-                      <h1>Nơi khởi hành:</h1>
-                      <h1>Phương tiện:</h1>
-                      <h1>Mã tour:</h1>
-                      <h1>Giá từ:</h1>
-                    </div>
-                    <div class="col2">
+          <!-- Google -->
+          <a class="m-1" style="color: #dd4b39" href="#!" role="button"><i class="fab fa-google fa-lg"></i></a>
+
+          <!-- Instagram -->
+          <a class="m-1" style="color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram fa-lg"></i></a>
+        </section>
+        <div class="sticky-element">
+          <div class="info">
+            <div class="info1">
+              <div class="col1">
+                <h1>Thời gian:</h1>
+                <h1>Nơi khởi hành:</h1>
+                <h1>Phương tiện:</h1>
+                <h1>Mã tour:</h1>
+                <h1>Giá từ:</h1>
+              </div>
+              <div class="col2">
+                <h1>
+                  <%=tour.days%> Ngày <%=tour.nights%> Đêm
                       <h1>
-                        <%=tour.days%> Ngày <%=tour.nights%> Đêm
-                            <h1>
-                              <%=tour.departure_location%>
-                            </h1>
-                            <h1>
-                              <%=tour.transportation%>
-                            </h1>
-                            <h1>
-                              <%=tour.tour_code%>
-                            </h1>
-                            <div style="display: flex">
-                              <h1 id="price"></h1>
-                              <h1>
-                                <%= tour.original_price%>VND
-                              </h1>
-                            </div>
-                    </div>
-                  </div>
+                        <%=tour.departure_location%>
+                      </h1>
+                      <h1>
+                        <%=tour.transportation%>
+                      </h1>
+                      <h1>
+                        <%=tour.tour_code%>
+                      </h1>
+                      <div style="display: flex">
+                        <h1 id="price"></h1>
+                        <h1>
+                          <%= tour.original_price%>VND
+                        </h1>
+                      </div>
+              </div>
+            </div>
+          </div>
+          <div class="ads">
+            <img src="image.png" />
+            <button class="qt">Quan tâm</button>
+          </div>
+          <div class="post">
+            <p>Bài viết mới nhất</p>
+            <div class="session">
+              <img src="uploads/muathu.png" />
+              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+            </div>
+            <div class="session">
+              <img src="uploads/muathu.png" />
+              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+            </div>
+            <div class="session">
+              <img src="uploads/muathu.png" />
+              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="moreInfo">
+      <h1 style="color:#044c64"><strong>CÓ THỂ BẠN QUAN TÂM</strong></h1>
+      <div class="carousel-tour owl-carousel">
+        <% tours.forEach(tour=> { %>
+          <div class="card tour-card">
+            <img src="<%= tour.image || 'https://via.placeholder.com/400x200' %>" style="max-height:100%;"
+              class="card-img-top" alt="<%= tour.tour_name %>">
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="tour-info">
+                  <i class="fas fa-sun"></i>
+                  <%= tour.days %> ngày
+                    <i class="fas fa-moon"></i>
+                    <%= tour.nights %> đêm
+                </span>
+              </div>
+              <h5 class="tour-title">
+                <%= tour.tour_name %>
+              </h5>
+              <div class="rating">
+                <%- '★' .repeat(Math.floor(tour.rating)) %>
+                  <%- tour.rating %>
+              </div>
+              <p class="card-text">
+                <%= tour.description.slice(0, 100) %>...
+              </p>
+              <div class="tt">
+                <div class="trai">
+                  <p>Khởi hành:</p>
+                  <p>Mã tour:</p>
+                  <p>Giá từ:</p>
                 </div>
-                <div class="ads">
-                  <img src="image.png" />
-                  <button class="qt">Quan tâm</button>
+                <div class="phai">
+                  <p>
+                    <%= tour.departure_location %>
+                  </p>
+                  <p>
+                    <%= tour.tour_code %>
+                  </p>
+                  <p>
+                    <%= tour.discounted_price %> VND
+                  </p>
                 </div>
-                <div class="post">
-                  <p>Bài viết mới nhất</p>
-                  <div class="session">
-                    <img src="uploads/muathu.png" />
-                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-                  </div>
-                  <div class="session">
-                    <img src="uploads/muathu.png" />
-                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-                  </div>
-                  <div class="session">
-                    <img src="uploads/muathu.png" />
-                    <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-                  </div>
+              </div>
+              <div class="price-btn">
+                <div class="tour-price">
+                  <%= tour.discounted_price %>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="/tour_detail?tourId=<%= tour.id %>" class="btn btn-primary btn-sm">Chọn</a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="moreInfo">
-            <h1 style="color:#044c64"><strong>CÓ THỂ BẠN QUAN TÂM</strong></h1>
-            <div class="carousel-tour owl-carousel">
-              <% tours.forEach(tour=> { %>
-                <div class="card tour-card">
-                  <img src="<%= tour.image || 'https://via.placeholder.com/400x200' %>" class="card-img-top"
-                    alt="<%= tour.tour_name %>">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between mb-2">
-                      <span class="tour-info">
-                        <i class="fas fa-sun"></i>
-                        <%= tour.days %> ngày
-                          <i class="fas fa-moon"></i>
-                          <%= tour.nights %> đêm
-                      </span>
-                    </div>
-                    <h5 class="tour-title">
-                      <%= tour.tour_name %>
-                    </h5>
-                    <div class="rating">
-                      <%- '★' .repeat(Math.floor(tour.rating)) %>
-                        <%- tour.rating %>
-                    </div>
-                    <p class="card-text">
-                      <%= tour.description.slice(0, 100) %>...
-                    </p>
-                    <div class="tt">
-                      <div class="trai">
-                        <p>Khởi hành:</p>
-                        <p>Mã tour:</p>
-                        <p>Giá từ:</p>
-                      </div>
-                      <div class="phai">
-                        <p>
-                          <%= tour.departure_location %>
-                        </p>
-                        <p>
-                          <%= tour.tour_code %>
-                        </p>
-                        <p>
-                          <%= tour.discounted_price %> VND
-                        </p>
-                      </div>
-                    </div>
-                    <div class="price-btn">
-                      <div class="tour-price">
-                        <%= tour.discounted_price %>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <a href="#" class="btn btn-primary btn-sm">Chọn</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <% }); %>
-            </div>
-          </div>
+          <% }); %>
+      </div>
+    </div>
+    <div class="sticky">
+      <div class="summary">
+        <div class="star">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-half"></i>
+        </div>
+        <div class="like_number">
+          <p>123 lượt thích</p>
+        </div>
+        <div class="lich">
+          <button class="schedule" id="scheduleButton">Lịch khởi hành</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+      const heartIcons = document.querySelectorAll('.fa-heart');
 
-          <div class="sticky-bottom">
-            <div class="summary">
-              <div class="star">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-half"></i>
-              </div>
-              <div class="like_number">
-                <p>123 lượt thích</p>
-              </div>
-              <div class="lich">
-                <button class="schedule" id="scheduleButton">Lịch khởi hành</button>
-              </div>
-            </div>
-          </div>
-          <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-          <script>
-            const heartIcons = document.querySelectorAll('.fa-heart');
+      heartIcons[0].addEventListener('click', () => {
+        heartIcons[0].classList.toggle('hidden'); // Ẩn biểu tượng rỗng
+        heartIcons[1].classList.toggle('hidden'); // Hiện biểu tượng đầy
+      });
 
-            heartIcons[0].addEventListener('click', () => {
-              heartIcons[0].classList.toggle('hidden'); // Ẩn biểu tượng rỗng
-              heartIcons[1].classList.toggle('hidden'); // Hiện biểu tượng đầy
-            });
+      heartIcons[1].addEventListener('click', () => {
+        heartIcons[0].classList.toggle('hidden'); // Hiện lại biểu tượng rỗng
+        heartIcons[1].classList.toggle('hidden'); // Ẩn biểu tượng đầy
+      });
+      const button = document.getElementById('scheduleButton');
+      const targetSection = document.getElementById('departPriceSection');
 
-            heartIcons[1].addEventListener('click', () => {
-              heartIcons[0].classList.toggle('hidden'); // Hiện lại biểu tượng rỗng
-              heartIcons[1].classList.toggle('hidden'); // Ẩn biểu tượng đầy
-            });
-            const button = document.getElementById('scheduleButton');
-            const targetSection = document.getElementById('departPriceSection');
+      button.addEventListener('click', () => {
+        targetSection.scrollIntoView({ behavior: 'smooth' }); // Cuộn đến phần mục tiêu
+      });
+      $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+          loop: true, // Vòng lặp
+          autoplay: true,
+          autoplayTimeout: 1500, // Thời gian giữa các lần chuyển
+          autoplayHoverPause: true, // Tạm dừng khi di chuột qua
+          margin: 10, // Khoảng cách giữa các item
+          nav: true, // Hiển thị nút điều hướng
+          responsive: {
+            0: {
+              items: 1, // 1 item trên màn hình nhỏ
+            },
+            600: {
+              items: 1, // 1 item trên màn hình trung bình
+            },
+            1200: {
+              items: 3, // 3 item trên màn hình lớn
+            },
+          },
+        });
+        $(".carousel-tour").owlCarousel({
+          loop: true,
+          margin: 10,
+          nav: true,
+          autoplay: true,
+          autoplayTimeout: 3000,
+          responsive: {
+            0: {
+              items: 1,
+            },
+            600: {
+              items: 5,
+            },
+            1000: {
+              items: 4,
+            },
+          },
+        });
 
-            button.addEventListener('click', () => {
-              targetSection.scrollIntoView({ behavior: 'smooth' }); // Cuộn đến phần mục tiêu
-            });
-            $(document).ready(function () {
-              $(".owl-carousel").owlCarousel({
-                loop: true, // Vòng lặp
-                autoplay: true,
-                autoplayTimeout: 1500, // Thời gian giữa các lần chuyển
-                autoplayHoverPause: true, // Tạm dừng khi di chuột qua
-                margin: 10, // Khoảng cách giữa các item
-                nav: true, // Hiển thị nút điều hướng
-                responsive: {
-                  0: {
-                    items: 1, // 1 item trên màn hình nhỏ
-                  },
-                  600: {
-                    items: 1, // 1 item trên màn hình trung bình
-                  },
-                  1200: {
-                    items: 3, // 3 item trên màn hình lớn
-                  },
-                },
-              });
-              $(".carousel-tour").owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                responsive: {
-                  0: {
-                    items: 1,
-                  },
-                  600: {
-                    items: 5,
-                  },
-                  1000: {
-                    items: 4,
-                  },
-                },
-              });
-
-            });
-            function toggleContent(element) {
-              const content = element.nextElementSibling;
-              content.classList.toggle('show');
-            }
-            $('#checkoutTour').on('click', function () {
-              const url = window.location.href
-              const tourId = url.split('/').pop()
-              fetch(`/checkout/${tourId}`, {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-              })
-                .then(console.log('Redirect successfully'))
-            })
-          </script>
-          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+      });
+      function toggleContent(element) {
+        const content = element.nextElementSibling;
+        content.classList.toggle('show');
+      }
+      $('#checkoutTour').on('click', function () {
+        const url = window.location.href
+        const tourId = url.split('/').pop()
+        fetch(`/checkout/${tourId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(data => {
+            window.location.href = data.url
+          })
+      })
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </body>
 
 </html>

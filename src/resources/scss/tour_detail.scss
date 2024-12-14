@@ -1,626 +1,627 @@
 img {
-    width: 100%;
-    height: 500px;
-  }
-  h2{
-    color:#044c64;
-  }
-  a {
-    text-decoration: none;
-    color: black;
-    font-size: 24px;
-  }
-  a:hover {
-    color: blue;
-  }
-  .content {
-    display: flex; /* Sử dụng Flexbox để căn chỉnh */
-    justify-content: space-between; /* Khoảng cách giữa hai phần */
-    margin: 20px; /* Khoảng cách ngoài cho phần nội dung */
-  }
-  .left-content {
-    width: 60%; /* Chiếm 2 phần */
-    padding: 20px;
-    border: none; /* Đường viền */
-    border-radius: 5px; /* Bo góc */
-    margin-left: 80px;
-  }
-  .intro-content {
-    font-size: 20px;
-  }
-  .right-content {
-    width: 40%; /* Chiếm 1 phần */
-    background-color: none; /* Màu nền nhạt hơn */
-    margin-right: 80px;
-    margin-top: 200px;
-  }
-  .info {
-    border: 5px solid orange;
-    width: 100%;
-    padding: 10px;
-    display: inline-block;
-  }
-  .info1 {
-    display: flex;
-  }
-  .info h1 {
-    font-size: 20px;
-  }
-  .col1 {
-    width: 60%;
-    margin-left: 10px;
-  }
-  .col1 h1 {
-    font-weight: bold;
-  }
-  .col2 {
-    width: 40%;
-  }
-  #price {
-    color: rgb(55, 164, 252);
-    font-weight: bold;
-    margin-right: 5px;
-  }
-  .title h1 {
-    margin-top: 50px;
-    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
-    font-size: 50px;
-    color:#044c64;
-  }
-  .review {
-    display: flex; /* Sử dụng Flexbox để căn chỉnh */
-    margin: 20px 0px; /* Khoảng cách ngoài cho phần nội dung */
-    gap: 50%;
-  }
-  .rating {
-    font-size: 20px;
-    display: flex;
-    margin-right: 150px;
-  }
-  .like-number {
-    font-size: 5.5rem;
-    display: flex;
-  }
-  .bi-chevron-right {
-    font-size: 24px;
-    color: rgb(255, 217, 0);
-  }
-  .rating {
-    color: rgb(255, 217, 0);
-  }
-  .like-number {
-    display: flex;
-    gap: 15px;
-    font-size: 20px;
-  }
-  .icon-container {
-        position: relative; /* Để chứa các biểu tượng */
-        display: inline-block; /* Để biểu tượng không chiếm toàn bộ chiều rộng */
-        cursor: pointer; /* Con trỏ khi hover */
-        margin-top:5px;
-    }
-
-    .fa-heart {
-        font-size: 24px;
-        position: absolute; /* Đặt các biểu tượng chồng lên nhau */
-        top: 0;
-        left: 0;
-        transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi độ mờ */
-        color: rgb(255, 217, 0); /* Màu sắc của biểu tượng */
-    }
-
-    .fa-heart.hidden {
-        opacity: 0; /* Ẩn biểu tượng */
-    }
-
-    .icon-container:hover .fa-heart:first-child {
-        opacity: 0; /* Ẩn biểu tượng rỗng khi hover */
-    }
-
-    .icon-container:hover .fa-heart:last-child {
-        opacity: 1; /* Hiện biểu tượng đầy khi hover */
-    }
-  .highlight h2 {
-    margin-top: 100px;
-    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
-    font-size: 30px;
-  }
-  .sparkles {
-    margin-right: 10px;
-    margin-left: 10px;
-    color: rgb(232, 189, 0);
-    font-size: 30px;
-  }
-  .highlight p {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 0px;
-    color:#000000bf;
-  }
-  .sight h2 {
-    margin-top: 100px;
-    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
-    font-size: 30px;
-  }
-  /* OWL CAROUSEL */
-  .owl-carousel .item {
-    text-align: center; /* Căn giữa nội dung */
-    display: flex;
-    flex-direction: column; /* Sắp xếp nội dung theo cột */
-    justify-content: flex-start; /* Đưa nội dung lên đầu */
-    width: 100%;
-    height: 500px;
-  }
-  .owl-carousel img {
-    width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng item */
-    height: 50%; /* Giữ tỷ lệ hình ảnh */
-    margin-bottom: 10px; /* Thêm khoảng cách dưới hình ảnh */
+  width: 100%;
+  height: 500px;
+}
+h2{
+  color:#044c64;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+}
+a:hover {
+  color: blue;
+}
+.content {
+  display: flex; /* Sử dụng Flexbox để căn chỉnh */
+  justify-content: space-between; /* Khoảng cách giữa hai phần */
+  margin: 20px; /* Khoảng cách ngoài cho phần nội dung */
+}
+.left-content {
+  width: 60%; /* Chiếm 2 phần */
+  padding: 20px;
+  border: none; /* Đường viền */
+  border-radius: 5px; /* Bo góc */
+  margin-left: 80px;
+}
+.intro-content {
+  font-size: 20px;
+}
+.right-content {
+  width: 40%; /* Chiếm 1 phần */
+  background-color: none; /* Màu nền nhạt hơn */
+  margin-right: 80px;
+  margin-top: 200px;
+}
+.info {
+  border: 5px solid orange;
+  width: 100%;
+  padding: 10px;
+  display: inline-block;
+}
+.info1 {
+  display: flex;
+}
+.info h1 {
+  font-size: 20px;
+}
+.col1 {
+  width: 60%;
+  margin-left: 10px;
+}
+.col1 h1 {
+  font-weight: bold;
+}
+.col2 {
+  width: 40%;
+}
+#price {
+  color: rgb(55, 164, 252);
+  font-weight: bold;
+  margin-right: 5px;
+}
+.title h1 {
+  margin-top: 50px;
+  margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+  font-size: 50px;
+  color:#044c64;
+}
+.review {
+  display: flex; /* Sử dụng Flexbox để căn chỉnh */
+  margin: 20px 0px; /* Khoảng cách ngoài cho phần nội dung */
+  gap: 50%;
+}
+.rating {
+  font-size: 20px;
+  display: flex;
+  margin-right: 150px;
+}
+.like-number {
+  font-size: 5.5rem;
+  display: flex;
+}
+.bi-chevron-right {
+  font-size: 24px;
+  color: rgb(255, 217, 0);
+}
+.rating {
+  color: rgb(255, 217, 0);
+}
+.like-number {
+  display: flex;
+  gap: 15px;
+  font-size: 20px;
+}
+.icon-container {
+      position: relative; /* Để chứa các biểu tượng */
+      display: inline-block; /* Để biểu tượng không chiếm toàn bộ chiều rộng */
+      cursor: pointer; /* Con trỏ khi hover */
+      margin-top:5px;
   }
 
-  .owl-carousel h4 {
-    font-size: 1.2rem; /* Kích thước chữ */
-    text-align: center; /* Căn giữa văn bản */
-    margin: 0; /* Loại bỏ khoảng cách thừa */
-    color: rgb(12, 33, 82); /* Màu chữ */
+  .fa-heart {
+      font-size: 24px;
+      position: absolute; /* Đặt các biểu tượng chồng lên nhau */
+      top: 0;
+      left: 0;
+      transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi độ mờ */
+      color: rgb(255, 217, 0); /* Màu sắc của biểu tượng */
   }
 
-  .owl-nav button.owl-prev {
-    left: 0;
-  }
-  .owl-nav button.owl-next {
-    right: 0;
+  .fa-heart.hidden {
+      opacity: 0; /* Ẩn biểu tượng */
   }
 
-  .owl-dots {
-    text-align: center;
-    margin-top: -200px;
-  }
-  .owl-dots button.owl-dot {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    display: inline-block;
-    background: #ccc;
-    margin: 0 3px;
-  }
-  .owl-dots button.owl-dot.active {
-    background-color: #000;
-  }
-  .owl-dots button.owl-dot:focus {
-    outline: none;
-  }
-  .owl-nav button {
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.38) !important;
-  }
-  span {
-    font-size: 70px;
-    position: relative;
-    top: -5px;
-  }
-  .owl-nav button:focus {
-    outline: none;
-  }
-  /* OWL CAROUSEL */
-
-  .timeline1 em {
-    color: rgb(35, 196, 196);
-  }
-  .ngay1 {
-    display: flex;
-  }
-  #dropdownMenuButton2 {
-    color: black;
-    background: none;
-    border: none;
-    margin-top: 15px;
-  }
-  #dropdownMenuButton2:focus {
-    background-color: rgba(46, 187, 187, 0.629);
-  }
-  .sticky-element{
-    position:sticky;
-    top: 20px; /* Khi cuộn, phần tử sẽ dính vào vị trí này */
-  }
-  .ads img {
-    height: 300px;
-  }
-  .qt {
-    width: 100%;
-    background-color: #55acee;
-    border: none;
-    color: white;
-    font-size: 20px;
-    height: 40px;
-  }
-  .qt:hover,
-  .qt:focus {
-    background-color: #056ebf;
-  }
-  .post {
-    background-color: rgba(128, 128, 128, 0.208);
-    height: 400px;
-
-    display: block;
-  }
-  .post p {
-    text-align: center;
-    padding-top: 5px;
-  }
-  .session {
-    height: 100px;
-    background-color: white;
-    width: 96%;
-    margin: auto;
-    margin-bottom: 10px;
-    display: flex;
-  }
-  .depart-price {
-    margin-top:50px;
-  }
-  .include, .not-include, .children-price, .note{
-    margin-top:30px;
-  }
-  .session img {
-    width: 40%;
-    height: auto;
-    margin: auto;
-    padding: 10px;
-  }
-  .session h5 {
-    margin-top: 20px;
-  }
-  .note p,
-  .children-price p,
-  .not-include-st p,
-  .include-st p {
-    font-size: 18px;
-  }
-  .not-include-st,
-  .include-st {
-    display: flex;
-    margin-left: 30px;
-    gap: 10px;
-  }
-  .not-include-st i,
-  .include-st i {
-    color: orange;
-    font-size: 24px;
-  }
-  .include-st i {
-    color: green;
-    font-size: 30px;
-  }
-  .detail {
-    background-color: rgba(128, 128, 128, 0.144);
-    width: 100%;
-    height: 200px;
-    display: flex;
-    align-items: center;
-  }
-  .depart {
-    width: 75%;
-    height: 150px;
-    background-color: white;
-    margin: auto;
-    margin-left: 40px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15),
-      0 0 1rem rgba(0, 0, 0, 0.1);
-  }
-  .price {
-    width: 25%;
-    height: 150px;
-    background-color: white;
-    margin: auto;
-    margin-right: 40px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15),
-      0 0 1rem rgba(0, 0, 0, 0.1);
-  }
-  .goc p {
-    text-decoration: line-through;
-    text-align: center;
-    font-size: 18px;
-    color: #000000cb;
-    margin-top: 20px;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-  }
-  .moi p {
-    text-align: center;
-    font-size: 28px;
-    color: #000000cb;
-    padding-top: 0px;
-  }
-  .btn {
-    color: white;
-    background-color: #55acee;
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    margin-left: 50px;
-  }
-  .btn:hover {
-    background-color: green;
-    color: white;
-  }
-  .tren {
-    width: 100%;
-    height: 50%;
-    display: flex;
-  }
-  .ngaydi,
-  .ngayve {
-    width: 40%;
-    margin: auto;
-  }
-  .ngaydi p,
-  .ngayve p {
-    font-size: 22px;
-    text-align: center;
-    margin: auto;
-  }
-  .icon {
-    width: 10%;
-    font-size: 50px;
-    margin: auto;
-    color: #55acee;
-  }
-  .ngaydi h5,
-  .ngayve h5 {
-    font-size: 24px;
-    text-align: center;
-    margin: auto;
-  }
-  .duoi {
-    width: 100%;
-    height: 50%;
-    margin: auto;
-  }
-  .duoi h1 {
-    font-size: 20px;
-    text-align: center;
-    margin-top: 20px;
-    animation: fade 1500ms infinite; /* Áp dụng animation */
-  }
-  @keyframes fade {
-    0%,
-    100% {
-      opacity: 1; /* Hiện */
-      color: red;
-    }
-    50% {
-      opacity: 0; /* Ẩn */
-      color: purple;
-    }
-  }
-  .tk {
-    border: none;
-    background-color: #12334c;
-    color: white;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 5px;
-    margin-top: 100px;
-  }
-  .tk:hover, .tk:focus{
-    background-color: rgb(119, 175, 35);
-  }
-  .tour-title {
-    font-size: 1.4em;
-    color: #044c64;
-    font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: -10px;
-  }
-  .carousel-tour {
-        margin: 20px 0;
-    }
-
-    /* Card Tour Styles */
-    .tour-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background: #fff;
-        width:100%;
-        height:700px;
-        display:inline-block;
-    }
-
-    .tour-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-    /* Image Styling */
-    
-    .tour-card .tour-info {
-        font-size: 14px;
-        color: #000000b8;
-        margin-top: -10px;
-    }
-    .tour-card .card-text {
-        font-size: 18px;
-        color: #555;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
-    .tt{
-        display:flex;
-    }
-    .trai{
-        margin-right:150px;
-    }
-    .trai p, .phai p{
-        font-weight: bold;
-        color: #555;
-        font-size: 18px;
-        margin-bottom: 0px;
-    }
-    /* Price Section */
-    .tour-card .tour-price {
-        font-size: 30px;
-        font-weight: bold;
-        color: #44c3f5;
-        margin-left:100px;
-    }
-    .price-btn{
-        display:flex;
-    }
-    /* Button Styling */
-    .tour-card .btn {
-        background-color: #2996c2;
-        color: #fff;
-        margin-bottom: 35px;
-        border-radius: 5px;
-        font-size: 20px;
-        padding:5px 20px;
-    }
-
-    .tour-card .btn:hover {
-        background-color: #005387;
-        color: #fff;
-    }
-
-  .row {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 5px; /* Khoảng cách giữa các card */
+  .icon-container:hover .fa-heart:first-child {
+      opacity: 0; /* Ẩn biểu tượng rỗng khi hover */
   }
 
-  .col-md-4 {
-    display: flex;
+  .icon-container:hover .fa-heart:last-child {
+      opacity: 1; /* Hiện biểu tượng đầy khi hover */
   }
+.highlight h2 {
+  margin-top: 100px;
+  margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+  font-size: 30px;
+}
+.sparkles {
+  margin-right: 10px;
+  margin-left: 10px;
+  color: rgb(232, 189, 0);
+  font-size: 30px;
+}
+.highlight p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  color:#000000bf;
+}
+.sight h2 {
+  margin-top: 100px;
+  margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+  font-size: 30px;
+}
+/* OWL CAROUSEL */
+.owl-carousel .item {
+  text-align: center; /* Căn giữa nội dung */
+  display: flex;
+  flex-direction: column; /* Sắp xếp nội dung theo cột */
+  justify-content: flex-start; /* Đưa nội dung lên đầu */
+  width: 100%;
+  height: 500px;
+}
+.owl-carousel img {
+  width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng item */
+  height: 50%; /* Giữ tỷ lệ hình ảnh */
+  margin-bottom: 10px; /* Thêm khoảng cách dưới hình ảnh */
+}
 
-  .text-strike {
-    text-decoration: line-through;
+.owl-carousel h4 {
+  font-size: 1.2rem; /* Kích thước chữ */
+  text-align: center; /* Căn giữa văn bản */
+  margin: 0; /* Loại bỏ khoảng cách thừa */
+  color: rgb(12, 33, 82); /* Màu chữ */
+}
+
+.owl-nav button.owl-prev {
+  left: 0;
+}
+.owl-nav button.owl-next {
+  right: 0;
+}
+
+.owl-dots {
+  text-align: center;
+  margin-top: -200px;
+}
+.owl-dots button.owl-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #ccc;
+  margin: 0 3px;
+}
+.owl-dots button.owl-dot.active {
+  background-color: #000;
+}
+.owl-dots button.owl-dot:focus {
+  outline: none;
+}
+.owl-nav button {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.38) !important;
+}
+span {
+  font-size: 70px;
+  position: relative;
+  top: -5px;
+}
+.owl-nav button:focus {
+  outline: none;
+}
+/* OWL CAROUSEL */
+
+.timeline1 em {
+  color: rgb(35, 196, 196);
+}
+.ngay1 {
+  display: flex;
+}
+#dropdownMenuButton2 {
+  color: black;
+  background: none;
+  border: none;
+  margin-top: 15px;
+}
+#dropdownMenuButton2:focus {
+  background-color: rgba(46, 187, 187, 0.629);
+}
+.sticky-element{
+  position:sticky;
+  top: 20px; /* Khi cuộn, phần tử sẽ dính vào vị trí này */
+}
+.ads img {
+  height: 300px;
+}
+.qt {
+  width: 100%;
+  background-color: #55acee;
+  border: none;
+  color: white;
+  font-size: 20px;
+  height: 40px;
+}
+.qt:hover,
+.qt:focus {
+  background-color: #056ebf;
+}
+.post {
+  background-color: rgba(128, 128, 128, 0.208);
+  height: 400px;
+
+  display: block;
+}
+.post p {
+  text-align: center;
+  padding-top: 5px;
+}
+.session {
+  height: 100px;
+  background-color: white;
+  width: 96%;
+  margin: auto;
+  margin-bottom: 10px;
+  display: flex;
+}
+.depart-price {
+  margin-top:50px;
+}
+.include, .not-include, .children-price, .note{
+  margin-top:30px;
+}
+.session img {
+  width: 40%;
+  height: auto;
+  margin: auto;
+  padding: 10px;
+}
+.session h5 {
+  margin-top: 20px;
+}
+.note p,
+.children-price p,
+.not-include-st p,
+.include-st p {
+  font-size: 18px;
+}
+.not-include-st,
+.include-st {
+  display: flex;
+  margin-left: 30px;
+  gap: 10px;
+}
+.not-include-st i,
+.include-st i {
+  color: orange;
+  font-size: 24px;
+}
+.include-st i {
+  color: green;
+  font-size: 30px;
+}
+.detail {
+  background-color: rgba(128, 128, 128, 0.144);
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+}
+.depart {
+  width: 75%;
+  height: 150px;
+  background-color: white;
+  margin: auto;
+  margin-left: 40px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15),
+    0 0 1rem rgba(0, 0, 0, 0.1);
+}
+.price {
+  width: 25%;
+  height: 150px;
+  background-color: white;
+  margin: auto;
+  margin-right: 40px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15),
+    0 0 1rem rgba(0, 0, 0, 0.1);
+}
+.goc p {
+  text-decoration: line-through;
+  text-align: center;
+  font-size: 18px;
+  color: #000000cb;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+.moi p {
+  text-align: center;
+  font-size: 28px;
+  color: #000000cb;
+  padding-top: 0px;
+}
+.btn {
+  color: white;
+  background-color: #55acee;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-left: 50px;
+}
+.btn:hover {
+  background-color: green;
+  color: white;
+}
+.tren {
+  width: 100%;
+  height: 50%;
+  display: flex;
+}
+.ngaydi,
+.ngayve {
+  width: 40%;
+  margin: auto;
+}
+.ngaydi p,
+.ngayve p {
+  font-size: 22px;
+  text-align: center;
+  margin: auto;
+}
+.icon {
+  width: 10%;
+  font-size: 50px;
+  margin: auto;
+  color: #55acee;
+}
+.ngaydi h5,
+.ngayve h5 {
+  font-size: 24px;
+  text-align: center;
+  margin: auto;
+}
+.duoi {
+  width: 100%;
+  height: 50%;
+  margin: auto;
+}
+.duoi h1 {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+  animation: fade 1500ms infinite; /* Áp dụng animation */
+}
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 1; /* Hiện */
     color: red;
   }
-  .tour-info {
-    font-size: 0.875rem;
-    color: black; /* Màu xám */
-    margin-right: 10px;
+  50% {
+    opacity: 0; /* Ẩn */
+    color: purple;
   }
-  .moreInfo {
-    margin-top: 20px;
-    margin-left:100px;
-    margin-right:100px;
-  }
-  .moreInfo h1{
-    color:#0056b3;
-    font-size:35px;
-    margin-left:20px;
-  }
-  .carousel-tour .card {
-    margin: 0 10px;
+}
+.tk {
+  border: none;
+  background-color: #12334c;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-top: 100px;
+}
+.tk:hover, .tk:focus{
+  background-color: rgb(119, 175, 35);
+}
+.tour-title {
+  font-size: 1.4em;
+  color: #044c64;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+.carousel-tour {
+      margin: 20px 0;
   }
 
-  .carousel-tour .carousel-control-prev,
-  .carousel-tour .carousel-control-next {
-    font-size: 30px;
-    color: #044c64;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 10px;
-    border-radius: 50%;
+  /* Card Tour Styles */
+  .tour-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      width:100%;
+      height:700px;
+      display:inline-block;
   }
-  .timeline1 h2{
-    margin-top:100px;
+
+  .tour-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
-  .timeline {
-        position: relative;
-        margin-left: 40px;
-    }
-    .timeline::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 15px;
-        width: 2px;
-        background: rgba(0, 0, 0, 0.542);
-        width:4px;
-    }
-    .timeline-item {
-        position: relative;
-    }
-    .frame{
-        margin-bottom:20px;
-        border-bottom: 1px solid #ddd;
-        margin-left:20px;
-    }
-    .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: 3px;
-        top: 8px;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background: #ffffff;
-        border: 6px solid #164272;
-    }
-    .timeline-item:first-child::before {
-        border-color: #49d0df;
-        background-color: #49d0df;
-    }
-    .timeline-item:last-child::before {
-        border-color: #dc3545;
-        background-color: #dc3545;
-    }
-    .timeline-item-title {
-        font-weight: bold;
-        cursor: pointer;
-        margin-left:20px;
-        margin-bottom:px;
-    }
-    .timeline-item-title:hover {
-        color: #0056b3;
-        text-decoration: none;
-    }
-    .timeline-content {
-        display: none;
-        padding: 10px 20px;
-        border-bottom: 1px solid #ddd;
-        background-color: #96939339;
-        
-    }
-    .timeline-content.show {
-        display: block;
-    }
-    .summary{
-        display:flex;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Đổ bóng */
-        background-color: white;
-    }
-    .star{
-        display:flex;
-        color: rgb(255, 221, 0);
-        margin-right:40px;
-        font-size: 35px;
-        margin-left: 100px;
-        margin-top:10px;
-        
-    }
-    .like_number{
-        font-size: 18px;
-        display:flex;
-        gap:10px;
-        margin-right:780px;
-        margin-top:25px;
-        color:#000000a6;
-    }
-    .schedule{
-        border:none;
-        background-color: #044c64;
-        color:white;
-        border-radius: 5px;
-        padding: 5px 10px;
-        font-size: 24px;
-        margin-bottom:10px;
-        margin-top:15px;
-    }
-    .sticky{
-        position:sticky;
-        bottom:0px;
-    }
+  /* Image Styling */
+  
+  .tour-card .tour-info {
+      font-size: 14px;
+      color: #000000b8;
+      margin-top: -10px;
+  }
+  .tour-card .card-text {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 10px;
+      margin-top: 10px;
+  }
+  .tt{
+      display:flex;
+  }
+  .trai{
+      margin-right:150px;
+  }
+  .trai p, .phai p{
+      font-weight: bold;
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 0px;
+  }
+  /* Price Section */
+  .tour-card .tour-price {
+      font-size: 30px;
+      font-weight: bold;
+      color: #44c3f5;
+      margin-left:100px;
+  }
+  .price-btn{
+      display:flex;
+  }
+  /* Button Styling */
+  .tour-card .btn {
+      background-color: #2996c2;
+      color: #fff;
+      margin-bottom: 35px;
+      border-radius: 5px;
+      font-size: 20px;
+      padding:5px 20px;
+  }
+
+  .tour-card .btn:hover {
+      background-color: #005387;
+      color: #fff;
+  }
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 5px; /* Khoảng cách giữa các card */
+}
+
+.col-md-4 {
+  display: flex;
+}
+
+.text-strike {
+  text-decoration: line-through;
+  color: red;
+}
+.tour-info {
+  font-size: 0.875rem;
+  color: black; /* Màu xám */
+  margin-right: 10px;
+}
+.moreInfo {
+  margin-top: 20px;
+  margin-left:100px;
+  margin-right:100px;
+}
+.moreInfo h1{
+  color:#0056b3;
+  font-size:35px;
+  margin-left:20px;
+}
+.carousel-tour .card {
+  margin: 0 10px;
+}
+
+.carousel-tour .carousel-control-prev,
+.carousel-tour .carousel-control-next {
+  font-size: 30px;
+  color: #044c64;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 50%;
+}
+.timeline1 h2{
+  margin-top:100px;
+}
+.timeline {
+      position: relative;
+      margin-left: 40px;
+  }
+  .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 15px;
+      width: 2px;
+      background: rgba(0, 0, 0, 0.542);
+      width:4px;
+  }
+  .timeline-item {
+      position: relative;
+  }
+  .frame{
+      margin-bottom:20px;
+      border-bottom: 1px solid #ddd;
+      margin-left:20px;
+  }
+  .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 6px solid #164272;
+  }
+  .timeline-item:first-child::before {
+      border-color: #49d0df;
+      background-color: #49d0df;
+  }
+  .timeline-item:last-child::before {
+      border-color: #dc3545;
+      background-color: #dc3545;
+  }
+  .timeline-item-title {
+      font-weight: bold;
+      cursor: pointer;
+      margin-left:20px;
+      margin-bottom:px;
+  }
+  .timeline-item-title:hover {
+      color: #0056b3;
+      text-decoration: none;
+  }
+  .timeline-content {
+      display: none;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      background-color: #96939339;
+      
+  }
+  .timeline-content.show {
+      display: block;
+  }
+  .summary{
+      display:flex;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Đổ bóng */
+      background-color: white;
+  }
+  .star{
+      display:flex;
+      color: rgb(255, 221, 0);
+      margin-right:40px;
+      font-size: 35px;
+      margin-left: 100px;
+      margin-top:10px;
+      
+  }
+  .like_number{
+      font-size: 18px;
+      display:flex;
+      gap:10px;
+      margin-right:780px;
+      margin-top:25px;
+      color:#000000a6;
+  }
+  .schedule{
+      border:none;
+      background-color: #044c64;
+      color:white;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 24px;
+      margin-bottom:10px;
+      margin-top:15px;
+  }
+  .sticky{
+    position:fixed;
+            bottom:0px;
+            z-index: 9999;
+  }
