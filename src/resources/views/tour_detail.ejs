@@ -92,7 +92,7 @@
             <% if (tour_attraction && tour_attraction.length> 0) { %>
               <% tour_attraction.forEach(attraction=> { %>
                 <div class="item">
-                  <img src="</%= attraction.image %>" alt="<%= attraction.name %>" />
+                  <img src="<%= attraction.image %>" alt="<%= attraction.name %>" />
                   <h4>
                     <%= attraction.name %>
                   </h4>
@@ -362,7 +362,6 @@
                           <%= tour.tour_code %>
                         </p>
                         <p>
-                          <%= tour.discounted_price %> VND
                         </p>
                       </div>
                     </div>
@@ -370,7 +369,7 @@
                       <div class="tour-price">
                         <%= tour.discounted_price %>
                       </div>
-                      <div class="d-flex justify-content-between align-items-center">
+                      <div class="d-flex">
                         <a href="#" class="btn btn-primary btn-sm">Chọn</a>
                       </div>
                     </div>

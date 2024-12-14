@@ -462,10 +462,12 @@ span {
       font-size: 30px;
       font-weight: bold;
       color: #44c3f5;
-      margin-left:100px;
+      margin-left:50px;
   }
   .price-btn{
       display:flex;
+      margin-right:20px;
+      bottom:0px;
   }
   /* Button Styling */
   .tour-card .btn {
@@ -506,6 +508,7 @@ span {
   margin-top: 20px;
   margin-left:100px;
   margin-right:100px;
+  margin-bottom: 200px;
 }
 .moreInfo h1{
   color:#0056b3;
@@ -621,6 +624,7 @@ span {
       margin-top:15px;
   }
   .sticky{
+    width:100%;
     position:fixed;
             bottom:0px;
             z-index: 9999;
