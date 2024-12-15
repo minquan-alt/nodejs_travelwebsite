@@ -34,6 +34,34 @@
   --font-family-sarabun:  'Roboto', sans-serif;
   --btn-fun: #4bac4d;
 }
+/* Tùy chỉnh thẻ select */
+select {
+  width: 100%; /* Chiều rộng full container */
+  height: 40px; /* Chiều cao cố định */
+  padding: 5px 10px; /* Khoảng cách nội dung */
+  border: 1px solid #ced4da; /* Viền nhẹ màu xám */
+  border-radius: 5px; /* Bo góc */
+  background-color: #ffffff; /* Nền trắng */
+  color: #495057; /* Màu chữ */
+  font-size: 14px; /* Cỡ chữ */
+  cursor: pointer;
+  appearance: none; /* Xóa style mặc định của trình duyệt */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23495057" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Biểu tượng mũi tên */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* Hover cho select */
+select:hover {
+  border-color: #80bdff;
+}
+
+/* Focus cho select */
+select:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 
 *,
 *::before,
