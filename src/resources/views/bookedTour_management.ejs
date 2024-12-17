@@ -1,0 +1,92 @@
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active"><a href="#"><b>Danh sách tour đã đăng kí</b></a></li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+
+          <div class="row element-button">
+            <div class="col-sm-2" id="save">
+              <a class="btn btn-add btn-sm" id="save1" title="Lưu thay đổi">
+                <i class="fas fa-plus"></i> Lưu thay đổi
+              </a>              
+            </div>
+            <div class="col-sm-2" id="col-delete-all">
+              <!-- Xóa thuộc tính data-bs-toggle và data-bs-target -->
+              <a class="btn btn-danger btn-sm trash" id="deleteAll" type="button" title="Xóa">
+                <i class="fas fa-trash-alt"></i> Xóa tất cả
+              </a>
+            </div>
+            
+          </div>
+          <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
+            id="sampleTable">
+            <thead>
+              <tr>
+                <th width="10"><input type="checkbox" id="all"></th>
+                <th width="50">Mã đặt tour</th>
+                <th width="100">Mã Tour</th>
+                <th width="150">Tên tour</th>
+                <th width="150">Giá Tour</th>
+                <th width="150">Tình trạng</th>
+              </tr>
+            </thead>
+            <tbody class="tour-container">
+              <tr id="tour-row-0001">
+                <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                <td id="tour-id">0001</td> <!-- Thêm ID ở đây -->
+                <td>abc</td>
+                <td>Ha Noi</td>
+                <td>9.000.000 VND</td>
+                <td>
+                  <select id="options" name="options" required>
+                    <option value="" disabled selected hidden>None</option>
+                    <option value="option1">Pending</option>
+                    <option value="option2">Canceled</option>
+                    <option value="option3">Completed</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+            
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</div>
+<!-- MODAL xoá all -->
+<div class="modal fade" id="ModalDeleteAll" tabindex="-1" aria-labelledby="ModalConfirmDeleteAllLabel" aria-hidden="true"
+  data-bs-backdrop="true" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalConfirmDeleteAllLabel">Xác nhận xóa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa các dòng đã chọn không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteAllButton">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL xoá all -->
+
+<!-- Modal Tạo Mới Tour -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/bookedTour_management.js"></script>
