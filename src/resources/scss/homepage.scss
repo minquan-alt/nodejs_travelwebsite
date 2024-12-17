@@ -1,6 +1,11 @@
 body {
     font-family: 'Open Sans', Helvetica;
 }
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 .dropdown-menu {
     z-index: 9999;
 }
@@ -389,21 +394,23 @@ p {
     font-size: 1.2em;
     color: #044c64;
 }
-
+.see-tours:active{
+    transform: scale(0.9);
+    transition: all 0.5s ease-in-out;
+}
 .icon-container {
     position: relative; /* Để chứa các biểu tượng */
     display: inline-block; /* Để biểu tượng không chiếm toàn bộ chiều rộng */
     cursor: pointer; /* Con trỏ khi hover */    
     margin-right:40px;
     margin-bottom:20px;
+    transform: scale(1.1);
+    color: #ff6b6b;
 }
 
-.fa-heart {
-    font-size: 24px;
-    position: absolute; /* Đặt các biểu tượng chồng lên nhau */
-    top: 0;
-    transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi độ mờ */
-    color: rgb(255, 217, 0); /* Màu sắc của biểu tượng */
+.icon-contain i:hover {
+    transform: scale(1.1);
+    color: #ff6b6b;
 }
 
 .fa-heart.hidden {
@@ -416,4 +423,26 @@ p {
 
 .icon-container:hover .fa-heart:last-child {
     opacity: 1; /* Hiện biểu tượng đầy khi hover */
+}
+/* Nút điều hướng */
+/* Loại bỏ màu nền vàng khi hover */
+.carousel .carousel-item:hover {
+    background-color: transparent !important; /* Đặt nền trong suốt */
+}
+
+/* Nếu chỉ thị (indicator) là nguyên nhân */
+.carousel-indicators [data-bs-target]:hover,
+.carousel-indicators .active:hover {
+    background-color: transparent !important; /* Đặt màu nền trong suốt */
+}
+
+/* Nếu là phần tử khác */
+.carousel .carousel-item {
+    background-color: transparent !important; /* Đảm bảo nền các item không bị màu */
+}
+
+/* Kiểm tra nút điều hướng */
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: transparent !important; /* Đảm bảo nút điều hướng không nền */
 }

@@ -118,8 +118,6 @@ $(document).ready(function () {
     $(document).on('click', '.edit', function () {
         var customerId = $(this).data('customer-id')
         var customerName = $(this).data('customer-name')
-        var customerGender = $(this).data('customer-gender')
-        var customerDob = $(this).data('customer-dob')
         var customerPhone = $(this).data('customer-phone')
         var customerEmail = $(this).data('customer-email')
         var customerAddress = $(this).data('customer-address')
@@ -128,27 +126,20 @@ $(document).ready(function () {
         const dateParts = customerDob.split('/') // Tách giá trị ngày
         const formattedDate = `${dateParts[2]}-${dateParts[1].padStart(2, '0')}-${dateParts[0].padStart(2, '0')}` // Định dạng lại
         // Điền dữ liệu vào các trường trong modal
-        console.log('dob in form: ', $(this).data('customer-dob'))
         $('#editCustomerId').val(customerId)
         $('#editCustomerName').val(customerName)
-        $('#editGender').val(customerGender)
-        $('#editDob').val(formattedDate)
         $('#editPhone').val(customerPhone)
         $('#editEmail').val(customerEmail)
         $('#editAddress').val(customerAddress)
         $('#editCountry').val(customerCountry)
-
-        console.log('dob in modal: ', $('#editDob').val())
     })
 
     $('#updateCustomer').on('click', function () {
         const updatedData = {
             full_name: $('#editCustomerName').val(),
-            gender: $('#editGender').val(),
             city: $('#editAddress').val(),
             phone: $('#editPhone').val(),
             email: $('#editEmail').val(),
-            dob: $('#editDob').val(),
             country: $('#editCountry').val(),
         }
         console.log(updatedData.dob)

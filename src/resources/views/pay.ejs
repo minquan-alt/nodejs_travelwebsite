@@ -663,7 +663,6 @@
         async function handleMoMoPayment() {
             const order_id = $('#order-id').data('value')
             let amount = $('#total-price').text()
-            amount = 1000
             const redirectTo = window.location.href
             console.log('amount: ', amount)
             fetch('/payment',{

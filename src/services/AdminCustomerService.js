@@ -62,16 +62,8 @@ class AdminCustomerService {
             }
             // add customer
             const query =
-                'INSERT INTO Customers (full_name, gender, city, phone, email, dob, country) VALUES (?, ?, ?, ?, ?, ?, ?)'
-            const queryParams = [
-                full_name,
-                gender,
-                city,
-                phone,
-                email,
-                dob,
-                country,
-            ]
+                'INSERT INTO Customers (full_name, city, phone, email, country) VALUES (?, ?, ?, ?, ?)'
+            const queryParams = [full_name, city, phone, email, country]
             const [customer] = await connection.execute(query, queryParams)
             // add customer_user
             const customerUserQuery =
@@ -137,14 +129,12 @@ class AdminCustomerService {
             }
 
             const query =
-                'UPDATE Customers SET full_name = ?, gender = ?, city = ?, phone = ?, email = ?, dob = ?, country = ? WHERE id = ?'
+                'UPDATE Customers SET full_name = ?, city = ?, phone = ?, email = ?, country = ? WHERE id = ?'
             const [result] = await pool.query(query, [
                 updatedData.full_name,
-                updatedData.gender,
                 updatedData.city,
                 updatedData.phone,
                 updatedData.email,
-                updatedData.dob,
                 updatedData.country,
                 id,
             ])

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Document</title>
+    <style>
+        body {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+        .path {
+            display: flex;
+            align-items: center;
+        }
+        .path p {
+            font-size: 16px;
+            margin: 0 5px;
+        }
+        .path i {
+            margin-top: 5px;
+            font-size: 20px;
+            color: rgb(255, 217, 0);
+        }
+        .title {
+            display: flex;
+            align-items: center;
+        }
+        .title img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        .title h1 {
+            color: #044c64;
+        }
+        .tab {
+            display: flex;
+            margin-top: 10px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.442);
+        }
+        .thutuc {
+            background-color: rgb(8, 117, 127);
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            color: white;
+            padding: 10px 15px;
+            font-size: 20px;
+            border: 1px solid rgba(128, 128, 128, 0.442);
+            line-height: 1;
+        }
+        .docs {
+            background-color: white;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            color: #005387;
+            font-size: 20px;
+            padding: 10px 15px;
+            border: 1px solid transparent;
+            transition: border-color 0.3s ease;
+            line-height: 1;
+        }
+        .docs:hover {
+            border-color: rgba(128, 128, 128, 0.442);
+        }.tab div {
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .tab .active {
+            background-color: rgb(8, 117, 127);
+            color: white;
+            border: 1px solid rgba(128, 128, 128, 0.442);
+            transition: background-color 0.3s ease;
+        }
+
+        .tab div:not(.active) {
+            background-color: white;
+            color: #005387;
+            border: 1px solid transparent;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab div:not(.active):hover {
+            border-color: rgba(128, 128, 128, 0.442);
+        }
+
+        .visa {
+            margin-right: 60px;
+            margin-left: 60px;
+            margin-top: 50px;
+        }
+        .timeline1 {
+            margin-bottom: 20px;
+        }
+        .timeline-item {
+            flex: 50%;
+            margin-bottom: 40px;
+        }
+        .chaua, .chauau, .chaumy, .chauuc {
+            cursor: pointer;
+            background-color: #009dff;
+            color: white;
+            padding: 10px;
+            height: 400px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .chaua{
+            background-image: url("img/chaua.png");
+        }
+        .chauau{
+            background-image: url("img/visa_chauau.jpg");
+        }
+        .chaumy{
+            background-image: url("img/visa_chaumy.jpg");
+        }
+        .chauuc{
+            background-image: url("img/visa_chauuc.jpg");
+        }
+        .chaua h1, .chauau h1, .chaumy h1, .chauuc h1 {
+            margin-left:30%;
+        }
+        .chaua p, .chauau p, .chaumy p, .chauuc p {
+            margin-left: 20px;
+            text-align: justify;
+            margin-right: 20px;
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+        .chaua a, .chauau a, .chaumy a, .chauuc a {
+            text-decoration: none;
+            background-color: rgb(42, 137, 185);
+            color: white;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 20px;
+            margin-left: 220px;
+        }
+        .chaua a:hover, .chauau a:hover, .chaumy a:hover, .chauuc a:hover{
+            background-color: rgb(63, 138, 71) ;
+        }
+        .timeline-content {
+            max-height: 0; /* Ẩn nội dung mặc định */
+            overflow: hidden; /* Ẩn tràn nội dung */
+            transition: max-height 0.1s ease-out; /* Hiệu ứng chuyển tiếp */
+            padding: 0 10px; /* Padding cho nội dung */
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .timeline-content p {
+            margin-bottom: 100px;
+            text-decoration: none;
+            padding-bottom: 30px;
+        }
+        .timeline-content a {
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+            color: rgb(16, 97, 138); /* Thay đổi màu để dễ nhìn hơn */
+            margin-bottom: 20px; /* Thêm margin-bottom */
+            display: block; /* Chuyển thẻ a thành block */
+        }
+        .timeline-content a:hover{
+            color:rgb(33, 158, 221);
+        }
+        .timeline-content.show {
+            max-height: 1000px; /* Chiều cao lớn để hiện nội dung */
+            padding: 10px; /* Padding khi hiển thị */
+        }
+        .timeline2 {
+            display: flex;
+            gap: 40px;
+        }
+        .docs-content{
+            margin-top:20px;
+            display: none; /* Không hiển thị ban đầu */
+        }
+        .docs-content a{
+            text-decoration: none;
+            color: rgb(16, 97, 138);
+            font-size: 20px;
+            font-weight: bold;
+            display:block;
+            margin-bottom:-10px;
+            margin-left:50px;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+        a:hover{
+            font-weight: 700;
+            font-size:larger
+        }
+    </style>
+</head>
+<body>
+    <div class="path">
+        <a href="/"><p>TRANG CHỦ</p></a>
+        <i class="bi bi-chevron-right"></i>
+        <p>VISA</p>
+    </div>
+    <div class="title">
+        <img src="img/image.png" alt="Logo">
+        <h1>VISA</h1>
+    </div>
+    <div class="tab">
+        <div class="thutuc active" onclick="toggleTabContent('visa', this)">Thủ tục</div>
+        <div class="docs" onclick="toggleTabContent('docs-content', this)">Tài liệu liên quan</div>
+    </div>
+        
+    </div>
+    <div class="visa">
+        <div class="timeline1">
+            <div class="timeline">
+                <!-- Đêm trước ngày khởi hành -->
+                <div class="timeline2">
+                    <div class="timeline-item">
+                        <div class="frame">
+                            <div class="chaua" onclick="toggleContent(this)">
+                                <h1>VISA Châu Á</h1>
+                                <p>VivaViet rất hân hạnh được cung cấp thông tin cần thiết, và tư vấn nhiệt tình tận tâm cho quý khách hàng về thủ tục, dịch vụ làm Visa Châu Á. Với danh hiệu Top 10 Công ty Lữ hành hàng đầu Việt Nam nhiều năm liền, VivaViet sẽ hỗ trợ quý khách và gia đình Visa du lịch từ A-Z tới những địa điểm nổi tiếng khắp Châu Á như Hàn Quốc, Nhật Bản, Dubai,... cho một chuyến đi trọn vẹn và dễ dàng.</p>
+                                <a href="#" onclick="toggleContent(event, this)">Xem thêm</a>
+                            </div>
+                            <div class="timeline-content">
+                                <a href="#">BHUTAN.pdf</a>
+                                <a href="#">DUBAI.pdf</a> 
+                                <a href="#">HONG KONG.pdf</a>
+                                <a href="#">HÀN QUỐC.pdf</a>
+                                <a href="#">NHẬT BẢN.pdf</a>
+                                <a href="#">TRUNG QUỐC.pdf</a>
+                                <a href="#">ĐÀI LOAN.pdf</a>
+                                <a href="#">ẤN ĐỘ.pdf</a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Ngày 1 -->
+                    <div class="timeline-item">
+                        <div class="frame">
+                            <div class="chauau" onclick="toggleContent(this)">
+                                <h1>VISA Châu Âu</h1>
+                                <p>Với sự uy tín và chuyên nghiệp trên 25 năm nay, VivaViet - Top 10 Công ty Lữ hành hàng đầu Việt Nam rất tự hào được cung cấp cho quý khách hàng những thông tin cần thiết về thủ tục, dịch vụ làm Visa Châu Âu. Để quý khách hàng có một chuyến du lịch Châu Âu trọn vẹn và dễ dàng, VivaViet luôn hỗ trợ và tư vấn tận tình Visa du lịch khắp Châu Âu như: Visa Pháp, Visa Anh, Visa Đức, Visa Hà Lan,...</p>
+                                <a href="#" onclick="toggleContent(event, this)">Xem thêm</a>
+                            </div>
+                            <div class="timeline-content">
+                                <a href="#">ANH QUỐC.pdf</a>
+                                <a href="#">NGA (E-VISA).pdf</a> 
+                                <a href="#">PHÁP.pdf</a>
+                                <a href="#">PHẦN LAN.pdf</a>
+                                <a href="#">THỔ NHĨ KỲ.pdf</a>
+                                <a href="#">Ý.pdf</a>
+                                <a href="#">ĐỨC.pdf</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline2">
+                    <div class="timeline-item">
+                        <div class="frame">
+                            <div class="chaumy" onclick="toggleContent(this)">
+                                <h1>VISA Châu Mỹ</h1>
+                                <p>VivaViet rất vinh dự khi được hỗ trợ, cung cấp dịch vụ, và tư vấn quý khách hàng về những thông tin cần thiết để làm thủ tục Visa các nước Châu Mỹ. Bằng sự chuyên nghiệp và uy tín được chứng minh qua hơn 25 năm dày dạn kinh nghiệm, VivaViet luôn sẵn sàng mang đến cho quý khách hàng một chuyến đi trọn vẹn và dễ dàng đến châu Mỹ với Visa du lịch đi các nước như: Mỹ, Canada, Mexico, Brazil,...</p>
+                                <a href="#" onclick="toggleContent(event, this)">Xem thêm</a> 
+                            </div>
+                            <div class="timeline-content">
+                                <a href="#">HOA KỲ.pdf</a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Ngày 3 -->
+                    <div class="timeline-item">
+                        <div class="frame">
+                            <div class="chauuc" onclick="toggleContent(this)">
+                                <h1>VISA Châu Úc</h1>
+                                <p>Nếu quý khách hàng đang mong muốn một chuyến du lịch đến Châu Úc, VivaViet - Top 10 Công ty Lữ hành hàng đầu Việt Nam rất vui khi được hỗ trợ quý khách tư vấn làm những thủ tục xin Visa Châu Úc. Chúng tôi cam kết cung cấp cho quý khách hàng những thông tin, dịch vụ cần thiết để làm Visa du lịch châu Úc đến với 2 nước Úc và New Zealand giúp quý khách có một chuyến đi trọn vẹn và dễ dàng.</p>
+                                <a href="#" onclick="toggleContent(event, this)">Xem thêm</a> 
+                            </div>
+                            <div class="timeline-content">
+                                <a href="#">ÚC.pdf</a>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="docs-content" >
+        <!-- Nội dung của Tài liệu liên quan -->
+        <a href="#">AU002-FORM 956A AUSTRALIA.pdf</a><br>
+        <a href="#">au004-relative_form_australia.docx</a><br>
+        <a href="#">BW001-FORM_THONG_TIN_BOTSWANA.doc</a><br>
+        <a href="#">CA001-FORM THÔNG TIN CANADA.doc</a><br>
+        <a href="#">CA002-FORM THONG TIN GIA DINH-IMM 5645.pdf</a><br>
+        <a href="#">cn001-form_thong_tin_trung quoc-china_tourist_information.doc</a><br>
+        <a href="#">CN002_-_XAC_NHAN_VIEC_LAM.doc</a><br>
+        <a href="#">CN003_-_DON_XIN_NGHI_PHEP.doc</a><br>
+        <a href="#">Cy001-form_thông_tin_schengen_-_tourist_information.doc</a><br>
+        <a href="#">ES001-FORM_THÔNG_TIN_TBN-_TOURIST_INFORMATION.doc</a><br>
+        <a href="#">ES002-CV_SO_YEU_LY_LICH.pdf</a><br>
+        <a href="#">ESP001-TOURIST_INFORMATION_FORM.doc</a><br>
+        <a href="#">ESP004_Letter_of_Financial_Guarantee.docx</a><br>
+        <a href="#">ET001_-_FORM THONG TIN ETHIOPIA.doc</a><br>
+        <a href="#">EU001-FORM_THÔNG_TIN_SCHENGEN_-_TOURIST_INFORMATION.doc</a><br>
+        <a href="#">FIN001-TOURIST_INFORMATION_FORM.doc</a><br>
+        <a href="#">FIN002_CONFIRMATION_OF_WORK.docx</a><br>
+        <a href="#">FIN003-Declaration_of Savings_Account_Balance.docx</a><br>
+        <a href="#">FIN004_Letter_of_Financial_Guarantee.docx</a><br>
+        <a href="#">FORM THÔNG TIN VISA ÚC.doc</a><br>
+        <a href="#">FR000- Đơn ủy quyền lấy visa.pdf</a><br>
+        <a href="#">FR001-APPLICATION FORM_-_TRANG 4.pdf</a><br>
+        <a href="#">FR001-FORM_THÔNG_TIN_SCHENGEN_-_TOURIST_INFORMATION.doc</a><br>
+        <a href="#">GB001-FORM_THÔNG_TIN_ANH_QUỐC_-_TOURIST_INFORMATION.doc</a><br>
+        <a href="#">GE001-FORM_THÔNG_TIN_ĐỨC_-_TOURIST_INFORMATION.doc</a><br>
+        <a href="#">GE002-thu_cam_ket_bao_lanh_tai_chinh.docx</a><br>
+        <a href="#">GE003_-_BAN TUYEN BO DONG Y CHO TRE VI THANH NIEN.pdf</a><br>
+        <a href="#">GE004_Sample_Salary_Verification_Letter.pdf</a><br>
+        <a href="#">GR001-APPLICATION FORM-TRANG 3.pdf</a><br>
+        <a href="#">GR001-form_thông_tin_schengen_-_tourist_information.doc</a><br>
+        <a href="#">HKG001-TOURIST_INFORMATION_FORM.doc</a><br>
+        <a href="#">HKG002-CERTIFICATE_OF_EMPLOYMENT.docx</a><br>
+        <a href="#">HKG003-Certificate_of_study.docx</a><br>
+        <a href="#">HONG KONG-KHÁCH LẺ.pdf</a><br>
+        <a href="#">ID520-1.pdf</a><br>
+        <a href="#">IL001-FORM_THÔNG_TIN_ISRAEL_-_TOURIST_INFORMATION.doc</a><br>
+        <a href="#">il002-form_thong_tin_khach_mice.xls</a><br>
+        <a href="#">in007-form_thong_tin_an_do.doc</a><br>
+        <a href="#">INZ002-1224_DECLARATION_FORM.pdf</a><br>
+        <a href="#">it001-thu_cam_ket_bao_lanh_tai_chinh.docx</a><br>
+        <a href="#">IT001_-_APPLICATION FORM_-_TRANG_3.pdf</a><br>
+        <a href="#">JAPAN_APPLICATION_PAGE 2.pdf</a><br>
+        <a href="#">JP001-FORM_THONG_TIN_NHAT_BAN-TOURIST_INFORMATION.doc</a><br>
+        <a href="#">jp002-form_thong_tin_khach_mice_ japan.xls</a><br>
+        <a href="#">KE001-FORM_THONG_TIN_KENYA.doc</a><br>
+        <a href="#">KR-Letter of Guarantee - Sample.docx</a><br>
+        <a href="#">KR001_CONFIRMATION_ 1.docx</a><br>
+        <a href="#">KR002_-_CONFIRMATION_2.docx</a><br>
+        <a href="#">KR003-YANGYANG-APPLICATION-TRANG 5.pdf</a><br>
+        <a href="#">KR004- APPLICATION FORM- TRANG 5.pdf</a><br>
+        <a href="#">KR005-FORM_THONG_TIN_KHACH-TOURIST_INFORMATION_1.doc</a><br>
+        <a href="#">Letter of Guarantee - Sample.docx</a><br>
+        <a href="#">LKA001-FORM_THÔNG_TIN_SRI LANKA_-_TOURIST_INFORMATION.doc</a><br>
+        <a href="#">MẪU XÁC NHẬN CÔNG VIỆC 2023.doc</a><br>
+        <a href="#">MẪU XÁC NHẬN CÔNG VIỆC.docx</a><br>
+        <a href="#">MẪU XÁC NHẬN HỌC SINH.docx</a><br>
+        <a href="#">NZ001-FORM_THÔNG_TIN_NEWZEALAND_TOURIST_INFORMATION.doc</a><br>
+        <a href="#">NZ002-vietnam-family-supplementary-questionnaire.docx</a><br>
+        <a href="#">NZ003-MẪU_SƠ_YẾU_LÝ_LỊCH.doc</a><br>
+        <a href="#">NZ004-AUTHORISATION_LETTER_FOR_APPLICATION.pdf</a><br>
+        <a href="#">NZ005_-_APPLICATION_FORM.pdf</a><br>
+        <a href="#">NZ006_ FORM NZ (INZ1224).pdf</a><br>
+        <a href="#">PK001_FORM THONG TIN PAKISTAN.docx</a><br>
+        <a href="#">PK001_FORM THONG TIN PAKISTAN_1.docx</a><br>
+        <a href="#">RU001_-_FORM_THÔNG_TIN_NGA.doc</a><br>
+        <a href="#">RU002- E-VISA -FORM_THÔNG_TIN_NGA.doc</a><br>
+        <a href="#">RU002_Application form_Trang 2.pdf</a><br>
+        <a href="#">THA003-APPLICATION_VOA.pdf</a><br>
+        <a href="#">tr001-form_thông_tin_tho_nhi_ky_-_tourist_information.doc</a><br>
+        <a href="#">TUR001-TOURIST_INFORMATION_FORM.doc</a><br>
+        <a href="#">TUR002_CONFIRMATION_OF_WORK.docx</a><br>
+        <a href="#">TUR003_Letter_of_Financial_Guarantee.docx</a><br>
+        <a href="#">TW001-FORM_THONG_TIN_DAI_LOAN-TOURIST_INFORMATION.doc</a><br>
+        <a href="#">TW002 FORM THÔNG TIN ĐOÀN MICE.xlsx</a><br>
+        <a href="#">UK001-FORM_THÔNG_TIN_ANH-TOURIST_INFORMATION.doc</a><br>
+        <a href="#">US001-FORM_THÔNG_TIN_MY-TOURIST_INFORMATION.doc</a><br>
+        <a href="#">US002-CAU_HOI_PHONG_VAN_VISA-MY-US_INTERVIEW_QUESTION.pdf</a><br>
+        <a href="#">vf002-mau_don_xin_nghi_phep-application_for_leave.doc</a><br>
+        <a href="#">vf003-mau_giay_uy_quyen-authorization_letter.doc</a><br>
+        <a href="#">VF004-MAU_THU_BAO_LANH-LETTER_OF_GUARANTEE.doc</a><br>
+        <a href="#">vf010-form_thong_tin_khach_mice.xls.xls</a><br>
+        <a href="#">ZAF002-VISA_APPLICATION_FORM_PAGE_5.pdf</a><br>
+        <a href="#">ZAF003-Letter_of_Guarantee.docx</a><br>
+    </div>
+    <script>
+     // Hàm cho việc hiển thị/ẩn nội dung "Xem thêm" trong timeline
+     function toggleContent(event, element) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định (nếu là thẻ <a>)
+            
+            const content = element.parentElement.nextElementSibling;
+
+            // Đổi trạng thái hiển thị nội dung
+            content.classList.toggle('show'); // Chuyển đổi trạng thái hiển thị
+        }
+
+        // Hàm cho việc chuyển đổi tab
+        function toggleTabContent(contentId, tabElement) {
+            const tabs = document.querySelectorAll('.tab div');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabElement.classList.add('active');
+
+            // Ẩn tất cả nội dung
+            const contents = document.querySelectorAll('.visa, .docs-content');
+            contents.forEach(content => (content.style.display = 'none'));
+
+            // Hiển thị nội dung được chọn
+            const contentToShow = document.querySelector(`.${contentId}`);
+            if (contentToShow) {
+                contentToShow.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

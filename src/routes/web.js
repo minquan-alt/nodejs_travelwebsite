@@ -24,6 +24,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
+routerWeb.get('/visa', WebsiteController.getVisaPage)
 routerWeb.post('/payment', WebsiteController.handlePayment)
 routerWeb.post('/check_order/:id', WebsiteController.checkOrder)
 routerWeb.get('/pay', WebsiteController.getPayPage)

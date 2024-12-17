@@ -7,6 +7,11 @@ class WebsiteController {
     constructor() {
         this.handleSuccessfulPayment = this.handleSuccessfulPayment.bind(this)
     }
+    getVisaPage(req, res) {
+        res.render('visa', {
+            layout: false,
+        })
+    }
     async searchTours(req, res) {
         try {
             const currentIndex = parseInt(req.query.currentIndex) || 0
@@ -292,9 +297,8 @@ class WebsiteController {
             })
         } catch (error) {
             console.error('Error while checking order:', error)
-            return res.status(500).json({
-                success: false,
-                message: 'An error occurred while checking the order',
+            return res.render('pay', {
+                layout: false,
             })
         }
     }

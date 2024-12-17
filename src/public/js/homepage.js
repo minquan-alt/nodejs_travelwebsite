@@ -1,3 +1,50 @@
+const heartIcon = document.getElementById('heartIcon')
+// Toggle the icon state on click
+heartIcon.addEventListener('click', function () {
+    this.classList.toggle('fa-solid') // Add/remove the filled style
+    this.classList.toggle('fa-regular') // Add/remove the unfilled style
+})
+
+$(document).ready(function () {
+    // Lắng nghe sự kiện click trên các nút "Khám Phá"
+    $('.card-btn').on('click', function (event) {
+        event.stopPropagation()
+        const destinationId = $(this).data('id') // Lấy destination_id
+        const destinationName = $(this).data('name') // Lấy tên điểm đến
+        const destinationDescription = $(this).data('description') // Lấy mô tả điểm đến
+
+        // Cập nhật tên và mô tả trong modal
+        $('#destinationModal h2').text(destinationName)
+        $('#destinationModal p').text(destinationDescription)
+
+        // Gửi yêu cầu AJAX để lấy danh sách ảnh
+        $.ajax({
+            url: `/api/destination-images/${destinationId}`, // Đường dẫn API
+            method: 'GET',
+            success: function (images) {
+                const carouselInner = $('#destinationModal .carousel-inner')
+                carouselInner.empty() // Xóa nội dung cũ của carousel
+
+                // Thêm ảnh vào carousel
+                images.forEach((image, index) => {
+                    const isActive = index === 0 ? 'active' : ''
+                    carouselInner.append(`
+                        <div class="carousel-item ${isActive}">
+                            <img src="${image.image_path}" 
+                                style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px;"
+                                alt="Destination Image">
+                        </div>
+                    `)
+                })
+
+                // Hiển thị modal (đã được Bootstrap xử lý tự động)
+            },
+            error: function (err) {
+                console.error('Không thể tải ảnh:', err)
+            },
+        })
+    })
+})
 document.getElementById('btnLoadMore').addEventListener('click', function () {
     const tourContainer = document.getElementById('tour-container')
     const currentPage = parseInt(this.dataset.page || '1', 10) + 1 // Lấy trang hiện tại
@@ -56,6 +103,10 @@ $(document).on('click', '.icon-container', function () {
         $(this).toggleClass('hidden') // Chuyển đổi lớp 'hidden' cho từng biểu tượng
         console.log('You clicked heart')
     })
+})
+$('.icon-contain').on('click', function () {
+    const icon = $(this).find('.fa-heart')[0] // Tìm cả hai biểu tượng trong container
+    icon.toggleClass('fa-solid fa-regular')
 })
 
 $(window).on('load', function () {

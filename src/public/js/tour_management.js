@@ -297,6 +297,11 @@ $(document).ready(function () {
                 if (typeof data === 'string') {
                     $('.tour-container').html(data)
                     $('#ModalCreate').modal('hide')
+                    Swal.fire({
+                        title: 'Good job!',
+                        text: 'Add tour successfully!',
+                        icon: 'success',
+                    })
                     $('#createtourForm')[0].reset()
                 } else if (!data.success) {
                     alert(data.message)

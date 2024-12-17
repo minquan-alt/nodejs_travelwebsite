@@ -15,12 +15,8 @@ class AdminController {
         try {
             const result = await adminCustomerService.getCustomers(req)
             if (result.success) {
-                result.data = result.data.map((customer) => {
-                    return {
-                        ...customer,
-                        dob: customer.dob.toLocaleDateString('vi-VN'),
-                    }
-                })
+                console.log(result.data)
+
                 return res.render('customer_management', {
                     layout: false,
                     customers: result.data,
@@ -39,10 +35,6 @@ class AdminController {
         try {
             const result = await adminCustomerService.getCustomers(req)
             if (methodResult.success) {
-                result.data = result.data.map((customer) => ({
-                    ...customer,
-                    dob: customer.dob.toLocaleDateString('vi-VN'),
-                }))
                 return res.render('admin_customer/show', {
                     layout: false,
                     success: true,

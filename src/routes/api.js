@@ -6,7 +6,7 @@ const { getTours } = require('../api/tour_management/get_tours')
 const { get_one_tour } = require('../api/tour_management/get_one_tour')
 const { update_tour } = require('../api/tour_management/update_tour')
 const delete_tour = require('../api/tour_management/delete_tour')
-
+const pool = require('../config/connectDB')
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         let path = 'src/public/uploads'
@@ -27,6 +27,20 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 // Định nghĩa route xử lý
+router.get('/destination-images/:id', async (req, res) => {
+    const destinationId = req.params.id
+    try {
+        const [images] = await pool.query(
+            'SELECT image_path FROM DestinationImages WHERE destination_id = ?',
+            [destinationId]
+        )
+        res.json(images)
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('Internal Server Error')
+    }
+})
+
 router.post('/tour_management/delete_tour/:id', async (req, res) => {
     await delete_tour(req, res)
 })

@@ -6,11 +6,9 @@
          <td width="10"><input type="checkbox" name="check1[]" value="<%= customer.id %>"></td>
          <td> <%= customer.id %> </td>
          <td> <%= customer.full_name %> </td>
-         <td> <%= customer.gender %> </td>
          <td> <%= customer.city %> </td>
          <td> <%= customer.phone %> </td>
          <td> <%= customer.email %> </td>
-         <td> <%= customer.dob %> </td>
          <td> <%= customer.country %> </td>
          <td>
              <button class="btn btn-danger btn-sm trash deleteRow" type="button" title="Xóa" data-bs-toggle="modal"
@@ -18,8 +16,7 @@
                      class="fas fa-trash-alt"></i></button>
              <button class="btn btn-warning btn-sm edit" type="button" title="Sửa" data-bs-toggle="modal"
                  data-bs-target="#ModalUpdate" data-customer-id="<%= customer.id %>"
-                 data-customer-name="<%= customer.full_name %>" data-customer-gender="<%= customer.gender %>"
-                 data-customer-dob="<%= customer.dob %>" data-customer-phone="<%= customer.phone %>"
+                 data-customer-name="<%= customer.full_name %>" data-customer-phone="<%= customer.phone %>"
                  data-customer-email="<%= customer.email %>" data-customer-address="<%= customer.city %>"
                  data-customer-country="<%= customer.country %>">
                  <i class="fa fa-edit" id="editRow"></i>
