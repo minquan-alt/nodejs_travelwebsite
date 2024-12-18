@@ -90,7 +90,7 @@
             <% if (tour_attraction && tour_attraction.length> 0) { %>
               <% tour_attraction.forEach(attraction=> { %>
                 <div class="item">
-                  <img src="<%= attraction.image %>" alt="<%= attraction.name %>" />
+                  <img src="/<%= attraction.image %>" alt="<%= attraction.name %>" />
                   <h4>
                     <%= attraction.name %>
                   </h4>
@@ -178,58 +178,43 @@
               </div>
             </div>
 
-            <div class="include">
-              <!-- Bao gồm -->
-              <div class="include">
-                <h2><strong></strong></h2>
-                <div class="include-detail">
-                  <% if (tour.inclusions) { %>
-                    <% const inclusions=tour.inclusions.split('\n'); %>
-                      <% inclusions.forEach(item=> { %>
-                        <div class="include-st">
-                          <i class="fa-solid fa-square-check"></i>
+           <div class="include">
+              <h2><strong>TOUR BAO GỒM</strong></h2>
+              <% if (tour.inclusions) { %>
+                <% const inclusions=tour.inclusions.split('\n'); %>
+                  <% inclusions.forEach(item=> { %>
+                    <div class="include-st">
+                      <% if (item.trim() !=="" ) { %> <!-- Kiểm tra nếu dòng không rỗng -->
+                        <i class="fa-solid fa-square-check" style="color: green;"></i>
+                        <% } %>
                           <p>
-                            <%= item %>
+                            <%= item.trim() %>
                           </p>
-                        </div>
-                        <% }); %>
-                          <% } %>
-                </div>
-              </div>
+                    </div>
+                    <% }); %>
+                      <% } else { %>
+                        <p>Thông tin về các dịch vụ bao gồm sẽ được cập nhật sau.</p>
+                        <% } %>
+            </div>
 
-              <!-- Không bao gồm -->
-              <div class="not-include">
-                <h2><strong></strong></h2>
-                <div class="not-include-detail">
-                  <% if (tour.exclusions) { %>
-                    <% const exclusions=tour.exclusions.split('\n'); %>
-                      <% exclusions.forEach(item=> { %>
-                        <div class="not-include-st">
-                          <i class="fa-solid fa-circle-xmark"></i>
+            <div class="not-include">
+              <h2><strong>TOUR KHÔNG BAO GỒM</strong></h2>
+              <% if (tour.exclusions) { %>
+                <% const exclusions=tour.exclusions.split('\n'); %>
+                  <% exclusions.forEach(item=> { %>
+                    <div class="not-include-st">
+                      <% if (item.trim() !=="" ) { %> <!-- Kiểm tra nếu dòng không rỗng -->
+                        <i class="fa-solid fa-circle-xmark" style="color: orange;"></i>
+                        <% } %>
                           <p>
-                            <%= item %>
+                            <%= item.trim() %>
                           </p>
-                        </div>
-                        <% }); %>
-                          <% } %>
-                </div>
-              </div>
-              <div class="children-price">
-                <h2><strong>GIÁ TRẺ EM</strong></h2>
-                <p>
-                  <% if (tour.child_price) { %>
-                    <% const childPrice=tour.child_price.split('\n'); %>
-                      <!-- Phân tách chuỗi child_price tại mỗi dấu xuống dòng -->
-                      <% childPrice.forEach(item=> { %> <!-- Duyệt qua từng phần tử trong mảng childPrice -->
-                        <p>
-                          <%= item %> <!-- Hiển thị từng dòng thông tin về giá trẻ em -->
-                        </p>
-                        <% }); %>
-                          <% } %>
-
-                </p>
-              </div>
-
+                    </div>
+                    <% }); %>
+                      <% } else { %>
+                        <p>Thông tin về các dịch vụ không bao gồm sẽ được cập nhật sau.</p>
+                        <% } %>
+            </div>
               <div class="note">
                 <h2><strong>LƯU Ý</strong></h2>
                 <p>
