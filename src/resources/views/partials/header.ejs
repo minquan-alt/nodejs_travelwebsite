@@ -4,12 +4,21 @@
   </div>
 
   <div class="right-section">
-    <a href="#"><i class="material-icons">local_mall</i>Chuyến đi của tôi</a>
-    <a href="#"><i class="material-icons">call</i>Liên hệ</a>
+    <a href="#" id="menu-item"><i class="material-icons">local_mall</i>Chuyến đi của tôi</a>
     <div class="dropdown">
-      <a href="javascript:void(0);" onclick="toggleDropdown(event, 'dropdownMenu')"><i class="material-icons">reorder</i>Danh mục</a>
+      <a href="javascript:void(0);" onclick="toggleDropdown(event, 'dropdown-contact')">
+        <i class="material-icons">call</i>Liên hệ
+      </a>
+      <div class="dropdown-content" id="dropdown-contact">
+          <p><span class="material-icons icon">location_on</span> Khu phố 6, P.Linh Trung, Tp.Thủ Đức, Tp.Hồ Chí Minh</p>
+          <p><span class="material-icons icon">mail</span> vivaviet.sgn@gmail.com</p>
+          <p><span class="material-icons icon">contact_phone</span> (028)386 8386</p>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="javascript:void(0);" id="menu-item" onclick="toggleDropdown(event, 'dropdownMenu')"><i class="material-icons">reorder</i>Danh mục</a>
       <div class="dropdown-content" id="dropdownMenu">
-        <a href="#">Góc kiến thức</a>
+        <a href="/visa">Visa</a>
         <a href="#">Thông tin hữu ích</a>
         <a href="#">Về ViVaViet</a>
       </div>

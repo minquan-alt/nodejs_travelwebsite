@@ -70,16 +70,24 @@ a:hover {
 .review {
   display: flex; /* Sử dụng Flexbox để căn chỉnh */
   margin: 20px 0px; /* Khoảng cách ngoài cho phần nội dung */
+<<<<<<< HEAD
   gap: 50%;
+=======
+  gap: 48%;
+>>>>>>> 6cc493b80efd313613c84802fe9d8c2efe88d275
 }
 .rating {
   font-size: 20px;
   display: flex;
+<<<<<<< HEAD
   margin-right: 150px;
 }
 .like-number {
   font-size: 5.5rem;
   display: flex;
+=======
+  margin-right: 100px;
+>>>>>>> 6cc493b80efd313613c84802fe9d8c2efe88d275
 }
 .bi-chevron-right {
   font-size: 24px;
@@ -90,8 +98,14 @@ a:hover {
 }
 .like-number {
   display: flex;
+<<<<<<< HEAD
   gap: 15px;
   font-size: 20px;
+=======
+  gap: 10px;
+  font-size: 20px;
+  text-align: right;
+>>>>>>> 6cc493b80efd313613c84802fe9d8c2efe88d275
 }
 .icon-container {
       position: relative; /* Để chứa các biểu tượng */
@@ -462,10 +476,19 @@ span {
       font-size: 30px;
       font-weight: bold;
       color: #44c3f5;
+<<<<<<< HEAD
       margin-left:100px;
   }
   .price-btn{
       display:flex;
+=======
+      margin-left:50px;
+  }
+  .price-btn{
+      display:flex;
+      margin-right:20px;
+      bottom:0px;
+>>>>>>> 6cc493b80efd313613c84802fe9d8c2efe88d275
   }
   /* Button Styling */
   .tour-card .btn {
@@ -514,6 +537,10 @@ span {
 }
 .carousel-tour .card {
   margin: 0 10px;
+<<<<<<< HEAD
+=======
+  margin-bottom:100px;
+>>>>>>> 6cc493b80efd313613c84802fe9d8c2efe88d275
 }
 
 .carousel-tour .carousel-control-prev,
@@ -621,6 +648,10 @@ span {
       margin-top:15px;
   }
   .sticky{
+<<<<<<< HEAD
+=======
+    width:100%;
+>>>>>>> 6cc493b80efd313613c84802fe9d8c2efe88d275
     position:fixed;
             bottom:0px;
             z-index: 9999;

@@ -51,14 +51,15 @@ class AdminTourService {
             max_quantity_of_people,
             nights,
             original_price,
-            status,
             time_back,
             time_go,
             tour_name,
             image,
             tour_code,
             nation,
+            type,
         } = req.body
+        console.log(req.body)
         let connection
 
         try {
@@ -66,7 +67,7 @@ class AdminTourService {
             await connection.beginTransaction()
             // add tour
             const query =
-                'INSERT INTO Tours (days, departure_location, description, discounted_price, is_active, is_featured, max_quantity_of_people, nights, original_price, status, time_back, time_go, tour_name, image, tour_code, nation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+                'INSERT INTO Tours (days, departure_location, description, discounted_price, is_active, is_featured, max_quantity_of_people, nights, original_price, time_back, time_go, tour_name, image, tour_code, nation, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
             const queryParams = [
                 days,
                 departure_location,
@@ -77,13 +78,13 @@ class AdminTourService {
                 max_quantity_of_people,
                 nights,
                 original_price,
-                status,
                 time_back,
                 time_go,
                 tour_name,
                 image,
                 tour_code,
                 nation,
+                type,
             ]
             const [tour] = await connection.execute(query, queryParams)
             // add tour_user
@@ -114,8 +115,6 @@ class AdminTourService {
             if (connection) connection.release()
         }
     }
-    
 }
-
 
 module.exports = new AdminTourService()

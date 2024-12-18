@@ -26,17 +26,17 @@
 <body>
   <%- include('./partials/header') %>
     <div class="banner">
-      <img src="th.jfif" />
+      <img src="<%= tour.image_detail %>">
     </div>
 
     <div class="content">
       <div class="left-content">
         <div class="path">
-          <a href="">Trang chu</a>
+          <a href="/">Trang chu</a>
           <i class="bi bi-chevron-right"></i>
-          <a href="">Du lich chau A</a>
-          <i class="bi bi-chevron-right"></i>
-          <a href="">Du lich Viet Nam</a>
+          <a href="">
+            <%= tour.tour_name %>
+          </a>
         </div>
         <div class="title">
           <h1><strong>
@@ -52,7 +52,9 @@
             <i class="bi bi-star-half"></i>
           </div>
           <div class="like-number">
-            <p>123 lượt thích</p>
+            <p id="num-like" data-value="<%= tour.love %>" data-like="0">
+              <%= tour.love %> lượt thích
+            </p>
             <div class="icon-container">
               <i class="fa-regular fa-heart"></i> <!-- Biểu tượng trái tim rỗng -->
               <i class="fa-solid fa-heart hidden"></i> <!-- Biểu tượng trái tim đầy -->
@@ -92,7 +94,7 @@
             <% if (tour_attraction && tour_attraction.length> 0) { %>
               <% tour_attraction.forEach(attraction=> { %>
                 <div class="item">
-                  <img src="<%= attraction.image %>" alt="<%= attraction.name %>" />
+                  <img src="/<%= attraction.image %>" alt="<%= attraction.name %>" />
                   <h4>
                     <%= attraction.name %>
                   </h4>
@@ -181,79 +183,64 @@
             </div>
 
             <div class="include">
-              <!-- Bao gồm -->
-              <div class="include">
-                <h2><strong></strong></h2>
-                <div class="include-detail">
-                  <% if (tour.inclusions) { %>
-                    <% const inclusions=tour.inclusions.split('\n'); %>
-                      <% inclusions.forEach(item=> { %>
-                        <div class="include-st">
-                          <i class="fa-solid fa-square-check"></i>
+              <h2><strong>TOUR BAO GỒM</strong></h2>
+              <% if (tour.inclusions) { %>
+                <% const inclusions=tour.inclusions.split('\n'); %>
+                  <% inclusions.forEach(item=> { %>
+                    <div class="include-st">
+                      <% if (item.trim() !=="" ) { %> <!-- Kiểm tra nếu dòng không rỗng -->
+                        <i class="fa-solid fa-square-check" style="color: green;"></i>
+                        <% } %>
                           <p>
-                            <%= item %>
+                            <%= item.trim() %>
                           </p>
-                        </div>
-                        <% }); %>
-                          <% } %>
-                </div>
-              </div>
-
-              <!-- Không bao gồm -->
-              <div class="not-include">
-                <h2><strong></strong></h2>
-                <div class="not-include-detail">
-                  <% if (tour.exclusions) { %>
-                    <% const exclusions=tour.exclusions.split('\n'); %>
-                      <% exclusions.forEach(item=> { %>
-                        <div class="not-include-st">
-                          <i class="fa-solid fa-circle-xmark"></i>
-                          <p>
-                            <%= item %>
-                          </p>
-                        </div>
-                        <% }); %>
-                          <% } %>
-                </div>
-              </div>
-              <div class="children-price">
-                <h2><strong>GIÁ TRẺ EM</strong></h2>
-                <p>
-                  <% if (tour.child_price) { %>
-                    <% const childPrice=tour.child_price.split('\n'); %>
-                      <!-- Phân tách chuỗi child_price tại mỗi dấu xuống dòng -->
-                      <% childPrice.forEach(item=> { %> <!-- Duyệt qua từng phần tử trong mảng childPrice -->
-                        <p>
-                          <%= item %> <!-- Hiển thị từng dòng thông tin về giá trẻ em -->
-                        </p>
-                        <% }); %>
-                          <% } %>
-
-                </p>
-              </div>
-
-              <div class="note">
-                <h2><strong>LƯU Ý</strong></h2>
-                <p>
-                  <% if (tour.notes) { %>
-                    <% const notes=tour.notes.split('\n'); %>
-
-                      <% notes.forEach(item=> { %>
-                        <p>
-                          <%= item %>
-                        </p>
-                        <% }); %>
-                          <% } %>
-                </p>
-              </div>
-              <div class="docs">
-                <button class="tk">Thông tin tham khảo</button>
-              </div>
+                    </div>
+                    <% }); %>
+                      <% } else { %>
+                        <p>Thông tin về các dịch vụ bao gồm sẽ được cập nhật sau.</p>
+                        <% } %>
             </div>
 
+            <div class="not-include">
+              <h2><strong>TOUR KHÔNG BAO GỒM</strong></h2>
+              <% if (tour.exclusions) { %>
+                <% const exclusions=tour.exclusions.split('\n'); %>
+                  <% exclusions.forEach(item=> { %>
+                    <div class="not-include-st">
+                      <% if (item.trim() !=="" ) { %> <!-- Kiểm tra nếu dòng không rỗng -->
+                        <i class="fa-solid fa-circle-xmark" style="color: orange;"></i>
+                        <% } %>
+                          <p>
+                            <%= item.trim() %>
+                          </p>
+                    </div>
+                    <% }); %>
+                      <% } else { %>
+                        <p>Thông tin về các dịch vụ không bao gồm sẽ được cập nhật sau.</p>
+                        <% } %>
+            </div>
+            <div class="note">
+              <h2><strong>LƯU Ý</strong></h2>
+              <p>
+                <% if (tour.notes) { %>
+                  <% const notes=tour.notes.split('\n'); %>
+
+                    <% notes.forEach(item=> { %>
+                      <p>
+                        <%= item %>
+                      </p>
+                      <% }); %>
+                        <% } %>
+              </p>
+            </div>
+            <div class="docs">
+              <button class="tk">Thông tin tham khảo</button>
+            </div>
           </div>
+
         </div>
       </div>
+
       <div class="right-content">
         <section class="p-4 text-center w-100">
           <!-- Facebook -->
@@ -299,27 +286,28 @@
               </div>
             </div>
           </div>
-          <div class="ads">
-            <img src="image.png" />
-            <button class="qt">Quan tâm</button>
+        </div>
+        <div class="ads">
+          <img src="/uploads/QT.jpg" />
+          <button class="qt">Quan tâm</button>
+        </div>
+        <div class="post">
+          <p>Bài viết mới nhất</p>
+          <div class="session">
+            <img src="/uploads/muathu.png" />
+            <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
           </div>
-          <div class="post">
-            <p>Bài viết mới nhất</p>
-            <div class="session">
-              <img src="uploads/muathu.png" />
-              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-            </div>
-            <div class="session">
-              <img src="uploads/muathu.png" />
-              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-            </div>
-            <div class="session">
-              <img src="uploads/muathu.png" />
-              <h5>THƯỞNG NGOẠN TUYỆT ĐỈNH MÙA THU HOKKAIDO</h5>
-            </div>
+          <div class="session">
+            <img src="/uploads/nhatbanupload.png" />
+            <h5>NHẬT BẢN: HÀNH TRÌNH Đi KIẾM TÌM VỀ KÝ ỨC XƯA</h5>
+          </div>
+          <div class="session">
+            <img src="/uploads/hanquocupload.png" />
+            <h5>TÌNH KHÚC LÃNG MẠN HOA ANH ĐÀO HÀN QUỐC</h5>
           </div>
         </div>
       </div>
+    </div>
     </div>
     <div class="moreInfo">
       <h1 style="color:#044c64"><strong>CÓ THỂ BẠN QUAN TÂM</strong></h1>
@@ -361,7 +349,6 @@
                     <%= tour.tour_code %>
                   </p>
                   <p>
-                    <%= tour.discounted_price %> VND
                   </p>
                 </div>
               </div>
@@ -369,8 +356,8 @@
                 <div class="tour-price">
                   <%= tour.discounted_price %>
                 </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <a href="/tour_detail?tourId=<%= tour.id %>" class="btn btn-primary btn-sm">Chọn</a>
+                <div class="d-flex">
+                  <a href="#" class="btn btn-primary btn-sm">Chọn</a>
                 </div>
               </div>
             </div>
@@ -388,7 +375,9 @@
           <i class="bi bi-star-half"></i>
         </div>
         <div class="like_number">
-          <p>123 lượt thích</p>
+          <p>
+            <%= tour.love %> lượt thích
+          </p>
         </div>
         <div class="lich">
           <button class="schedule" id="scheduleButton">Lịch khởi hành</button>
@@ -400,12 +389,20 @@
     <script>
       const heartIcons = document.querySelectorAll('.fa-heart');
 
-      heartIcons[0].addEventListener('click', () => {
-        heartIcons[0].classList.toggle('hidden'); // Ẩn biểu tượng rỗng
-        heartIcons[1].classList.toggle('hidden'); // Hiện biểu tượng đầy
-      });
+
 
       heartIcons[1].addEventListener('click', () => {
+        let new_like = Number($('#num-like').data('value'))
+        if ($('#num-like').data('like') == 0) {
+          new_like += 1
+          $('#num-like').data('like', '1')
+        } else {
+          new_like -= 1
+          $('#num-like').data('like', '0')
+        }
+
+        console.log('Current like: ', new_like)
+        $('#num-like').text(`${new_like} lượt thích`).data('value', new_like)
         heartIcons[0].classList.toggle('hidden'); // Hiện lại biểu tượng rỗng
         heartIcons[1].classList.toggle('hidden'); // Ẩn biểu tượng đầy
       });

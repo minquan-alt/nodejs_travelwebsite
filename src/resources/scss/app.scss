@@ -8,7 +8,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 98;
+    z-index: 9999;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm box-shadow để tạo hiệu ứng */
 }
 
@@ -57,12 +57,16 @@ header:not(.hidden) {
 }
 
 .dropdown-content {
-    display: none;
+    display:none;
+    margin-top:10px;
     position: absolute;
     background-color: white;
     min-width: 200px;
+    max-width: 700px;
+    border-top: 5px solid rgb(255, 187, 0);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    
 }
 
 .dropdown-content a {
@@ -78,6 +82,12 @@ header:not(.hidden) {
     color: #b0985a;
 }
 
+/* Dropdown cho Liên hệ */
+#dropdown-contact{
+    min-width:400px;
+    background-color: white;
+    padding: 5px;
+}
 /* Dropdown for Điểm đến */
 .option1-dropdown {
     display: none;

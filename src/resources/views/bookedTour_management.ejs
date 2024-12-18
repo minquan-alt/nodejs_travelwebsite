@@ -1,0 +1,114 @@
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active"><a href="#"><b>Danh sách tour đã đăng kí</b></a></li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+
+          <div class="row element-button">
+            <div class="col-sm-2" id="save">
+              <a class="btn btn-add btn-sm" id="save1" title="Lưu thay đổi">
+                <i class="fas fa-plus"></i> Lưu thay đổi
+              </a>              
+            </div>
+          </div>
+          <div>
+            <label for="filter-status">Sắp xếp theo trạng thái:</label>
+            <select id="filter-status">
+              <option value="All">Tất cả</option>
+              <option value="Pending">Pending</option>
+              <option value="Canceled">Canceled</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+          <hr>
+          <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
+            id="sampleTable">
+            <thead>
+              <tr>
+                <th width="10"><input type="checkbox" id="all"></th>
+                <th width="50">Mã đặt tour</th>
+                <th width="100">Mã Tour</th>
+                <th width="150">Giá Tour</th>
+                <th width="150">Tình trạng</th>
+              </tr>
+            </thead>
+            <tbody class="tour-container">
+              <% for (order of orders){ %>
+              <tr id="tour-row-<%= order.id %>" class="order-row" data-status="<%= order.status %>">
+                <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                <td id="tour-id"><%= order.id%></td> <!-- Thêm ID ở đây -->
+                <td><%= order.tourId%></td>
+                <td><%= order.total_price%> VND</td>
+                <td>
+                  <select id="options-<%= order.id %>" name="options" required>
+                    <option value="" disabled hidden <%= !order.status ? 'selected' : '' %>>None</option>
+                    <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                    <option value="Canceled" <%= order.status === 'Canceled' ? 'selected' : '' %>>Canceled</option>
+                    <option value="Completed" <%= order.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+                  </select>
+                </td>
+              </tr>
+              <% } %>
+
+            </tbody>
+            
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+</div>
+<!-- MODAL xoá all -->
+<div class="modal fade" id="ModalDeleteAll" tabindex="-1" aria-labelledby="ModalConfirmDeleteAllLabel" aria-hidden="true"
+  data-bs-backdrop="true" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalConfirmDeleteAllLabel">Xác nhận xóa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xóa các dòng đã chọn không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteAllButton">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL xoá all -->
+
+<!-- Modal Tạo Mới Tour -->
+
+<script>
+  document.getElementById('filter-status').addEventListener('change', function () {
+    const selectedStatus = this.value;
+    const rows = document.querySelectorAll('.order-row');
+
+    rows.forEach(row => {
+      // Lấy trạng thái của từng hàng từ `data-status`
+      const status = row.getAttribute('data-status');
+
+      // Hiển thị hoặc ẩn hàng dựa trên lựa chọn
+      if (selectedStatus === 'All' || status === selectedStatus) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/bookedTour_management.js"></script>

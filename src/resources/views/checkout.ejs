@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/checkout.css">
+    <title>Đặt tour</title>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main>
+        <!-- Dữ liệu tour ẩn đi -->
+      <form id="tour">
+        <input type="hidden" id="tourName" value="<%= tour.tour_name %>">
+        <input type="hidden" id="tourDayGo" value="<%= day_go %>">
+        <input type="hidden" id="tourTimeGo" value="<%= tour.time_go %>">
+        <input type="hidden" id="tourDayBack" value="<%= day_back %>">
+        <input type="hidden" id="tourTimeBack" value="<%= tour.time_back %>">
+        <input type="hidden" id="tourDays" value="<%= tour.days %>">
+        <input type="hidden" id="tourNights" value="<%= tour.nights %>">
+        <input type="hidden" id="tourTourCode" value="<%= tour.tour_code %>">
+        <input type="hidden" id="tourVehicle" value="<%= tour.vehicle %>">
+        <input type="hidden" id="tourDepartureLocation" value="<%= tour.departure_location %>">
+      </form>
+        <div class="text">
+            <div class="arrow">
+              <a href="/homepage">TRANG CHỦ</a>
+              <i class="bi bi-chevron-right"></i>
+              <a href="#">ĐẶT TOUR</a>
+            </div>
+            <div class="title">
+              <h1><strong><%= tour.tour_name %></strong></h1>
+              <img src="/img/plane.png" />
+            </div>
+            <div class="solid-line"></div>
+            <div class="info">
+              <div class="pics">
+                <img src="/img/roadmap.png" />
+              </div>
+              <div class="timeline">
+                <div class="di">
+                  <h1> <%= day_go %> </h1>
+                  <h1> <%= tour.time_go %> </h1>
+                </div>
+                <div class="ve">
+                  <h1><%= day_back %></h1>
+                  <h1><%= tour.time_back %></h1>
+                </div>
+              </div>
+              <div class="plan">
+                <div class="left-plan">
+                  <h1>Thời gian:</h1>
+                  <h1>Mã tour:</h1>
+                  <h1>Phương tiện:</h1>
+                  <h1>Khởi hành:</h1>
+                </div>
+                <div class="right-plan">
+                  <h1><%= tour.days %> Ngày <%= tour.days %> Ðêm</h1>
+                  <h1><%= tour.tour_code %></h1>
+                  <h1><%= tour.vehicle %></h1>
+                  <h1><%= tour.departure_location %></h1>
+                </div>
+              </div>
+            </div>
+            <div class="customer-total">
+              <div class="customer">
+                <h1><strong>Số lượng hành khách</strong></h1>
+                <div class="session">
+                  <div class="left">
+                    <h5><strong>Người lớn</strong></h5>
+                    <p>Từ 12 tuổi trở lên</p>
+                  </div>
+                  <div class="right">
+                    <i class="bi bi-dash-circle decrease" data-price="<%= Number(tour.discounted_price) %>"></i>
+                    <span class="mx-2 count">1</span>
+                    <i class="bi bi-plus-circle increase" data-price="<%= Number(tour.discounted_price) %>"></i>
+                  </div>
+                </div>
+                <div class="session">
+                  <div class="left">
+                    <h5><strong>Trẻ em</strong></h5>
+                    <p>Từ 2 đến dưới 12 tuổi</p>
+                  </div>
+                  <div class="right">
+                    <i class="bi bi-dash-circle decrease" data-price="<%= tour.discounted_price * 50 / 100 %>"></i>
+                    <span class="mx-2 count">0</span>
+                    <i class="bi bi-plus-circle increase" data-price="<%= tour.discounted_price * 50 / 100 %>"></i>
+                  </div>
+                </div>
+                <div class="session">
+                  <div class="left">
+                    <h5><strong>Em bé</strong></h5>
+                    <p>Dưới 2 tuổi</p>
+                  </div>
+                  <div class="right">
+                    <i class="bi bi-dash-circle decrease" data-price="<%= tour.discounted_price * 10 / 100 %>"></i>
+                    <span class="mx-2 count">0</span>
+                    <i class="bi bi-plus-circle increase" data-price="<%= tour.discounted_price * 10 / 100 %>"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="max_people" data-max-of-people="<%= tour.max_quantity_of_people %>"></div>
+              <div class="total">
+                <div class="frame">
+                  <div class="frame1">
+                    <div class="line1">
+                      <h1>Hành khách</h1>
+                      <img src="/img/people.png" />
+                      
+                    </div>
+                    <div class="line2">
+                      <div class="adult">
+                        <h2>Người lớn 1</h2>
+                        <h2> <%= Number(tour.discounted_price)  %> </h2>
+                        <h2>VND</h2>
+                      </div>
+                    </div>
+                    <div class="line3">
+                      <h1 class="left-item">Tổng cộng:</h1>
+                      <h1 class="blue"> <%= Number(tour.discounted_price) %> </h1>
+                      <h1 class="right-item">VND</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="contact">
+              <h1><strong>Thông tin liên lạc</strong></h1>
+              <div class="form-container">
+               <form>
+                 <div class="line">
+                   <div class="mb-3">
+                     <label for="name" class="form-label"><strong>Họ tên </strong><strong class="red">(*) Vui lòng nhập không dấu</strong></label>
+                     <input type="text" class="form-control" id="name" required>
+                 </div>
+                 <div class="mb-3">
+                     <label for="email" class="form-label"><strong>Email</strong></label>
+                     <input type="email" class="form-control" id="email">
+                 </div>
+                 </div>
+                   <div class="line">
+                     <div class="mb-3">
+                       <label for="phone" class="form-label"><strong>Số điện thoại </strong><strong class="red">(*)</strong></label>
+                       <input type="tel" class="form-control" id="phone"  required>
+                   </div>
+                   <div class="mb-3">
+                       <label for="message" class="form-label"><strong>Thành phố </strong> <strong class="red">(*)</strong></label>
+                       <input class="form-control" id="city" rows="3" required></input>
+                   </div>
+                   </div>
+               </form>
+              </div>
+            </div>
+            <div class="cus-info">
+                   <h1><strong>Thông tin khách đi</strong></h1>
+                   <div class="grey passenger-info">
+                     <h3><strong>Người lớn thứ 1</strong></h3>
+                     <label class="custom-checkbox">
+                         <input type="checkbox" id="similarInfo" />
+                         <span class="checkmark"></span>
+                         Giống thông tin liên lạc
+                     </label>
+                     <div class="thongtin">
+                         <div class="loaikhach">
+                             <label for="khach" class="form-label">Loại khách</label>
+                             <input type="text" class="form-control" id="khach" value="Người lớn" readonly required>
+                         </div>
+                         <div class="hoten">
+                             <label for="nameCopy" class="form-label">Họ tên</label>
+                             <label class="red" class="form-label">(*) Vui lòng nhập không dấu</label>
+                             <input type="text" class="form-control" id="nameCopy" required>
+                         </div>
+                         <div class="sdt">
+                             <label for="phoneCopy" class="form-label">Số điện thoại</label>
+                             <label class="red">(*)</label>
+                             <input type="tel" class="form-control" id="phoneCopy" required>
+                         </div>
+                         <div class="date">
+                             <label for="date" class="form-label">Ngày sinh</label>
+                             <label class="red">(*)</label>
+                             <input type="date" class="form-control" id="date" required>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+            <div class="provision">
+                   <h2><strong>Quý khách vui lòng đọc kỹ và đồng thuận với các điều khoản trước khi hoàn tất quy trình đặt chỗ và thanh toán trực tuyến.</strong></h2>
+                   <h1>ĐIỀU 1: ĐỊNH NGHĨA VÀ DIỄN GIẢI</h1>
+                   <ol>
+                     <li><strong>Khách Hàng:</strong> Là cá nhân/chủ thể đề nghị và ký kết Hợp đồng cung cấp dịch vụ du lịch nước ngoài này với TransViet Travel.</li>
+                     <li><strong>TransViet Travel:</strong> Là Công ty TNHH Trần Việt - đơn vị cung cấp Chương trình du lịch theo Hợp đồng này. Trong phạm vi Hợp đồng và các Phụ lục kèm theo, tuỳ ngữ cảnh phù hợp, TransViet Travel sẽ bao gồm cả những nhân sự được công ty chỉ định để cung cấp dịch vụ theo Chương trình du lịch cho Khách Hàng.</li>
+                     <li><strong>Thành Viên:</strong> Là toàn bộ những hành khách tham gia Chương trình du lịch do Khách Hàng đề nghị và TransViet Travel cung cấp theo Hợp đồng này, thông tin chi tiết được quy định tại Phụ lục số 1.</li>
+                     <li><strong>Chương trình du lịch:</strong> Là dịch vụ du lịch do Khách Hàng đề nghị và TransViet Travel cung cấp cho toàn bộ Thành Viên. Nội dung chương trình, số lượng, chất lượng, lịch trình được quy định chi tiết tại Phụ lục số 1.</li>
+                     <li><strong>Đơn vị cung cấp dịch vụ:</strong> là bên thứ ba cung cấp dịch vụ vận tải hành khách, lưu trú, ăn uống, các dịch vụ vui chơi, giải trí và các dịch vụ khác trong Chương trình du lịch.</li>
+                     <li><strong>Tour:</strong> Là chuyến du lịch được thực hiện theo Chương trình du lịch do TransViet Travel cung cấp cho Khách Hàng và/hoặc các Thành Viên theo Hợp đồng này.</li>
+                     <li><strong>Giá tour:</strong> Là tổng toàn bộ phí dịch vụ (chi tiết theo phụ lục số 2 đính kèm Hợp đồng) để TransViet Travel cung cấp dịch vụ du lịch trọn gói cho Khách Hàng và/hoặc các Thành Viên theo Hợp đồng này.</li>
+                     <li><strong>Ngày tự do:</strong> là ngày nằm trong Chương trình du lịch mà trong ngày này Thành Viên đươc tự do lựa chọn địa điểm, phương tiện vận chuyển và hoạt động vui chơi, tham quan, giải trí, nghỉ ngơi, ăn uống và tự thanh toán mọi chi phí.</li>
+                     <li><strong>Ngày khởi hành: </strong>Là ngày bắt đầu chương trình du lịch theo Phụ lục số 1 đính kèm Hợp đồng.</li>
+                     <li><strong>Thị thực (Visa):</strong> là loại giấy tờ do cơ quan có thẩm quyền của một quốc gia cấp để cho phép người nước ngoài nhập cảnh vào quốc gia đó với mục đích rõ ràng.</li>
+                   </ol>
+                     
+                     <h1>ĐIỀU 2: NỘI DUNG</h1>
+                     <p>Khách Hàng đề nghị và TransViet Travel đồng ý cung cấp dịch vụ chương trình du lịch ra nước ngoài cho Khách Hàng với chi tiết số lượng, chất lượng, thời gian, cách thức thực hiện chương trình du lịch và thông tin hành khách được quy định tại Phụ lục số 1 đính kèm Hợp đồng này.</p>
+                     <h1>ĐIỀU 3: PHÍ DỊCH VỤ </h1>
+                     <p>Phí dịch vụ, thời hạn và phương thức thanh toán cụ thể được quy định tại Phụ lục số 2 đính kèm Hợp đồng này.</p>
+                     <p>Đối với chương trình du lịch ra nước ngoài, ngoài phí Dịch vụ, Khách Hàng đồng ý mỗi thành viên sẽ phải chi trả thêm khoản tiền bồi dưỡng (tiền tip) cho hướng dẫn viên du lịch, nhân viên trực tiếp phục vụ trong Chương trình du lịch tại nước sở tại với mức tối thiểu được quy định trong Phụ lục 02 tương ứng với mức quy định của các đơn vị cung cấp dịch vụ tại nước đó.</p>
+                     <h1>ĐIỀU 4: PHƯƠNG THỨC THANH TOÁN</h1>
+                     <ol>
+                       <li>
+                         Khách Hàng lựa chọn một trong hai phương thức thanh toán sau:
+                         <ul><strong>Phương thức 1: Trực tiếp bằng tiền mặt hoặc qua thẻ tại Văn phòng TransViet Travel</strong>
+                           <li>Tầng 1, 82 Võ Văn Tần, Phường Võ Thị Sáu, Quận 3, Tp.HCM</li>
+                           <li>Điện thoại: (028) 7305 7939</li>
+                         </ul>
+                         <ul>
+                           <strong>Phương thức 2: Chuyển khoản</strong>
+                           <li>Tên tài khoản: Công Ty TNHH Du Lịch Trần Việt</li>
+                           <li>Số tài khoản VND: 698096</li>
+                           <li>Ngân hàng: ACB – Chi nhánh Bình Thạnh</li>
+                         </ul>
+                       </li>
+                       <li>Trong mọi trường hợp hoàn tiền (nếu có) Khách Hàng thanh toán bằng phương thức nào, TransViet Travel sẽ hoàn tiền bằng phương thức đó. TransViet Travel chỉ hoàn tiền trực tiếp cho người đã thanh toán (nếu thanh toán trực tiếp), hoàn tiền vào tài khoản đã dùng để thanh toán (nếu thanh toán bằng chuyển khoản hoặc quẹt thẻ). Trong trường hợp hoàn tiền trực tiếp cho người khác hoặc hoàn tiền vào tài khoản khác phải có chỉ định bằng văn bản có xác nhận của Khách Hàng và người đã thanh toán.</li>
+                     </ol>
+                     <h1>ĐIỀU 5: QUYỀN LỢI VÀ NGHĨA VỤ CỦA KHÁCH HÀNG</h1>
+                     <ol>
+                       <li><strong>Quyền lợi của Khách Hàng:</strong>
+                         <ol type="a">
+                           <li>Sử dụng dịch vụ du lịch do TransViet Travel cung cấp theo Hợp đồng.</li>
+                           <li>Yêu cầu TransViet Travel cung cấp thông tin về chương trình, dịch vụ, điểm đến du lịch theo hợp đồng đã ký kết.</li>
+                           <li>Được bảo đảm quyền và lợi ích hợp pháp theo Hợp đồng đã giao kết với TransViet Travel.</li>
+                           <li>Khiếu nại, tố cáo, khởi kiện hành vi vi phạm pháp luật về du lịch của TransViet Travel và các đơn vị cung cấp dịch vụ trong Chương trình du lịch (nếu có).</li>
+                           <li>Kiến nghị với tổ chức, cá nhân quản lý khu du lịch, điểm du lịch, cơ sở cung cấp dịch vụ du lịch và cơ quan nhà nước có thẩm quyền về các vấn đề liên quan đến hoạt động du lịch.</li>
+                           <li>Được yêu cầu cá nhân, tổ chức có lỗi trong việc gây ra thiệt hại trong phạm vi Chương trình du lịch bồi thường thiệt hại theo quy định của pháp luật.</li>
+                         </ol>
+                       </li>
+                       <li><strong>Nghĩa vụ của Khách Hàng:</strong>
+                         <ol type="a">
+                           <li>Khách hàng, Thành viên chịu trách nhiệm kiểm tra và đảm bảo hiệu lực của giấy tờ tùy thân của tất cả Thành viên (bao gồm nhưng không giới hạn CMND, CCCD, Hộ chiếu…), và đảm bảo hộ chiếu của mỗi Thành viên còn hiệu lực ít nhất 6 tháng tính từ ngày nhập cảnh lại Việt Nam.</li>
+                           <li>Có trách nhiệm cung cấp danh sách Thành Viên (bao gồm họ tên, giới tính, ngày tháng năm sinh, số CMND/CCCD, số hộ chiếu, ngày cấp và ngày hết hạn của hộ chiếu, tình trạng sức khoẻ…) và các thông tin, tài liệu liên quan khác theo yêu cầu của TransViet Travel.</li>
+                           <li>Đảm bảo toàn bộ Thành viên có trách nhiệm tuân thủ đúng thời hạn trong thủ tục làm visa (cung cấp hồ sơ, lịch hẹn gặp Lãnh sự quán/Đại sứ quán, thanh toán chi phí, …) mà TransViet Travel yêu cầu. Trường hợp có Thành viên không tuân thủ đúng thời hạn, khách hàng chịu trách nhiệm và thanh toán mọi chi phí phát sinh nếu có</li>
+                           <li>Cung cấp đầy đủ, đúng thời hạn và hợp lệ các thông tin, giấy tờ để xin visa cho toàn bộ Thành viên theo yêu cầu của Lãnh sự quán/Đại sứ quán các nước và hướng dẫn của TransViet Travel. Trong trường hợp cần thiết, TransViet Travel có quyền yêu cầu thêm các thông tin, văn bản để kiểm chứng độ tin cậy của hồ sơ của mỗi Thành viên. Trong trường hợp, thông tin và/hoặc hồ sơ Khách Hàng cung cấp  không trùng khớp thông tin, không đúng, không đầy đủ hoặc không chính xác, không đúng sự thật, TransViet Travel có quyền hủy thủ tục xin cấp visa và hủy tour của khách hàng mà không phải hoàn trả bất cứ chi phí nào.</li>
+                           <li>Trong trường hợp Thành viên bị từ chối cấp thị thực (visa) nhập cảnh từ nước sở tại: Khách hàng phải thanh toán cho TransViet Travel toàn bộ tiền lệ phí xin visa, mọi chi phí liên quan bao gồm, nhưng không giới hạn phí dịch thuật, xin thư mời, phí dịch vụ và chi phí hủy các dịch vụ du lịch trong Chương trình du lịch. Số tiền còn lại (nếu có) sau khi trừ các chi phí trên, TransViet Travel sẽ hoàn trả lại cho khách hàng.</li>
+                           <li>Có trách nhiệm đảm bảo xuất trình đầy đủ, hợp lệ toàn bộ giấy tờ tùy thân và các giấy tờ cần thiết khác của tất các Thành Viên theo yêu cầu của cơ quan nước sở tại, các đơn vị cung cấp dịch vụ vận tải hành khách, lưu trú và các đơn vị cung cấp dịch vụ khác trong Chương trình du lịch dưới sự hướng dẫn của TransViet Travel. Thông tin trên giấy tờ tuỳ thân xuất trình phải đúng, trùng khớp với thông tin đã đăng ký.</li>
+                           <li>Khách Hàng chịu trách nhiệm thanh toán mọi chi phí phát sinh và mọi trách nhiệm liên quan khác do việc cung cấp thông tin Thành Viên chậm trễ hoặc không chính xác.</li>
+                           <li>Phối hợp với TransViet Travel để tổ chức, quản lý, điều hành đoàn trong suốt Chương trình du lịch; Yêu cầu và đảm bảo các Thành Viên tuân thủ, hướng dẫn, quy định của TransViet Travel, Cơ quan nước sở tại và đơn vị cung cấp dịch vụ khác trong Chương trình du lịch.</li>
+                           <li>Để đảm bảo an toàn cho sức khoẻ, tính mạng và tài sản của Thành Viên trong quá trình tham gia Chương trình du lịch, Khách Hàng có trách nhiệm đảm bảo các Thành Viên có trách nhiệm đọc, hiểu và tuân thủ các hướng dẫn, quy định trong bộ “Quy tắc và khuyến nghị tuân thủ” đính kèm Hợp đồng.</li>
+                           <li>Thanh toán cho TransViet Travel theo quy định của Hợp đồng cũng như các khoản chi phí phát sinh khác (nếu có).</li>
+                           <li>Khách Hàng cam kết toàn bộ thông tin và giấy tờ, hồ sơ của tất cả các Thành Viên cung cấp và xuất trình cho TransViet Travel và các đơn vị cung cấp dịch vụ khác trong Chương trình du lịch là chính xác, đúng sự thật, hợp pháp. Khách Hàng chịu mọi trách nhiệm liên quan đến việc cung cấp thông tin không chính xác, trung thực.</li>
+                           <li>Chịu trách nhiệm bồi thường toàn bộ thiệt hại xảy ra do lỗi của Thành Viên tham gia Chương trình du lịch theo quy định bồi thường thiệt hại theo luật dân sự.</li>
+                           <li>Khách Hàng cam kết đảm bảo tất cả Thành Viên tuân thủ các quy định theo Hợp đồng và bộ “Quy tắc và khuyến nghị tuân thủ”. TransViet Travel được miễn trừ mọi trách nhiệm liên quan do Thành viên có hành vi vi phạm Hợp đồng, các Phụ lục và bộ “Quy tắc và khuyến nghị tuân thủ”.</li>
+                         </ol>
+                       </li>
+                     </ol>
+                     <h1>ĐIỀU 6. QUYỀN LỢI VÀ NGHĨA VỤ CỦA TRANSVIET TRAVEL</h1>
+                     <ol>
+                       <li><strong>Quyền lợi của TransViet Travel</strong>
+                         <ol type="a">
+                           <li>Yêu cầu Khách Hàng thanh toán đầy đủ và đúng thời hạn Phí dịch vụ và các khoản chi phí phát sinh khác theo quy định Hợp đồng và các Phụ lục</li>
+                           <li>Yêu cầu Thành Viên tham gia Chương trình du lịch tuân thủ đầy đủ và đúng các quy định theo Hợp đồng, bộ “Quy tắc và khuyến nghị tuân thủ”.</li>
+                           <li>Từ chối cung cấp dịch vụ đối với các Thành Viên không tuân thủ quy định về thủ tục và các điều kiện tham gia Chương trình du lịch.</li>
+                           <li>Có quyền hủy lệnh xin cấp visa và hủy tour của khách hàng mà không hoàn trả bất cứ chi phí nào nếu phát hiện hồ sơ xin visa mà khách hàng cung cấp là không đúng sự thật.</li>
+                           <li>Không chịu trách nhiệm đối với trường hợp khách hàng bị từ chối cấp thị thực (visa) do việc cấp visa phụ thuộc vào sự phê duyệt của nhà chức trách nước sở tại.</li>
+                           <li>Không chịu trách nhiệm đối với việc thất lạc, vỡ/hỏng hành lý ký gửi do lỗi của nhà vận chuyển.</li>
+                           <li>Không chịu trách nhiệm đối với các vật dụng, tiền và tư trang của Thành viên.</li>
+                         </ol>
+                       </li>
+                       <li><strong>Nghĩa vụ của TransViet Travel</strong>
+                         <ol type="a">
+                           <li>Thực hiện đầy đủ các dịch vụ theo Chương trình du lịch quy định tại phụ lục 01 đính kèm Hợp đồng.</li>
+                           <li>Cung cấp thông tin về chương trình, dịch vụ, điểm đến du lịch cho Khách Hàng.</li>
+                           <li>Trường hợp không thực hiện được đầy đủ các dịch vụ theo Chương trình du lịch, TransViet Travel có trách nhiệm xem xét và làm việc với các đơn vị cung cấp dịch vụ để hoàn trả cho Khách Hàng các chi phí (nếu có) của những dịch vụ không thực hiện được trừ các trường hợp Bất khả kháng và Miễn trừ theo Quy định tại Điều 8 Hợp đồng.</li>
+                           <li>Thực hiện việc mua bảo hiểm cho khách du lịch trong thời gian thực hiện chương trình du lịch trừ trường hợp khách du lịch đã có bảo hiểm cho toàn bộ chương trình du lịch.</li>
+                           <li>Hướng dẫn Khách hàng để thực hiện thủ tục xin cấp Visa cho các Thành viên, cung cấp thông tin, hồ sơ, thực hiện các thủ tục liên quan trước, trong và sau Chương trình du lịch. Trong mọi trường hợp, trách nhiệm hướng dẫn của TransViet Travel không được hiểu là TransViet Travel có nghĩa vụ và phải chịu bất kỳ trách nhiệm nào liên quan đến việc Thành viên bị từ chối cấp Visa, bị cấm xuất cảnh và/hoặc giấy tờ, hồ sơ, thông tin Thành viên cung cấp không đảm bảo điều kiện.</li>
+                         </ol>
+                       </li>
+                     </ol>
+                     <h1>ĐIỀU 7: CÁC ĐIỀU KIỆN THAY ĐỔI, CHUYỂN HOẶC HỦY TOUR</h1>
+                     <ol>
+                       <li><strong>Thay đổi tên hành khách:</strong>
+                         <ol type="a">
+                           <li>Khách Hàng được miễn phí đổi tên Thành Viên tham gia Tour trước khi TransViet Travel thực hiện bất kỳ một trong các dịch vụ liên quan đến Tour.</li>
+                           <li>Nếu sau thời hạn trên, TransViet Travel sẽ kiểm tra lại thông tin các dịch vụ liên quan để thông báo điều kiện có thể thay đổi, mức phí chênh lệch phát sinh và thời hạn thanh toán cho Khách Hàng. Sau thời hạn được thông báo, Khách Hàng không thanh toán đầy đủ mức phí chênh lệch phát sinh hoặc không có thông báo nào khác, TransViet Travel được hiểu là Khách Hàng đã từ bỏ đổi tên Thành Viên. TransViet Travel sẽ ghi nhận thông tin Thành Viên theo đăng ký ban đầu.</li>
+                         </ol>
+                       </li>
+                       <li><strong>Chuyển hoặc Hủy Tour:</strong>
+                         <ol type="a">
+                           <li><strong>Trường hợp Khách Hàng Chuyển hoặc Huỷ Tour:</strong>
+                             <ol type="i">
+                               <li>Trường hợp Chuyển hoặc Hủy tour ngày thường, Khách Hàng chịu Phí Chuyển/Huỷ tour tương ứng với thời gian yêu cầu chuyển hoặc huỷ tour như dưới đây:
+                                   <ul>
+                                     <li>Trước từ 30 ngày trở lên so với Ngày khởi hành: 10% giá tour</li>
+                                     <li>Trước từ 20 đến 29 ngày so với Ngày khởi hành: 25% giá tour </li>
+                                     <li>Trước từ 10 đến 19 ngày so với Ngày khởi hành: 50% giá tour</li>
+                                     <li>Trước từ 05 đến 09 ngày so với Ngày khởi hành: 90% giá tour</li>
+                                     <li>Trước từ 04 ngày trở xuống so với Ngày khởi hành: 100% giá tour</li>
+                                     <li>Khi đã được cấp visa, dù bất kỳ thời điểm nào và bất kỳ lý do gì bên A cũng chi trả 100% giá tour. </li>
+                                     <li>Tour khuyến mãi (được mua theo các chương trình khuyến mãi, tại hội chợ, được giảm giá) không hoàn tiền tour vì bất kỳ lý do nào.</li>
+                                     <li>Trường hợp khách hàng mua tour vé lẻ: phí chuyển/hủy tour theo điều kiện của hãng hàng không cho vé máy bay, dịch vụ tour theo điều kiện chuyển/hủy trên.</li>
+                                   </ul>
+                               </li>
+                               <li>Trường hợp Chuyển hoặc Hủy tour đối với các tour Lễ, Tết, Khách Hàng chịu Phí Chuyển/Huỷ tour tương ứng với thời gian yêu cầu chuyển hoặc huỷ tour báo trước như dưới đây:
+                                 <ul>
+                                   <li>Trước từ 45 ngày trở lên so với ngày khởi hành: Chi trả 10% giá tour</li>
+                                   <li>Trước từ 30 đến 44 ngày so với ngày khởi hành: Chi trả 25% giá tour</li>
+                                   <li>Trước từ 16 đến 29 ngày so với ngày khởi hành: Chi trả 50% giá tour </li>
+                                   <li>Trước từ 15 ngày trở xuống so với ngày khởi hành: Chi trả 100% giá tour</li>
+                                   <li>Khi đã được cấp visa, dù bất kỳ thời điểm nào và bất kỳ lý do gì bên A cũng chi trả 100% giá tour</li>
+                                   <li>Tour khuyến mãi (được mua theo các chương trình khuyến mãi, tại hội chợ, được giảm giá) không hoàn tiền tour vì bất kỳ lý do nào.</li>
+                                   <li>Trường hợp khách hàng mua tour vé lẻ: phí chuyển/hủy tour theo điều kiện của hãng hàng không cho vé máy bay, dịch vụ tour theo điều kiện chuyển/hủy trên.</li>
+                                 </ul>
+                               </li>
+                               <p>Các tour Lễ, Tết là tour có thời gian diễn ra rơi vào một trong các ngày nghỉ Lễ, Tết theo quy định của Nhà nước.</p>
+                               <p>Thời gian yêu cầu chuyển hoặc huỷ tour báo trước được tính theo ngày làm việc.</p>
+                               <p>Trong trường hợp, một hoặc một số Thành viên trong đoàn không thể giam gia Chương trình du lịch do bị từ chối cấp visa thì Khách hàng có quyền yêu cầu TransViet Travel hủy tour đối với các Thành viên này và phải thanh toán đầy đủ, toàn bộ cho TransViet Travel các chi phí đã phát sinh liên quan đến Thành viên này, bao gồm phí làm thủ tục xin cấp visa và các chi phí phát sinh khác. Nếu Khách hàng hủy tour với các Thành viên còn lại, sẽ phải chi trả 100% giá tour cho từng Thành viên theo quy định.</p>
+                             </ol>
+                           </li>
+                           <li><strong>Trường hợp TransViet Travel chuyển hoặc huỷ tour</strong>
+                             <ol type="i">
+                               <li>Do tính chất là đoàn khách lẻ nên TransViet Travel sẽ thu nhận khách đủ số lượng khách tối thiểu (số lượng tối thiểu 15 khách) để khởi hành đúng theo lịch trình. Nếu số lượng dưới 15 khách, TransViet Travel có trách nhiệm thông báo cho Khách Hàng trước ngày khởi hành và thỏa thuận với Khách Hàng ngày khởi hành mới.</li>
+                               <li>Nếu TransViet Travel không khởi hành được đúng ngày khởi hành quy định tại Phụ lục số 1 và Khách Hàng không đồng ý thoả thuận lại ngày khởi hành mới thì TransViet Travel sẽ hoàn trả lại toàn bộ tiền Khách Hàng đã thanh toán sau khi trừ phí visa nếu có.</li>
+                               <li>Trường hợp TransViet Travel chuyển hoặc hủy tour trong trường hợp Bất khả kháng, TransViet Travel sẽ không chịu trách nhiệm bồi thường bất kỳ khoản chi phí nào ngoài việc hoàn tiền các dịch vụ chưa thực hiện sau khi trừ các chi phí liên quan (nếu có).</li>
+                             </ol>
+                           </li>
+                         </ol>
+                       </li>
+                     </ol>
+                     <h1>ĐIỀU 8: ĐIỀU KHOẢN BẤT KHẢ KHÁNG VÀ MIỄN TRỪ</h1>
+                     <ol>
+                       <li><strong>Sự kiện bất khả kháng: Là sự kiện xảy ra một cách khách quan không thể lường trước được và không thể khắc phục được mặc dù Bên gặp phải sự kiện này áp dụng mọi biện pháp cần thiết và khả năng cho phép, bao gồm nhưng không giới hạn:</strong>
+                         <ol type="a">
+                           <li>Chiến tranh hoặc tuyên bố chiến tranh, xâm lược, hành động quân sự thù địch, đảo chính, cấm vận hoặc bất kỳ hành vi, hành động vũ lực của bất kỳ chính quyền hoặc cơ quan nhà nước có thẩm quyền;</li>
+                           <li>Trưng thu, trưng dụng tài sản theo yêu cầu, lệnh, quyết định của cơ quan nhà nước có thẩm quyền;</li>
+                           <li>Rò rỉ hạt nhân, hóa chất độc hại hoặc sự cố môi trường khác dẫn đến phải di tản người sinh sống trong khu vực theo yêu cầu hoặc của cơ quan nhà nước có thẩm quyền;</li>
+                           <li>Động đất, thiên tai, dịch bệnh;</li>
+                           <li>Đình công ở cấp độ quốc gia, xét trong lĩnh vực hoạt động của các bên;</li>
+                           <li>Các sự kiện bất khả kháng khác theo quy định của pháp luật hoặc kết luận của Tòa án.</li>
+                           <li>Theo đặc thù của dịch vụ du lịch, sự kiện bất khả kháng sẽ bao gồm sự cố hàng không, sự cố của các phương tiện vận chuyển khác.</li>
+                         </ol>
+                       </li>
+                     </ol>
+            </div>
+            <div class="commit">
+                     <label class="custom-checkbox" id="commit">
+                       <input type="checkbox" id="commit-info">
+                       <span class="checkmark"></span>
+                       <p>Tôi đã đọc và đồng ý với nội dung Điều khoản của TransViet. <p id="red">(*)</p></p>
+                   </label>
+                   <label class="custom-checkbox" id="commit">
+                     <input type="checkbox" id="commit-info">
+                     <span class="checkmark"></span>
+                     <p>Tôi xác nhận các thông tin được cung cấp bên trên là chính xác.<p id="red">(*)</p></p>
+                 </label>
+            </div>
+            <div class="confirm">
+                 <button>Xác Nhận Đặt Tour</button>
+            </div>
+          </div>
+    </main>
+    <%- include('./partials/footer') %>
+    <script src="/js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/checkout.js"></script>
+  </body>
+</html>

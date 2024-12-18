@@ -44,34 +44,11 @@ class AdminCustomerService {
         try {
             connection = await pool.getConnection()
             await connection.beginTransaction()
-            // check user valid
-            const existingCustomerQuery =
-                'SELECT * FROM Customers WHERE phone = ? AND email = ? LIMIT 1'
-            const existingCustomerParam = [phone, email]
-            const [existingCustomer] = await connection.execute(
-                existingCustomerQuery,
-                existingCustomerParam
-            )
 
-            if (existingCustomer.length > 0) {
-                await connection.rollback()
-                return {
-                    success: false,
-                    message: 'Email hoặc số điện thoại đã tồn tại',
-                }
-            }
             // add customer
             const query =
-                'INSERT INTO Customers (full_name, gender, city, phone, email, dob, country) VALUES (?, ?, ?, ?, ?, ?, ?)'
-            const queryParams = [
-                full_name,
-                gender,
-                city,
-                phone,
-                email,
-                dob,
-                country,
-            ]
+                'INSERT INTO Customers (full_name, city, phone, email, country) VALUES (?, ?, ?, ?, ?)'
+            const queryParams = [full_name, city, phone, email, country]
             const [customer] = await connection.execute(query, queryParams)
             // add customer_user
             const customerUserQuery =
@@ -118,33 +95,13 @@ class AdminCustomerService {
     }
     async updateCustomer(id, updatedData) {
         try {
-            const existingCustomerQuery =
-                'SELECT * FROM Customers WHERE phone = ? OR email = ? LIMIT 1'
-            const existingCustomerParams = [
-                updatedData.phone,
-                updatedData.email,
-            ]
-            const [existingCustomer] = await pool.query(
-                existingCustomerQuery,
-                existingCustomerParams
-            )
-
-            if (existingCustomer.length > 0) {
-                return {
-                    success: false,
-                    message: 'Email hoặc số điện thoại đã tồn tại',
-                }
-            }
-
             const query =
-                'UPDATE Customers SET full_name = ?, gender = ?, city = ?, phone = ?, email = ?, dob = ?, country = ? WHERE id = ?'
+                'UPDATE Customers SET full_name = ?, city = ?, phone = ?, email = ?, country = ? WHERE id = ?'
             const [result] = await pool.query(query, [
                 updatedData.full_name,
-                updatedData.gender,
                 updatedData.city,
                 updatedData.phone,
                 updatedData.email,
-                updatedData.dob,
                 updatedData.country,
                 id,
             ])

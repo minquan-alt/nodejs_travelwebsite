@@ -48,7 +48,7 @@ $(document).ready(function () {
             const url = $(this).attr('data-url')
             console.log(`admin${url}`)
 
-            fetch(`admin${url}`)
+            fetch(`admin${url}`) //   /registered_tour_management
                 .then((response) => response.text())
                 .then((data) => {
                     console.log('data: ', data)

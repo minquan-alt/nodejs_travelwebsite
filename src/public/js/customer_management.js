@@ -65,7 +65,7 @@ $(document).ready(function () {
             })
     })
     // Xử lí xoá
-    $('.deleteRow').on('click', function () {
+    $(document).on('click', '.deleteRow', function () {
         const deleteCustomerId = $(this).data('customer-id') // Lấy customer ID từ nút
         const deleteRowElement = $(this).closest('tr') // Lấy hàng <tr> tương ứng
 
@@ -93,13 +93,26 @@ $(document).ready(function () {
                 .then((data) => {
                     if (data.success) {
                         deleteRowElement.remove()
+                        Swal.fire({
+                            title: 'Good job!',
+                            text: 'Delete tour successfully!',
+                            icon: 'success',
+                        })
                     } else {
-                        alert(data.message)
+                        Swal.fire({
+                            title: 'Oh no!',
+                            text: data.message,
+                            icon: 'error',
+                        })
                     }
                 })
                 .catch((err) => {
                     console.log('Lỗi khi gửi dữ liệu: ', err)
-                    alert('Có lỗi xảy ra! Vui lòng thử lại.')
+                    Swal.fire({
+                        title: 'Oh no!',
+                        text: 'Having error! Please try again.',
+                        icon: 'error',
+                    })
                 })
                 .finally(() => {
                     // Dọn dẹp modal và ID
@@ -118,37 +131,26 @@ $(document).ready(function () {
     $(document).on('click', '.edit', function () {
         var customerId = $(this).data('customer-id')
         var customerName = $(this).data('customer-name')
-        var customerGender = $(this).data('customer-gender')
-        var customerDob = $(this).data('customer-dob')
         var customerPhone = $(this).data('customer-phone')
         var customerEmail = $(this).data('customer-email')
         var customerAddress = $(this).data('customer-address')
         var customerCountry = $(this).data('customer-country')
 
-        const dateParts = customerDob.split('/') // Tách giá trị ngày
-        const formattedDate = `${dateParts[2]}-${dateParts[1].padStart(2, '0')}-${dateParts[0].padStart(2, '0')}` // Định dạng lại
         // Điền dữ liệu vào các trường trong modal
-        console.log('dob in form: ', $(this).data('customer-dob'))
         $('#editCustomerId').val(customerId)
         $('#editCustomerName').val(customerName)
-        $('#editGender').val(customerGender)
-        $('#editDob').val(formattedDate)
         $('#editPhone').val(customerPhone)
         $('#editEmail').val(customerEmail)
         $('#editAddress').val(customerAddress)
         $('#editCountry').val(customerCountry)
-
-        console.log('dob in modal: ', $('#editDob').val())
     })
 
     $('#updateCustomer').on('click', function () {
         const updatedData = {
             full_name: $('#editCustomerName').val(),
-            gender: $('#editGender').val(),
             city: $('#editAddress').val(),
             phone: $('#editPhone').val(),
             email: $('#editEmail').val(),
-            dob: $('#editDob').val(),
             country: $('#editCountry').val(),
         }
         console.log(updatedData.dob)
@@ -179,6 +181,11 @@ $(document).ready(function () {
                 if (typeof data === 'string') {
                     $('.customer-container').html(data)
                     $('#ModalUpdate').modal('hide')
+                    Swal.fire({
+                        title: 'Good job!',
+                        text: 'Update customer successfully!',
+                        icon: 'success',
+                    })
                 } else if (!data.success) {
                     alert(data.message)
                 } else {
@@ -187,7 +194,11 @@ $(document).ready(function () {
             })
             .catch((err) => {
                 console.log('Lỗi khi gửi dữ liệu: ', err)
-                alert('Có lỗi xảy ra! Vui lòng thử lại.')
+                Swal.fire({
+                    title: 'Oh no!',
+                    text: 'Having error! Please try again.',
+                    icon: 'error',
+                })
             })
     })
 
@@ -224,16 +235,33 @@ $(document).ready(function () {
                 if (typeof data === 'string') {
                     $('.customer-container').html(data)
                     $('#ModalCreate').modal('hide')
+                    Swal.fire({
+                        title: 'Good job!',
+                        text: 'Add customer successfully!',
+                        icon: 'success',
+                    })
                     this.reset()
                 } else if (!data.success) {
-                    alert(data.message)
+                    Swal.fire({
+                        title: 'Oh no!',
+                        text: data.message,
+                        icon: 'error',
+                    })
                 } else {
-                    alert('Unknown response')
+                    Swal.fire({
+                        title: 'Oh no!',
+                        text: 'Unknown error.',
+                        icon: 'error',
+                    })
                 }
             })
             .catch((err) => {
                 console.log('Lỗi khi gửi dữ liệu: ', err)
-                alert('Có lỗi xảy ra! Vui lòng thử lại.')
+                Swal.fire({
+                    title: 'Oh no!',
+                    text: 'Having error! Please try again.',
+                    icon: 'error',
+                })
             })
     })
 })

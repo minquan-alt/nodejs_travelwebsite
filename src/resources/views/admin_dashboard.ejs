@@ -1,197 +1,269 @@
 <!-- Main content-->
-  <main class="app-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="app-title">
-          <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><a href="#"><b>Bảng điều khiển</b></a></li>
-          </ul>
-          <div id="clock"></div>
+<main class="app-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><a href="#"><b>Bảng điều khiển</b></a></li>
+        </ul>
+        <div id="clock"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!--Left-->
+    <div class="col-md-12 col-lg-6">
+      <div class="row">
+        <!-- col-6 -->
+        <div class="col-md-6">
+          <div class="widget-small primary coloured-icon"><i class='icon bx bxs-user-account fa-3x'></i>
+            <div class="info">
+              <h4>Tổng khách hàng</h4>
+              <p><b><%= count_cus %> khách hàng</b></p>
+              <p class="info-tong">Tổng số khách hàng được quản lý.</p>
+            </div>
+          </div>
+        </div>
+        <!-- col-6 -->
+        <div class="col-md-6">
+          <div class="widget-small info coloured-icon"><i class='icon bx bxs-data fa-3x'></i>
+            <div class="info">
+              <h4>Tổng tour du lịch</h4>
+              <p><b><%= count_tour %> tours</b></p>
+              <p class="info-tong">Tổng số tour được quản lý.</p>
+            </div>
+          </div>
+        </div>
+        <!-- col-6 -->
+        <div class="col-md-6">
+          <div class="widget-small warning coloured-icon"><i class='icon bx bxs-shopping-bags fa-3x'></i>
+            <div class="info">
+              <h4>Tổng đơn hàng</h4>
+              <p><b><%= count_ord %> đơn hàng</b></p>
+              <p class="info-tong">Tổng số tour bán hàng trong tháng.</p>
+            </div>
+          </div>
+        </div>
+        <!-- col-6 -->
+
+        <!-- col-12 -->
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">Tình trạng đơn hàng</h3>
+            <div>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID đơn hàng</th>
+                    <th>ID Tour</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% let i = 0; for (order of orders) { if(i >= 5){break;} i += 1; %>
+                  <tr>
+                    <td><%= order.id %></td>
+                    <td><%= order.tourId %></td>
+                    <td>
+                      <%= order.total_price %> đ
+                    </td>
+                    <td><span class="badge 
+                        <%= order.status === 'Pending' ? 'bg-warning' : 
+                            order.status === 'Cancelled' ? 'bg-danger' : 
+                            order.status === 'Completed' ? 'bg-success' : 'bg-secondary' %>"><%= order.status %></span>
+                    </td>
+                    <!-- Lấy data từ customer, cart: id, name, total_value, status -->
+                  </tr>
+                  <% } %>
+
+
+                </tbody>
+              </table>
+            </div>
+            <!-- / div trống-->
+          </div>
+        </div>
+        <!-- / col-12 -->
+        <!-- col-12 -->
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">Khách hàng mới</h3>
+            <div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên khách hàng</th>
+                    <th>Nơi ở</th>
+                    <th>Số điện thoại</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% let j = 0; for (customer of customers) { if(j >= 5){break;} i += 1; %>
+                  <tr>
+                    <td><%= customer.id %></td>
+                    <td><%= customer.full_name %></td>
+                    <td><%= customer.city %></td>
+                    <td><span class="tag tag-success"><%= customer.phone %></span></td>
+                  </tr>
+                  <% } %>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+        <!-- / col-12 -->
+      </div>
+    </div>
+    <!--END left-->
+    <!--Right-->
+    <div class="col-md-12 col-lg-6">
+      <div class="row justify-content-center" style="margin-bottom: 10px;">
+        <div class="col-md-12">
+          <div class="tile text-center">
+            <h3 class="tile-title">Tỉ lệ đơn hàng được hoàn thành</h3>
+            <div style="width: 100%; height: 400px;">
+              <!-- Tăng kích thước container -->
+              <canvas id="lineChartDemo" style="width: 100%; height: 100%;" data-completed="<%= count_ord %>"
+                data-pending="<%= pending_ord %>" data-canceled="<%= cancel_ord %>"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="tile text-center">
+            <h3 class="tile-title">Thống kê 6 tháng doanh thu</h3>
+            <div style="width: 100%; height: 400px;">
+              <!-- Tăng kích thước container -->
+              <canvas id="barChartDemo" data-value="<%= monthlyRevenue %>" style="width: 100%; height: 100%;"></canvas>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <!--Left-->
-      <div class="col-md-12 col-lg-6">
-        <div class="row">
-       <!-- col-6 -->
-       <div class="col-md-6">
-        <div class="widget-small primary coloured-icon"><i class='icon bx bxs-user-account fa-3x'></i>
-          <div class="info">
-            <h4>Tổng khách hàng</h4>
-            <p><b>56 khách hàng</b></p>
-            <p class="info-tong">Tổng số khách hàng được quản lý.</p>
-          </div>
-        </div>
-      </div>
-       <!-- col-6 -->
-          <div class="col-md-6">
-            <div class="widget-small info coloured-icon"><i class='icon bx bxs-data fa-3x'></i>
-              <div class="info">
-                <h4>Tổng sản phẩm</h4>
-                <p><b>1850 sản phẩm</b></p>
-                <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
-              </div>
-            </div>
-          </div>
-           <!-- col-6 -->
-          <div class="col-md-6">
-            <div class="widget-small warning coloured-icon"><i class='icon bx bxs-shopping-bags fa-3x'></i>
-              <div class="info">
-                <h4>Tổng đơn hàng</h4>
-                <p><b>247 đơn hàng</b></p>
-                <p class="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
-              </div>
-            </div>
-          </div>
-           <!-- col-6 -->
-          <div class="col-md-6">
-            <div class="widget-small danger coloured-icon"><i class='icon bx bxs-error-alt fa-3x'></i>
-              <div class="info">
-                <h4>Sắp hết hàng</h4>
-                <p><b>4 sản phẩm</b></p>
-                <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
-              </div>
-            </div>
-          </div>
-           <!-- col-12 -->
-           <div class="col-md-12">
-            <div class="tile">
-                <h3 class="tile-title">Tình trạng đơn hàng</h3>
-              <div>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>ID đơn hàng</th>
-                      <th>Tên khách hàng</th>
-                      <th>Tổng tiền</th>
-                      <th>Trạng thái</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>AL3947</td>
-                      <td>Phạm Thị Ngọc</td>
-                      <td>
-                        19.770.000 đ
-                      </td>
-                      <td><span class="badge bg-info">Chờ xử lý</span></td>
-                      <!-- Lấy data từ customer, cart: id, name, total_value, status -->
-                    </tr>
-                    <tr>
-                      <td>ER3835</td>
-                      <td>Nguyễn Thị Mỹ Yến</td>
-                      <td>
-                        16.770.000 đ	
-                      </td>
-                      <td><span class="badge bg-warning">Đang vận chuyển</span></td>
-                    </tr>
-                    <tr>
-                      <td>MD0837</td>
-                      <td>Triệu Thanh Phú</td>
-                      <td>
-                        9.400.000 đ	
-                      </td>
-                      <td><span class="badge bg-success">Đã hoàn thành</span></td>
-                    </tr>
-                    <tr>
-                      <td>MT9835</td>
-                      <td>Đặng Hoàng Phúc	</td>
-                      <td>
-                        40.650.000 đ	
-                      </td>
-                      <td><span class="badge bg-danger">Đã hủy	</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- / div trống-->
-            </div>
-           </div>
-            <!-- / col-12 -->
-             <!-- col-12 -->
-            <div class="col-md-12">
-                <div class="tile">
-                  <h3 class="tile-title">Khách hàng mới</h3>
-                <div>
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Tên khách hàng</th>
-                        <th>Ngày sinh</th>
-                        <th>Số điện thoại</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>#183</td>
-                        <td>Hột vịt muối</td>
-                        <td>21/7/1992</td>
-                        <td><span class="tag tag-success">0921387221</span></td>
-                      </tr>
-                      <tr>
-                        <td>#219</td>
-                        <td>Bánh tráng trộn</td>
-                        <td>30/4/1975</td>
-                        <td><span class="tag tag-warning">0912376352</span></td>
-                      </tr>
-                      <tr>
-                        <td>#627</td>
-                        <td>Cút rang bơ</td>
-                        <td>12/3/1999</td>
-                        <td><span class="tag tag-primary">01287326654</span></td>
-                      </tr>
-                      <tr>
-                        <td>#175</td>
-                        <td>Hủ tiếu nam vang</td>
-                        <td>4/12/20000</td>
-                        <td><span class="tag tag-danger">0912376763</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-              </div>
-            </div>
-             <!-- / col-12 -->
-        </div>
-      </div>
-      <!--END left-->
-      <!--Right-->
-      <div class="col-md-12 col-lg-6">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="tile">
-              <h3 class="tile-title">Dữ liệu 6 tháng đầu vào</h3>
-              <div class="embed-responsive embed-responsive-16by9">
-                <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="tile">
-              <h3 class="tile-title">Thống kê 6 tháng doanh thu</h3>
-              <div class="embed-responsive embed-responsive-16by9">
-                <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <!--END right-->
-    </div>
 
 
-    <div class="text-center" style="font-size: 13px">
-      <p><b>Copyright
-          <script type="text/javascript">
-            document.write(new Date().getFullYear());
-          </script> 
-        </b></p>
-    </div>
-  </main>
-  <!-- Main content-->
+    <!--END right-->
+  </div>
 
-  <script src="/js/admin_dashboard.js"></script>
+
+  <div class="text-center" style="font-size: 13px">
+    <p><b>Copyright
+        <script type="text/javascript">
+          document.write(new Date().getFullYear());
+        </script>
+      </b></p>
+  </div>
+</main>
+<!-- Main content-->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Tỉ lệ đơn hàng được hoàn thành
+    const lineChart = document.getElementById('lineChartDemo').getContext('2d');
+    const completed = Number($('#lineChartDemo').data('completed'))
+    const pending = Number($('#lineChartDemo').data('pending'))
+    const canceled = Number($('#lineChartDemo').data('canceled'))
+    new Chart(lineChart, {
+      type: 'doughnut',
+      data: {
+        labels: ['Completed', 'Pending', 'Canceled'],
+        datasets: [{
+          data: [completed, pending, canceled], // Thay dữ liệu động
+          backgroundColor: ['#4caf50', '#ffc107', '#f44336'], // Màu pastel
+          borderWidth: 2,
+          borderColor: '#fff',
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            callbacks: {
+              label: function (tooltipItem) {
+                let total = 40 + 30 + 30; // Tổng số
+                let value = tooltipItem.raw;
+                let percentage = ((value / total) * 100).toFixed(1);
+                return `${tooltipItem.label}: ${percentage}%`;
+              }
+            }
+          },
+          datalabels: {
+            color: '#fff',
+            formatter: (value, ctx) => {
+              let total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+              return `${((value / total) * 100).toFixed(1)}%`;
+            }
+          }
+        }
+      }
+    });
+
+    // Thống kê 6 tháng doanh thu
+    // Lấy tháng hiện tại
+    let monthlyRevenue = $('#barChartDemo').data('value')
+    monthlyRevenue = monthlyRevenue.split(',')
+    console.log('monthlyRevenue: ', monthlyRevenue)
+    const currentMonth = new Date().getMonth(); // Tháng hiện tại (0-11)
+
+    // Lấy doanh thu của 6 tháng gần nhất từ mảng monthlyRevenue
+    let lastSixMonthsRevenue = [];
+    let lastSixMonthsLabels = [];
+
+    // Duyệt qua 6 tháng gần nhất và lấy doanh thu từ monthlyRevenue
+    for (let i = 0; i < 6; i++) {
+      const monthIndex = (currentMonth - i + 12) % 12; // Tính toán chỉ số tháng trong mảng 12 tháng
+      lastSixMonthsRevenue.unshift(monthlyRevenue[monthIndex]); // Lấy doanh thu của tháng
+      // Thêm tên tháng vào label (có thể thay đổi định dạng tháng tùy ý)
+      lastSixMonthsLabels.unshift(`Tháng ${((currentMonth - i + 12) % 12) + 1}`);
+    }
+    console.log('lastSixMonthsLabels: ', lastSixMonthsLabels)
+    console.log('lastSixMonthsRevenue: ', lastSixMonthsRevenue)
+
+    const barChart = document.getElementById('barChartDemo').getContext('2d');
+    new Chart(barChart, {
+      type: 'bar',
+      data: {
+        labels: lastSixMonthsLabels,
+        datasets: [{
+          label: 'Doanh thu (VND)',
+          data: lastSixMonthsRevenue,
+          backgroundColor: 'rgba(54, 162, 235, 0.8)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function (tooltipItem) {
+                return tooltipItem.raw.toLocaleString('vi-VN') + ' VND';
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function (value) {
+                return value.toLocaleString('vi-VN') + ' VND';
+              }
+            }
+          }
+        }
+      }
+    });
+  });
+</script>
+<script src="/js/admin_dashboard.js"></script>

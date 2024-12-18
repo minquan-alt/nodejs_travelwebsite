@@ -1,11 +1,122 @@
+const heartIcon = document.getElementById('heartIcon')
+// Toggle the icon state on click
+heartIcon.addEventListener('click', function () {
+    this.classList.toggle('fa-solid') // Add/remove the filled style
+    this.classList.toggle('fa-regular') // Add/remove the unfilled style
+})
+
+$(document).ready(function () {
+    // Lắng nghe sự kiện click trên các nút "Khám Phá"
+    $('.card-btn').on('click', function (event) {
+        event.stopPropagation()
+        const destinationId = $(this).data('id') // Lấy destination_id
+        const destinationName = $(this).data('name') // Lấy tên điểm đến
+        const destinationDescription = $(this).data('description') // Lấy mô tả điểm đến
+
+        // Cập nhật tên và mô tả trong modal
+        $('#destinationModal h2').text(destinationName)
+        $('#destinationModal p').text(destinationDescription)
+
+        // Gửi yêu cầu AJAX để lấy danh sách ảnh
+        $.ajax({
+            url: `/api/destination-images/${destinationId}`, // Đường dẫn API
+            method: 'GET',
+            success: function (images) {
+                const carouselInner = $('#destinationModal .carousel-inner')
+                carouselInner.empty() // Xóa nội dung cũ của carousel
+
+                // Thêm ảnh vào carousel
+                images.forEach((image, index) => {
+                    const isActive = index === 0 ? 'active' : ''
+                    carouselInner.append(`
+                        <div class="carousel-item ${isActive}">
+                            <img src="${image.image_path}" 
+                                style="width: 100%; height: 400px; object-fit: cover; border-radius: 10px;"
+                                alt="Destination Image">
+                        </div>
+                    `)
+                })
+
+                // Hiển thị modal (đã được Bootstrap xử lý tự động)
+            },
+            error: function (err) {
+                console.error('Không thể tải ảnh:', err)
+            },
+        })
+    })
+})
+document.getElementById('btnLoadMore').addEventListener('click', function () {
+    const tourContainer = document.getElementById('tour-container')
+    const currentPage = parseInt(this.dataset.page || '1', 10) + 1 // Lấy trang hiện tại
+    this.dataset.page = currentPage // Cập nhật số trang
+    console.log('currentpage: ', currentPage)
+    fetch(`/homepage?page=${currentPage}`, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            const { tours } = data
+            if (tours.length > 0) {
+                tours.forEach((tour) => {
+                    const tourHTML = `
+                        <div class="col-md-4 mb-4 tour-item">
+                            <div class="card tour-card">
+                                <img src="${tour.image}" class="card-img-top" alt="${tour.tour_name}">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="tour-info">
+                                            <i class="fas fa-sun"></i> ${tour.days} ngày
+                                            <i class="fas fa-moon"></i> ${tour.nights} đêm
+                                        </span>
+                                    </div>
+                                    <h5 class="tour-title">${tour.tour_name}</h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        ${'<i class="fas fa-star text-warning"></i>'.repeat(Math.floor(tour.rating))}
+                                        ${tour.rating % 1 !== 0 ? '<i class="fas fa-star-half-alt text-warning"></i>' : ''}
+                                    </div>
+                                    <p class="card-text">${tour.description}</p>
+                                    <ul class="list-unstyled mb-3">
+                                        <li><strong>Khởi hành:</strong> ${tour.departure_location}</li>
+                                        <li><strong>Mã tour:</strong> ${tour.tour_code}</li>
+                                    </ul>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="/tour_detail/${tour.id}" class="btn btn-primary btn-sm">Chọn</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                    tourContainer.insertAdjacentHTML('beforeend', tourHTML)
+                })
+            } else {
+                document.getElementById('btnLoadMore').style.display = 'none'
+            }
+        })
+        .catch((error) => {
+            console.error('Error loading more tours:', error)
+        })
+})
+
+$(document).on('click', '.icon-container', function () {
+    const icons = $(this).find('.fa-heart') // Tìm cả hai biểu tượng trong container
+    icons.each(function () {
+        $(this).toggleClass('hidden') // Chuyển đổi lớp 'hidden' cho từng biểu tượng
+        console.log('You clicked heart')
+    })
+})
+$('.icon-contain').on('click', function () {
+    const icon = $(this).find('.fa-heart')[0] // Tìm cả hai biểu tượng trong container
+    icon.toggleClass('fa-solid fa-regular')
+})
+
 $(window).on('load', function () {
-    // Ẩn loading khi DOM và ảnh đã tải xong
-    $('#loading').hide()
+    //hiệu ứng trái tim
     AOS.init({
-        duration: 1500,
-        once: true,
+        duration: 1000, // Set the default duration for all AOS animations
     })
 
+    // Ẩn loading khi DOM và ảnh đã tải xong
+    $('#loading').hide()
     let prevScrollpos = window.scrollY // Initialize with scrollY
     let threshold = 50 // Set a threshold value for scroll position
     let ticking = false
@@ -35,6 +146,40 @@ $(window).on('load', function () {
         }
     })
     // Logic xử lý thanh header ẩn/hiện khi cuộn trang
+    document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
+        toggle.addEventListener('click', function (e) {
+            e.stopPropagation() // Ngăn sự kiện lan ra ngoài
+            const dropdownMenu = this.nextElementSibling
+            dropdownMenu.classList.toggle('show')
+        })
+    })
+
+    // Đóng dropdown khi click ra ngoài
+    window.addEventListener('click', function (e) {
+        const dropdownMenus = document.querySelectorAll('.dropdown-menu.show')
+        dropdownMenus.forEach((menu) => {
+            if (!menu.contains(e.target)) {
+                menu.classList.remove('show')
+            }
+        })
+    })
+
+    document.querySelectorAll('.dropdown-item').forEach((item) => {
+        item.addEventListener('click', function () {
+            const parentDropdownMenu = this.closest('.dropdown-menu')
+            parentDropdownMenu.classList.remove('show')
+        })
+    })
+
+    // Đóng dropdown khi click ra ngoài
+    window.addEventListener('click', function (e) {
+        const dropdownMenus = document.querySelectorAll('.dropdown-menu.show')
+        dropdownMenus.forEach((menu) => {
+            if (!menu.contains(e.target)) {
+                menu.classList.remove('show')
+            }
+        })
+    })
 
     // Sự kiện xử lý dropdown và tìm kiếm
     let beChanged = false
@@ -63,6 +208,7 @@ $(window).on('load', function () {
 
     $('#btnSearch').click(function (event) {
         event.preventDefault()
+        $('#loading-tour').show()
         const searchParams = {
             departure_location: $('#destinationDropdown').attr('data-value'),
             month: $('#seasonDropdown').attr('data-value'),
@@ -75,7 +221,7 @@ $(window).on('load', function () {
             searchParams.type ||
             beChanged
         ) {
-            let url = '/search?'
+            let url = `/search?`
 
             Object.keys(searchParams).forEach((key) => {
                 url += `${key}=${searchParams[key]}&`
@@ -100,8 +246,28 @@ $(window).on('load', function () {
                         0
                     )
                 })
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
+                .finally(() => {
+                    $('#loading-tour').hide()
+                })
         } else {
             console.log('Nothing to search')
+            $('#loading-tour').hide()
         }
     })
+
+    // $('a').on('click', function(event){
+    //     event.preventDefault()
+    //     console.log('data-value: ', $(this).attr('href'))
+    // })
+
+    $(document)
+        .on('mouseenter', '.menu-item', function () {
+            $(this).css('color', 'blue')
+        })
+        .on('mouseleave', '.menu-item', function () {
+            $(this).css('color', '') // Quay về màu mặc định
+        })
 })

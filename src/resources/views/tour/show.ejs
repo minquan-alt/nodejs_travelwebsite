@@ -5,7 +5,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-2">
                     <span class="tour-info">
-                        <i class="fas fa-sun"></i>
+                        
                         <%= tour.days %> ngày
                             <i class="fas fa-moon"></i>
                             <%= tour.nights %> đêm
@@ -35,7 +35,11 @@
                 </ul>
                 <div class="d-flex justify-content-between align-items-center">
 
-                    <a href="/tour_detail?tourId=<%= tour.id %>" class="btn btn-primary btn-sm">Chọn</a>
+                    <a href="/tour_detail/<%= tour.id %>" data-value="<%= tour.id %>"  class="btn btn-primary btn-sm tour-detail">Chọn</a>
+                    <div class="icon-container">
+                        <i class="fa-regular fa-heart"></i> <!-- Biểu tượng trái tim rỗng -->
+                        <i class="fa-solid fa-heart hidden"></i> <!-- Biểu tượng trái tim đầy -->
+                      </div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize')
 module.exports = function (sequelize) {
     return sequelize.define(
         'Tours_Attraction',
@@ -37,5 +37,5 @@ module.exports = function (sequelize) {
                 },
             ],
         }
-    );
-};
+    )
+}

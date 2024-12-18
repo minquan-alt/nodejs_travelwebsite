@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán thành công</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Modal background */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Modal content */
+        .modal-content {
+            background: #f9f9f9;
+            margin: 8% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 60%;
+            max-width: 600px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Close button */
+        .modal-close {
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #f44336;
+        }
+
+        /* Ticket header and body */
+        .ticket-header,
+        .ticket-body {
+            margin: 15px 0;
+            padding: 10px 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .ticket-header h3,
+        .ticket-body h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .ticket-header p,
+        .ticket-body p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        /* Button styles */
+        .btn-download{
+            display: block;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            color: #fff;
+            padding: 12px 20px;
+            margin: 20px auto 0;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        .btn-download:hover {
+            background: linear-gradient(90deg, #0056b3, #003d82);
+            transform: translateY(-2px);
+        }
+
+        .btn-download:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 90%;
+            }
+
+            .btn-download {
+                width: 100%;
+            }
+        }
+
+        #qrcode {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Modal -->
+    <div id="ticketModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>Thông tin vé của bạn</h2>
+            <div id="ticket"
+                 data-tourId="<%= ticket.tour_id%>"
+                 data-departureLocation="<%= ticket.departure_location%>"
+                 data-timeGo="<%= ticket.time_go%>"
+                 data-timeBack="<%= ticket.time_back%>"
+                 data-vehicle="<%= ticket.vehicle%>"
+                 data-orderId="<%= ticket.order_id%>" >
+                <!-- Nội dung vé -->
+                <div class="ticket-header">
+                    <h3>THÔNG TIN TOUR</h3>
+                    <p>MÃ TOUR: <%= ticket.tour_id%></p>
+                    <p>NƠI ĐI: <%= ticket.departure_location%></p>
+                    <p>NGÀY ĐI: <%= ticket.time_go%></p>
+                    <p>NGÀY VỀ: <%= ticket.time_back%></p>
+                    <p>PHƯƠNG TIỆN: <%= ticket.vehicle%></p>
+                </div>
+                <div class="ticket-body">
+                    <h3>THÔNG TIN ĐẶT TOUR</h3>
+                    <p>MÃ ĐẶT TOUR: <%= ticket.order_id%></p>
+                    <p>TRẠNG THÁI: ĐÃ XÁC NHẬN</p>
+                </div>
+                <!-- Khu vực mã QR -->
+                <div id="qrcode" style="margin-top: 20px; text-align: center;"></div>
+            </div>
+            <button class="btn-download" onclick="downloadTicket()">Tải vé</button>
+        </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        // Nội dung vé
+        const $ticketElement = $('#ticket');
+        console.log($ticketElement)
+
+        // Lấy dữ liệu từ các thuộc tính data-*
+        const ticket = {
+            tour_id: $ticketElement.data('tourid'),
+            departure_location: $ticketElement.data('departurelocation'),
+            time_go: $ticketElement.data('timego'),
+            time_back: $ticketElement.data('timeback'),
+            vehicle: $ticketElement.data('vehicle'),
+            order_id: $ticketElement.data('orderid')
+        };
+        const ticketData = `
+                MÃ TOUR: ${ticket.tour_id}
+                NƠI ĐI: ${ticket.departure_location}
+                NGÀY ĐI: ${ticket.time_go}
+                NGÀY VỀ: ${ticket.time_back}
+                PHƯƠNG TIỆN: ${ticket.vehicle}
+                MÃ ĐẶT TOUR: ${ticket.order_id}
+                TRẠNG THÁI: ĐÃ XÁC NHẬN
+                `;
+        console.log(ticketData)
+  
+        // Hiển thị thông báo thành công
+        Swal.fire({
+            title: 'Thanh toán thành công!',
+            text: 'Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'Trang chủ',
+            cancelButtonText: 'Xem vé của bạn',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Chuyển về trang chủ
+                window.location.href = '/';
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Hiển thị modal vé
+                openModal();
+            }
+        });
+
+        // Mở modal
+        function openModal() {
+            document.getElementById('ticketModal').style.display = 'block';
+        }
+
+        // Đóng modal
+        function closeModal() {
+            document.getElementById('ticketModal').style.display = 'none';
+        }
+
+        // Tải vé dưới dạng PDF
+        function downloadTicket() {
+            const ticketElement = document.getElementById('ticket');
+
+            html2canvas(ticketElement, {
+                scale: 2
+            }).then((canvas) => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png'); // URL ảnh
+                link.download = 've-cua-ban.png'; // Tên file
+                link.click(); // Tự động tải
+            }).catch((error) => {
+                console.error('Lỗi khi tạo hình ảnh:', error);
+            });
+        }
+
+        // Hàm tạo mã QR
+        function generateQRCode(ticketData) {
+            const qrCodeContainer = document.getElementById('qrcode');
+            qrCodeContainer.innerHTML = ''; // Xóa mã QR cũ
+
+            // Tạo mã QR
+            QRCode.toCanvas(ticketData, {
+                width: 200, // Kích thước
+                margin: 2,
+                color: {
+                    dark: '#000000', // Màu mã QR
+                    light: '#ffffff', // Màu nền
+                },
+            }, function (error, canvas) {
+                if (error) {
+                    console.error('Lỗi khi tạo mã QR:', error);
+                    return;
+                }
+                qrCodeContainer.appendChild(canvas);
+            });
+        }
+
+
+
+        
+        // Gọi hàm khi mở modal
+        function openModal() {
+            document.getElementById('ticketModal').style.display = 'block';
+            generateQRCode(ticketData); // Tạo mã QR khi hiển thị vé
+        }
+        $(document).ready(function() {
+            document.getElementById('ticketModal').addEventListener('hidden.bs.modal', function () {
+                // Hiển thị SweetAlert sau khi modal đóng
+                Swal.fire({
+                    title: 'Thanh toán thành công!',
+                    text: 'Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Trang chủ',
+                    cancelButtonText: 'Xem vé của bạn',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Chuyển về trang chủ
+                        window.location.href = '/';
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        // Hiển thị lại modal
+                        new bootstrap.Modal(document.getElementById('ticketModal')).show();
+                    }
+                });
+            });
+        })
+        
+    </script>
+</body>
+
+</html>

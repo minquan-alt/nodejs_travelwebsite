@@ -1,20 +1,19 @@
-<% if(tours.length === 3) { %>
+<% if(tours.length === 0) { %>
     <p>Chưa có khách hàng nào để hiển thị.</p>
 <% } %>
 <% tours.forEach( tour => { %>
-<tr>
+<tr id="tour-row-<%=tour.id%>">
     <td width="10"><input type="checkbox" name="check1" value="1"></td>
-    <td> <%= tour.id %> </td>
+    <td id="tour-id"> <%= tour.id %> </td>
     <td> <%= tour.nation %> </td>
     <td> <%= tour.tour_name %> </td>
     <td> <%= tour.time_go %> </td>
     <td> <%= tour.time_back %> </td>
-    <td> <%= tour.status %> </td>
     <td> <%= tour.max_quantity_of_people %> </td>
     <td> <%= tour.original_price %> </td>
     <td> <%= tour.discounted_price %> </td>
     <td class="table-td-center">
-        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" data-bs-toggle="modal"
+        <button class="btn btn-primary btn-sm trash deleteRow" type="button" title="Xóa" data-bs-toggle="modal"
             data-bs-target="#ModalDelete" id="deleteRow"><i class="fas fa-trash-alt"></i>
         </button>
         <button class="btn btn-primary btn-sm" id="basicEdit" data-bs-toggle="modal" data-bs-target="#basicEditModal" >

@@ -34,6 +34,34 @@
   --font-family-sarabun:  'Roboto', sans-serif;
   --btn-fun: #4bac4d;
 }
+/* Tùy chỉnh thẻ select */
+select {
+  width: 100%; /* Chiều rộng full container */
+  height: 40px; /* Chiều cao cố định */
+  padding: 5px 10px; /* Khoảng cách nội dung */
+  border: 1px solid #ced4da; /* Viền nhẹ màu xám */
+  border-radius: 5px; /* Bo góc */
+  background-color: #ffffff; /* Nền trắng */
+  color: #495057; /* Màu chữ */
+  font-size: 14px; /* Cỡ chữ */
+  cursor: pointer;
+  appearance: none; /* Xóa style mặc định của trình duyệt */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23495057" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Biểu tượng mũi tên */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* Hover cho select */
+select:hover {
+  border-color: #80bdff;
+}
+
+/* Focus cho select */
+select:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 
 *,
 *::before,
@@ -49,6 +77,59 @@ html {
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.shrink-image{
+  width: 60px;
+  height: 45px;
+  cursor: pointer;
+}
+.preview {
+  display: none;
+  background-size: cover;
+  background-position: center;
+  width: 600px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #000;
+}
+.preview.show-preview {
+  display: block;
+  z-index: 2000;
+}
+.preview .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  text-align: center;
+  line-height: 30px;
+  transition: all 0.3s;
+}
+.close-btn:hover{
+  background-color:#001b19;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 200vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1999;
+}
+.overlay.show {
+  display: block;
 }
 
 @-ms-viewport {
@@ -6865,10 +6946,7 @@ button.bg-dark:focus {
   overflow: hidden;
 }
 
-.embed-responsive::before {
-  display: block;
-  content: "";
-}
+
 
 .embed-responsive .embed-responsive-item,
 .embed-responsive iframe,
@@ -15449,8 +15527,26 @@ be a descendant of the grid when it is being dragged.
   background:rgb(0, 28, 64);
   border:1px solid rgb(0, 28, 64) !important ;
 }
- #clock{
+.tile {
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
+.tile-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+ #clock{
     font-weight: 600;
     color: rgb(0, 0, 0);
     font-size: 13px;
