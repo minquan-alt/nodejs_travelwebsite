@@ -33,6 +33,11 @@ router.delete('/customer_management/delete/:id', adminController.deleteCustomer)
 router.post('/customer_management/update/:id', adminController.updateCustomer)
 router.post('/customer_management/add', adminController.addCustomer)
 router.get(
+    '/registered_tour_management',
+    adminMiddleware,
+    adminController.getRegisteredTourManagement
+)
+router.get(
     '/customer_management',
     adminMiddleware,
     adminController.getCustomerManagement
@@ -48,6 +53,7 @@ router.get(
     adminMiddleware,
     adminController.getTourManagement
 )
+
 router.get('/', adminMiddleware, adminController.getAdminDashboard)
 
 module.exports = router

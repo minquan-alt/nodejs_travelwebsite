@@ -1,22 +1,44 @@
 const adminCustomerService = require('../services/AdminCustomerService')
 const adminTourService = require('../services/AdminTourService')
+const adminRegisteredTourService = require('../services/AdminRegisteredTourService')
+const adminDashboardService = require('../services/AdminDashboardService')
 
 class AdminController {
-    getAdminDashboard(req, res) {
+    async getAdminDashboard(req, res) {
         try {
+            const result = await adminDashboardService.getStatistic(req, res)
+            const orders = await adminRegisteredTourService.getOrders(req, res)
+            const customers = await adminCustomerService.getCustomers(req)
+
             return res.render('admin_dashboard', {
                 layout: 'layouts/admin',
+                count_cus: result.customerCount,
+                count_ord: result.completedOrderCount,
+                cancel_ord: result.cancelledOrderCount,
+                pending_ord: result.pendingOrderCount,
+                count_tour: result.tourCount,
+                orders: orders.orders,
+                customers: customers.data,
+                monthlyRevenue: result.monthlyRevenue,
             })
         } catch (error) {
             console.log('Error rendering customer: ', error)
         }
     }
+
+    async getRegisteredTourManagement(req, res) {
+        try {
+            const result = await adminRegisteredTourService.getOrders(req)
+            return res.render('bookedTour_management', {
+                layout: false,
+                orders: result.orders,
+            })
+        } catch (error) {}
+    }
     async getCustomerManagement(req, res) {
         try {
             const result = await adminCustomerService.getCustomers(req)
             if (result.success) {
-                console.log(result.data)
-
                 return res.render('customer_management', {
                     layout: false,
                     customers: result.data,

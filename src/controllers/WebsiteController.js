@@ -285,6 +285,30 @@ class WebsiteController {
             await pool.query(paymentQuery, paymentParams)
             console.log('Add payment successfully')
 
+            const tour = req.session.tour
+            const ticketQuery =
+                'INSERT INTO Tickets (tour_id, order_id, tour_name, departure_location, time_go, time_back, vehicle) VALUES (?, ?, ?, ?, ?, ?, ?)'
+            const ticketParams = [
+                tour.id,
+                req.session.order_id,
+                tour.tour_name,
+                tour.departure_location,
+                tour.time_go,
+                tour.time_back,
+                tour.vehicle,
+            ]
+            const [result] = await pool.query(ticketQuery, ticketParams)
+            console.log('Add ticket successfully')
+
+            const ticketId = result.insertId
+            const getTicketQuery = `
+                                    SELECT * 
+                                    FROM Tickets 
+                                    WHERE id = ?
+                                `
+            const [[ticketRow]] = await pool.query(getTicketQuery, [ticketId])
+            console.log('My current ticket: ', ticketRow)
+
             // Xoá session
             delete req.session.customer
             delete req.session.passengers
@@ -294,6 +318,7 @@ class WebsiteController {
 
             return res.render('payment-successful', {
                 layout: false,
+                ticket: ticketRow,
             })
         } catch (error) {
             console.error('Error while checking order:', error)
@@ -310,6 +335,7 @@ class WebsiteController {
             req.session.customer = customer
             req.session.passengers = passengers
             req.session.tour = tour
+            console.log(tour)
             const total_price_number = Number(total_price)
             const query = 'SELECT * FROM Tour_User WHERE tour_id = ?'
             const [result] = await pool.query(query, [tour.id])

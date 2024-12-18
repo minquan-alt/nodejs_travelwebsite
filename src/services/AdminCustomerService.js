@@ -44,22 +44,7 @@ class AdminCustomerService {
         try {
             connection = await pool.getConnection()
             await connection.beginTransaction()
-            // check user valid
-            const existingCustomerQuery =
-                'SELECT * FROM Customers WHERE phone = ? AND email = ? LIMIT 1'
-            const existingCustomerParam = [phone, email]
-            const [existingCustomer] = await connection.execute(
-                existingCustomerQuery,
-                existingCustomerParam
-            )
 
-            if (existingCustomer.length > 0) {
-                await connection.rollback()
-                return {
-                    success: false,
-                    message: 'Email hoặc số điện thoại đã tồn tại',
-                }
-            }
             // add customer
             const query =
                 'INSERT INTO Customers (full_name, city, phone, email, country) VALUES (?, ?, ?, ?, ?)'
@@ -110,24 +95,6 @@ class AdminCustomerService {
     }
     async updateCustomer(id, updatedData) {
         try {
-            const existingCustomerQuery =
-                'SELECT * FROM Customers WHERE phone = ? OR email = ? LIMIT 1'
-            const existingCustomerParams = [
-                updatedData.phone,
-                updatedData.email,
-            ]
-            const [existingCustomer] = await pool.query(
-                existingCustomerQuery,
-                existingCustomerParams
-            )
-
-            if (existingCustomer.length > 0) {
-                return {
-                    success: false,
-                    message: 'Email hoặc số điện thoại đã tồn tại',
-                }
-            }
-
             const query =
                 'UPDATE Customers SET full_name = ?, city = ?, phone = ?, email = ?, country = ? WHERE id = ?'
             const [result] = await pool.query(query, [
